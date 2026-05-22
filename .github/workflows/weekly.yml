@@ -3,7 +3,7 @@ name: Top 10 Semanal
 on:
   schedule:
     # Domingos a las 21:00 hora España (20:00 UTC en verano, 21:00 UTC en invierno)
-    - cron: '0 20 * * 0'
+    - cron: '20 20 * * 0'
   workflow_dispatch:
 
 jobs:
