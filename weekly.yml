@@ -1,0 +1,82 @@
+name: Top 10 Semanal
+
+on:
+  schedule:
+    # Domingos a las 21:00 hora España (20:00 UTC en verano, 21:00 UTC en invierno)
+    - cron: '0 20 * * 0'
+  workflow_dispatch:
+
+jobs:
+  send-top10:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Restaurar token de Spotify
+        run: |
+          echo '${{ secrets.SPOTIFY_TOKEN_CACHE }}' > .spotify_token_cache
+
+      - name: Enviar top 10 semanal
+        env:
+          SPOTIFY_CLIENT_ID:     ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REDIRECT_URI:  ${{ secrets.SPOTIFY_REDIRECT_URI }}
+          NTFY_TOPIC:            ${{ secrets.NTFY_TOPIC }}
+        run: python weekly_top10.py
+
+      - name: Actualizar token de Spotify en secrets
+        if: always()
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          pip install PyNaCl --quiet
+
+          python3 - <<'EOF'
+          import os, json, base64
+          from pathlib import Path
+          from nacl import encoding, public
+          import urllib.request
+
+          token = os.environ["PAT_TOKEN"]
+          repo  = os.environ["REPO"]
+          cache = Path(".spotify_token_cache").read_text().strip()
+          if not cache:
+              print("Cache vacío, nada que guardar.")
+              exit(0)
+
+          req = urllib.request.Request(
+              f"https://api.github.com/repos/{repo}/actions/secrets/public-key",
+              headers={"Authorization": f"token {token}", "Accept": "application/vnd.github+json"}
+          )
+          with urllib.request.urlopen(req) as r:
+              pk_data = json.loads(r.read())
+
+          pub_key = public.PublicKey(pk_data["key"].encode(), encoding.Base64Encoder())
+          sealed = public.SealedBox(pub_key).encrypt(cache.encode())
+          encrypted = base64.b64encode(sealed).decode()
+
+          body = json.dumps({"encrypted_value": encrypted, "key_id": pk_data["key_id"]}).encode()
+          req2 = urllib.request.Request(
+              f"https://api.github.com/repos/{repo}/actions/secrets/SPOTIFY_TOKEN_CACHE",
+              data=body,
+              method="PUT",
+              headers={
+                  "Authorization": f"token {token}",
+                  "Accept": "application/vnd.github+json",
+                  "Content-Type": "application/json"
+              }
+          )
+          with urllib.request.urlopen(req2) as r:
+              print(f"Token actualizado correctamente (status {r.status})")
+          EOF
