@@ -1,0 +1,78 @@
+name: Lyric of the Day
+
+on:
+  schedule:
+    # Cada día a las 9:00 hora de España (8:00 UTC en invierno, 7:00 UTC en verano)
+    # Ajusta el horario aquí: https://crontab.guru
+    - cron: '0 8 * * *'
+  # Permite ejecutarlo manualmente desde GitHub para probar
+  workflow_dispatch:
+
+jobs:
+  send-lyric:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Restaurar token de Spotify
+        # Escribe el token cacheado desde los secrets de GitHub
+        run: |
+          echo '${{ secrets.SPOTIFY_TOKEN_CACHE }}' > .spotify_token_cache
+
+      - name: Ejecutar pipeline
+        env:
+          SPOTIFY_CLIENT_ID:     ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REDIRECT_URI:  ${{ secrets.SPOTIFY_REDIRECT_URI }}
+          NTFY_TOPIC:            ${{ secrets.NTFY_TOPIC }}
+        run: python lyric_flipper.py
+
+      - name: Actualizar token de Spotify en secrets
+        # Si spotipy renovó el token, lo guarda de vuelta en el secret
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PAT_TOKEN }}
+          script: |
+            const fs = require('fs');
+            let cache = '';
+            try {
+              cache = fs.readFileSync('.spotify_token_cache', 'utf8').trim();
+            } catch (e) {
+              console.log('No se encontró el cache de token');
+              return;
+            }
+            if (!cache) return;
+
+            // Obtener la clave pública del repositorio para cifrar el secret
+            const { data: publicKey } = await github.rest.actions.getRepoPublicKey({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+
+            const sodium = require('libsodium-wrappers');
+            await sodium.ready;
+
+            const key = sodium.from_base64(publicKey.key, sodium.base64_variants.ORIGINAL);
+            const msg = sodium.from_string(cache);
+            const encrypted = sodium.crypto_box_seal(msg, key);
+            const encryptedB64 = sodium.to_base64(encrypted, sodium.base64_variants.ORIGINAL);
+
+            await github.rest.actions.createOrUpdateRepoSecret({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              secret_name: 'SPOTIFY_TOKEN_CACHE',
+              encrypted_value: encryptedB64,
+              key_id: publicKey.key_id,
+            });
+            console.log('Token de Spotify actualizado correctamente.');
