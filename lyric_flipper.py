@@ -59,8 +59,8 @@ log = logging.getLogger("lyric_flipper")
 # ══════════════════════════════════════════════════════════════
 CONFIG = {
     # ── Spotify (Authorization Code Flow) ──────────────────────
-    "SPOTIFY_CLIENT_ID":     os.getenv("SPOTIFY_CLIENT_ID",     "5ff75f0167ad4164b3d7e27a4d07f7f8"),
-    "SPOTIFY_CLIENT_SECRET": os.getenv("SPOTIFY_CLIENT_SECRET", "1bee4a39a9654d5d89112b3a10ab2d93"),
+    "SPOTIFY_CLIENT_ID":     os.getenv("SPOTIFY_CLIENT_ID",     ""),
+    "SPOTIFY_CLIENT_SECRET": os.getenv("SPOTIFY_CLIENT_SECRET", ""),
     "SPOTIFY_REDIRECT_URI":  os.getenv("SPOTIFY_REDIRECT_URI",  "http://127.0.0.1:8888/callback"),
     
     # Rango temporal: short_term | medium_term | long_term
