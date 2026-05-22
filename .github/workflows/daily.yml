@@ -38,41 +38,51 @@ jobs:
         run: python lyric_flipper.py
 
       - name: Actualizar token de Spotify en secrets
-        # Si spotipy renovó el token, lo guarda de vuelta en el secret
         if: always()
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.PAT_TOKEN }}
-          script: |
-            const fs = require('fs');
-            let cache = '';
-            try {
-              cache = fs.readFileSync('.spotify_token_cache', 'utf8').trim();
-            } catch (e) {
-              console.log('No se encontró el cache de token');
-              return;
-            }
-            if (!cache) return;
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          pip install PyNaCl --quiet
 
-            // Obtener la clave pública del repositorio para cifrar el secret
-            const { data: publicKey } = await github.rest.actions.getRepoPublicKey({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            });
+          python3 - <<'EOF'
+          import os, json, base64
+          from pathlib import Path
+          from nacl import encoding, public
+          import urllib.request
 
-            const sodium = require('libsodium-wrappers');
-            await sodium.ready;
+          token = os.environ["PAT_TOKEN"]
+          repo  = os.environ["REPO"]
+          cache = Path(".spotify_token_cache").read_text().strip()
+          if not cache:
+              print("Cache vacío, nada que guardar.")
+              exit(0)
 
-            const key = sodium.from_base64(publicKey.key, sodium.base64_variants.ORIGINAL);
-            const msg = sodium.from_string(cache);
-            const encrypted = sodium.crypto_box_seal(msg, key);
-            const encryptedB64 = sodium.to_base64(encrypted, sodium.base64_variants.ORIGINAL);
+          # Obtener clave pública del repo
+          req = urllib.request.Request(
+              f"https://api.github.com/repos/{repo}/actions/secrets/public-key",
+              headers={"Authorization": f"token {token}", "Accept": "application/vnd.github+json"}
+          )
+          with urllib.request.urlopen(req) as r:
+              pk_data = json.loads(r.read())
 
-            await github.rest.actions.createOrUpdateRepoSecret({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              secret_name: 'SPOTIFY_TOKEN_CACHE',
-              encrypted_value: encryptedB64,
-              key_id: publicKey.key_id,
-            });
-            console.log('Token de Spotify actualizado correctamente.');
+          # Cifrar el secret con la clave pública
+          pub_key = public.PublicKey(pk_data["key"].encode(), encoding.Base64Encoder())
+          sealed = public.SealedBox(pub_key).encrypt(cache.encode())
+          encrypted = base64.b64encode(sealed).decode()
+
+          # Actualizar el secret
+          body = json.dumps({"encrypted_value": encrypted, "key_id": pk_data["key_id"]}).encode()
+          req2 = urllib.request.Request(
+              f"https://api.github.com/repos/{repo}/actions/secrets/SPOTIFY_TOKEN_CACHE",
+              data=body,
+              method="PUT",
+              headers={
+                  "Authorization": f"token {token}",
+                  "Accept": "application/vnd.github+json",
+                  "Content-Type": "application/json"
+              }
+          )
+          with urllib.request.urlopen(req2) as r:
+              print(f"Token actualizado correctamente (status {r.status})")
+          EOF
