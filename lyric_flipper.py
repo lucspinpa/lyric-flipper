@@ -388,6 +388,40 @@ def send_ntfy(title: str, body: str) -> bool:
         log.warning("⚠️   Error enviando a ntfy: %s", e)
     return False
 
+# ─────────────────────────────────────────────────────────────
+#  MÓDULO 7 — Generar stats.json + index.html para GitHub Pages
+# ─────────────────────────────────────────────────────────────
+ 
+def generate_stats(chunk: str, chosen_track: dict, top_tracks: list[dict]) -> None:
+    """
+    Escribe stats.json con el lyric del día y el top de canciones.
+    La web (index.html) lee este archivo estático — sin auth ni backend.
+    """
+    from datetime import date
+ 
+    data = {
+        "generated": date.today().isoformat(),
+        "lyric": {
+            "artist": chosen_track["artist"],
+            "track":  chosen_track["track"],
+            "album":  chosen_track.get("album", ""),
+            "chunk":  chunk,
+        },
+        "top_tracks": [
+            {
+                "track":  t["track"],
+                "artist": t["artist"],
+                "album":  t.get("album", ""),
+            }
+            for t in top_tracks[:10]
+        ],
+    }
+ 
+    Path("stats.json").write_text(
+        json.dumps(data, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    log.info("📊  stats.json generado.")
 
 # ─────────────────────────────────────────────────────────────
 #  PIPELINE PRINCIPAL
@@ -401,6 +435,7 @@ def run_pipeline():
     # ── PASO 1: Top tracks de Spotify ──────────────────────────
     try:
         tracks = get_top_tracks()
+        top_tracks_ordered = list(tracks)  # copia ordenada para la web
     except Exception as e:
         log.error("❌  No se pudo obtener top tracks: %s", e)
         return
@@ -491,6 +526,8 @@ def run_pipeline():
     notif_title = f"♪ {chosen_track['artist']} — {chosen_track['track']}"
     send_ntfy(notif_title, chunk)
 
+    generate_stats(chunk, chosen_track, top_tracks_ordered)
+    
     log.info("✨  Pipeline completado.")
 
 
