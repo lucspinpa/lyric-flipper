@@ -289,6 +289,10 @@
 <script>
 (async () => {
   const CACHE_BUST = `?t=${Date.now()}`;
+ function esc(str) {
+    if (!str) return '';
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
 
   try {
     const res = await fetch(`stats.json${CACHE_BUST}`);
@@ -330,9 +334,6 @@
     console.error('stats.json load failed:', e);
   }
 
-  function esc(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
 })();
 </script>
 
