@@ -42,15 +42,7 @@ jobs:
             echo "⚠️  SPOTIFY_TOKEN_CACHE no configurado — el pipeline fallará en el módulo 1."
           fi
  
-      - name: Restore lyric state
-        # Persiste el historial de fragmentos usados entre ejecuciones
-        env:
-          LYRIC_STATE: ${{ secrets.LYRIC_STATE }}
-        run: |
-          if [ -n "$LYRIC_STATE" ]; then
-            echo "$LYRIC_STATE" > .lyric_state.json
-            echo "✅ Estado de lyric restaurado."
-          fi
+      #
  
       - name: Run pipeline
         env:
@@ -65,5 +57,5 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add lyric_of_day.txt stats.json index.html .lyric_state.json
-          git diff --cached --quiet || git commit -m "chore: lyric of the day $(date +'%Y-%m-%d')"
+          git diff --cached --quiet || git commit -m "chore: lyric of the day $(date +'%Y-%m-%d') [skip ci]"
           git push
