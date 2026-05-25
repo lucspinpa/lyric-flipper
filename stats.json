@@ -1,61 +1,71 @@
 {
   "generated": "2026-05-25",
   "lyric": {
-    "artist": "Maisie Peters",
-    "track": "Questions",
-    "album": "Florescence",
-    "chunk": "Now you're here, I'm out with somebody\nBet you picture his bedroom, my body\nWhen if I saw you, I'd just walk right past you\nWouldn't even stop you, wouldn't need to ask you\nDo you think about me, do you think about us?"
+    "artist": "RAYE",
+    "track": "I Hate The Way I Look Today.",
+    "album": "THIS MUSIC MAY CONTAIN HOPE.",
+    "chunk": "I must admit I'm so unkind\nTo myself, to myself I'll be so mean\nMan, if only I was pretty\nI'm okay to be lonely if I'm lonely and skinny\nI have such silly self-loathing thoughts it seems"
   },
   "top_tracks": [
     {
       "track": "Hit the Wall",
       "artist": "Gracie Abrams",
-      "album": "Hit the Wall"
+      "album": "Hit the Wall",
+      "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
     },
     {
       "track": "Calypso",
       "artist": "Guitarricadelafuente",
-      "album": "Calypso"
+      "album": "Calypso",
+      "image": "https://i.scdn.co/image/ab67616d00001e02e736673db223d6bfa1de5355"
     },
     {
       "track": "Beware.. The South London Lover Boy.",
       "artist": "RAYE",
-      "album": "THIS MUSIC MAY CONTAIN HOPE."
+      "album": "THIS MUSIC MAY CONTAIN HOPE.",
+      "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
     },
     {
       "track": "Intro: Girl Under The Grey Cloud.",
       "artist": "RAYE",
-      "album": "THIS MUSIC MAY CONTAIN HOPE."
+      "album": "THIS MUSIC MAY CONTAIN HOPE.",
+      "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
     },
     {
       "track": "Questions",
       "artist": "Maisie Peters",
-      "album": "Florescence"
+      "album": "Florescence",
+      "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
     },
     {
       "track": "Say My Name In Your Sleep",
       "artist": "Maisie Peters",
-      "album": "Florescence"
+      "album": "Florescence",
+      "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
     },
     {
       "track": "drop dead",
       "artist": "Olivia Rodrigo",
-      "album": "drop dead (taken that eurostar to france video)"
+      "album": "drop dead (taken that eurostar to france video)",
+      "image": "https://i.scdn.co/image/ab67616d00001e021a1495ff41046065b9475366"
     },
     {
       "track": "Happier Times Ahead.",
       "artist": "RAYE",
-      "album": "THIS MUSIC MAY CONTAIN HOPE."
+      "album": "THIS MUSIC MAY CONTAIN HOPE.",
+      "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
     },
     {
       "track": "Rock Music",
       "artist": "Charli xcx",
-      "album": "Rock Music"
+      "album": "Rock Music",
+      "image": "https://i.scdn.co/image/ab67616d00001e02b7bc469a85354ff1ae7a1386"
     },
     {
       "track": "My Regards",
       "artist": "Maisie Peters",
-      "album": "Florescence"
+      "album": "Florescence",
+      "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
     }
   ]
 }
