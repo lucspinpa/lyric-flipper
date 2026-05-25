@@ -21,6 +21,7 @@ import time
 import json
 from pathlib import Path
 from typing import Optional
+from datetime import date
 
 # ─── DEPENDENCIAS OPCIONALES ──────────────────────────────────
 try:
@@ -95,7 +96,7 @@ CONFIG = {
 #  MÓDULO 1 — Spotify: obtener top tracks
 # ─────────────────────────────────────────────────────────────
 
-def get_top_tracks() -> list[dict]:
+def get_top_tracks(time_range: str = "short_term") -> list[dict]:
     """
     Devuelve lista de dicts con {track, artist, duration_s} usando
     Authorization Code Flow (scope: user-top-read).
@@ -117,7 +118,7 @@ def get_top_tracks() -> list[dict]:
 
     result = sp.current_user_top_tracks(
         limit=CONFIG["SPOTIFY_TOP_LIMIT"],
-        time_range=CONFIG["SPOTIFY_TIME_RANGE"],
+        time_range=time_range,
     )
 
     tracks = []
@@ -133,6 +134,34 @@ def get_top_tracks() -> list[dict]:
     log.info("✅  %d pistas obtenidas.", len(tracks))
     return tracks
 
+def get_top_artists(time_range: str = "short_term") -> list[dict]:
+    if spotipy is None:
+        raise SystemExit("❌  Instala 'spotipy':  pip install spotipy")
+
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+        client_id=CONFIG["SPOTIFY_CLIENT_ID"],
+        client_secret=CONFIG["SPOTIFY_CLIENT_SECRET"],
+        redirect_uri=CONFIG["SPOTIFY_REDIRECT_URI"],
+        scope="user-top-read",
+        cache_path=".spotify_token_cache",
+        open_browser=True,
+    ))
+
+    log.info("🎤  Solicitando top artistas (%s)…", time_range)
+
+    result = sp.current_user_top_artists(
+        limit=10,
+        time_range=time_range,
+    )
+
+    return [
+        {
+            "name":   item["name"],
+            "genres": item["genres"][:2],
+            "image":  item["images"][1]["url"] if len(item["images"]) > 1 else (item["images"][0]["url"] if item["images"] else ""),
+        }
+        for item in result["items"]
+    ]
 
 # ─────────────────────────────────────────────────────────────
 #  MÓDULO 2 — Proveedor A: LRCLIB (open source, sin token)
@@ -393,13 +422,20 @@ def send_ntfy(title: str, body: str) -> bool:
 #  MÓDULO 7 — Generar stats.json + index.html para GitHub Pages
 # ─────────────────────────────────────────────────────────────
  
-def generate_stats(chunk: str, chosen_track: dict, top_tracks: list[dict]) -> None:
+def generate_stats(chunk: str, chosen_track: dict,
+                   tracks_short: list[dict], tracks_medium: list[dict], tracks_long: list[dict],
+                   artists_short: list[dict], artists_medium: list[dict], artists_long: list[dict]) -> None:
     """
     Escribe stats.json con el lyric del día y el top de canciones.
     La web (index.html) lee este archivo estático — sin auth ni backend.
     """
-    from datetime import date
- 
+
+    def fmt_tracks(lst):
+        return [{"track": t["track"], "artist": t["artist"], "image": t.get("image", "")} for t in lst[:10]]
+
+    def fmt_artists(lst):
+        return [{"name": a["name"], "genres": a.get("genres", []), "image": a.get("image", "")} for a in lst[:10]]
+
     data = {
         "generated": date.today().isoformat(),
         "lyric": {
@@ -408,23 +444,23 @@ def generate_stats(chunk: str, chosen_track: dict, top_tracks: list[dict]) -> No
             "album":  chosen_track.get("album", ""),
             "chunk":  chunk,
         },
-        "top_tracks": [
-            {
-                "track":  t["track"],
-                "artist": t["artist"],
-                "album":  t.get("album", ""),
-                "image":  t.get("image", ""),
-            }
-            for t in top_tracks[:10]
-        ],
+        "tracks": {
+            "short_term":  fmt_tracks(tracks_short),
+            "medium_term": fmt_tracks(tracks_medium),
+            "long_term":   fmt_tracks(tracks_long),
+        },
+        "artists": {
+            "short_term":  fmt_artists(artists_short),
+            "medium_term": fmt_artists(artists_medium),
+            "long_term":   fmt_artists(artists_long),
+        },
     }
- 
+
     Path("stats.json").write_text(
         json.dumps(data, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
     log.info("📊  stats.json generado.")
-
 # ─────────────────────────────────────────────────────────────
 #  PIPELINE PRINCIPAL
 # ─────────────────────────────────────────────────────────────
@@ -436,11 +472,17 @@ def run_pipeline():
 
     # ── PASO 1: Top tracks de Spotify ──────────────────────────
     try:
-        tracks = get_top_tracks()
-        top_tracks_ordered = list(tracks)  # copia ordenada para la web
+        tracks_short  = get_top_tracks("short_term")
+        tracks_medium = get_top_tracks("medium_term")
+        tracks_long   = get_top_tracks("long_term")
+        artists_short  = get_top_artists("short_term")
+        artists_medium = get_top_artists("medium_term")
+        artists_long   = get_top_artists("long_term")
+        tracks = list(tracks_short)  # el pipeline usa short_term para elegir canción
+        top_tracks_ordered = list(tracks_short)
     except Exception as e:
         log.error("❌  No se pudo obtener top tracks: %s", e)
-        return
+        return  # copia ordenada para la web
 
     # ── PASO 2: Obtener letra (con cascada de proveedores) ──────
     lyrics_raw = None
@@ -528,7 +570,9 @@ def run_pipeline():
     notif_title = f"♪ {chosen_track['artist']} — {chosen_track['track']}"
     send_ntfy(notif_title, chunk)
 
-    generate_stats(chunk, chosen_track, top_tracks_ordered)
+    generate_stats(chunk, chosen_track,
+                   tracks_short, tracks_medium, tracks_long,
+                   artists_short, artists_medium, artists_long)
     
     log.info("✨  Pipeline completado.")
 
