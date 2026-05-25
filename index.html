@@ -50,7 +50,7 @@
   .pill.active { color: var(--bg); background: var(--text); border-color: var(--text); }
   .pill:hover:not(.active) { border-color: var(--muted); color: var(--text); }
 
-  /* ── TRACK ROW — formato único ── */
+  /* ── TRACK ROW ── */
   .track-row {
     display: flex;
     align-items: center;
@@ -68,7 +68,7 @@
   .t-artist { font-size: 0.62rem; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   /* ── MAIN areas ── */
-  main { grid-column: 1; display: flex; flex-direction: column; justify-content: center; padding: 2rem 0 3rem; min-height: 300px; }
+  main { grid-column: 1; display: flex; flex-direction: column; justify-content: center; padding: 2rem 0 3rem; min-height: 300px; position: relative; }
   aside { grid-column: 2; grid-row: 4; border-left: 1px solid var(--border); padding-left: 2rem; padding-top: 2rem; }
   .aside-label { font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 1rem; }
 
@@ -76,7 +76,7 @@
   .song-meta { margin-bottom: 2rem; }
   .song-meta .s-artist { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 0.45rem; }
   .song-meta .s-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.7rem, 3.5vw, 2.6rem); color: var(--text); line-height: 1.15; }
-  blockquote { border-left: 1px solid var(--green); padding-left: 1.75rem; font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 1.8; color: var(--text); }
+  blockquote { border-left: 1px solid var(--green); padding-left: 1.75rem; font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 1.8; color: var(--text); max-width: 65%; }
   .sent-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
   .sent-badge::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
@@ -111,86 +111,77 @@
     aside { grid-column: 1; grid-row: unset; border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 2rem; margin-top: 2rem; }
     #artists-grid { grid-template-columns: 1fr; }
     .artist-card.top1 { grid-column: 1; }
+    #space-sector { display: none; } /* Ocultar el espacio en móviles */
   }
 
- /* EL CONTENEDOR DEL ESPACIO RETRO */
+  /* EL CONTENEDOR DEL ESPACIO RETRO CORREGIDO */
   #space-sector {
     position: absolute;
-    right: -45%;         /* Lo empuja al hueco en blanco de la derecha */
-    top: 20%;
-    width: 300px;        /* Tamaño perfecto para el cuadrante */
-    height: 300px;
-    background-image: url('/images/bckg.png');
+    right: 0;             
+    top: 50%;
+    transform: translateY(-50%);
+    width: 260px;        
+    height: 260px;
+    background-color: var(--surface); /* Fondo de respaldo si la imagen falla */
+    background-image: url('images/bckg.png');
     background-size: cover;
-    image-rendering: pixelated; /* Mantiene el planeta y las estrellas súper nítidos */
-    border-radius: 8px;  /* Un toque sutil para los bordes */
-    overflow: hidden;    /* Evita que la mascota se salga del recuadro visualmente */
+    background-position: center;
+    image-rendering: pixelated; 
+    border: 1px solid var(--border);
+    border-radius: 8px;  
+    overflow: hidden;    
   }
- /* ── NUEVA SECCIÓN PARA LA MASCOTA ── */
-     main {
-       position: relative; /* Clave para que la mascota no se mueva por toda la pantalla */
-     }
+
+  /* ── SECCIÓN DE LA MASCOTA REPARADA ── */
+  #web-pet {
+    position: absolute;
+    right: 15%;          /* Posición inicial por defecto */
+    top: 40%;
+    width: 64px;         /* Tamaño de la mascota controlado */
+    height: 64px;        
+    z-index: 10;
+    cursor: pointer;
+    transition: top 1s ease-in-out, right 1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
      
-     #web-pet {
-       position: absolute;
-       right: 12%;          /* Posición inicial corregida en el hueco derecho */
-       top: 40%;
-       width: 64px;         /* ◄ ESTE ES EL CAMBIO CLAVE: Definimos un tamaño fijo y pequeño */
-       height: auto;        /* Mantenemos la caja cuadrada */
-       z-index: 10;
-       cursor: pointer;
-       transition: top 1s ease-in-out, right 1s ease-in-out, transform 0.3s ease;
-       
-       /* Opcional: Para asegurarnos de que la imagen no se desborde */
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       overflow: hidden;
-     }
+  #web-pet img {
+    width: 100%;         
+    height: 100%;        
+    object-fit: contain;
+    display: block;
+    image-rendering: pixelated; 
+  }
      
-     #web-pet img {
-       width: auto;         /* Ajuste automático para no deformarla */
-       height: 50%;        /* Ocupa todo el alto del contenedor */
-       display: block;
-       
-       /* Mantenemos el pixelado nítido y la inversión de color si la usas */
-       image-rendering: pixelated; /* Mantiene los píxeles perfectos y nítidos */
-     }
+  /* Animaciones */
+  .pet-idle img {
+    animation: float-around 3s infinite ease-in-out;
+  }
      
-     /* Estado quieto: Flotando en el sitio como un fantasmita */
-     .pet-idle {
-       animation: float-around 3s infinite ease-in-out;
-     }
+  @keyframes float-around {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
      
-     @keyframes float-around {
-       0%, 100% { transform: translateY(0); }
-       50% { transform: translateY(-12px); }
-     }
+  .pet-moving img {
+    animation: wobble 0.2s infinite linear;
+  }
      
-     /* Estado movimiento: Se inclina un poco hacia adelante al cambiar de posición */
-     .pet-moving {
-       animation: wobble 0.3s infinite linear;
-     }
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-6deg); }
+    50% { transform: rotate(6deg); }
+  }
      
-     @keyframes wobble {
-       0%, 100% { transform: rotate(-4deg); }
-       50% { transform: rotate(4deg); }
-     }
+  .pet-click img {
+    animation: pop 0.4s ease-out;
+  }
      
-     /* Al hacerle click pega un pequeño brinco */
-     .pet-click {
-       animation: pop 0.4s ease-out;
-     }
-     
-     @keyframes pop {
-       0%, 100% { transform: scale(1); }
-       50% { transform: scale(1.2); }
-     }
-     
-     /* Ocultar la mascota en pantallas pequeñas (móviles) para que no tape el texto */
-     @media (max-width: 768px) {
-       #-pet { display: none; }
-     }
+  @keyframes pop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+  }
 </style>
 </head>
 <body>
@@ -212,7 +203,6 @@
   <button class="pill" data-range="long_term">last 12 months</button>
 </div>
 
-<!-- ── VIEW: LYRIC ── -->
 <div id="view-lyric" class="view active">
   <main>
     <div class="song-meta">
@@ -227,11 +217,12 @@
       <span class="skel" style="width:80%;height:16px;display:block"></span>
     </blockquote>
 
-   <div id="space-sector">
-     <div id="web-pet" class="pet-idle">
-       <img src="images/chateau.png" alt="Mascotita">
-     </div>
-   </div>
+    <div id="space-sector">
+      <div id="web-pet" class="pet-idle">
+        <img src="images/chateau.png" alt="Mascotita">
+      </div>
+    </div>
+
     <div class="sent-badge">enviado al flipper zero &amp; iphone</div>
   </main>
   <aside>
@@ -240,7 +231,6 @@
   </aside>
 </div>
 
-<!-- ── VIEW: TRACKS ── -->
 <div id="view-tracks" class="view">
   <main style="justify-content:flex-start;min-height:unset">
     <ul id="tracks-list-main" style="list-style:none"></ul>
@@ -250,7 +240,6 @@
   </aside>
 </div>
 
-<!-- ── VIEW: ARTISTS ── -->
 <div id="view-artists" class="view">
   <main style="justify-content:flex-start;min-height:unset;display:block;padding:2rem 0 3rem">
     <div id="artists-grid"></div>
@@ -320,7 +309,7 @@
       tracks.map((t, i) => trackRow(t, i, t.track === DATA.lyric.track && t.artist === DATA.lyric.artist)).join('');
   }
 
-  // ── Tracks tab — 10 seguidas ──
+  // ── Tracks tab ──
   function renderTracks(range) {
     const tracks = DATA.tracks[range] || [];
     document.getElementById('tracks-list-main').innerHTML =
@@ -385,23 +374,24 @@
     });
   });
 
-
-
- // ── COMPORTAMIENTO DE LA MASCOTA ──
+  // ── COMPORTAMIENTO DE LA MASCOTA (Coordenadas relativas internas) ──
   const pet = document.getElementById('web-pet');
   
   function moveMascotRandomly() {
     if (document.getElementById('view-lyric').classList.contains('active')) {
       pet.className = 'pet-moving';
 
-      const randomRight = Math.floor(Math.random() * (-15 - (-45)) + (-45)); // Entre -15% y -45%
-      const randomTop = Math.floor(Math.random() * (55 - 15) + 15);          // Entre 15% y 55%
+      // Movimiento acotado de manera segura dentro del contenedor cuadrado (en %)
+      const randomRight = Math.floor(Math.random() * (70 - 10) + 10); 
+      const randomTop = Math.floor(Math.random() * (70 - 10) + 10);   
 
-      const currentRight = parseFloat(pet.style.right) || 12;
-      if (randomRight > currentRight) {
-        pet.style.transform = 'scaleX(-1)'; 
+      const currentRight = parseFloat(pet.style.right) || 15;
+      
+      // Voltear horizontalmente según la dirección del movimiento
+      if (randomRight < currentRight) {
+        pet.querySelector('img').style.transform = 'scaleX(-1)'; 
       } else {
-        pet.style.transform = 'scaleX(1)';  
+        pet.querySelector('img').style.transform = 'scaleX(1)';  
       }
 
       pet.style.right = `${randomRight}%`;
@@ -422,15 +412,16 @@
   }
 
   pet.addEventListener('click', () => {
+    const currentClass = pet.className;
     pet.className = 'pet-click';
     setTimeout(() => {
-      pet.className = 'pet-idle';
+      pet.className = currentClass;
     }, 400);
   });
 
   startPetBehavior();
 
-})(); // <-- Asegúrate de que este cierre de la función asíncrona esté justo aquí
+})();
 </script>
 </body>
 </html>
