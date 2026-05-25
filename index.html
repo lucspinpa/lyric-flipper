@@ -113,12 +113,25 @@
     .artist-card.top1 { grid-column: 1; }
   }
 
+ /* EL CONTENEDOR DEL ESPACIO RETRO */
+  #space-sector {
+    position: absolute;
+    right: -45%;         /* Lo empuja al hueco en blanco de la derecha */
+    top: 20%;
+    width: 300px;        /* Tamaño perfecto para el cuadrante */
+    height: 300px;
+    background-image: url('/images/bckg.png');
+    background-size: cover;
+    image-rendering: pixelated; /* Mantiene el planeta y las estrellas súper nítidos */
+    border-radius: 8px;  /* Un toque sutil para los bordes */
+    overflow: hidden;    /* Evita que la mascota se salga del recuadro visualmente */
+  }
  /* ── NUEVA SECCIÓN PARA LA MASCOTA ── */
      main {
        position: relative; /* Clave para que la mascota no se mueva por toda la pantalla */
      }
      
-     #web-pet {
+     #-pet {
        position: absolute;
        right: -40%;         /* Se desplaza hacia el espacio en blanco de la derecha */
        top: 30%;            /* Altura inicial corregida */
@@ -129,7 +142,7 @@
        transition: top 1s ease-in-out, right 1s ease-in-out, transform 0.3s ease;
      }
      
-     #web-pet img {
+     #-pet img {
        width: 100%;
        height: auto;
        image-rendering: pixelated; /* Mantiene los píxeles perfectos y nítidos */
@@ -167,7 +180,7 @@
      
      /* Ocultar la mascota en pantallas pequeñas (móviles) para que no tape el texto */
      @media (max-width: 768px) {
-       #web-pet { display: none; }
+       #-pet { display: none; }
      }
 </style>
 </head>
@@ -205,9 +218,11 @@
       <span class="skel" style="width:80%;height:16px;display:block"></span>
     </blockquote>
 
-    <div id="web-pet" class="pet-idle">
-      <img src="images/chateau.png" alt="Mascotita">
-    </div>
+   <div id="space-sector">
+     <div id="web-pet" class="pet-idle">
+       <img src="images/chateau.png" alt="Mascotita">
+     </div>
+   </div>
     <div class="sent-badge">enviado al flipper zero &amp; iphone</div>
   </main>
   <aside>
