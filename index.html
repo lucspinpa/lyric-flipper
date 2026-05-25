@@ -136,7 +136,7 @@
        right: 12%;          /* Posición inicial corregida en el hueco derecho */
        top: 40%;
        width: 64px;         /* ◄ ESTE ES EL CAMBIO CLAVE: Definimos un tamaño fijo y pequeño */
-       height: 64px;        /* Mantenemos la caja cuadrada */
+       height: auto;        /* Mantenemos la caja cuadrada */
        z-index: 10;
        cursor: pointer;
        transition: top 1s ease-in-out, right 1s ease-in-out, transform 0.3s ease;
@@ -150,8 +150,7 @@
      
      #-pet img {
        width: auto;         /* Ajuste automático para no deformarla */
-       height: 100%;        /* Ocupa todo el alto del contenedor */
-       max-width: 80%;     /* Y todo el ancho sin pasarse */
+       height: 50%;        /* Ocupa todo el alto del contenedor */
        display: block;
        
        /* Mantenemos el pixelado nítido y la inversión de color si la usas */
