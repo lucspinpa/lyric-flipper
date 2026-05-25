@@ -133,18 +133,28 @@
      
      #-pet {
        position: absolute;
-       right: -40%;         /* Se desplaza hacia el espacio en blanco de la derecha */
-       top: 30%;            /* Altura inicial corregida */
-       width: 75px;         /* Tamaño ideal para que no pise nada */
-       height: auto;
+       right: 12%;          /* Posición inicial corregida en el hueco derecho */
+       top: 40%;
+       width: 64px;         /* ◄ ESTE ES EL CAMBIO CLAVE: Definimos un tamaño fijo y pequeño */
+       height: 64px;        /* Mantenemos la caja cuadrada */
        z-index: 10;
        cursor: pointer;
        transition: top 1s ease-in-out, right 1s ease-in-out, transform 0.3s ease;
+       
+       /* Opcional: Para asegurarnos de que la imagen no se desborde */
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       overflow: hidden;
      }
      
      #-pet img {
-       width: 100%;
-       height: auto;
+       width: auto;         /* Ajuste automático para no deformarla */
+       height: 100%;        /* Ocupa todo el alto del contenedor */
+       max-width: 80%;     /* Y todo el ancho sin pasarse */
+       display: block;
+       
+       /* Mantenemos el pixelado nítido y la inversión de color si la usas */
        image-rendering: pixelated; /* Mantiene los píxeles perfectos y nítidos */
      }
      
