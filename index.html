@@ -112,6 +112,63 @@
     #artists-grid { grid-template-columns: 1fr; }
     .artist-card.top1 { grid-column: 1; }
   }
+
+ /* ── NUEVA SECCIÓN PARA LA MASCOTA ── */
+     main {
+       position: relative; /* Clave para que la mascota no se mueva por toda la pantalla */
+     }
+     
+     #web-pet {
+       position: absolute;
+       right: 10%;          /* Posición inicial en el hueco derecho */
+       top: 40%;
+       width: 90px;         /* Tamaño ideal para que no rompa el diseño */
+       height: auto;
+       z-index: 10;
+       cursor: pointer;
+       transition: top 1s ease-in-out, right 1s ease-in-out, transform 0.3s ease;
+     }
+     
+     #web-pet img {
+       width: 100%;
+       height: auto;
+       image-rendering: pixelated; /* Mantiene los píxeles perfectos y nítidos */
+     }
+     
+     /* Estado quieto: Flotando en el sitio como un fantasmita */
+     .pet-idle {
+       animation: float-around 3s infinite ease-in-out;
+     }
+     
+     @keyframes float-around {
+       0%, 100% { transform: translateY(0); }
+       50% { transform: translateY(-12px); }
+     }
+     
+     /* Estado movimiento: Se inclina un poco hacia adelante al cambiar de posición */
+     .pet-moving {
+       animation: wobble 0.3s infinite linear;
+     }
+     
+     @keyframes wobble {
+       0%, 100% { transform: rotate(-4deg); }
+       50% { transform: rotate(4deg); }
+     }
+     
+     /* Al hacerle click pega un pequeño brinco */
+     .pet-click {
+       animation: pop 0.4s ease-out;
+     }
+     
+     @keyframes pop {
+       0%, 100% { transform: scale(1); }
+       50% { transform: scale(1.2); }
+     }
+     
+     /* Ocultar la mascota en pantallas pequeñas (móviles) para que no tape el texto */
+     @media (max-width: 768px) {
+       #web-pet { display: none; }
+     }
 </style>
 </head>
 <body>
@@ -147,6 +204,10 @@
       <span class="skel" style="width:75%;height:16px;display:block;margin-bottom:10px"></span>
       <span class="skel" style="width:80%;height:16px;display:block"></span>
     </blockquote>
+
+    <div id="web-pet" class="pet-idle">
+      <img src="images/chateau.png" alt="Mascotita">
+    </div>
     <div class="sent-badge">enviado al flipper zero &amp; iphone</div>
   </main>
   <aside>
@@ -300,7 +361,52 @@
     });
   });
 
-})();
+
+
+ // ── COMPORTAMIENTO DE LA MASCOTA ──
+  const pet = document.getElementById('web-pet');
+  
+  function moveMascotRandomly() {
+    if (document.getElementById('view-lyric').classList.contains('active')) {
+      pet.className = 'pet-moving';
+
+      const randomRight = Math.floor(Math.random() * (22 - 6) + 6); 
+      const randomTop = Math.floor(Math.random() * (60 - 20) + 20);  
+
+      const currentRight = parseFloat(pet.style.right) || 12;
+      if (randomRight > currentRight) {
+        pet.style.transform = 'scaleX(-1)'; 
+      } else {
+        pet.style.transform = 'scaleX(1)';  
+      }
+
+      pet.style.right = `${randomRight}%`;
+      pet.style.top = `${randomTop}%`;
+
+      setTimeout(() => {
+        pet.className = 'pet-idle';
+      }, 1000);
+    }
+  }
+
+  function startPetBehavior() {
+    const nextMoveTime = Math.random() * (9000 - 5000) + 5000;
+    setTimeout(() => {
+      moveMascotRandomly();
+      startPetBehavior();
+    }, nextMoveTime);
+  }
+
+  pet.addEventListener('click', () => {
+    pet.className = 'pet-click';
+    setTimeout(() => {
+      pet.className = 'pet-idle';
+    }, 400);
+  });
+
+  startPetBehavior();
+
+})(); // <-- Asegúrate de que este cierre de la función asíncrona esté justo aquí
 </script>
 </body>
 </html>
