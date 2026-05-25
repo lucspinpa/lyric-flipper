@@ -76,7 +76,7 @@
   .song-meta { margin-bottom: 2rem; }
   .song-meta .s-artist { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 0.45rem; }
   .song-meta .s-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.7rem, 3.5vw, 2.6rem); color: var(--text); line-height: 1.15; }
-  blockquote { border-left: 1px solid var(--green); padding-left: 1.75rem; font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 1.8; color: var(--text); max-width: 65%; }
+  blockquote { border-left: 1px solid var(--green); padding-left: 1.75rem; font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 1.8; color: var(--text); }
   .sent-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
   .sent-badge::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
@@ -111,34 +111,31 @@
     aside { grid-column: 1; grid-row: unset; border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 2rem; margin-top: 2rem; }
     #artists-grid { grid-template-columns: 1fr; }
     .artist-card.top1 { grid-column: 1; }
-    #space-sector { display: none; } /* Ocultar el espacio en móviles */
+    #space-sector { display: none; }
   }
 
-  /* EL CONTENEDOR DEL ESPACIO RETRO CORREGIDO */
+  /* ── CUADRANTE DEL ESPACIO RETRO (Enviado a la derecha sin romper los lyrics) ── */
   #space-sector {
     position: absolute;
-    right: 0;             
-    top: 50%;
-    transform: translateY(-50%);
+    right: calc(-320px - 3.5rem); /* Envía el cuadro exactamente sobre el área del aside */
+    top: 0;
     width: 260px;        
     height: 260px;
-    background-color: var(--surface); /* Fondo de respaldo si la imagen falla */
     background-image: url('images/bckg.png');
     background-size: cover;
     background-position: center;
     image-rendering: pixelated; 
-    border: 1px solid var(--border);
     border-radius: 8px;  
     overflow: hidden;    
   }
 
-  /* ── SECCIÓN DE LA MASCOTA REPARADA ── */
+  /* ── TAMAÑO REDUCIDO DE LA MASCOTA ── */
   #web-pet {
     position: absolute;
-    right: 15%;          /* Posición inicial por defecto */
-    top: 40%;
-    width: 64px;         /* Tamaño de la mascota controlado */
-    height: 64px;        
+    right: 20%;          
+    top: 30%;
+    width: 50px;         /* Ajuste nítido y controlado para que no se vea gigante */
+    height: 50px;        
     z-index: 10;
     cursor: pointer;
     transition: top 1s ease-in-out, right 1s ease-in-out;
@@ -155,32 +152,34 @@
     image-rendering: pixelated; 
   }
      
-  /* Animaciones */
+  /* Animación Flotando */
   .pet-idle img {
     animation: float-around 3s infinite ease-in-out;
   }
      
   @keyframes float-around {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-6px); }
   }
      
+  /* Animación Caminando */
   .pet-moving img {
     animation: wobble 0.2s infinite linear;
   }
      
   @keyframes wobble {
-    0%, 100% { transform: rotate(-6deg); }
-    50% { transform: rotate(6deg); }
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
   }
      
+  /* Al clickear */
   .pet-click img {
     animation: pop 0.4s ease-out;
   }
      
   @keyframes pop {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.25); }
+    50% { transform: scale(1.2); }
   }
 </style>
 </head>
@@ -374,20 +373,19 @@
     });
   });
 
-  // ── COMPORTAMIENTO DE LA MASCOTA (Coordenadas relativas internas) ──
+  // ── COMPORTAMIENTO DE LA MASCOTA INSIDE DE SU CUADRANTE ──
   const pet = document.getElementById('web-pet');
   
   function moveMascotRandomly() {
     if (document.getElementById('view-lyric').classList.contains('active')) {
       pet.className = 'pet-moving';
 
-      // Movimiento acotado de manera segura dentro del contenedor cuadrado (en %)
+      // Rango seguro en % dentro de su cajita espacial
       const randomRight = Math.floor(Math.random() * (70 - 10) + 10); 
       const randomTop = Math.floor(Math.random() * (70 - 10) + 10);   
 
-      const currentRight = parseFloat(pet.style.right) || 15;
+      const currentRight = parseFloat(pet.style.right) || 20;
       
-      // Voltear horizontalmente según la dirección del movimiento
       if (randomRight < currentRight) {
         pet.querySelector('img').style.transform = 'scaleX(-1)'; 
       } else {
