@@ -127,6 +127,7 @@ def get_top_tracks() -> list[dict]:
             "artist":     item["artists"][0]["name"],
             "album":      item["album"]["name"],
             "duration_s": round(item["duration_ms"] / 1000),
+            "image":      item["album"]["images"][1]["url"] if item["album"]["images"] else "",
         })
 
     log.info("✅  %d pistas obtenidas.", len(tracks))
@@ -412,6 +413,7 @@ def generate_stats(chunk: str, chosen_track: dict, top_tracks: list[dict]) -> No
                 "track":  t["track"],
                 "artist": t["artist"],
                 "album":  t.get("album", ""),
+                "image":  t.get("image", ""),
             }
             for t in top_tracks[:10]
         ],
