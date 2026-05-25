@@ -120,9 +120,9 @@
      
      #web-pet {
        position: absolute;
-       right: 10%;          /* Posición inicial en el hueco derecho */
-       top: 40%;
-       width: 90px;         /* Tamaño ideal para que no rompa el diseño */
+       right: -40%;         /* Se desplaza hacia el espacio en blanco de la derecha */
+       top: 30%;            /* Altura inicial corregida */
+       width: 75px;         /* Tamaño ideal para que no pise nada */
        height: auto;
        z-index: 10;
        cursor: pointer;
@@ -370,8 +370,8 @@
     if (document.getElementById('view-lyric').classList.contains('active')) {
       pet.className = 'pet-moving';
 
-      const randomRight = Math.floor(Math.random() * (22 - 6) + 6); 
-      const randomTop = Math.floor(Math.random() * (60 - 20) + 20);  
+      const randomRight = Math.floor(Math.random() * (-15 - (-45)) + (-45)); // Entre -15% y -45%
+      const randomTop = Math.floor(Math.random() * (55 - 15) + 15);          // Entre 15% y 55%
 
       const currentRight = parseFloat(pet.style.right) || 12;
       if (randomRight > currentRight) {
