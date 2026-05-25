@@ -20,7 +20,7 @@
     --dim:     #666;
   }
 
-  html, body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; min-height: 100vh; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'DM Mono', mono; min-height: 100vh; }
 
   body {
     display: grid;
@@ -114,15 +114,16 @@
     #space-sector { display: none; }
   }
 
-  /* ── CUADRANTE DEL ESPACIO RETRO (Enviado a la derecha sin romper los lyrics) ── */
+  //* ── CUADRANTE DEL ESPACIO RETRO (Con padding/margen superior y derecho) ── */
   #space-sector {
     position: absolute;
-    /* Se alinea exactamente con el inicio de la columna aside */
-    right: calc(-320px - 3.5rem); 
-    top: 0;
-    /* Cambiado a 320px para igualar el ancho de la columna del aside */
-    width: 320px;        
-    height: 320px; /* Lo hacemos cuadrado perfecto de 320x320 */
+    /* Se restan 15px al cálculo para empujar la caja hacia la izquierda (despegándola de la derecha) */
+    right: calc(-320px - 3.5rem + 15px); 
+    /* Se baja 15px para separarlo del menú superior */
+    top: 15px;
+    /* Se reduce el ancho a 305px para que, junto a los 15px de separación, sume los 320px del aside */
+    width: 305px;        
+    height: 305px; 
     background-image: url('images/bckg.png');
     background-size: cover;
     background-position: center;
