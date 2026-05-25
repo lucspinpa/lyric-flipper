@@ -1,71 +1,347 @@
 {
   "generated": "2026-05-25",
   "lyric": {
-    "artist": "Maisie Peters",
-    "track": "Girl’s Just Flying",
-    "album": "Florescence",
-    "chunk": "But it don't matter, love don't ever fall out even\nI'm not bitter, I'm not dying\nI forget about you when I'm not even trying\nThey play our song, and I keep driving, oh\nCan't bait the girl if the girl's not biting"
+    "artist": "Gracie Abrams",
+    "track": "Hit the Wall",
+    "album": "Hit the Wall",
+    "chunk": "I hit the wall, I hit the wall\n\"A Case Of You\" playing in the hallway\nHallucinations that I downplay\nI'm numb 'til I'm aching for the sharp pain\nWatch my blade ricochet"
   },
-  "top_tracks": [
-    {
-      "track": "Hit the Wall",
-      "artist": "Gracie Abrams",
-      "album": "Hit the Wall",
-      "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
-    },
-    {
-      "track": "Calypso",
-      "artist": "Guitarricadelafuente",
-      "album": "Calypso",
-      "image": "https://i.scdn.co/image/ab67616d00001e02e736673db223d6bfa1de5355"
-    },
-    {
-      "track": "Beware.. The South London Lover Boy.",
-      "artist": "RAYE",
-      "album": "THIS MUSIC MAY CONTAIN HOPE.",
-      "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
-    },
-    {
-      "track": "Intro: Girl Under The Grey Cloud.",
-      "artist": "RAYE",
-      "album": "THIS MUSIC MAY CONTAIN HOPE.",
-      "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
-    },
-    {
-      "track": "Questions",
-      "artist": "Maisie Peters",
-      "album": "Florescence",
-      "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-    },
-    {
-      "track": "Say My Name In Your Sleep",
-      "artist": "Maisie Peters",
-      "album": "Florescence",
-      "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-    },
-    {
-      "track": "drop dead",
-      "artist": "Olivia Rodrigo",
-      "album": "drop dead (taken that eurostar to france video)",
-      "image": "https://i.scdn.co/image/ab67616d00001e021a1495ff41046065b9475366"
-    },
-    {
-      "track": "Happier Times Ahead.",
-      "artist": "RAYE",
-      "album": "THIS MUSIC MAY CONTAIN HOPE.",
-      "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
-    },
-    {
-      "track": "Rock Music",
-      "artist": "Charli xcx",
-      "album": "Rock Music",
-      "image": "https://i.scdn.co/image/ab67616d00001e02b7bc469a85354ff1ae7a1386"
-    },
-    {
-      "track": "My Regards",
-      "artist": "Maisie Peters",
-      "album": "Florescence",
-      "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-    }
-  ]
+  "tracks": {
+    "short_term": [
+      {
+        "track": "Hit the Wall",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
+      },
+      {
+        "track": "Calypso",
+        "artist": "Guitarricadelafuente",
+        "image": "https://i.scdn.co/image/ab67616d00001e02e736673db223d6bfa1de5355"
+      },
+      {
+        "track": "Beware.. The South London Lover Boy.",
+        "artist": "RAYE",
+        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
+      },
+      {
+        "track": "Intro: Girl Under The Grey Cloud.",
+        "artist": "RAYE",
+        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
+      },
+      {
+        "track": "Questions",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "Say My Name In Your Sleep",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "drop dead",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e021a1495ff41046065b9475366"
+      },
+      {
+        "track": "Happier Times Ahead.",
+        "artist": "RAYE",
+        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
+      },
+      {
+        "track": "Rock Music",
+        "artist": "Charli xcx",
+        "image": "https://i.scdn.co/image/ab67616d00001e02b7bc469a85354ff1ae7a1386"
+      },
+      {
+        "track": "My Regards",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      }
+    ],
+    "medium_term": [
+      {
+        "track": "Aperture",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "Taste Back",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "drop dead",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e021a1495ff41046065b9475366"
+      },
+      {
+        "track": "Ready, Steady, Go!",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "The Waiting Game",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "Are You Listening Yet?",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "American Girls",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "Getting There - Interlude",
+        "artist": "Olivia Dean",
+        "image": "https://i.scdn.co/image/ab67616d00001e02cac9b52107643faf13a7587b"
+      },
+      {
+        "track": "Carla's Song",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "Season 2 Weight Loss",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      }
+    ],
+    "long_term": [
+      {
+        "track": "Sharpest Tool",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02fd8d7a8d96871e791cb1f626"
+      },
+      {
+        "track": "Slim Pickins",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02fd8d7a8d96871e791cb1f626"
+      },
+      {
+        "track": "decode",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02700f7bf79c9f063ad0362bdf"
+      },
+      {
+        "track": "Manchild",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02062c6573009fdebd43de443b"
+      },
+      {
+        "track": "Taste Back",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "Coincidence",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02fd8d7a8d96871e791cb1f626"
+      },
+      {
+        "track": "us. (feat. Taylor Swift)",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e026e2101520787791370f4a96b"
+      },
+      {
+        "track": "Fresh Out The Slammer",
+        "artist": "Taylor Swift",
+        "image": "https://i.scdn.co/image/ab67616d00001e028ecc33f195df6aa257c39eaa"
+      },
+      {
+        "track": "Dancing Through Life",
+        "artist": "Jonathan Bailey",
+        "image": "https://i.scdn.co/image/ab67616d00001e0241ded89391c5350f6b8f991c"
+      },
+      {
+        "track": "Taste",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02fd8d7a8d96871e791cb1f626"
+      }
+    ]
+  },
+  "artists": {
+    "short_term": [
+      {
+        "name": "Taylor Swift",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
+      },
+      {
+        "name": "Maisie Peters",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
+      },
+      {
+        "name": "RAYE",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
+      },
+      {
+        "name": "Sabrina Carpenter",
+        "genres": [
+          "pop"
+        ],
+        "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
+      },
+      {
+        "name": "Noah Kahan",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
+      },
+      {
+        "name": "Gracie Abrams",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
+      },
+      {
+        "name": "Harry Styles",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
+      },
+      {
+        "name": "Olivia Dean",
+        "genres": [
+          "pop soul"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
+      },
+      {
+        "name": "Charli xcx",
+        "genres": [
+          "hyperpop",
+          "art pop"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
+      },
+      {
+        "name": "Ariana Grande",
+        "genres": [
+          "pop"
+        ],
+        "image": "https://i.scdn.co/image/ab67616100005174766397ec42a573a53eb5fb87"
+      }
+    ],
+    "medium_term": [
+      {
+        "name": "Taylor Swift",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
+      },
+      {
+        "name": "Harry Styles",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
+      },
+      {
+        "name": "Sabrina Carpenter",
+        "genres": [
+          "pop"
+        ],
+        "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
+      },
+      {
+        "name": "Olivia Dean",
+        "genres": [
+          "pop soul"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
+      },
+      {
+        "name": "Maisie Peters",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
+      },
+      {
+        "name": "RAYE",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
+      },
+      {
+        "name": "Noah Kahan",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
+      },
+      {
+        "name": "Gracie Abrams",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
+      },
+      {
+        "name": "Sam Fender",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab676161000051744a3dfbf28e00c02d9d9494e8"
+      },
+      {
+        "name": "Tate McRae",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174bed8016bd64422793ff3bc75"
+      }
+    ],
+    "long_term": [
+      {
+        "name": "Taylor Swift",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
+      },
+      {
+        "name": "Sabrina Carpenter",
+        "genres": [
+          "pop"
+        ],
+        "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
+      },
+      {
+        "name": "Gracie Abrams",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
+      },
+      {
+        "name": "Ariana Grande",
+        "genres": [
+          "pop"
+        ],
+        "image": "https://i.scdn.co/image/ab67616100005174766397ec42a573a53eb5fb87"
+      },
+      {
+        "name": "Maisie Peters",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
+      },
+      {
+        "name": "Noah Kahan",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
+      },
+      {
+        "name": "Olivia Rodrigo",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e654806251e2661def1f4e65"
+      },
+      {
+        "name": "Charli xcx",
+        "genres": [
+          "hyperpop",
+          "art pop"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
+      },
+      {
+        "name": "Lizzy McAlpine",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174912df0c93a5dc290d3c8816e"
+      },
+      {
+        "name": "Olivia Dean",
+        "genres": [
+          "pop soul"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
+      }
+    ]
+  }
 }
