@@ -114,23 +114,21 @@
     #space-sector { display: none; }
   }
 
-  //* ── CUADRANTE DEL ESPACIO RETRO (Con padding/margen superior y derecho) ── */
+ /* ── CUADRANTE DEL ESPACIO RETRO (Enviado a la derecha sin romper los lyrics) ── */
   #space-sector {
     position: absolute;
-    /* Se restan 15px al cálculo para empujar la caja hacia la izquierda (despegándola de la derecha) */
-    right: calc(-320px - 3.5rem + 15px); 
-    /* Se baja 15px para separarlo del menú superior */
-    top: 15px;
-    /* Se reduce el ancho a 305px para que, junto a los 15px de separación, sume los 320px del aside */
-    width: 305px;        
-    height: 305px; 
+    right: calc(-320px - 3.5rem); /* Envía el cuadro exactamente sobre el área del aside */
+    /* Se alinea exactamente con el inicio de la columna aside */
+    right: calc(-320px - 3.5rem); 
+    top: 0;
+    width: 260px;        
+    height: 260px;
+    /* Cambiado a 320px para igualar el ancho de la columna del aside */
+    width: 320px;        
+    height: 320px; /* Lo hacemos cuadrado perfecto de 320x320 */
     background-image: url('images/bckg.png');
     background-size: cover;
     background-position: center;
-    image-rendering: pixelated; 
-    border-radius: 8px;  
-    overflow: hidden;    
-  }
 
   /* ── TAMAÑO REDUCIDO DE LA MASCOTA ── */
   #web-pet {
