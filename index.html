@@ -46,7 +46,7 @@
   header { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 2rem; margin-bottom: 3rem; }
   .logo { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); }
   .logo em { color: var(--muted); font-style: normal; }
-  
+   
   .header-right {
     display: flex;
     gap: 3rem;
@@ -85,7 +85,7 @@
 
   /* ── TIME RANGE PILLS ── */
   .range-pills { grid-column: 1 / -1; display: flex; gap: 0.75rem; padding-top: 2rem; margin-bottom: 2rem; }
-  .pill { font-family: 'DM Mono', monospace; font-size: 0.6..rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); background: none; border: 1px solid var(--border); border-radius: 20px; padding: 0.35rem 1rem; cursor: pointer; transition: all 0.15s; }
+  .pill { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); background: none; border: 1px solid var(--border); border-radius: 20px; padding: 0.35rem 1rem; cursor: pointer; transition: all 0.15s; }
   .pill.active { color: var(--bg); background: var(--text); border-color: var(--text); }
   .pill:hover:not(.active) { border-color: var(--muted); color: var(--text); }
 
@@ -117,114 +117,23 @@
   .dash-card { background: var(--surface); border: 1px solid var(--border); padding: 1rem; border-radius: 4px; font-size: 0.65rem; }
   .dash-card h4 { color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; font-size: 0.55rem; }
 
-  /* ── SECCIÓN TAROT (PANTALLA COMPLETA EXPANSIBLE) ── */
-  .tarot-section {
-    padding: 2rem 0;
-  }
-
-  .tarot-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .tarot-label {
-    font-size: 0.55rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--purple);
-    font-weight: 500;
-  }
-
-  .tarot-title {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 1.8rem;
-    color: var(--text);
-  }
-
-  .tarot-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 1.5rem;
-    max-width: 1000px;
-  }
-
-  .tarot-card {
-    position: relative;
-    aspect-ratio: 2.8 / 4.5;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.6rem;
-    text-align: center;
-  }
-
-  .tarot-card:hover {
-    border-color: var(--purple);
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 12px 24px rgba(168, 85, 247, 0.15);
-  }
-
-  .tarot-card-image-wrapper {
-    width: 100%;
-    height: 82%;
-    overflow: hidden;
-    border-radius: 4px;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .tarot-card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: brightness(0.85) contrast(1.1);
-    transition: filter 0.3s, transform 0.3s;
-    background: #1a1a1a;
-  }
-
-  .tarot-card:hover .tarot-card-image {
-    filter: brightness(1.05) contrast(1);
-    transform: scale(1.02);
-  }
-
-  .tarot-card-name {
-    font-size: 0.58rem;
-    color: var(--text);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    line-height: 1.2;
-    margin-top: 0.5rem;
-  }
-
-  .tarot-card.major .tarot-card-name {
-    color: var(--gold);
-  }
+  /* ── SECCIÓN TAROT ── */
+  .tarot-section { padding: 2rem 0; }
+  .tarot-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2rem; }
+  .tarot-label { font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--purple); font-weight: 500; }
+  .tarot-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.8rem; color: var(--text); }
+  .tarot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1.5rem; max-width: 1000px; }
+  .tarot-card { position: relative; aspect-ratio: 2.8 / 4.5; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; overflow: hidden; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 0.6rem; text-align: center; }
+  .tarot-card:hover { border-color: var(--purple); transform: translateY(-8px) scale(1.03); box-shadow: 0 12px 24px rgba(168, 85, 247, 0.15); }
+  .tarot-card-image-wrapper { width: 100%; height: 82%; overflow: hidden; border-radius: 4px; background: #000; display: flex; align-items: center; justify-content: center; }
+  .tarot-card-image { width: 100%; height: 100%; object-fit: contain; filter: brightness(0.85) contrast(1.1); transition: filter 0.3s, transform 0.3s; background: #1a1a1a; }
+  .tarot-card:hover .tarot-card-image { filter: brightness(1.05) contrast(1); transform: scale(1.02); }
+  .tarot-card-name { font-size: 0.58rem; color: var(--text); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.2; margin-top: 0.5rem; }
+  .tarot-card.major .tarot-card-name { color: var(--gold); }
 
   /* ── WEATHER CLICKABLE ── */
-  #weather-display {
-    cursor: pointer;
-    transition: all 0.2s;
-    padding: 0.5rem;
-    border-radius: 3px;
-    line-height: 1.6;
-  }
-  #weather-display:hover {
-    background: var(--border);
-    color: var(--green);
-  }
+  #weather-display { cursor: pointer; transition: all 0.2s; padding: 0.5rem; border-radius: 3px; line-height: 1.6; }
+  #weather-display:hover { background: var(--border); color: var(--green); }
 
   /* ── LYRIC ── */
   .song-meta { margin-bottom: 3rem; }
@@ -254,34 +163,10 @@
   .view.active { display: contents; }
 
   /* ── CUADRANTE DEL ESPACIO RETRO ── */
-  #space-sector {
-    position: absolute;
-    right: 50px; 
-    top: 3rem;
-    border-radius: 8px;
-    width: 340px;        
-    height: 340px; 
-    background-image: url('images/bckg.png');
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
+  #space-sector { position: absolute; right: 50px; top: 3rem; border-radius: 8px; width: 340px; height: 340px; background-image: url('images/bckg.png'); background-size: cover; background-position: center; overflow: hidden; border: 1px solid var(--border); }
 
   /* ── MASCOTA ── */
-  #web-pet {
-    position: absolute;
-    right: 20%;          
-    top: 30%;
-    width: 60px;         
-    height: 60px;        
-    z-index: 10;
-    cursor: pointer;
-    transition: top 1s ease-in-out, right 1s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  #web-pet { position: absolute; right: 20%; top: 30%; width: 60px; height: 60px; z-index: 10; cursor: pointer; transition: top 1s ease-in-out, right 1s ease-in-out; display: flex; justify-content: center; align-items: center; }
   #web-pet img { width: 100%; height: 100%; object-fit: contain; display: block; image-rendering: pixelated; }
   .pet-idle img { animation: float-around 3s infinite ease-in-out; }
   @keyframes float-around { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
@@ -291,60 +176,19 @@
   @keyframes pop { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
   /* ── CONTENEDOR COMÚN INFERIOR ── */
-  .bottom-split-container {
-    display: grid;
-    grid-template-columns: 1fr 350px;
-    gap: 4.5rem;
-    margin-top: 5rem;
-    border-top: 1px solid var(--border);
-    padding-top: 4rem;
-    align-items: start;
-    width: 100%;
-  }
-
-  .skyline-section {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    width: 100%;
-  }
+  .bottom-split-container { display: grid; grid-template-columns: 1fr 350px; gap: 4.5rem; margin-top: 5rem; border-top: 1px solid var(--border); padding-top: 4rem; align-items: start; width: 100%; }
+  .skyline-section { display: flex; flex-direction: column; gap: 2rem; width: 100%; }
   .sky-label { font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 0.6rem; display: block; }
   .sky-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 2.2rem; color: var(--text); margin-bottom: 0.8rem; }
   .sky-desc { font-size: 0.72rem; color: var(--dim); line-height: 1.7; }
-
-  .skyline-canvas-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    overflow: hidden;
-  }
+  .skyline-canvas-container { position: relative; width: 100%; aspect-ratio: 1 / 1; border: 1px solid var(--border); background: var(--surface); overflow: hidden; }
   .visual-canvas-base { transition: filter 0.4s ease; }
   .visual-canvas-base.dimmed { filter: grayscale(100%) brightness(0.25) contrast(1.2); }
   
-  .highlight-layer {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 20;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    filter: brightness(1.3) contrast(1.2) drop-shadow(0 0 12px var(--green));
-  }
+  .highlight-layer { position: absolute; inset: 0; pointer-events: none; z-index: 20; opacity: 0; transition: opacity 0.3s ease; filter: brightness(1.3) contrast(1.2) drop-shadow(0 0 12px var(--green)); }
   .highlight-layer.active { opacity: 1; }
   .hotspot { position: absolute; z-index: 30; }
-  .monument-label {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    background: var(--green);
-    color: var(--bg);
-    padding: 3px 8px;
-    font-size: 9px;
-    font-weight: bold;
-  }
+  .monument-label { opacity: 0; transform: translateY(10px); transition: all 0.3s ease; white-space: nowrap; background: var(--green); color: var(--bg); padding: 3px 8px; font-size: 9px; font-weight: bold; }
   .hotspot:hover .monument-label { opacity: 1; transform: translateY(0); }
 
   .clip-london { clip-path: polygon(14% 15%, 26% 15%, 26% 85%, 14% 85%); }
@@ -354,457 +198,62 @@
   .hud-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 45; padding: 1.5rem; font-size: 9px; color: var(--dim); }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   .cursor-blink { animation: blink 1s step-end infinite; }
-
-  .aside-nested {
-    border-left: 1px solid var(--border);
-    padding-left: 2.5rem;
-    width: 350px;
-    flex-shrink: 0;
-  }
+  .aside-nested { border-left: 1px solid var(--border); padding-left: 2.5rem; width: 350px; flex-shrink: 0; }
 
   /* ── MODAL TAROT ── */
-  #tarot-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(13, 13, 13, 0.96);
-    z-index: 9999;
-    transform: translateY(100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
-    overflow-y: auto;
-  }
+  #tarot-modal { position: fixed; inset: 0; background: rgba(13, 13, 13, 0.96); z-index: 9999; transform: translateY(100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1); overflow-y: auto; }
   #tarot-modal.active { transform: translateY(0); }
+  .tarot-modal-box { width: 100%; max-width: 800px; border: 2px solid var(--purple); background: var(--surface); padding: 2.5rem; border-radius: 8px; box-shadow: 0 0 30px rgba(168, 85, 247, 0.3); }
+  .tarot-modal-header { font-size: 0.75rem; font-weight: bold; color: var(--purple); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+  .tarot-modal-content { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; margin-bottom: 2rem; }
+  .tarot-modal-image-wrapper { width: 100%; max-width: 220px; aspect-ratio: 2.8/4.5; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.4rem; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .tarot-modal-image { width: 100%; height: 100%; object-fit: contain; background: #1a1a1a; }
+  .tarot-modal-info h2 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 2rem; color: var(--purple); margin-bottom: 0.5rem; line-height: 1.2; }
+  .tarot-modal-info .card-number { font-size: 0.65rem; color: var(--dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .tarot-description { font-size: 0.72rem; color: var(--text); line-height: 1.8; margin-bottom: 1.5rem; text-align: justify; }
+  .tarot-meanings { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+  .meaning-box { background: var(--bg); border: 1px solid var(--border); padding: 1rem; border-radius: 4px; }
+  .meaning-title { font-size: 0.6rem; color: var(--purple); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; font-weight: bold; }
+  .meaning-text { font-size: 0.65rem; color: var(--text); line-height: 1.6; }
+  .tarot-modal-actions { display: flex; justify-content: center; margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .tarot-close-btn { background: none; border: 1px solid var(--purple); color: var(--purple); padding: 0.5rem 1.5rem; font-size: 10px; cursor: pointer; text-transform: uppercase; font-family: 'DM Mono', monospace; transition: all 0.3s; }
+  .tarot-close-btn:hover { background: var(--purple); color: var(--bg); box-shadow: 0 0 15px rgba(168, 85, 247, 0.5); }
 
-  .tarot-modal-box {
-    width: 100%;
-    max-width: 800px;
-    border: 2px solid var(--purple);
-    background: var(--surface);
-    padding: 2.5rem;
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
-  }
-
-  .tarot-modal-header {
-    font-size: 0.75rem;
-    font-weight: bold;
-    color: var(--purple);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1rem;
-  }
-
-  .tarot-modal-content {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .tarot-modal-image-wrapper {
-    width: 100%;
-    max-width: 220px;
-    aspect-ratio: 2.8/4.5;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .tarot-modal-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: #1a1a1a;
-  }
-
-  .tarot-modal-info h2 {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 2rem;
-    color: var(--purple);
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-  }
-
-  .tarot-modal-info .card-number {
-    font-size: 0.65rem;
-    color: var(--dim);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-
-  .tarot-description {
-    font-size: 0.72rem;
-    color: var(--text);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-  }
-
-  .tarot-meanings {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .meaning-box {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 1rem;
-    border-radius: 4px;
-  }
-
-  .meaning-title {
-    font-size: 0.6rem;
-    color: var(--purple);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 0.6rem;
-    font-weight: bold;
-  }
-
-  .meaning-text {
-    font-size: 0.65rem;
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  .tarot-modal-actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-  }
-
-  .tarot-close-btn {
-    background: none;
-    border: 1px solid var(--purple);
-    color: var(--purple);
-    padding: 0.5rem 1.5rem;
-    font-size: 10px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-    transition: all 0.3s;
-  }
-
-  .tarot-close-btn:hover {
-    background: var(--purple);
-    color: var(--bg);
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
-  }
-
-  /* ── MODAL METEOROLÓGICO ── */
-  #weather-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(13,13,13,0.96);
-    z-index: 9999;
-    transform: translateY(100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
-    overflow-y: auto;
-  }
-  #weather-modal.active { transform: translateY(0); }
+  /* ── OTROS MODALES ── */
+  #weather-modal, #lunar-modal, #nav-screen { position: fixed; inset: 0; background: rgba(13,13,13,0.96); z-index: 9999; transform: translateY(100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1); overflow-y: auto; }
+  #weather-modal.active, #lunar-modal.active, #nav-screen.active { transform: translateY(0); }
   
-  .weather-box { width: 100%; max-width: 650px; border: 1px solid var(--green); background: var(--surface); padding: 2rem; border-radius: 4px; }
-  .weather-header { font-size: 0.75rem; font-weight: bold; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+  .weather-box, .lunar-box { width: 100%; max-width: 650px; border: 1px solid var(--green); background: var(--surface); padding: 2rem; border-radius: 4px; }
+  .lunar-box { max-width: 750px; }
+  .weather-header, .lunar-header { font-size: 0.75rem; font-weight: bold; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
   
-  .weather-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .weather-item {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 1rem;
-    border-radius: 3px;
-  }
-  
-  .weather-item-label {
-    font-size: 0.55rem;
-    color: var(--green);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-  }
-  
-  .weather-item-value {
-    font-size: 0.85rem;
-    color: var(--text);
-    font-weight: 500;
-  }
-  
-  .weather-full-width {
-    grid-column: 1 / -1;
-  }
-  
-  .weather-actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-  }
-  
-  .weather-close-btn {
-    background: none;
-    border: 1px solid var(--green);
-    color: var(--green);
-    padding: 0.5rem 1.2rem;
-    font-size: 10px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-  }
-  
-  .weather-close-btn:hover {
-    background: var(--green);
-    color: var(--bg);
-  }
+  .weather-grid, .lunar-info { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem; }
+  .weather-item, .lunar-stat { background: var(--bg); border: 1px solid var(--border); padding: 1rem; border-radius: 3px; }
+  .weather-item-label, .lunar-stat-label { font-size: 0.55rem; color: var(--green); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .weather-item-value, .lunar-stat-value { font-size: 0.85rem; color: var(--text); font-weight: 500; }
+  .lunar-stat-value { font-size: 1.3rem; font-weight: bold; }
 
-  /* ── MODAL LUNAR ── */
-  #lunar-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(13,13,13,0.96);
-    z-index: 9999;
-    transform: translateY(100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
-    overflow-y: auto;
-  }
-  #lunar-modal.active { transform: translateY(0); }
+  .lunar-alerts { background: rgba(29, 185, 84, 0.1); border: 1px solid var(--green); border-radius: 3px; padding: 1.25rem; margin-bottom: 2rem; }
+  .alert-title { font-size: 0.6rem; color: var(--green); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: bold; }
+  .alert-content { font-size: 0.75rem; color: var(--text); line-height: 1.6; }
+  .lunar-calendar { margin-bottom: 2.5rem; }
+  .lunar-calendar-title { font-size: 0.6rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; text-align: center; font-weight: bold; }
+  .moon-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.4rem; margin-bottom: 1.5rem; }
+  .moon-day-header { font-size: 0.5rem; color: var(--dim); text-align: center; font-weight: bold; text-transform: uppercase; padding: 0.4rem; border-bottom: 1px solid var(--border); }
+  .moon-day { aspect-ratio: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--text); font-weight: 500; }
+  .moon-day.other-month { color: var(--dim); background: var(--border); }
+  .moon-day.today, .moon-day.full-moon, .moon-day.new-moon { background: var(--green); color: var(--bg); border-color: var(--green); }
 
-  .lunar-box {
-    width: 100%;
-    max-width: 750px;
-    border: 1px solid var(--green);
-    background: var(--surface);
-    padding: 2rem;
-    border-radius: 4px;
-  }
+  .next-full-moon { background: var(--bg); border: 1px solid var(--green); padding: 1.5rem; border-radius: 3px; margin-bottom: 2.5rem; text-align: center; }
+  .next-full-moon-label { font-size: 0.55rem; color: var(--green); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: bold; }
+  .next-full-moon-date { font-size: 1.2rem; color: var(--text); font-weight: bold; font-family: 'DM Serif Display', serif; font-style: italic; }
+  .next-full-moon-days { font-size: 0.65rem; color: var(--dim); margin-top: 0.75rem; }
 
-  .lunar-header {
-    font-size: 0.75rem;
-    font-weight: bold;
-    color: var(--green);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1rem;
-  }
+  .weather-actions, .lunar-actions { display: flex; justify-content: center; margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .weather-close-btn, .lunar-close-btn { background: none; border: 1px solid var(--green); color: var(--green); padding: 0.5rem 1.2rem; font-size: 10px; cursor: pointer; text-transform: uppercase; font-family: 'DM Mono', monospace; }
+  .weather-close-btn:hover, .lunar-close-btn:hover { background: var(--green); color: var(--bg); }
 
-  .lunar-alerts {
-    background: rgba(29, 185, 84, 0.1);
-    border: 1px solid var(--green);
-    border-radius: 3px;
-    padding: 1.25rem;
-    margin-bottom: 2rem;
-  }
-
-  .alert-title {
-    font-size: 0.6rem;
-    color: var(--green);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-    font-weight: bold;
-  }
-
-  .alert-content {
-    font-size: 0.75rem;
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  .lunar-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .lunar-stat {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 1.25rem;
-    border-radius: 3px;
-    text-align: center;
-  }
-
-  .lunar-stat-label {
-    font-size: 0.55rem;
-    color: var(--green);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
-  }
-
-  .lunar-stat-value {
-    font-size: 1.3rem;
-    color: var(--text);
-    font-weight: bold;
-  }
-
-  .lunar-calendar {
-    margin-bottom: 2.5rem;
-  }
-
-  .lunar-calendar-title {
-    font-size: 0.6rem;
-    color: var(--green);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 1.25rem;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  .moon-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.4rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .moon-day-header {
-    font-size: 0.5rem;
-    color: var(--dim);
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 0.4rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .moon-day {
-    aspect-ratio: 1;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .moon-day.other-month {
-    color: var(--dim);
-    background: var(--border);
-  }
-
-  .moon-day.today {
-    background: var(--green);
-    color: var(--bg);
-    border-color: var(--green);
-  }
-
-  .moon-day.full-moon,
-  .moon-day.new-moon {
-    background: var(--green);
-    color: var(--bg);
-    border-color: var(--green);
-  }
-
-  .next-full-moon {
-    background: var(--bg);
-    border: 1px solid var(--green);
-    padding: 1.5rem;
-    border-radius: 3px;
-    margin-bottom: 2.5rem;
-    text-align: center;
-  }
-
-  .next-full-moon-label {
-    font-size: 0.55rem;
-    color: var(--green);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
-    font-weight: bold;
-  }
-
-  .next-full-moon-date {
-    font-size: 1.2rem;
-    color: var(--text);
-    font-weight: bold;
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-  }
-
-  .next-full-moon-days {
-    font-size: 0.65rem;
-    color: var(--dim);
-    margin-top: 0.75rem;
-  }
-
-  .lunar-actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-  }
-
-  .lunar-close-btn {
-    background: none;
-    border: 1px solid var(--green);
-    color: var(--green);
-    padding: 0.5rem 1.2rem;
-    font-size: 10px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .lunar-close-btn:hover {
-    background: var(--green);
-    color: var(--bg);
-  }
-
-  /* ── TERMINAL MODAL DE PROYECTOS PRIVADOS (TO-DO LIST) ── */
-  #nav-screen {
-    position: fixed;
-    inset: 0;
-    background: rgba(13,13,13,0.96);
-    z-index: 9999;
-    transform: translateY(100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
-  }
-  #nav-screen.active { transform: translateY(0); }
+  /* ── TERMINAL CORE DE PROYECTOS ── */
   .terminal-box { width: 100%; max-width: 520px; border: 1px solid var(--green); background: var(--surface); padding: 2rem; }
   .term-header { font-size: 0.75rem; font-weight: bold; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; }
   .todo-input-container { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
@@ -822,35 +271,15 @@
   .abort-btn { background: none; border: 1px solid var(--green); color: var(--green); padding: 0.5rem 1rem; font-size: 10px; cursor: pointer; font-family: 'DM Mono', monospace; }
   .abort-btn:hover { background: var(--green); color: var(--bg); }
 
-  .image-loading-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, var(--border) 25%, transparent 25%, transparent 50%, var(--border) 50%, var(--border) 75%, transparent 75%, transparent);
-    background-size: 20px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    color: var(--dim);
-  }
+  #error-msg { display: none; color: #ff4a4a; font-size: 0.65rem; text-align: center; padding: 1rem; border: 1px solid #ff4a4a; margin-top: 2rem; background: rgba(255,74,74,0.05); }
+  footer { grid-column: 1 / -1; display: flex; justify-content: space-between; font-size: 0.6rem; color: var(--dim); border-top: 1px solid var(--border); padding-top: 2rem; margin-top: 4rem; }
+  footer a { color: var(--dim); text-decoration: none; }
+  footer a:hover { color: var(--green); }
 
   @media (max-width: 900px) {
-    body {
-      background-color: var(--bg) !important; 
-      color: var(--text);
-      grid-template-columns: 1fr; 
-      padding: 2.5rem 2rem; 
-      gap: 0;
-    }
-    .bottom-split-container { 
-      grid-template-columns: 1fr; 
-      gap: 3rem;
-    }
-    .aside-nested, aside.aside-extended { 
-      border-left: none; 
-      padding-left: 0; 
-      width: 100%; 
-    }
+    body { background-color: var(--bg) !important; color: var(--text); grid-template-columns: 1fr; padding: 2.5rem 2rem; gap: 0; }
+    .bottom-split-container { grid-template-columns: 1fr; gap: 3rem; }
+    .aside-nested, aside.aside-extended { border-left: none; padding-left: 0; width: 100%; }
     #space-sector { display: none; }
     .weather-grid, .lunar-info { grid-template-columns: 1fr; }
     .header-right { flex-direction: column; gap: 1rem; align-items: flex-end; }
@@ -858,7 +287,6 @@
     .tarot-modal-content { grid-template-columns: 1fr; }
   }
 </style>
-
 </head>
 <body>
 
@@ -936,7 +364,6 @@
           <div class="visual-canvas-base absolute inset-0" id="base-image">
             <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Base">
           </div>
-
           <div class="highlight-layer clip-london" id="london-highlight">
             <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="London">
           </div>
@@ -999,8 +426,7 @@
 <div id="view-tarot" class="view">
   <div class="tab-view-extended" style="grid-column: 1 / -1;">
     <section class="tarot-section" id="tarot-container">
-      <!-- Los palos y sub-grids se generarán aquí dinámicamente -->
-    </section>
+      </section>
   </div>
 </div>
 
@@ -1102,95 +528,95 @@
 </footer>
 
 <script>
-// ── BASE DE DATOS TAROT CON IMÁGENES RIDER-WAITE FUNCIONALES ──
+// ── BASE DE DATOS TAROT EXPANDIDA CON IMÁGENES DE ALTA DISPONIBILIDAD (SACRED-TEXTS) ──
 const TAROT_CARDS = [
   // === ARCANOS MAYORES ===
-  { id: 0, name: 'El Mago', number: 'I', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m01.jpg', description: 'El Mago representa el poder de la manifestación y el dominio de las fuerzas del universo.', uprightMeaning: 'Poder personal, manifestación, ingenio, confianza.', reversedMeaning: 'Manipulación, potencial sin usar, engaño.' },
-  { id: 1, name: 'La Sacerdotisa', number: 'II', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m02.jpg', description: 'La Sacerdotisa encarna el conocimiento oculto y la intuición profunda.', uprightMeaning: 'Intuición, sabiduría oculta, misterio.', reversedMeaning: 'Superficialidad, secretos revelados, desconfianza.' },
-  { id: 2, name: 'La Emperatriz', number: 'III', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m03.jpg', description: 'La Emperatriz es la encarnación de la fertilidad, la abundancia y la creatividad.', uprightMeaning: 'Fertilidad, abundancia, naturaleza, creatividad.', reversedMeaning: 'Bloqueos creativos, dependencia, negligencia.' },
-  { id: 3, name: 'El Emperador', number: 'IV', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m04.jpg', description: 'El Emperador simboliza la autoridad, el liderazgo y el control.', uprightMeaning: 'Autoridad, estructura, control, estabilidad.', reversedMeaning: 'Tiranía, falta de control, ineficiencia.' },
-  { id: 4, name: 'El Sumo Sacerdote', number: 'V', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m05.jpg', description: 'El Sumo Sacerdote representa la sabiduría espiritual y la enseñanza tradicional.', uprightMeaning: 'Tradición, conformidad, moralidad, mentoría.', reversedMeaning: 'Rebeldía, ortodoxia rígida, dogmatismo.' },
-  { id: 5, name: 'Los Enamorados', number: 'VI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m06.jpg', description: 'Los Enamorados representan las relaciones, la armonía y elecciones cruciales.', uprightMeaning: 'Amor, armonía, elecciones alineadas, unión.', reversedMeaning: 'Desunión, conflicto, malas decisiones.' },
-  { id: 6, name: 'El Carro', number: 'VII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m07.jpg', description: 'El Carro representa la determinación, la fuerza de voluntad y el triunfo.', uprightMeaning: 'Control, éxito, determinación, victoria.', reversedMeaning: 'Falta de dirección, pérdida de control.' },
-  { id: 7, name: 'La Justicia', number: 'VIII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m08.jpg', description: 'La Justicia encarna la verdad, el equilibrio y la responsabilidad kármica.', uprightMeaning: 'Justicia, verdad, causa y efecto, honestidad.', reversedMeaning: 'Injusticia, desequilibrio, deshonestidad.' },
-  { id: 8, name: 'El Ermitaño', number: 'IX', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m09.jpg', description: 'El Ermitaño representa la búsqueda interior y la guía del autoconocimiento.', uprightMeaning: 'Introspección, soledad voluntaria, guía interna.', reversedMeaning: 'Aislamiento extremo, paranoia, rechazo.' },
-  { id: 9, name: 'La Rueda de la Fortuna', number: 'X', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m10.jpg', description: 'La Rueda de la Fortuna simboliza el cambio inevitable y los ciclos del destino.', uprightMeaning: 'Suerte, destino, ciclos vitales, puntos de inflexión.', reversedMeaning: 'Mala suerte, resistencia al cambio, estancamiento.' },
-  { id: 10, name: 'La Fortaleza', number: 'XI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m11.jpg', description: 'La Fortaleza representa la valentía moral, la paciencia y el dominio de los impulsos.', uprightMeaning: 'Fuerza interior, compasión, coraje, resiliencia.', reversedMeaning: 'Debilidad, impulsividad, inseguridad.' },
-  { id: 11, name: 'El Ahorcado', number: 'XII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m12.jpg', description: 'El Ahorcado invita a la pausa, el sacrificio voluntario y una nueva perspectiva.', uprightMeaning: 'Perspectiva, pausa, transición, iluminación.', reversedMeaning: 'Inercia, resistencia, estancamiento.' },
-  { id: 12, name: 'La Muerte', number: 'XIII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m13.jpg', description: 'La Muerte no es física, simboliza cierres inevitables y renacimiento profundo.', uprightMeaning: 'Transformación, fines, transición, liberación.', reversedMeaning: 'Miedo al cambio, resistencia al cierre.' },
-  { id: 13, name: 'La Templanza', number: 'XIV', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m14.jpg', description: 'La Templanza simboliza la moderación, el equilibrio y la alquimia de la paz.', uprightMeaning: 'Equilibrio, paciencia, moderación, armonía.', reversedMeaning: 'Desequilibrio, excesos, falta de armonía.' },
-  { id: 14, name: 'El Diablo', number: 'XV', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m15.jpg', description: 'El Diablo representa las ataduras materiales, las adicciones y las sombras.', uprightMeaning: 'Materialismo, sombras, adicción, apego.', reversedMeaning: 'Liberación, desapego, superación.' },
-  { id: 15, name: 'La Torre', number: 'XVI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m16.jpg', description: 'La Torre representa la deconstrucción súbita de las estructuras falsas.', uprightMeaning: 'Revelación, colapso repentino, caos liberador.', reversedMeaning: 'Desastre evitado, crisis prolongada.' },
-  { id: 16, name: 'La Estrella', number: 'XVII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m17.jpg', description: 'La Estrella es la luz de la esperanza, la fe y la sanación cósmica.', uprightMeaning: 'Esperanza, fe, renovación, propósito.', reversedMeaning: 'Desesperación, falta de fe, pesimismo.' },
-  { id: 17, name: 'La Luna', number: 'XVIII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m18.jpg', description: 'La Luna representa las ilusiones, los miedos subconscientes y los sueños.', uprightMeaning: 'Intuición, subconsciente, ilusión, miedos.', reversedMeaning: 'Claridad, verdad revelada, miedos superados.' },
-  { id: 18, name: 'El Sol', number: 'XIX', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m19.jpg', description: 'El Sol irradia vitalidad, éxito pleno y felicidad inocente.', uprightMeaning: 'Éxito, alegría, claridad, positividad.', reversedMeaning: 'Falta de entusiasmo, retrasos temporales.' },
-  { id: 19, name: 'El Juicio', number: 'XX', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m20.jpg', description: 'El Juicio es el llamado del despertar, la redención y la toma de decisiones.', uprightMeaning: 'Despertar, evaluación, absolución, destino.', reversedMeaning: 'Dudas, autocrítica severa, estancamiento.' },
-  { id: 20, name: 'El Mundo', number: 'XXI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m21.jpg', description: 'El Mundo representa la culminación exitosa de un gran viaje o ciclo.', uprightMeaning: 'Completitud, éxito, integración, viajes.', reversedMeaning: 'Falta de cierre, proyectos inacabados.' },
-  { id: 21, name: 'El Loco', number: '0', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m00.jpg', description: 'El Loco representa los saltos de fe, la libertad absoluta y los inicios puros.', uprightMeaning: 'Inicios, espontaneidad, libertad, aventura.', reversedMeaning: 'Irresponsabilidad, imprudencia, caos.' },
+  { id: 0, name: 'El Mago', number: 'I', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m01.jpg', description: 'El Mago se yergue como el heraldo de la manifestación pura y el puente consciente entre los reinos celestiales y la materia densa. En su mesa descansan los cuatro emblemas elementales del Tarot (la espada, la copa, el basto y el pentáculo), demostrando el dominio absoluto sobre la mente, la emoción, la voluntad creativa y el plano material. Con un brazo alzado hacia el cosmos y el otro señalando los misterios de la Tierra, canaliza la fuerza divina primordial para dar forma física a las intenciones abstractas. Simboliza el inicio activo, el ingenio ilimitado, la alquimia mental y la convicción de que el ser humano posee todas las herramientas universales necesarias para transformar radicalmente su realidad presente.', uprightMeaning: 'Poder personal, manifestación consciente, maestría de recursos, fuerza de voluntad y concentración implacable.', reversedMeaning: 'Energía desperdiciada, talentos ocultos por indecisión, manipulación mental, intenciones oscuras o desorganización extrema.' },
+  { id: 1, name: 'La Sacerdotisa', number: 'II', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m02.jpg', description: 'Sentada majestuosamente entre las columnas polarizadas del templo de Salomón —Jachin la oscura y Boaz la clara—, la Sacerdotisa custodia las fronteras del subconsciente humano y la sabiduría arcana. Porta el pergamino de la Tora semiculto entre sus vestiduras ricas, denotando que la verdad no se entrega a miradas superficiales, sino a quienes sintonizan con el silencio. La luna creciente a sus pies y la cruz solar en su pecho equilibran el instinto cíclico con el orden espiritual. Ella no actúa en el mundo exterior; es la matriz intuitiva, el conocimiento sagrado no revelado y la voz silenciosa de los sueños. Representa la paciencia mística, los secretos universales y el poder sutil e indestructible del análisis receptivo.', uprightMeaning: 'Intuición profunda, revelación interna, sabiduría divina, misterio inexplorado y confianza plena en el plano psíquico.', reversedMeaning: 'Superficialidad extrema, obsesión por secretos destructivos, ignorar los instintos internos o desconexión emocional.' },
+  { id: 2, name: 'La Emperatriz', number: 'III', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m03.jpg', description: 'Coronada por doce estrellas que representan los ciclos zodiacales y los meses del año, la Emperatriz se asienta sobre cómodos cojines en medio de un campo de trigo dorado y un bosque vibrante. Ella representa la Madre Tierra en su máxima expresión de fertilidad, creatividad y abundancia sin límites. Su escudo con el símbolo de Venus subraya que el amor incondicional, el placer estético y el arte son los verdaderos motores de la creación. Es la incubación nutricia de los proyectos, la gestación de ideas artísticas y el disfrute pleno de los placeres sensoriales. Simboliza el florecimiento material, la calidez maternal, el crecimiento orgánico y la certeza de que la naturaleza siempre proveerá en abundancia.', uprightMeaning: 'Fertilidad ilimitada, abundancia tangible, creatividad desatada, conexión con la naturaleza y nutrición de proyectos.', reversedMeaning: 'Bloqueos creativos severos, dependencia afectiva, sofocación maternal, esterilidad de ideas o negligencia personal.' },
+  { id: 3, name: 'El Emperador', number: 'IV', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m04.jpg', description: 'Sentado en un trono monolítico de piedra adornado con cuatro cabezas de carnero que evocan la energía indomable de Aries, el Emperador es la encarnación definitiva de la estructura, la ley y la soberanía terrenal. En su mano derecha sostiene el Ankh, símbolo vital de su poder regulador, y en la izquierda el globo del mundo que gobierna con mano firme. Detrás de él se alzan montañas áridas y escarpadas, indicando que su estabilidad no se basa en la comodidad, sino en una disciplina forjada con fuego y orden inflexible. Representa el establecimiento de límites saludables, la autoridad justa, la infraestructura lógica, la protección y el dominio de la razón sobre el caos primordial.', uprightMeaning: 'Autoridad legítima, estructura sólida, control racional, estabilidad duradera, liderazgo firme y leyes claras.', reversedMeaning: 'Tiranía despiadada, abuso de poder, rigidez mental obsoleta, falta de disciplina o caos por ausencia de liderazgo.' },
+  { id: 4, name: 'El Sumo Sacerdote', number: 'V', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m05.jpg', description: 'También conocido como El Papa o El Hierofante, esta carta representa el eje institucional de la espiritualidad, la educación formal y los sistemas de creencias compartidos. Flanqueado por dos robustas columnas y ante dos iniciados que escuchan con reverencia, alza su mano derecha en un gesto de bendición esotérica que une lo visible con lo invisible. Las llaves cruzadas a sus pies simbolizan la apertura de los misterios divinos a través del estudio tradicional y el dogma estructurado. Es el mentor espiritual, el maestro académico y el guardián de los ritos culturales. Representa la alineación con los valores establecidos, la sabiduría heredada y la búsqueda de significado dentro de comunidades institucionalizadas.', uprightMeaning: 'Tradición sagrada, conformidad social, mentoría espiritual, instituciones educativas y sistemas morales compartidos.', reversedMeaning: 'Rebeldía radical, dogmatismo ciego, rigidez institucional, hipocresía religiosa o un camino de aprendizaje poco ortodoxo.' },
+  { id: 5, name: 'Los Enamorados', number: 'VI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m06.jpg', description: 'Bajo la mirada bendita y el resplandor purificador del arcángel Rafael, un hombre y una mujer se yerguen desnudos en un entorno paradisíaco que evoca el Edén. Detrás de la mujer se encuentra el Árbol del Conocimiento con la serpiente astuta, y detrás del hombre el Árbol de la Vida con doce llamas activas. Esta carta trasciende la mera noción del romance físico; encarna la encrucijada del libre albedrío, la necesidad vital de tomar elecciones basadas en el alineamiento ético y la profunda integración de los aspectos masculinos y femeninos de la psique. Simboliza la armonía cósmica, el compromiso profundo y la honestidad radical ante los valores personales que definen nuestro destino.', uprightMeaning: 'Amor verdadero, armonía perfecta, elecciones cruciales alineadas con el alma, uniones afectivas y valores internos firmes.', reversedMeaning: 'Desunión profunda, conflictos en relaciones, malas elecciones por presión externa, asimetría emocional o falta de alineación.' },
+  { id: 6, name: 'El Carro', number: 'VII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m07.jpg', description: 'Un audaz guerrero coronado se desplaza triunfante en un carro protegido por un dosel de estrellas tejidas, arrastrado por dos esfinges místicas, una blanca y otra negra, que representan las fuerzas polares de la existencia. El conductor no utiliza riendas físicas; controla a estas criaturas salvajes mediante la pura fuerza de su voluntad concentrada y su mente enfocada. Sus hombreras lucen lunas crecientes que hablan del dominio sobre las fluctuaciones emocionales. El Carro es el símbolo supremo de la victoria a través de la determinación inquebrantable, la superación de obstáculos aparentemente insalvables, el enfoque absoluto hacia una meta clara y el triunfo del ego maduro sobre el caos exterior.', uprightMeaning: 'Determinación férrea, control absoluto, éxito rotundo, enfoque militar, ambición y victoria sobre la adversidad.', reversedMeaning: 'Falta de dirección, pérdida de control emocional, agresión desmedida, metas irrealizables o estancamiento por dudas.' },
+  { id: 7, name: 'La Justicia', number: 'VIII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m08.jpg', description: 'Sentada firmemente en el centro exacto de la baraja entre dos columnas que enmarcan la imparcialidad del universo, la Justicia sostiene en su mano izquierda la balanza dorada del equilibrio perfecto y en la derecha una espada de doble filo alzada con rectitud. Su capa roja evoca la acción consciente, mientras que el broche cuadrado en su cuello representa la ley estructural de la materia. A diferencia de las representaciones seculares, ella no lleva los ojos vendados; su mirada es directa y penetrante, porque ve la verdad desnuda sin ilusiones. Representa la ley implacable del karma, la causa y efecto, la honestidad intelectual, la resolución legal justa y la absoluta responsabilidad de nuestras acciones pasadas.', uprightMeaning: 'Verdad desnuda, equidad legal, ley del karma, rendición de cuentas equilibrada y decisiones racionales justas.', reversedMeaning: 'Injusticia manifiesta, desequilibrio moral, prejuicios cegadores, complicaciones legales desfavorables o deshonestidad personal.' },
+  { id: 8, name: 'El Ermitaño', number: 'IX', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m09.jpg', description: 'En la cima solitaria de una montaña nevada, envuelto en una túnica gris que evoca el anonimato del sabio, el Ermitaño sostiene en alto una linterna que alberga la estrella de seis puntas de la sabiduría oculta. Apoyado en su bastón de patriarca, mira hacia abajo para iluminar el sendero de aquellos que aún transitan las llanuras de la ignorancia. Él representa el retiro voluntario del ruido social, el ayuno del ego y la introspección sagrada necesaria para descubrir la luz interior. No busca respuestas en el mundo exterior, sino en los pliegues profundos de su propia conciencia. Es la guía madura del autoconocimiento, la prudencia del tiempo y el valor incalculable de la soledad protectora.', uprightMeaning: 'Introspección espiritual, soledad elegida, guía interna, sabiduría madura, autoconocimiento profundo y prudencia.', reversedMeaning: 'Aislamiento destructivo, paranoia social, rechazo tozudo a la ayuda, soledad amarga o imprudencia en decisiones.' },
+  { id: 9, name: 'La Rueda de la Fortuna', number: 'X', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m10.jpg', description: 'Flotando en un cielo místico poblado por las cuatro criaturas aladas del Apocalipsis que leen textos sagrados, una gran rueda grabada con letras alquímicas y hebreas gira incesantemente en el centro del cosmos. Una esfinge con una espada corona la rueda representando el equilibrio dinámico, mientras el dios Hermanubis asciende y Tifón descendiendo encarnan los flujos inevitables de la suerte humana. Esta carta recuerda con frialdad matemática que lo único constante en la existencia es el cambio. Simboliza los giros inesperados del destino, los ciclos vitales macrocósmicos, los golpes de suerte y la necesidad espiritual de permanecer centrados en el eje inamovible de nuestro ser mientras el mundo exterior da vueltas.', uprightMeaning: 'Cambios inevitables, destino activo, puntos de inflexión afortunados, sincronicidades cósmicas y ciclos de evolución.', reversedMeaning: 'Resistencia neurótica al cambio, mala racha temporal, interrupción de ciclos naturales o falta de control ante el azar.' },
+  { id: 10, name: 'La Fuerza', number: 'XI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m11.jpg', description: 'Una mujer coronada con guirnaldas de flores frescas se inclina con ternura infinita sobre las fauces abiertas de un león salvaje, cerrándolas no con cadenas de hierro o violencia física, sino mediante la caricia suave de la compasión y el dominio del espíritu. Sobre su cabeza resplandece el infinito (lemniscata), uniendo su conciencia con las leyes eternas de la mente. La Fuerza representa el valor moral indomable, la paciencia infinita que doma los instintos animales primitivos de la ira, el miedo y la lujuria dentro de nosotros mismos. Simboliza el poder de la suavidad sobre la brutalidad, la resiliencia silenciosa, la resistencia interna y el control absoluto de las pasiones a través del amor incondicional.', uprightMeaning: 'Coraje moral, fuerza interna inquebrantable, compasión sanadora, paciencia infinita y dominio propio sobre los impulsos.', reversedMeaning: 'Debilidad de carácter, explosiones destructivas de ira, inseguridad paralizante o tiranía basada en la fuerza bruta.' },
+  { id: 11, name: 'El Ahorcado', number: 'XII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m12.jpg', description: 'Suspendido boca abajo de la cruz de madera viva de un árbol que brota hojas verdes, un hombre cuelga de un pie con una serenidad asombrosa en el rostro. Su pierna libre se cruza formando un cuatro perfecto y sus manos están ocultas tras su espalda, formando un triángulo invertido. Alrededor de su cabeza irradia un halo dorado de iluminación profética. El Ahorcado no es una carta de castigo o tortura; representa la suspensión voluntaria de la acción exterior, el sacrificio conscientemente elegido del ego y el acto radical de mirar el mundo desde una perspectiva completamente invertida. Es la iluminación mística que surge cuando dejamos de resistirnos y nos entregamos por completo al fluir del tiempo presente.', uprightMeaning: 'Perspectiva radical nueva, pausa mística, sacrificio voluntario, entrega espiritual, desapego y revelación interior.', reversedMeaning: 'Inercia estéril, resistencia inútil al cambio, mentalidad de mártir falso, parálisis por miedo o esfuerzo mal enfocado.' },
+  { id: 12, name: 'La Muerte', number: 'XIII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m13.jpg', description: 'Un esqueleto blindado con armadura negra cabalga un imponente caballo blanco, portando un estandarte oscuro adornado con la rosa mística de los cinco pétalos que simboliza la purificación de los deseos. A su paso caen reyes, doncellas y obispos, demostrando el poder democrático e inevitable del cambio absoluto. Al fondo de este páramo brilla un sol naciente entre dos torres lejanas, prometiendo el renacimiento continuo del alma. Esta carta rara vez predice un deceso físico; encarna la deconstrucción total y necesaria de lo obsoleto, el fin definitivo de un ciclo vital viciado y la liberación de los apegos pasados para permitir que emerja una nueva vida más auténtica y libre de cargas históricas.', uprightMeaning: 'Transformación profunda, finales absolutos, transiciones vitales radicales, liberación del pasado y renovación estructural.', reversedMeaning: 'Resistencia destructiva al cierre, estancamiento prolongado, miedo neurótico al cambio o aferrarse a estructuras muertas.' },
+  { id: 13, name: 'La Templanza', number: 'XIV', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m14.jpg', description: 'Un ángel majestuoso de género andrógino, con alas de fuego y el triángulo místico grabado en su pecho, se sitúa con un pie en la tierra firme de la lógica y el otro en las aguas cambiantes del subconsciente. Con gracia sobrehumana, vierte un fluido vital continuo entre dos copas de oro, desafiando la gravedad y mezclando opuestos en una alquimia sagrada de paz. La Templanza es la carta de la moderación absoluta, la curación holística y la paciencia dorada. Simboliza la integración armoniosa de las dualidades, la diplomacia interna, la reconciliación de conflictos y el hallazgo de un punto medio estable que restaura la salud física y la serenidad espiritual ante las tormentas del entorno.', uprightMeaning: 'Equilibrio perfecto, moderación, paciencia curativa, alquimia emocional, armonía y reconciliación de opuestos.', reversedMeaning: 'Desequilibrio drástico, excesos destructivos, falta de armonía interna, volatilidad emocional o impaciencia crónica.' },
+  { id: 14, name: 'El Diablo', number: 'XV', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m15.jpg', description: 'Sentado sobre un pedestal semitransparente, Baphomet, la criatura cornuda con alas de murciélago y la antorcha encendida de la destrucción material, alza una mano con un saludo invertido que confunde la mente. A sus pies, un hombre y una mujer con colas de bestias están encadenados por el cuello al bloque de piedra. Sin embargo, un análisis detallado revela que las cadenas son holgadas y pueden quitarse fácilmente con las manos: la prisión es puramente mental. El Diablo encarna las sombras de la psique humana, la adicción a los placeres puramente materiales, las relaciones codependientes oscuras, las obsesiones enfermizas y el miedo irracional que nos autolita a vivir bajo la ilusión de la esclavitud terrenal.', uprightMeaning: 'Materialismo obsesivo, adicciones, ataduras emocionales destructivas, sombras internas negadas y apegos físicos nocivos.', reversedMeaning: 'Liberación de cadenas, despertar de la conciencia, superación de adicciones, desapego y confrontación exitosa del miedo.' },
+  { id: 15, name: 'La Torre', number: 'XVI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m16.jpg', description: 'Una imponente estructura de piedra erigida sobre la soberbia del ego humano es golpeada con violencia apocalíptica por un rayo de fuego divino, destruyendo su corona dorada de estatus mundano. Dos figuras humanas caen al vacío envueltas en el caos y las chispas desatadas, mientras las nubes negras envuelven el entorno en una noche eterna. La Torre representa la intervención súbita del universo para demoler con fuerza sísmica los cimientos basados en la falsedad, la mentira, la soberbia intelectual o las ilusiones neuróticas. Aunque es una experiencia dolorosa y desorientadora, el colapso de la estructura libera la energía aprisionada y limpia por completo el terreno para construir con bases honestas e indestructibles.', uprightMeaning: 'Revelación devastadora, colapso repentino de estructuras falsas, caos liberador, epifanía dolorosa y cambio imprevisto.', reversedMeaning: 'Desastre evitado por poco, resistencia terca a la crisis inevitable, tensión interna acumulada o miedo crónico al quiebre.' },
+  { id: 16, name: 'La Estrella', number: 'XVII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m17.jpg', description: 'Bajo el destello radiante de una inmensa estrella de ocho puntas rodeada por otras siete gemelas menores, una doncella completamente desnuda se arrodilla junto a un estanque místico. Con dos vasijas de arcilla vierte el agua de la vida tanto en el agua profunda de las emociones como en la tierra firme de la materia, nutriendo los brotes de la vegetación nocturna. Detrás de ella, un pájaro sagrado descansa sobre un árbol, listo para cantar el amanecer. La Estrella es el bálsamo cósmico del Tarot; representa el período de sanación profunda tras el colapso de la Torre, la restauración milagrosa de la fe en el porvenir, la inspiración poética pura, la claridad mental y la conexión directa con el flujo espiritual del universo.', uprightMeaning: 'Esperanza renacida, fe inquebrantable, sanación profunda, propósito espiritual claro, optimismo cósmico e inspiración.', reversedMeaning: 'Desesperación existencial, desánimo, pesimismo agudo, falta de fe en el futuro o bloqueos espirituales creativos.' },
+  { id: 17, name: 'La Luna', number: 'XVIII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m18.jpg', description: 'Una luna inmensa que contiene un rostro durmiente destila gotas de luz de oro sobre un paisaje onírico y misterioso flanqueado por dos torres simétricas que delimitan el final de la razón consciente. En el centro, un lobo y un perro aúllan salvajemente, encarnando las partes domesticadas y primitivas del instinto, mientras un cangrejo emerge de las aguas del subconsciente para iniciar el viaje por un estrecho sendero pedregoso. La Luna representa el reino movedizo de las ilusiones, las proyecciones distorsionadas del miedo subconsciente, las pesadillas reveladoras y los secretos engañosos del entorno. Invita a transitar las sombras de la incertidumbre con la única guía de una intuición depurada del ego.', uprightMeaning: 'Miedos subconscientes, ilusiones engañosas, intuición psíquica, sueños intensos e incertidumbre en el entorno.', reversedMeaning: 'Liberación del miedo irracional, verdades veladas que salen a la luz, superación de la confusión y claridad mental.' },
+  { id: 18, name: 'El Sol', number: 'XIX', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m19.jpg', description: 'Un sol radiante de dimensiones gloriosas derrama rayos rectos y ondulados de energía vital sobre un muro de piedra protector custodiado por cuatro girasoles vibrantes que miran hacia la luz. En el primer plano, un niño desnudo e inocente monta con alegría un caballo blanco puro, sosteniendo en alto un gran estandarte ondeante de color rojo que evoca la victoria de la vida sobre la sombra. El Sol es la carta más afortunada de todo el Tarot; representa la claridad mental absoluta, la vitalidad física renovada, el éxito pleno en todos los emprendimientos mundanos y la felicidad pura que nace del corazón de un espíritu alineado y libre de dobleces maliciosos.', uprightMeaning: 'Éxito rotundo, claridad mental total, vitalidad física desbordante, alegría infantil, verdad evidente y felicidad pura.', reversedMeaning: 'Falta temporal de entusiasmo, retrasos menores en proyectos, egocentrismo excesivo o una positividad superficial e ingenua.' },
+  { id: 19, name: 'El Juicio', number: 'XX', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m20.jpg', description: 'Desde los cielos envueltos en nubes violetas, el arcángel Gabriel hace sonar una imponente trompeta dorada decorada con la bandera de la cruz solar de la redención. Al escuchar la resonancia divina, hombres, mujeres y niños se levantan de sus tumbas de piedra flotantes sobre el mar con los brazos alzados en un gesto de absoluta liberación y alabanza ecuménica. El Juicio representa el momento crucial del despertar espiritual absoluto, el llamado urgente e ineludible de la conciencia para evaluar la vida pasada con honestidad implacable, perdonar los viejos errores, liberarse de las culpas acumuladas y dar un salto definitivo hacia una resurrección existencial con un propósito elevado y renovado.', uprightMeaning: 'Despertar espiritual, llamado superior, evaluación honesta, absolución kármica, redención y decisiones cruciales de vida.', reversedMeaning: 'Dudas destructivas sobre uno mismo, autocrítica severa paralizante, rechazo tonto al cambio superior o estancamiento por culpa.' },
+  { id: 20, name: 'El Mundo', number: 'XXI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m21.jpg', description: 'Una danzante andrógina envuelta grácilmente en un velo púrpura flota con absoluta libertad en el interior de una inmensa corona triunfal de hojas de laurel verdes atada con lazos que forman infinitos. En las esquinas exteriores del plano cósmico resplandecen las cuatro cabezas de las criaturas querúbicas fijas (Ángel, Águila, Toro y León), simbolizando el equilibrio perfecto de toda la materia universal. El Mundo es la apoteosis final del viaje del Loco; representa la culminación exitosa, triunfante e integrada de un gran ciclo evolutivo, la maestría absoluta sobre las lecciones de la existencia, el éxito total en proyectos a largo plazo y la plena comunión espiritual con el cosmos entero.', uprightMeaning: 'Completitud absoluta, éxito rotundo e integrado, finales felices, viajes largos prósperos y plenitud existencial con el universo.', reversedMeaning: 'Falta de cierre en procesos personales, proyectos estancados a punto de terminar, frustración por metas inconclusas o atajos destructivos.' },
+  { id: 21, name: 'El Loco', number: '0', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m00.jpg', description: 'Un joven viajero camina con pasos alegres y despreocupados al borde exacto de un abismo escarpado en las montañas altas, mirando hacia los cielos resplandecientes en lugar de fijar la vista en el suelo peligroso. Lleva un pequeño fardo al hombro con sus memorias pasadas y una rosa blanca en la mano que denota la pureza absoluta de sus intenciones vitales. A su lado, un perrito blanco brinca con frenesí tratando de advertirle del peligro inminente o celebrando su audacia infinita. El Loco, numerado con el cero místico, representa los inicios absolutos de la existencia, el salto de fe ciego hacia lo desconocido, la libertad total del juicio ajeno, la espontaneidad cósmica y el potencial ilimitado de un alma pura antes de encarnar en las lecciones pesadas de la materia elemental.', uprightMeaning: 'Inicios puros, saltos de fe valientes, libertad absoluta, aventura sin planes, espontaneidad radical e inocencia sagrada.', reversedMeaning: 'Irresponsabilidad severa, imprudencia peligrosa, insensatez destructiva, caos por falta de base terrenal o retraso en aventuras.' },
 
   // === ARCANOS MENORES - Bastos ===
-  { id: 22, name: 'As de Bastos', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w01.jpg', description: 'Inspiración pura y el despertar de una gran fuerza creativa.', uprightMeaning: 'Potencial creativo, entusiasmo.', reversedMeaning: 'Falta de dirección, bloques.' },
-  { id: 23, name: 'Dos de Bastos', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w02.jpg', description: 'Planificación futura y análisis de horizontes.', uprightMeaning: 'Decisiones, descubrimientos.', reversedMeaning: 'Miedo al riesgo.' },
-  { id: 24, name: 'Tres de Bastos', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w03.jpg', description: 'Tus esfuerzos comienzan a dar frutos en la distancia.', uprightMeaning: 'Expansión, progreso.', reversedMeaning: 'Retrasos en planes.' },
-  { id: 25, name: 'Cuatro de Bastos', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w04.jpg', description: 'Celebración, armonía y el regreso a casa.', uprightMeaning: 'Celebración, hogar, alegría.', reversedMeaning: 'Transición, tensión familiar.' },
-  { id: 26, name: 'Cinco de Bastos', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w05.jpg', description: 'Conflictos menores, competencia y desacuerdos.', uprightMeaning: 'Competencia, conflicto, rivalidad.', reversedMeaning: 'Evitar el conflicto, acuerdo.' },
-  { id: 27, name: 'Seis de Bastos', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w06.jpg', description: 'Éxito público, victoria y reconocimiento por tus logros.', uprightMeaning: 'Victoria, éxito, reconocimiento publico.', reversedMeaning: 'Falta de confianza, caída en desgracia.' },
-  { id: 28, name: 'Siete de Bastos', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w07.jpg', description: 'Defensa de tu posición y resistencia ante la oposición.', uprightMeaning: 'Perseverancia, defensa, desafío.', reversedMeaning: 'Rendirse, abrumado.' },
-  { id: 29, name: 'Ocho de Bastos', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w08.jpg', description: 'Movimiento rápido, noticias y eventos que se aceleran.', uprightMeaning: 'Velocidad, acción rápida, viajes.', reversedMeaning: 'Retrasos, pánico, resistencia.' },
-  { id: 30, name: 'Nueve de Bastos', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w09.jpg', description: 'La última línea de defensa; resistencia a pesar del cansancio.', uprightMeaning: 'Resiliencia, persistencia, empuje final.', reversedMeaning: 'Debilidad, rendirse.' },
-  { id: 31, name: 'Diez de Bastos', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w10.jpg', description: 'Cargas pesadas, exceso de responsabilidad y estrés.', uprightMeaning: 'Carga, responsabilidad, esfuerzo.', reversedMeaning: 'Delegar, colapso.' },
-  { id: 32, name: 'Sota de Bastos', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w11.jpg', description: 'Chispa inicial de inspiración, descubridor entusiasta.', uprightMeaning: 'Entusiasmo, exploración, ideas.', reversedMeaning: 'Pesimismo, falta de metas.' },
-  { id: 33, name: 'Caballero de Bastos', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w12.jpg', description: 'Acción apasionada, impulsividad y búsqueda de aventuras.', uprightMeaning: 'Pasión, audacia, aventura.', reversedMeaning: 'Egoísmo, imprudencia.' },
-  { id: 34, name: 'Reina de Bastos', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w13.jpg', description: 'Seguridad en uno mismo, magnetismo y energía social vibrante.', uprightMeaning: 'Coraje, fertilidad, confianza.', reversedMeaning: 'Celos, demandas excesivas.' },
-  { id: 35, name: 'Rey de Bastos', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w14.jpg', description: 'El líder visionario que transforma sus pasiones en imperios reales.', uprightMeaning: 'Liderazgo, visión, emprendimiento.', reversedMeaning: 'Impulsividad, tiranía.' },
+  { id: 22, name: 'As de Bastos', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w01.jpg', description: 'Una mano divina emerge de una nube luminosa sosteniendo con firmeza un bastón de madera viva del cual brotan hojas verdes frescas y pequeñas chispas de yods alquímicos suspendidos en el aire. Detrás se divisa un castillo en la cima de una colina. Esta carta es el chispazo inicial e incontendible del elemento fuego; representa el nacimiento de la inspiración creativa pura, la pasión inicial irrefrenable, la energía emprendedora indomable y el valor visceral para iniciar un nuevo camino con ambición.', uprightMeaning: 'Potencial creativo puro, chispazo de inspiración, entusiasmo salvaje, nuevos proyectos con pasión y vitalidad inicial.', reversedMeaning: 'Falta total de motivación, bloqueos creativos tempranos, proyectos nacidos muertos o energía dispersa inútilmente.' },
+  { id: 23, name: 'Dos de Bastos', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w02.jpg', description: 'Un hombre noble ricamente ataviado contempla el horizonte infinito desde las almenas seguras de su castillo de piedra, sosteniendo un pequeño globo terráqueo en su mano derecha mientras la izquierda se apoya en un bastón fijado al muro. Detrás de él, otro bastón aguarda su partida. Representa la fase intermedia de la planificación a largo plazo; el momento en que se posee un éxito inicial cómodo pero se analizan los riesgos de cruzar las fronteras conocidas para expandir el imperio creativo.', uprightMeaning: 'Planificación futura, decisiones ambiciosas, análisis de horizontes nuevos, descubrimientos y poder inicial seguro.', reversedMeaning: 'Miedo paralizante al riesgo, falta de planificación logística, conformismo defensivo o retraso de viajes deseados.' },
+  { id: 24, name: 'Tres de Bastos', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w03.jpg', description: 'Un comerciante visionario de espaldas a nosotros contempla los mares dorados desde una elevada meseta costera, observando cómo sus navíos mercantes avanzan hacia tierras lejanas. Tres robustos bastones se clavan firmemente en el suelo a su alrededor, sirviendo de pilares de apoyo. Esta carta simboliza el progreso real del trabajo inicial; la siembra ha terminado y los esfuerzos comienzan a dar sus frutos en la distancia. Invita a expandir la visión comercial, confiar en la estrategia adoptada y prepararse para el éxito.', uprightMeaning: 'Expansión comercial, progreso tangible, barcos que regresan, visión de futuro global y liderazgo comercial consolidado.', reversedMeaning: 'Retrasos frustrantes en planes de comercio, decepción por malas alianzas, falta de visión global o impaciencia crónica.' },
+  { id: 25, name: 'Cuatro de Bastos', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w04.jpg', description: 'Cuatro grandes bastones clavados al frente forman una hermosa pérgola adornada con pesadas guirnaldas de frutas y flores frescas de celebración. Al fondo, una multitud feliz alza las manos cerca de un gran puente y un castillo solar. Esta carta es un refugio de paz en el palo de la tensión creativa; representa la culminación exitosa de una etapa inicial, la armonía doméstica perfecta, el regreso al hogar amado, las celebraciones comunitarias y el establecimiento de bases estables basadas en la alegría sincera.', uprightMeaning: 'Celebración comunitaria, armonía familiar perfecta, bases estables de alegría, regreso a casa y paz bien ganada.', reversedMeaning: 'Tensión familiar sutil en el hogar, celebraciones pospuestas, inestabilidad en el núcleo privado o felicidad contenida.' },
+  { id: 26, name: 'Cinco de Bastos', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w05.jpg', description: 'Cinco jóvenes se enfrentan en un combate caótico alzando sus bastones de madera en el aire en medio de un prado verde. Un análisis visual demuestra que ninguno de ellos hiere realmente al otro; es una competencia deportiva o un desacuerdo ruidoso de opiniones sin intenciones criminales. Representa las fricciones menores de la convivencia diaria, la competencia feroz en el mercado laboral, la lluvia de ideas caótica antes del orden mental y la necesidad de canalizar la agresión constructivamente.', uprightMeaning: 'Competencia intensa, conflicto menor de opiniones, rivalidad deportiva, caos creativo y tensiones grupales diarias.', reversedMeaning: 'Evasión neurótica del conflicto necesario, resolución de disputas grupales, paz forzada o fin de rivalidades laborales.' },
+  { id: 27, name: 'Seis de Bastos', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w06.jpg', description: 'Un jinete victorioso coronado con laureles avanza orgulloso a través de una multitud que lo aclama, montando un caballo blanco cubierto con una gualdrapa verde de estatus. En su bastón principal cuelga una corona floral de triunfo público. Esta carta representa el reconocimiento explícito y social de tus logros individuales; tras la lucha del cinco de bastos, emerge el líder victorioso que recibe los aplausos merecidos de su entorno, ganando respeto y prestigio.', uprightMeaning: 'Victoria pública, reconocimiento masivo por méritos, éxito social rotundo, orgullo sano y progreso ascendente.', reversedMeaning: 'Falta de confianza personal, caída drástica en desgracia social, traición del entorno o robo de méritos profesionales.' },
+  { id: 28, name: 'Siete de Bastos', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w07.jpg', description: 'Situado de pie en la cima de una escarpada colina verde, un guerrero decidido blande un robusto bastón para defender su posición ventajosa contra seis bastones enemigos que lo atacan desde los valles inferiores. Su calzado desparejado denota que fue tomado por sorpresa, pero su postura es inquebrantable. Representa la defensa feroz de tus logros frente a los celos del entorno, la resistencia moral ante la oposición masiva y el valor indomable para defender tus verdades.', uprightMeaning: 'Defensa de posiciones ganadas, perseverancia ante la crítica, resistencia al entorno celoso y coraje defensivo.', reversedMeaning: 'Sentirse abrumado por los ataques, rendición cobarde ante la presión, pérdida de territorio profesional o cansancio mental.' },
+  { id: 29, name: 'Ocho de Bastos', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w08.jpg', description: 'Ocho bastones de madera viva cruzan velozmente un cielo azul despejado en una trayectoria diagonal descendente idéntica, indicando un movimiento cinético impreciso y libre de obstáculos físicos. No hay figuras humanas en este paisaje minimalista. Esta carta representa la aceleración drástica de los acontecimientos de la vida; las comunicaciones digitales veloces, la llegada inminente de noticias críticas por aire, la resolución repentina de bloqueos históricos y la necesidad de actuar con reflejos rápidos.', uprightMeaning: 'Velocidad de acontecimientos, acción rápida directa, viajes por aire inminentes, comunicaciones fluidas y resolución.', reversedMeaning: 'Retrasos frustrantes en aeropuertos o correos, pánico por caos acelerado, resistencia al cambio rápido o malas noticias.' },
+  { id: 30, name: 'Nueve de Bastos', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w09.jpg', description: 'Un guerrero curtido en batallas, con una venda blanca enrollada en la cabeza lesionada, se apoya con cautela y recelo en un bastón de madera mientras observa a su alrededor con mirada vigilante. Detrás de él, una sólida empalizada de otros ocho bastones bien ordenados protege su territorio. Es la carta de la resiliencia pura; el cuerpo está exhausto tras las largas contiendas de la vida, pero el espíritu se niega a rendirse, manteniendo la última línea de defensa activa.', uprightMeaning: 'Resiliencia final, persistencia a pesar del cansancio, empuje defensivo final, sospechas sanas y protección férrea.', reversedMeaning: 'Debilidad de carácter extrema, rendición justo antes del éxito, agotamiento físico crónico o paranoias injustificadas.' },
+  { id: 31, name: 'Diez de Bastos', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w10.jpg', description: 'Un hombre dobla completamente su espalda bajo el peso abrumador de diez bastones inmensos que carga a cuestas con esfuerzo agónico, intentando llevarlos hacia una hermosa ciudad o castillo que se divisa al fondo del sendero pedregoso. Su rostro está oculto por los maderos. Representa el exceso insoportable de responsabilidades individuales, el estrés laboral extremo derivado de no saber delegar tareas y el sacrificio físico absoluto que nubla la visión del éxito.', uprightMeaning: 'Carga pesada agobiante, exceso de responsabilidad individual, estrés laboral agudo, esfuerzo extremo necesario.', reversedMeaning: 'Aprender a delegar con inteligencia, colapso físico inminente por terquedad, liberación voluntaria de cargas ajenas.' },
+  { id: 32, name: 'Sota de Bastos', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w11.jpg', description: 'Un joven explorador elegantemente vestido con una túnica estampada con salamandras (símbolos del fuego esotérico) se detiene en medio de un desierto baldío para contemplar con fascinación absoluta un gran bastón que sostiene con ambas manos verticales. Esta sota representa al mensajero de las ideas apasionadas; el descubridor novato que trae chispas de inspiración inicial y propuestas de aventuras emocionantes, aunque aún carece de la madurez operativa para ejecutarlas por completo.', uprightMeaning: 'Entusiasmo juvenil inocente, exploración de ideas iniciales, mensajes apasionados inminentes, descubrimientos artísticos.', reversedMeaning: 'Pesimismo infantil paralizante, mensajero de chismes destructivos, falta absoluta de metas claras o pereza mental.' },
+  { id: 33, name: 'Caballero de Bastos', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w12.jpg', description: 'Un caballero armado con armadura de hierro galopa a lomos de un caballo alazán fogoso que salta impetuoso sobre las arenas del desierto. Su capa luce salamandras de fuego vivas y de su casco brotan plumas rojas inflamadas. Empuña su bastón con intenciones de carga militar. Encarna la acción apasionada pura desprovista de paciencia lógica; es el impulso audaz e irresistible que avanza destruyendo dudas, buscando la conquista del horizonte sin evaluar las consecuencias.', uprightMeaning: 'Pasión desbordante, audacia temeraria, aventura rápida, traslados urgentes de vivienda, acción impetuosa directa.', reversedMeaning: 'Egoísmo desmedido destructivo, imprudencia criminal, peleas por arrogancia o proyectos abandonados a mitad de camino.' },
+  { id: 34, name: 'Reina de Bastos', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w13.jpg', description: 'Sentada majestuosamente en un trono adornado con leones tallados y girasoles de oro, la Reina de Bastos sostiene un bastón florecido en una mano y un girasol en la otra. A sus pies descansa un gato negro místico, guardián de los secretos de la noche. Ella irradia un magnetismo sexual y social incomparable; es la mujer empoderada, segura de sus talentos creativos, hospitalaria, llena de energía vital desbordante y capaz de gobernar sus círculos con un encanto cálido e indestructible.', uprightMeaning: 'Coraje social, fertilidad creativa radiante, confianza sexual plena, magnetismo personal y calidez protectora.', reversedMeaning: 'Celos neuróticos destructivos, demandas excesivas de atención, manipulación social tiránica o infidelidades ruidosas.' },
+  { id: 35, name: 'Rey de Bastos', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w14.jpg', description: 'El Rey de Bastos se asienta en su trono real decorado con leones devorando sus propias colas y salamandras de fuego perfectas. Viste una capa de color amarillo solar brillante y sostiene un cetro rústico de madera viva. Su postura es inclinada hacia adelante, lista para la acción ejecutiva instantánea. Él es el líder visionario definitivo del elemento fuego; el hombre que ha madurado sus pasiones infantiles y las ha transformado en imperios comerciales estables y proyectos reales duraderos.', uprightMeaning: 'Liderazgo visionario real, espíritu emprendedor exitoso, autoridad magnética indiscutible, generosidad ejecutiva sabia.', reversedMeaning: 'Tiranía ideológica implacable, impulsividad destructiva crónica, dogmatismo ciego o arrogancia machista obsoleta.' },
 
   // === ARCANOS MENORES - Copas ===
-  { id: 36, name: 'As de Copas', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c01.jpg', description: 'Desborde de emociones puras, amor e intuición.', uprightMeaning: 'Amor nuevo, despertar emocional.', reversedMeaning: 'Bloqueo emocional.' },
-  { id: 37, name: 'Dos de Copas', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c02.jpg', description: 'Conexión profunda, romance o amistad simétrica.', uprightMeaning: 'Unión, romance, armonía.', reversedMeaning: 'Ruptura, falta de balance.' },
-  { id: 38, name: 'Tres de Copas', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c03.jpg', description: 'Celebración en comunidad y gratitud compartida.', uprightMeaning: 'Celebración, amistad, comunidad.', reversedMeaning: 'Excesos, chismes.' },
-  { id: 39, name: 'Cuatro de Copas', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c04.jpg', description: 'Apatía, aburrimiento y desconexión del entorno.', uprightMeaning: 'Apatía, introspección, rechazo.', reversedMeaning: 'Nueva motivación, apertura.' },
-  { id: 40, name: 'Cinco de Copas', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c05.jpg', description: 'Lamento por las pérdidas pasadas sin ver lo que aún queda en pie.', uprightMeaning: 'Pérdida, arrepentimiento, decepción.', reversedMeaning: 'Aceptación, superación.' },
-  { id: 41, name: 'Seis de Copas', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c06.jpg', description: 'Nostalgia, recuerdos de la infancia y reencuentros bondadosos.', uprightMeaning: 'Nostalgia, inocencia, reencuentro.', reversedMeaning: 'Estancado en el pasado, maduración.' },
-  { id: 42, name: 'Siete de Copas', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c07.jpg', description: 'Demasiadas opciones e ilusiones que nublan el juicio.', uprightMeaning: 'Ilusión, opciones, fantasía.', reversedMeaning: 'Claridad, elección real.' },
-  { id: 43, name: 'Ocho de Copas', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c08.jpg', description: 'Abandonar lo conocido para buscar un significado más profundo.', uprightMeaning: 'Abandono, viaje espiritual, desapego.', reversedMeaning: 'Confusión, miedo a avanzar.' },
-  { id: 44, name: 'Nueve de Copas', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c09.jpg', description: 'La carta de los deseos cumplidos, satisfacción y confort.', uprightMeaning: 'Satisfacción, deseo concedido, plenitud.', reversedMeaning: 'Materialismo, insatisfacción oculta.' },
-  { id: 45, name: 'Diez de Copas', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c10.jpg', description: 'Dicha familiar suprema, paz doméstica y amor verdadero.', uprightMeaning: 'Felicidad familiar, alineación emocional.', reversedMeaning: 'Conflictos en el hogar, desconexión.' },
-  { id: 46, name: 'Sota de Copas', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c11.jpg', description: 'Sorpresas emocionales, sensibilidad artística y mensajes del corazón.', uprightMeaning: 'Sensibilidad, noticias alegres, intuición.', reversedMeaning: 'Inmadurez emocional, bloqueos.' },
-  { id: 47, name: 'Caballero de Copas', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c12.jpg', description: 'El heraldo del romance; idealista guiado por los sentimientos.', uprightMeaning: 'Romance, encanto, propuestas.', reversedMeaning: 'Manipulación emocional, desilusión.' },
-  { id: 48, name: 'Reina de Copas', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c13.jpg', description: 'La fuerza emocional madura que provee empatía incondicional.', uprightMeaning: 'Empatía, compasión, intuición.', reversedMeaning: 'Inestabilidad emocional, codependencia.' },
-  { id: 49, name: 'Rey de Copas', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c14.jpg', description: 'Maestro de las emociones; mantiene la calma y el balance.', uprightMeaning: 'Control emocional, sabiduría, diplomacia.', reversedMeaning: 'Control, volatilidad, frialdad.' },
+  { id: 36, name: 'As de Copas', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c01.jpg', description: 'Una mano mística emerge de las brumas celestiales sosteniendo una magnífica copa de oro de la cual desbordan cinco chorros continuos de agua viva que nutren un estanque cubierto de lirios de agua. Una paloma sagrada desciende del cosmos para depositar la hostia de la paz en el cáliz sagrado. Esta carta representa la fuente inagotable y primordial del elemento agua; el nacimiento puro del amor incondicional, el despertar de la intuición psíquica y la sanación emocional absoluta.', uprightMeaning: 'Amor nuevo puro, despertar emocional místico, intuición psíquica radiante, paz interior profunda y creatividad afectiva.', reversedMeaning: 'Bloqueos emocionales severos, amor propio por los suelos, relaciones estériles vacías o intuición reprimida por lógica.' },
+  { id: 37, name: 'Dos de Copas', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c02.jpg', description: 'Un joven y una doncella intercambian copas de oro con timidez y devoción sagrada en medio de un prado idílico. Sobre ellos flota el caduceo místico de Hermes coronado por una cabeza de león con alas de fuego, bendiciendo la simetría perfecta de su amor mutuo. Es la carta del romance recíproco y las alianzas comerciales simétricas; representa el equilibrio perfecto de energías complementarias, el respeto mutuo absoluto y la fusión de dos almas en un propósito común.', uprightMeaning: 'Unión romántica recíproca, romance idílico pacífico, alianzas comerciales simétricas y conexiones afectivas puras.', reversedMeaning: 'Rupturas amorosas dolorosas, falta absoluta de balance relacional, malentendidos graves o desconfianza mutua de pareja.' },
+  { id: 38, name: 'Tres de Copas', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c03.jpg', description: 'Tres doncellas entrelazadas grácilmente en un baile circular alzan sus copas de oro en el aire en señal de brindis y gratitud sincera. A sus pies crecen abundantes frutos de la tierra y vides cargadas. Esta carta encarna la celebración de los afectos colectivos; representa el valor inestimable de las amistades femeninas genuinas, el festejo comunitario de hitos vitales felices, la sanación emocional compartida y el desborde de la alegría social.', uprightMeaning: 'Celebración colectiva, amistad genuina protectora, comunidad afectiva sana, gratitud compartida y festejos felices.', reversedMeaning: 'Excesos nocturnos destructivos, chismes venenosos en círculos de amigos, traiciones grupales o aislamiento insano.' },
+  { id: 39, name: 'Cuatro de Copas', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c04.jpg', description: 'Un joven se sienta al pie de un árbol frondoso con los brazos cruzados y la mirada perdida en el suelo, observando con apatía tres copas que descansan frente a él. Desde los cielos, una mano mística le ofrece una cuarta copa de oro rebosante, pero él se niega a mirarla por completo. Representa el estado de estancamiento emocional provocado por el aburrimiento crónico, la ingratitud ante las bendiciones de la vida y la obsesión por desilusiones del pasado.', uprightMeaning: 'Apatía crónica, introspección excesiva melancólica, aburrimiento vital, ingratitud y rechazo tonto de ofertas.', reversedMeaning: 'Nueva motivación vital, apertura emocional al entorno, aceptación de segundas oportunidades y fin de la depresión.' },
+  { id: 40, name: 'Cinco de Copas', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c05.jpg', description: 'Una figura envuelta en una túnica negra de luto contempla desolada tres copas derramadas sobre el suelo de tierra baldía, cuyo vino rojo se pierde en la arena. Detrás de ella, sin embargo, permanecen dos copas intactas llenas de elixir que se niega a mirar debido a su obsesión por la pérdida. Al fondo, un puente de piedra cruza hacia un castillo protector. Es la carta del duelo emocional; el dolor agudo por errores pasados y desamores.', uprightMeaning: 'Pérdida dolorosa de afectos, arrepentimiento agudo neurótico, decepción amorosa profunda y enfoque obsesivo en el fracaso.', reversedMeaning: 'Aceptación sabia del dolor pasado, superación definitiva del duelo, mirar el futuro con optimismo y segundas oportunidades.' },
+  { id: 41, name: 'Seis de Copas', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c06.jpg', description: 'En el patio adoquinado de una antigua mansión señorial de piedra, un niño pequeño vestido de bufón regala con timidez una copa llena de flores blancas frescas a una niña menor. Otras cinco copas decoradas con vegetación los rodean con calidez nostálgica. Esta carta representa el regreso sanador a los recuerdos más inocentes de la infancia; el reencuentro con viejos amigos de la escuela, la pureza de los afectos infantiles y la bondad sin malicia.', uprightMeaning: 'Nostalgia sanadora afectiva, recuerdos puros de infancia, reencuentros del pasado felices e inocencia emocional.', reversedMeaning: 'Vivir atrapado de forma inmadura en el pasado, negarse a madurar psicológicamente, recuerdos distorsionados ficticios.' },
+  { id: 42, name: 'Siete de Copas', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c07.jpg', description: 'Un hombre de espaldas contempla con asombro absoluto una inmensa nube oscura de la cual emergen siete copas de oro flotantes, cada una llena de visiones contradictorias: castillos de poder, cabezas de serpientes, joyas de riqueza, dragones divinos y una figura velada luminosa. Representa el peligro mental de la fantasía descontrolada, el exceso de opciones ilusorias que paralizan el juicio pragmático y el canto de sirena del deseo superficial.', uprightMeaning: 'Ilusiones engañosas fantasiosas, exceso de opciones paralizantes, fantasía desmedida y falta absoluta de enfoque realista.', reversedMeaning: 'Claridad mental recuperada, elecciones pragmáticas reales firmes, despertar de ilusiones falsas y madurez existencial.' },
+  { id: 43, name: 'Ocho de Copas', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c08.jpg', description: 'Bajo el resplandor conjunto de una luna menguante y eclipsada en una noche negra profunda, una figura apoyada en un bastón inicia un viaje de retirada a pie, ascendiendo por montañas áridas lejanas. En primer plano deja ocho copas de oro perfectamente ordenadas que decide abandonar voluntariamente a pesar de su valor material. Es la carta del desapego espiritual; el momento en que comprendemos que lo construido ya no nutre el alma.', uprightMeaning: 'Abandono voluntario de lo conocido, viaje espiritual solitario, desapego material necesario y evolución interna.', reversedMeaning: 'Miedo paralizante a avanzar hacia lo desconocido, sostener relaciones muertas por comodidad o parálisis existencial.' },
+  { id: 44, name: 'Nueve de Copas', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c09.jpg', description: 'Un mercader corpulento y jovial se sienta cómodamente con los brazos cruzados y una sonrisa de absoluta suficiencia sobre un banco de madera cubierto de telas costosas. Detrás de él, ordenadas de forma impecable sobre una estructura semicircular azul, relucen nueve copas de oro rebosantes. Esta es tradicionalmente conocida como la carta de los deseos concedidos; representa la satisfacción material plena y la comodidad ególatra.', uprightMeaning: 'Satisfacción absoluta de deseos, confort material pleno, placeres culinarios y sensuales logrados, orgullo sano.', reversedMeaning: 'Materialismo vacío superficial, insatisfacción interior oculta tras lujos, indulgencia excesiva destructiva o glotonería.' },
+  { id: 45, name: 'Diez de Copas', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c10.jpg', description: 'Un arcoíris milagroso compuesto por diez copas de oro resplandece radiante en los cielos azules sobre un paisaje doméstico idílico. Abajo, un esposo y una esposa abrazados alzan los brazos con devoción sagrada mientras sus dos niños pequeños bailan felices junto a una hermosa casa de campo bordeada por un río cristalino. Encarna el ideal definitivo de la plenitud familiar y la paz doméstica duradera; la alineación emocional perfecta con el entorno.', uprightMeaning: 'Felicidad familiar suprema, paz doméstica bendita, amor verdadero duradero, alineación emocional armónica ideal.', reversedMeaning: 'Conflictos graves en el hogar privado, rupturas de la paz familiar, desconexión afectiva con hijos o falsas apariencias.' },
+  { id: 46, name: 'Sota de Copas', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c11.jpg', description: 'Un joven cortesano de gestos delicados y vestiduras ricas estampadas con flores acuáticas sostiene una copa de oro con actitud contemplativa en la playa. De la copa asoma la cabeza de un pez real que lo mira fijamente de forma simpática. Detrás de él ondean olas de mar místicas. Representa las sorpresas iniciales del plano emocional; el nacimiento de intuiciones artísticas frescas y la recepción de cartas de amor inesperadas de admiradores.', uprightMeaning: 'Sensibilidad artística emergente, noticias amorosas felices inminentes, intuición sutil y mensajes afectivos tiernos.', reversedMeaning: 'Inmadurez emocional caprichosa, bloqueos artísticos severos, mensajero de dramas sentimentales infantiles insanos.' },
+  { id: 47, name: 'Caballero de Copas', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c12.jpg', description: 'Un caballero apuesto montado en un caballo blanco majestuoso que avanza a un trote lento y elegante cruza un arroyo tranquilo en medio de valles verdes. Su armadura luce grabados de peces de agua místicos y su casco está adornado con alas de mercurio. Sostiene su copa hacia adelante como si ofreciera un cáliz sagrado. Él es el heraldo de las propuestas románticas; el idealista platónico guiado exclusivamente por la belleza del corazón.', uprightMeaning: 'Propuestas románticas sinceras, invitaciones de arte exclusivas, encanto personal magnético y búsquedas místicas.', reversedMeaning: 'Manipulación emocional narcisista, desilusiones afectivas graves por idealización boba, mentiras sentimentales de seductor.' },
+  { id: 48, name: 'Reina de Copas', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c13.jpg', description: 'Sentada al borde mismo del océano encrespado en un magnífico trono de piedra decorado con querubines acuáticos, la Reina de Copas contempla de forma fija una imponente copa dorada labrada con asas en forma de ángeles que permanece cerrada. Ella es el espejo emocional maduro de la baraja; posee capacidades psíquicas telepáticas innatas, provee empatía incondicional a los que sufren y custodia los secretos más profundos del subconsciente universal.', uprightMeaning: 'Empatía protectora incondicional, compasión sanadora profunda, intuición psíquica madura y maternidad afectiva sabio.', reversedMeaning: 'Inestabilidad emocional neurótica crónica, celos enfermizos posesivos, codependencia destructiva extrema o chantajes.' },
+  { id: 49, name: 'Rey de Copas', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c14.jpg', description: 'El Rey de Copas se asienta sobre un trono de piedra maciza que flota directamente en medio del océano tempestuoso. A pesar de las olas que agitan su entorno y del pez que salta a su derecha, su mirada permanece serena y estable. En su pecho luce un broche de pez de oro y en su mano un cetro real. Él representa el dominio y la maestría absoluta sobre las tormentas del plano emocional; la capacidad de sentir con pasión infinita sin perder jamás la cordura racional ni la diplomacia.', uprightMeaning: 'Control emocional maduro ejemplar, sabiduría diplomática justa, compasión protectora estable, madurez mental afectiva.', reversedMeaning: 'Volatilidad emocional peligrosa oculta, manipulación psicológica fría criminal, adicciones severas o crueldad afectiva.' },
 
   // === ARCANOS MENORES - Espadas ===
-  { id: 50, name: 'As de Espadas', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s01.jpg', description: 'Quiebre mental absoluto que trae verdades tajantes.', uprightMeaning: 'Claridad mental, verdad directa.', reversedMeaning: 'Confusión, argumentos destructivos.' },
-  { id: 51, name: 'Dos de Espadas', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s02.jpg', description: 'Encrucijada mental donde te niegas a ver la realidad.', uprightMeaning: 'Indecisión, tregua.', reversedMeaning: 'Movimiento forzado, revelación.' },
-  { id: 52, name: 'Tres de Espadas', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s03.jpg', description: 'Dolor emocional, desilusión inevitable o duelo necesario.', uprightMeaning: 'Desamor, pena, dolor necesario.', reversedMeaning: 'Sostener el dolor, negación.' },
-  { id: 53, name: 'Cuatro de Espadas', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s04.jpg', description: 'Descanso mental, recuperación tras la batalla y meditación.', uprightMeaning: 'Reposo, recuperación, tregua.', reversedMeaning: 'Agotamiento, inquietud mental.' },
-  { id: 54, name: 'Cinco de Espadas', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s05.jpg', description: 'Victoria a un precio demasiado alto; hostilidad desatada.', uprightMeaning: 'Conflicto, victoria vacía, deshonor.', reversedMeaning: 'Fin de la disputa, reconciliación.' },
-  { id: 55, name: 'Seis de Espadas', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s06.jpg', description: 'Transición hacia aguas más calmadas; dejando atrás la crisis.', uprightMeaning: 'Viaje, transición necesaria, alivio.', reversedMeaning: 'Equipaje atrapado, resistencia a cambiar.' },
-  { id: 56, name: 'Siete de Espadas', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s07.jpg', description: 'Estrategias secretas, engaños o necesidad de actuar con astucia.', uprightMeaning: 'Estrategia, escape, sigilo.', reversedMeaning: 'Secretos revelados, cobardía.' },
-  { id: 57, name: 'Ocho de Espadas', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s08.jpg', description: 'Prisión mental autoimpuesta; te crees atrapado pero no lo estás.', uprightMeaning: 'Atrapado, restricción, ceguera.', reversedMeaning: 'Liberación, nueva perspectiva.' },
-  { id: 58, name: 'Nueve de Espadas', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s09.jpg', description: 'Ansiedad extrema, pesadillas y preocupaciones agobiantes.', uprightMeaning: 'Ansiedad, insomnio, culpa.', reversedMeaning: 'Liberación del miedo, curación.' },
-  { id: 59, name: 'Diez de Espadas', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s10.jpg', description: 'El punto más bajo; final abrupto pero la promesa de un nuevo amanecer.', uprightMeaning: 'Derrota, final doloroso, traición.', reversedMeaning: 'Recuperación, resurgimiento.' },
-  { id: 60, name: 'Sota de Espadas', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s11.jpg', description: 'Mentalidad curiosa, agudeza verbal y recopilación de datos.', uprightMeaning: 'Curiosidad, agilidad mental.', reversedMeaning: 'Espionaje, palabras hirientes.' },
-  { id: 61, name: 'Caballero de Espadas', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s12.jpg', description: 'Acción directa y rápida impulsada por el intelecto y las ideas.', uprightMeaning: 'Determinación, asertividad, prisa.', reversedMeaning: 'Falta de tacto, agresión desmedida.' },
-  { id: 62, name: 'Reina de Espadas', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s13.jpg', description: 'Intelecto afilado, juicio imparcial y fronteras claras.', uprightMeaning: 'Independencia, lucidez, objetividad.', reversedMeaning: 'Amargura, crítica cruel.' },
-  { id: 63, name: 'Rey de Espadas', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s14.jpg', description: 'Autoridad intelectual, verdad racional y poder a través de la ley.', uprightMeaning: 'Lógica, disciplina, autoridad moral.', reversedMeaning: 'Manipulación, crueldad mental.' },
+  { id: 50, name: 'As de Espadas', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s01.jpg', description: 'Una mano divina de color blanco puro emerge de una nube luminosa empuñando verticalmente una reluciente espada de acero templado de doble filo, cuya punta atraviesa una corona de oro adornada con ramas de olivo y palma de victoria. Detrás se aprecian montañas áridas y frías bajo un cielo cristalino. Representa el quiebre absoluto del intelecto sobre la mentira; el nacimiento de verdades objetivas implacables que cortan las ilusiones.', uprightMeaning: 'Claridad mental absoluta destructora de mentiras, verdades directas tajantes, justicia intelectual y triunfos lógicos.', reversedMeaning: 'Confusión mental caótica severa, argumentos destructivos injustos, tiranía intelectual cruel o mentiras organizadas.' },
+  { id: 51, name: 'Dos de Espadas', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s02.jpg', description: 'Una mujer con los ojos vendados con una tela blanca se sienta firmemente en un banco de piedra frente a un mar picado cubierto por una luna creciente nocturna. Sostiene con sus brazos cruzados sobre el pecho dos imponentes espadas de acero idénticas en perfecto equilibrio geométrico. Esta carta encarna la encrucijada mental absoluta; la situación de parálisis intelectual provocada por negarse obstinadamente a ver la realidad objetiva de los hechos.', uprightMeaning: 'Indecisión mental paralizante, callejón sin salida lógico, tregua forzada incómoda, bloqueos de comunicación crónicos.', reversedMeaning: 'Movimiento forzado por circunstancias, revelación súbita de hechos ocultos, quitarse la venda mental y decidir con valor.' },
+  { id: 52, name: 'Tres de Espadas', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s03.jpg', description: 'Un inmenso corazón de color rojo vivo que flota suspendido bajo un cielo oscuro envuelto en una tormenta de lluvia torrencial y nubes negras es atravesado con crueldad geométrica por tres grandes espadas de acero que se cruzan en su centro exacto. No hay figuras humanas en este drama minimalista. Es la carta clásica del dolor emocional agudo; representa el duelo inevitable derivado de rupturas amorosas traumáticas, traiciones de amigos.', uprightMeaning: 'Dolor emocional agudo inevitable, desamor traumático ruidoso, traición herida de afectos, duelo necesario purificador.', reversedMeaning: 'Sostener de forma masoquista el dolor pasado, negación neurótica del desastre relacional, heridas sentimentales infectadas.' },
+  { id: 53, name: 'Cuatro de Espadas', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s04.jpg', description: 'La efigie tallada de un guerrero descansa en posición de oración sagrada sobre una tumba de piedra en el interior de una iglesia gótica iluminada por un vitral de paz. Tres espadas cuelgan de forma horizontal en el muro sobre su cabeza, mientras una cuarta espada descansa grabada bajo su efigie protectora. Es la carta del descanso mental necesario; la retirada estratégica de las batallas de la vida para permitir la meditación sana.', uprightMeaning: 'Reposo mental absoluto reparador, recuperación tras crisis severas, tregua necesaria, meditación silenciosa y paz.', reversedMeaning: 'Agotamiento mental crónico severo por insomnio, inquietud mental destructiva, incapacidad neurótica de descansar.' },
+  { id: 54, name: 'Cinco de Espadas', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s05.jpg', description: 'Un guerrero de mirada soberbia y sonrisa maliciosa recoge tres espadas del suelo de un campo de batalla costero, mientras sostiene otras dos sobre su hombro. Al fondo, dos figuras derrotadas se alejan llorando con los hombros caídos bajo un cielo cubierto de nubes desgarradas grises. Esta carta representa la victoria pírrica e inmoral; ganar discusiones o disputas comerciales destruyendo las relaciones humanas a un precio ético inaceptable.', uprightMeaning: 'Conflicto destructivo inmoral, victoria vacía pírrica, deshonor ético laboral, humillaciones de ego y hostilidad desatada.', reversedMeaning: 'Fin definitivo de disputas históricas, deseo honesto de reconciliación mutua, disculpas aceptadas tras guerras de ego.' },
+  { id: 55, name: 'Seis de Espadas', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s06.jpg', description: 'Un barquero conduce una pequeña embarcación de madera a través de aguas tranquilas hacia una orilla lejana poblada por árboles verdes frondosos. En el bote viajan una madre envuelta en una manta de luto y su hijo pequeño, mientras seis grandes espadas de acero permanecen clavadas verticalmente al frente de la proa. Representa la transición mental necesaria y silenciosa; el alejamiento voluntario de entornos de crisis hacia aguas más seguras.', uprightMeaning: 'Viaje de transición necesario, alejamiento estratégico de crisis, alivio mental lento, dejando atrás tormentas pasadas.', reversedMeaning: 'Imposibilidad neurótica de cambiar de entorno, equipaje mental atrapado del pasado, resistencia terca a mudanzas críticas.' },
+  { id: 56, name: 'Siete de Espadas', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s07.jpg', description: 'Un hombre avanza sigilosamente en puntas de pie alejándose de un campamento militar fortificado enemigas, cargando apresuradamente cinco espadas entre sus brazos desprotegidos mientras mira de reojo las otras dos espadas que quedan clavadas en el suelo a su espalda. Porta una sonrisa pícara. Encarna las estrategias secretas individuales; la astucia astuta, el engaño estratégico, la piratería intelectual o la necesidad de actuar con sigilo total.', uprightMeaning: 'Estrategia secreta inteligente, escape silencioso de crisis, sigilo táctico necesario, astucia comercial individual.', reversedMeaning: 'Secretos destructivos revelados públicamente, cobardía moral expuesta ante críticas, fraudes informáticos descubiertos.' },
+  { id: 57, name: 'Ocho de Espadas', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s08.jpg', description: 'Una mujer atada firmemente con cuerdas gruesas rojas y con los ojos vendados permanece de pie desolada sobre un suelo de lodo junto a un castillo lejano. A su alrededor se clavan en la tierra ocho espadas de acero formando una prisión geométrica abierta. Sin embargo, el lodo está suelto y las espadas no tienen guardianes físicos: la prisión es puramente mental e imaginaria, mantenida por el miedo paralizante de la víctima.', uprightMeaning: 'Prisión mental autoimpuesta por miedos, restricciones imaginarias absurdas, ceguera emocional paralizante y trampas.', reversedMeaning: 'Liberación definitiva de traumas mentales, adopción de nuevas perspectivas lógicas reales, romper cuerdas del miedo.' },
+  { id: 58, name: 'Nueve de Espadas', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s09.jpg', description: 'Una persona se despierta sobresaltada a mitad de la noche en su cama de madera, cubriendo su rostro con ambas manos en un gesto de desesperación agónica e insomnio destructivo. En el muro negro de su habitación cuelgan de forma horizontal nueve espadas afiladas que apuntan hacia su almohada de traumas. La colcha de la cama luce grabados alquímicos de duelos. Representa los ataques de pánico nocturnos y la culpa agobiante.', uprightMeaning: 'Ansiedad extrema clínica, insomnio destructivo por preocupaciones, culpa agobiante paralizante, pesadillas de la psique.', reversedMeaning: 'Liberación definitiva del miedo neurótico, curación psicológica real de fobias históricas, el despertar de la pesadilla.' },
+  { id: 59, name: 'Diez de Espadas', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s10.jpg', description: 'Un hombre yace boca abajo derrotado sobre una playa desierta bajo un cielo nocturno negro y tenebroso de tormentas, con diez espadas de acero clavadas de forma consecutiva a lo largo de toda su columna vertebral y cabeza. Sin embargo, al fondo del horizonte marítimo brilla un sol naciente dorado de dimensiones esperanzadoras. Representa el punto más bajo absoluto de la mente humana; el final drástico e irreversible de una crisis.', uprightMeaning: 'Derrota absoluta dolorosa final, final drástico irreversible de crisis, traiciones expuestas de golpe, ruina intelectual.', reversedMeaning: 'Recuperación milagrosa lenta tras colapsos totales, resurgimiento de cenizas existenciales, fin definitivo del dolor.' },
+  { id: 60, name: 'Sota de Espadas', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s11.jpg', description: 'Un joven guerrero de mirada desafiante se sitúa con las piernas firmes sobre una colina escarpada barrida por vientos huracanados que agitan los árboles y las nubes del fondo, empuñando una gran espada con ambas manos en una postura de alerta defensiva máxima. Esta sota encarna la curiosidad analítica pura; el recopilador de datos digitales inteligente, el espía lingüístico agudo y la mente vigilante.', uprightMeaning: 'Curiosidad analítica digital ágil, agilidad verbal brillante intelectual, vigilancia táctica inminente de datos.', reversedMeaning: 'Espionaje informático destructivo ilegal, palabras hirientes cínicas infantiles, promesas intelectuales vacías de contenido.' },
+  { id: 61, name: 'Caballero de Espadas', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s12.jpg', description: 'Un caballero acorazado galopa a velocidad suicida a lomos de un caballo blanco desbocado que cruza prados verdes bajo cielos de tormenta huracanada. Empuña su espada con saña hacia el frente, con el rostro distorsionado por la prisa implacable del elemento aire. Encarna la acción intelectual frenética desprovista de tacto empático; la mente obsesionada con imponer sus verdades racionales a cualquier coste humano.', uprightMeaning: 'Determinación intelectual implacable, asertividad militar ejecutiva rápida, prisa obsesiva lógica por cambiar hechos.', reversedMeaning: 'Falta total de tacto humano criminal, agresiones de ego desmedidas absurdas, proyectos lógicos nacidos de la prisa.' },
+  { id: 62, name: 'Reina de Espadas', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s13.jpg', description: 'Sentada majestuosamente de perfil en un trono tallado con querubines que surcan los cielos despejados, la Reina de Espadas sostiene una espada vertical perfecta con una mano mientras la otra invita al diálogo formal con un gesto firme. Su mirada es fría, lúcida e incorruptible. Ella representa el intelecto afilado depurado por el sufrimiento de la vida; la mujer independiente que decide con lógica objetiva pura.', uprightMeaning: 'Independencia intelectual incorruptible, lucidez objetiva pragmática ideal, fronteras mentales sanas claras y verdades.', reversedMeaning: 'Amargura cínica cruel destructiva, críticas despiadadas ácidas de ego, manipulación psicológica fría de hielo.' },
+  { id: 63, name: 'Rey de Espadas', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s14.jpg', description: 'El Rey de Espadas se asienta firmemente de frente en su trono real decorado con mariposas místicas y querubines lógicos, empuñando su espada de acero recta con actitud de juez supremo incorruptible. Viste una túnica azul de claridad mental y una capa púrpura de estatus legal superior. Encarna la autoridad racional definitiva de la baraja; el hombre que gobierna mediante la ley del intelecto pragmático.', uprightMeaning: 'Lógica racional suprema corporativa, disciplina militar justa analítica, autoridad moral legal indiscutible, orden.', reversedMeaning: 'Manipulación de leyes corrupta criminal, crueldad mental sádica implacable, tiranía intelectual de hielo fría.' },
 
   // === ARCANOS MENORES - Oros ===
-  { id: 64, name: 'As de Oros', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p01.jpg', description: 'Una oportunidad material tangible o salud renovada.', uprightMeaning: 'Abundancia material, bases sólidas.', reversedMeaning: 'Pérdida financiera, codicia.' },
-  { id: 65, name: 'Dos de Oros', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p02.jpg', description: 'Malabarismo de recursos y prioridades cambiantes.', uprightMeaning: 'Adaptabilidad, balance financiero.', reversedMeaning: 'Desorganización, deudas.' },
-  { id: 66, name: 'Tres de Oros', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p03.jpg', description: 'Trabajo en equipo, maestría en el oficio y colaboración constructiva.', uprightMeaning: 'Trabajo en equipo, aprendizaje, maestría.', reversedMeaning: 'Falta de cooperación, mediocridad.' },
-  { id: 67, name: 'Cuatro de Oros', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p04.jpg', description: 'Aferrarse en exceso a lo material; miedo a la pérdida.', uprightMeaning: 'Seguridad, estabilidad, posesión.', reversedMeaning: 'Avaricia, rigidez material.' },
-  { id: 68, name: 'Cinco de Oros', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p05.jpg', description: 'Sensación de escasez o aislamiento exterior; la ayuda está cerca.', uprightMeaning: 'Escasez, aislamiento, dificultades.', reversedMeaning: 'Recuperación económica.' },
-  { id: 69, name: 'Seis de Oros', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p06.jpg', description: 'Generosidad, caridad, dar y recibir en perfecto equilibrio.', uprightMeaning: 'Generosidad, soporte, balance kármico.', reversedMeaning: 'Deudas, abuso de poder monetario.' },
-  { id: 70, name: 'Siete de Oros', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p07.jpg', description: 'Pausa para evaluar los resultados de tu siembra a largo plazo.', uprightMeaning: 'Paciencia, recompensa futura, evaluación.', reversedMeaning: 'Falta de progreso, frustración.' },
-  { id: 71, name: 'Ocho de Oros', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p08.jpg', description: 'Dedicación absoluta al detalle; desarrollo intensivo de habilidades.', uprightMeaning: 'Diligencia, artesanía, enfoque en la tarea.', reversedMeaning: 'Aburrimiento, falta de ambición.' },
-  { id: 72, name: 'Nueve de Oros', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p09.jpg', description: 'Independencia financiera, lujo, refinamiento y disfrute de la soledad.', uprightMeaning: 'Independencia, éxito material, autosuficiencia.', reversedMeaning: 'Inseguridad financiera, gastos superficiales.' },
-  { id: 73, name: 'Diez de Oros', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p10.jpg', description: 'Riqueza generacional, legado familiar sólido y estabilidad duradera.', uprightMeaning: 'Legado, prosperidad familiar, tradición.', reversedMeaning: 'Pérdidas financieras, rupturas dinásticas.' },
-  { id: 74, name: 'Sota de Oros', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p11.jpg', description: 'Deseo de aprender, planes prácticos iniciales o nuevas propuestas de negocio.', uprightMeaning: 'Ambición práctica, enfoque, progreso.', reversedMeaning: 'Falta de visión a largo plazo, pereza.' },
-  { id: 75, name: 'Caballero de Oros', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p12.jpg', description: 'Progreso lento pero constante; constancia absoluta.', uprightMeaning: 'Rutina sólida, trabajo duro.', reversedMeaning: 'Inercia, terquedad.' },
-  { id: 76, name: 'Reina de Oros', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p13.jpg', description: 'La madre tierra; proveedora práctica, hospitalaria y protectora del hogar.', uprightMeaning: 'Cuidado, practicidad, abundancia doméstica.', reversedMeaning: 'Desbalance entre trabajo y hogar, celos.' },
-  { id: 77, name: 'Rey de Oros', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p14.jpg', description: 'El magnate exitoso; dominio absoluto sobre el reino material.', uprightMeaning: 'Éxito financiero, disciplina, estabilidad.', reversedMeaning: 'Corrupción, tiranía material.' }
+  { id: 64, name: 'As de Oros', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p01.jpg', description: 'Una mano divina emerge de una nube luminosa sosteniendo un inmenso pentáculo de oro grabado con la estrella de cinco puntas que representa el dominio de la materia. Abajo se extiende un jardín idílico de lirios blancos vallado por hermosos setos floridos, abriendo el sendero hacia montañas lejanas. Representa la semilla primordial del elemento tierra; el nacimiento de oportunidades financieras reales tangibles.', uprightMeaning: 'Abundancia material tangible real, bases económicas sólidas de inversión, salud física renovada óptima y suerte comercial.', reversedMeaning: 'Pérdidas financieras severas de inversión, codicia monetaria mezquina vacía, oportunidades de negocio desperdiciadas.' },
+  { id: 65, name: 'Dos de Oros', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p02.jpg', description: 'Un joven vestido con trajes extravagantes de color rojo realiza malabarismos difíciles en la playa con dos inmensos oros dorados enlazados por un lazo verde que dibuja el símbolo matemático del infinito (lemniscata). Al fondo, barcos mercantes navegan sobre olas inmensas y peligrosas del océano. Representa la necesidad de adaptabilidad pragmática continua frente a las fluctuaciones de recursos.', uprightMeaning: 'Adaptabilidad pragmática de recursos, balance financiero difícil diario, prioridades económicas cambiantes con éxito.', reversedMeaning: 'Desorganización financiera caótica severa, deudas monetarias acumuladas tontas, mala gestión del tiempo personal.' },
+  { id: 66, name: 'Tres de Oros', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p03.jpg', description: 'Un joven escultor trabaja diligently labrando los detalles de piedra de una gran catedral gótica apoyado en un banco, mientras un abad mitrado y un arquitecto con planos discuten con admiración sus progresos artesanales. Tres grandes pentáculos de oro brillan grabados en el arco superior del templo. Es la carta del trabajo en equipo corporativo exitoso; representa la maestría técnica en el oficio.', uprightMeaning: 'Trabajo en equipo multidisciplinar exitoso, maestría técnica artesanal valorada, colaboraciones constructivas y logros.', reversedMeaning: 'Falta total de cooperación grupal laboral, mediocridad técnica por pereza profesional, disputas mezquinas de méritos.' },
+  { id: 67, name: 'Cuatro de Oros', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p04.jpg', description: 'Un hombre de rostro huraño y túnica oscura se asienta firmemente sobre una piedra de espaldas a una gran ciudad moderna, pisando dos oros con sus pies, abrazando un tercer oro contra su pecho con fuerza agónica y sosteniendo un cuarto oro fijado en su corona real. Encarna el miedo enfermizo e irracional a la escasez económica; la avaricia mezquina defensiva que paraliza la inversión de recursos.', uprightMeaning: 'Seguridad económica lograda defensiva, estabilidad material firme, protección de recursos, posesión pragmática.', reversedMeaning: 'Avaricia mezquina destructiva obsesiva, rigidez material tonta corporativa, despilfarros monetarios por pánico.' },
+  { id: 68, name: 'Cinco de Oros', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p05.jpg', description: 'Dos mendigos andrajosos y descalzos, uno de ellos apoyado penosamente en muletas bajo una herida física evidente, caminan desolados bajo una tormenta de nieve nocturna helada junto al vitral iluminado de una iglesia que exhibe cinco hermosos oros dorados. Los desamparados no miran la luz del templo. Representa la sensación psicológica de escasez financiera extrema y aislamiento social.', uprightMeaning: 'Escasez económica real temporal, aislamiento social doloroso, dificultades financieras severas laborales, pérdidas.', reversedMeaning: 'Recuperación económica milagrosa lenta, fin definitivo del aislamiento material, ayudas financieras que llegan.' },
+  { id: 69, name: 'Seis de Oros', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p06.jpg', description: 'Un mercader rico de ropajes púrpuras sostiene una balanza de precisión perfecta con una mano mientras con la otra distribuye monedas de oro genuinas a dos mendigos arrodillados ante él de forma humilde. Seis oros dorados flotan ordenados en el cielo del prado. Representa la caridad inteligente y el balance kármico perfecto del dinero; la comprensión de que dar y recibir deben fluir en armonía.', uprightMeaning: 'Generosidad económica inteligente, caridad recibida o entregada justa, balance kármico monetario próspero, soporte.', reversedMeaning: 'Abuso de poder monetario tiránico humillante, deudas financieras impagables mafiosas, sumisiones económicas insanas.' },
+  { id: 70, name: 'Siete de Oros', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p07.jpg', description: 'Un agricultor cansado se apoya pensativamente en su azada de labranza contemplando con mirada melancólica y paciente un frondoso arbusto verde del cual cuelgan siete inmensos pentáculos de oro fruto de su siembra histórica de esfuerzo a largo plazo. Un pentáculo descansa en la tierra a sus pies. Representa el período crítico de evaluación de resultados de negocios; la necesidad de paciencia agraria.', uprightMeaning: 'Paciencia dorada agraria empresarial, recompensas futuras seguras de inversión, evaluación honesta de cosechas.', reversedMeaning: 'Falta total de progreso real por impaciencia, frustración financiera tonta, estancamiento de inversiones agrícolas.' },
+  { id: 71, name: 'Ocho de Oros', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p08.jpg', description: 'Un joven artesano trabaja concentrado en un banco rústico de madera tallando con cincel los intrincados detalles geométricos de un pentáculo de oro. Detrás de él, colgados consecutivamente en la columna de su taller industrial, relucen otros siete oros ya terminados de forma idéntica. Representa la dedicación absoluta y disciplinada al desarrollo intensivo de habilidades técnicas profesionales.', uprightMeaning: 'Diligencia profesional concentrada artesanal, enfoque absoluto en la tarea técnica, desarrollo intensivo laboral.', reversedMeaning: 'Aburrimiento industrial por rutina repetitiva destructiva, falta absoluta de ambición creativa profesional, estafas.' },
+  { id: 72, name: 'Nueve de Oros', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p09.jpg', description: 'Una dama de refinada estirpe aristocrática y túnicas de seda costosas pasea con gracia y distinción suprema por los viñedos dorados de un jardín paradisíaco rodeada por nueve pentáculos de oro grabados en muros. En su mano izquierda enguantada descansa con docilidad absoluta un halcón sagrado cazador domesticado. Encarna la independencia financiera ganada con esfuerzo propio; el lujo material estable y el ocio cultivado.', uprightMeaning: 'Independencia financiera absoluta femenina individual, éxito material seguro pleno, autosuficiencia económica culta.', reversedMeaning: 'Inseguridad financiera encubierta por deudas de tarjetas, gastos superficiales absurdos tontos, pérdidas de estatus.' },
+  { id: 73, name: 'Diez de Oros', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p10.jpg', description: 'Un anciano patriarca de cabellos blancos envuelto en una magnífica capa tejida con racimos de uvas descansa sentado junto al arco de entrada de un castillo de piedra fortificado. Frente a él, una pareja joven con su hijo pequeño conversan felices mientras dos perros leales olfatean su túnica con cariño doméstico. Diez oros flotan ordenados dibujando el Árbol de la Vida místico. Representa la riqueza familiar generacional sólida.', uprightMeaning: 'Legado financiero generacional sólido indestructible, prosperidad familiar corporativa, estabilidad comunitaria real.', reversedMeaning: 'Pérdidas financieras familiares por herencias en disputa legales, rupturas dinásticas corporativas graves, quiebras.' },
+  { id: 74, name: 'Sota de Oros', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p11.jpg', description: 'Un joven estudiante de modales pausados y túnicas sencillas camina con pasos firmes a través de un hermoso prado verde cubierto de flores frescas silvestres, sosteniendo un inmenso pentáculo de oro en vilo sobre la palma de sus manos con actitud de profunda fascinación analítica e intelectual. Representa los planes prácticos de negocios iniciales; el deseo honesto de aprender economía.', uprightMeaning: 'Ambición práctica inicial pragmática escolar, enfoque analítico financiero sano inicial, propuestas de negocios.', reversedMeaning: 'Falta absoluta de visión financiera a largo plazo tonta, pereza académica severa destructiva, planes económicos falsos.' },
+  { id: 75, name: 'Caballero de Oros', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p12.jpg', description: 'Un caballero armado con armadura pesada de hierro oscuro permanece montado de forma estática a lomos de un caballo negro de arado macizo en medio de campos de trigo perfectamente arados. En su mano derecha sostiene un pentáculo de oro contemplándolo con paciencia pragmática absoluta. Él es el único caballero de la baraja que no avanza al galope: representa el progreso lento, metódico e indestructible.', uprightMeaning: 'Rutina pragmática sólida protectora laboral, trabajo duro metódico indestructible constante, lealtad profesional firme.', reversedMeaning: 'Inercia industrial estancada estéril tonta, terquedad mental neurótica insana destructiva, pereza corporativa crónica.' },
+  { id: 76, name: 'Reina de Oros', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p13.jpg', description: 'La Reina de Oros se asienta pacíficamente en su trono real tallado con cabezas de cabras montesas y ángeles lógicos, situado en medio de un paisaje natural exuberante poblado por árboles frutales abundantes y un pequeño conejo blanco silvestre que salta a sus pies. Sostiene un pentáculo con amor maternal en su regazo. Ella es la madre nutricia práctica; la proveedora hospitalaria del bienestar doméstico real.', uprightMeaning: 'Cuidado práctico doméstico sabio de recursos, abundancia material del hogar protegida, hospitalidad sincera física.', reversedMeaning: 'Desbalance neurótico severo entre trabajo corporativo y hogar privado, celos materiales mezquinos, tacañería insana.' },
+  { id: 77, name: 'Rey de Oros', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p14.jpg', description: 'El Rey de Oros se asienta con orgullo real absoluto en su trono real decorado con cabezas de toros talladas (símbolos de Tauro elemental terrenal). Su túnica está ricamente estampada con abundantes vides de uvas maduras y en su mano empuña un cetro real de oro macizo. Detrás de él se divisa su majestuoso castillo de piedra protector comercial. Él es el magnate exitoso definitivo de la materia terrenal terrena.', uprightMeaning: 'Éxito financiero empresarial rotundo logrado consolidado, disciplina material impecable sabia, estabilidad económica.', reversedMeaning: 'Corrupción financiera criminal empresarial corporativa, tiranía material despiadada mezquina de dinero, deudas.' }
 ];
 
 let WEATHER_DATA = null;
@@ -1273,15 +699,10 @@ function renderTarotGrid() {
       groups.major.push(card);
     } else if (card.type === 'minor') {
       const nameLower = card.name.toLowerCase();
-      if (nameLower.includes('bastos') || nameLower.includes('wands')) {
-        groups.bastos.push(card);
-      } else if (nameLower.includes('copas') || nameLower.includes('cups')) {
-        groups.copas.push(card);
-      } else if (nameLower.includes('espadas') || nameLower.includes('swords')) {
-        groups.espadas.push(card);
-      } else if (nameLower.includes('oros') || nameLower.includes('pentacles')) {
-        groups.oros.push(card);
-      }
+      if (nameLower.includes('bastos')) groups.bastos.push(card);
+      else if (nameLower.includes('copas')) groups.copas.push(card);
+      else if (nameLower.includes('espadas')) groups.espadas.push(card);
+      else if (nameLower.includes('oros')) groups.oros.push(card);
     }
   });
 
@@ -1289,7 +710,6 @@ function renderTarotGrid() {
 
   categories.forEach(cat => {
     const cardsInGroup = groups[cat.key];
-    
     if (cardsInGroup && cardsInGroup.length > 0) {
       htmlContent += `
         <div class="tarot-header" style="margin-top: 2.5rem; ${cat.key !== 'major' ? 'border-top: 1px dashed var(--border); padding-top: 2.5rem;' : ''}">
@@ -1300,7 +720,7 @@ function renderTarotGrid() {
           ${cardsInGroup.map(card => `
             <div class="tarot-card ${card.type}" onclick="openTarotModal(${card.id})">
               <div class="tarot-card-image-wrapper">
-                 <img src="${card.image}" alt="${card.name}" class="tarot-card-image" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23222%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2275%22 font-size=%2210%22 fill=%22%23666%22 text-anchor=%22middle%22%3E${card.name}%3C/text%3E%3C/svg%3E'">
+                 <img src="${card.image}" alt="${card.name}" class="tarot-card-image" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23141414%22 width=%22100%22 height=%22150%22/%3E%3Crect fill=%22none%22 stroke=%22%23a855f7%22 stroke-width=%221%22 x=%222%22 y=%222%22 width=%2296%22 height=%22146%22/%3E%3Ctext x=%2250%22 y=%2275%22 font-family=%22monospace%22 font-size=%226%22 fill=%22%23fbbf24%22 text-anchor=%22middle%22%3E${encodeURIComponent(card.name)}%3C/text%3E%3C/svg%3E'">
               </div>
               <div class="tarot-card-name">${card.name}</div>
             </div>
@@ -1317,7 +737,7 @@ function openTarotModal(cardId) {
   const card = TAROT_CARDS[cardId];
   document.getElementById('modal-card-number').textContent = `Arcano ${card.type === 'major' ? 'Mayor' : 'Menor'} ${card.number}`;
   document.getElementById('modal-card-name').textContent = card.name;
-  document.getElementById('modal-card-image').innerHTML = `<img src="${card.image}" alt="${card.name}" class="tarot-modal-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23222%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2275%22 font-size=%2210%22 fill=%22%23666%22 text-anchor=%22middle%22%3E${card.name}%3C/text%3E%3C/svg%3E'">`;
+  document.getElementById('modal-card-image').innerHTML = `<img src="${card.image}" alt="${card.name}" class="tarot-modal-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23141414%22 width=%22100%22 height=%22150%22/%3E%3Crect fill=%22none%22 stroke=%22%23a855f7%22 stroke-width=%221%22 x=%222%22 y=%222%22 width=%2296%22 height=%22146%22/%3E%3Ctext x=%2250%22 y=%2275%22 font-family=%22monospace%22 font-size=%226%22 fill=%22%23fbbf24%22 text-anchor=%22middle%22%3E${encodeURIComponent(card.name)}%3C/text%3E%3C/svg%3E'">`;
   document.getElementById('modal-card-description').textContent = card.description;
   document.getElementById('modal-card-meanings').innerHTML = `
     <div class="meaning-box"><div class="meaning-title">Significado Directo</div><div class="meaning-text">${card.uprightMeaning}</div></div>
@@ -1420,7 +840,6 @@ function closeTarotModal() { document.getElementById('tarot-modal').classList.re
     }
   } catch(err) { document.getElementById('weather-display').textContent = '• Satélite fuera de rango local.'; }
 
-  // ── NAVEGACIÓN CORREGIDA CON SOPORTE PARA LA PANTALLA TAROT ──
   document.querySelectorAll('.nav-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       currentView = btn.dataset.view;
@@ -1428,8 +847,6 @@ function closeTarotModal() { document.getElementById('tarot-modal').classList.re
       btn.classList.add('active');
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById('view-' + currentView).classList.add('active');
-      
-      // Controlar píldoras de rango (sólo visibles en tracks y artists)
       document.getElementById('range-pills').style.display = (currentView === 'tracks' || currentView === 'artists') ? 'flex' : 'none';
     });
   });
