@@ -20,6 +20,8 @@
     --muted:   #444;
     --text:    #e8e8e0;
     --dim:     #666;
+    --purple:  #a855f7;
+    --gold:    #fbbf24;
   }
 
   html, body { background: var(--bg); color: var(--text); font-family: 'DM Mono', mono; min-height: 100vh; }
@@ -27,7 +29,7 @@
   body {
     display: grid;
     grid-template-columns: 1fr 350px;
-    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-rows: auto auto auto auto 1fr auto;
     max-width: 1400px;
     margin: 0 auto;
     padding: 3rem 4rem;
@@ -101,13 +103,99 @@
   /* ── AREAS DEL DISEÑO GRID GLOBAL ── */
   main { grid-column: 1 / -1; display: flex; flex-direction: column; padding: 2.5rem 0 0 0; position: relative; }
   .tab-view-extended { grid-column: 1; display: flex; flex-direction: column; padding: 2rem 0; }
-  aside.aside-extended { grid-column: 2; grid-row: 4; border-left: 1px solid var(--border); padding-left: 2.5rem; padding-top: 2.5rem; }
+  aside.aside-extended { grid-column: 2; grid-row: 5; border-left: 1px solid var(--border); padding-left: 2.5rem; padding-top: 2.5rem; }
   .aside-label { font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 1.5rem; }
 
   /* ── DASHBOARD MÓDULOS ── */
   .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; max-width: 750px; }
   .dash-card { background: var(--surface); border: 1px solid var(--border); padding: 1rem; border-radius: 4px; font-size: 0.65rem; }
   .dash-card h4 { color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; font-size: 0.55rem; }
+
+  /* ── SECCIÓN TAROT ── */
+  .tarot-section {
+    grid-column: 1 / -1;
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tarot-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .tarot-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--purple);
+    font-weight: 500;
+  }
+
+  .tarot-title {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+    color: var(--text);
+  }
+
+  .tarot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 1.2rem;
+    max-width: 1000px;
+  }
+
+  .tarot-card {
+    position: relative;
+    aspect-ratio: 3/4;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem;
+    text-align: center;
+  }
+
+  .tarot-card:hover {
+    border-color: var(--purple);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 24px rgba(168, 85, 247, 0.2);
+  }
+
+  .tarot-card-image {
+    width: 100%;
+    height: 70%;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    filter: brightness(0.95);
+    transition: filter 0.3s;
+  }
+
+  .tarot-card:hover .tarot-card-image {
+    filter: brightness(1.1) drop-shadow(0 0 8px var(--purple));
+  }
+
+  .tarot-card-name {
+    font-size: 0.55rem;
+    color: var(--text);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+  }
+
+  .tarot-card.major .tarot-card-name {
+    color: var(--gold);
+  }
 
   /* ── WEATHER CLICKABLE ── */
   #weather-display {
@@ -256,6 +344,140 @@
     padding-left: 2.5rem;
     width: 350px;
     flex-shrink: 0;
+  }
+
+  /* ── MODAL TAROT ── */
+  #tarot-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 13, 13, 0.96);
+    z-index: 9999;
+    transform: translateY(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+    overflow-y: auto;
+  }
+  #tarot-modal.active { transform: translateY(0); }
+
+  .tarot-modal-box {
+    width: 100%;
+    max-width: 800px;
+    border: 2px solid var(--purple);
+    background: var(--surface);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+  }
+
+  .tarot-modal-header {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--purple);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+  }
+
+  .tarot-modal-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .tarot-modal-image {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 3/4;
+    object-fit: contain;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem;
+  }
+
+  .tarot-modal-info h2 {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--purple);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .tarot-modal-info .card-number {
+    font-size: 0.65rem;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .tarot-description {
+    font-size: 0.72rem;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .tarot-meanings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .meaning-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: 4px;
+  }
+
+  .meaning-title {
+    font-size: 0.6rem;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    font-weight: bold;
+  }
+
+  .meaning-text {
+    font-size: 0.65rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .tarot-modal-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+
+  .tarot-close-btn {
+    background: none;
+    border: 1px solid var(--purple);
+    color: var(--purple);
+    padding: 0.5rem 1.5rem;
+    font-size: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    transition: all 0.3s;
+  }
+
+  .tarot-close-btn:hover {
+    background: var(--purple);
+    color: var(--bg);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
   }
 
   /* ── MODAL METEOROLÓGICO ── */
@@ -591,6 +813,8 @@
     #space-sector { display: none; }
     .weather-grid, .lunar-info { grid-template-columns: 1fr; }
     .header-right { flex-direction: column; gap: 1rem; align-items: flex-end; }
+    .tarot-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 0.8rem; }
+    .tarot-modal-content { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -637,6 +861,17 @@
         </div>
       </div>
     </div>
+
+    <!-- ── SECCIÓN TAROT ── -->
+    <section class="tarot-section">
+      <div class="tarot-header">
+        <span class="tarot-label">✦ Mystical Divination</span>
+        <h2 class="tarot-title">Arcanos Mayores</h2>
+      </div>
+      <div class="tarot-grid" id="tarot-grid">
+        <!-- Se llena dinámicamente con JS -->
+      </div>
+    </section>
 
     <div class="song-meta">
       <div class="s-artist" id="lyric-artist"><span class="skel" style="width:120px;height:10px;display:inline-block"></span></div>
@@ -728,6 +963,24 @@
   </div>
 </div>
 
+<div id="tarot-modal">
+  <div class="tarot-modal-box">
+    <div class="tarot-modal-header">// ARCANA_DIVINATION: CARD_READING_SYSTEM</div>
+    <div class="tarot-modal-content">
+      <img id="modal-card-image" class="tarot-modal-image" src="" alt="Tarot Card">
+      <div class="tarot-modal-info">
+        <div class="card-number" id="modal-card-number"></div>
+        <h2 id="modal-card-name"></h2>
+        <div class="tarot-description" id="modal-card-description"></div>
+        <div class="tarot-meanings" id="modal-card-meanings"></div>
+      </div>
+    </div>
+    <div class="tarot-modal-actions">
+      <button class="tarot-close-btn" onclick="closeTarotModal()">CLOSE_ARCANA</button>
+    </div>
+  </div>
+</div>
+
 <div id="weather-modal">
   <div class="weather-box">
     <div class="weather-header">// WEATHER_STATION: SATELLITE_TELEMETRY</div>
@@ -812,6 +1065,231 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://apis.google.com/js/api.js" async defer></script>
 <script>
+
+// ── BASE DE DATOS TAROT (RYDER-SMITH) ──
+const TAROT_CARDS = [
+  {
+    id: 0,
+    name: 'El Mago',
+    number: 'I',
+    type: 'major',
+    image: '✨',
+    description: 'El Mago representa el poder de la manifestación y el dominio de las fuerzas del universo. Es un símbolo del potencial sin límites y la capacidad de transformar la realidad mediante la voluntad consciente.',
+    uprightMeaning: 'Poder personal, manifestación, ingenio, desarrollo de habilidades, confianza, acción dirigida, recursos disponibles.',
+    reversedMeaning: 'Manipulación, inseguridad, engaño, falta de dirección, potencial sin usar, confusión, fraude.'
+  },
+  {
+    id: 1,
+    name: 'La Sacerdotisa',
+    number: 'II',
+    type: 'major',
+    image: '🌙',
+    description: 'La Sacerdotisa encarna el conocimiento oculto y la intuición profunda. Representa los misterios del inconsciente y la sabiduría que viene de dentro, invitándote a confiar en tu intuición.',
+    uprightMeaning: 'Intuición, sabiduría oculta, conocimiento interno, secretos, lo divino femenino, misterio, calma, paciencia.',
+    reversedMeaning: 'Ignorancia, superficialidad, falta de introspección, desconexión del instinto, secretos revelados, desconfianza.'
+  },
+  {
+    id: 2,
+    name: 'La Emperatriz',
+    number: 'III',
+    type: 'major',
+    image: '👑',
+    description: 'La Emperatriz es la encarnación de la fertilidad, la abundancia y la creatividad. Representa el poder nutridor de la naturaleza y la belleza de la creación en todas sus formas.',
+    uprightMeaning: 'Fertilidad, abundancia, naturaleza, belleza, creación, maternidad, sensualidad, crecimiento, prosperidad.',
+    reversedMeaning: 'Esterilidad, bloqueos creativos, dependencia, vanidad, abuso de poder, inseguridad, pérdida, negligencia.'
+  },
+  {
+    id: 3,
+    name: 'El Emperador',
+    number: 'IV',
+    type: 'major',
+    image: '🦅',
+    description: 'El Emperador simboliza la autoridad, el liderazgo y el control. Representa la estructura, el orden y el poder establecido, invitándote a tomar el control de tu destino.',
+    uprightMeaning: 'Autoridad, liderazgo, poder, estructura, control, dominio, fuerza, estabilidad, determinación.',
+    reversedMeaning: 'Debilidad, pérdida de control, tiranía, abuso de poder, falta de autoridad, caos, inseguridad, dependencia.'
+  },
+  {
+    id: 4,
+    name: 'El Sumo Sacerdote',
+    number: 'V',
+    type: 'major',
+    image: '📿',
+    description: 'El Sumo Sacerdote representa la sabiduría espiritual y la enseñanza sagrada. Es un símbolo de tradición, moralidad y conexión con lo divino a través de sistemas establecidos.',
+    uprightMeaning: 'Espiritualidad, enseñanza, tradición, moralidad, conformidad, fe, educación, consejo, valores.',
+    reversedMeaning: 'Superstición, fanatismo, ortodoxia rígida, rebeldía contra autoridad, ruptura de tradición, cinismo.'
+  },
+  {
+    id: 5,
+    name: 'Los Enamorados',
+    number: 'VI',
+    type: 'major',
+    image: '💘',
+    description: 'Los Enamorados representan la unión, la armonía y las decisiones importantes basadas en el amor. Simboliza la necesidad de elegir entre diferentes caminos y la importancia de alinearse con nuestros valores.',
+    uprightMeaning: 'Amor, unión, armonía, valores, elecciones, relaciones, comunicación, atracción, compromiso, simetría.',
+    reversedMeaning: 'Conflicto, desunión, incoherencia de valores, mala comunicación, seducción, lujuria, indecisión, infidelidad.'
+  },
+  {
+    id: 6,
+    name: 'El Carro',
+    number: 'VII',
+    type: 'major',
+    image: '🛞',
+    description: 'El Carro representa el control, la dirección y el triunfo. Simboliza el movimiento determinado y la capacidad de vencer obstáculos a través de la voluntad y el dominio.',
+    uprightMeaning: 'Control, determinación, triunfo, dirección, movimiento, éxito, confianza, fuerza de voluntad, conquista.',
+    reversedMeaning: 'Falta de control, obstáculos, conflicto interno, debilidad, derrota, dirección equivocada, ira, retroceso.'
+  },
+  {
+    id: 7,
+    name: 'La Justicia',
+    number: 'VIII',
+    type: 'major',
+    image: '⚖️',
+    description: 'La Justicia encarna el equilibrio, la verdad y la responsabilidad. Representa las acciones causa-efecto y el llamado a ser honesto y justo en tus decisiones.',
+    uprightMeaning: 'Justicia, equilibrio, verdad, responsabilidad, leyes, honestidad, karma, causa y efecto, claridad.',
+    reversedMeaning: 'Injusticia, desequilibrio, mentira, corrupción, sesgo, irresponsabilidad, consecuencias negativas, parcialidad.'
+  },
+  {
+    id: 8,
+    name: 'El Ermitaño',
+    number: 'IX',
+    type: 'major',
+    image: '🕯️',
+    description: 'El Ermitaño representa la introspección, la búsqueda interior y la sabiduría que se encuentra en la soledad. Invita a una retirada temporal para encontrar las respuestas dentro de ti.',
+    uprightMeaning: 'Introspección, búsqueda interior, soledad necesaria, guía, sabiduría, meditación, contemplación, retiro.',
+    reversedMeaning: 'Aislamiento extremo, paranoia, pérdida de propósito, ceguera espiritual, soledad no deseada, confusión.'
+  },
+  {
+    id: 9,
+    name: 'La Rueda de la Fortuna',
+    number: 'X',
+    type: 'major',
+    image: '🎡',
+    description: 'La Rueda de la Fortuna simboliza los ciclos de la vida y la naturaleza cíclica del destino. Representa el cambio inevitable y la rotación de la buena y mala suerte.',
+    uprightMeaning: 'Destino, ciclos, cambio, suerte, progresión, mejora, giro positivo, karma, revolución, oportunidad.',
+    reversedMeaning: 'Mala suerte, giros negativos, resistencia al cambio, declive, ruptura de ciclos, estancamiento, fatalismo.'
+  },
+  {
+    id: 10,
+    name: 'La Fortaleza',
+    number: 'XI',
+    type: 'major',
+    image: '💪',
+    description: 'La Fortaleza representa el valor interior, la paciencia y la capacidad de dominar nuestros impulsos. Simboliza la fuerza gentil que proviene de la confianza interna.',
+    uprightMeaning: 'Fortaleza interior, paciencia, control, confianza, compasión, valor, resiliencia, dominio propio, gentileza.',
+    reversedMeaning: 'Debilidad, falta de control, inseguridad, timidez, miedos no superados, impulsividad, vulnerabilidad.'
+  },
+  {
+    id: 11,
+    name: 'El Ahorcado',
+    number: 'XII',
+    type: 'major',
+    image: '🔄',
+    description: 'El Ahorcado representa la pausa, la suspensión y la perspectiva nueva. Invita a detener, reflexionar y ver las cosas desde un ángulo completamente diferente.',
+    uprightMeaning: 'Pausa, suspensión, perspectiva nueva, sacrificio necesario, renunciación, iluminación, desapego, transición.',
+    reversedMeaning: 'Apego al pasado, resistencia al cambio, falta de perspectiva, sacrificio innecesario, inercia, obstinación.'
+  },
+  {
+    id: 12,
+    name: 'La Muerte',
+    number: 'XIII',
+    type: 'major',
+    image: '🦴',
+    description: 'La Muerte no significa muerte literal, sino transformación radical. Representa el final de una era y el comienzo de otra, la renovación a través de la destrucción.',
+    uprightMeaning: 'Transformación, fin, nuevo comienzo, cambio radical, renacimiento, ciclos de vida, liberación, cierre.',
+    reversedMeaning: 'Resistencia al cambio, estancamiento, miedo a la transformación, letargo, parálisis, rechazo.'
+  },
+  {
+    id: 13,
+    name: 'La Templanza',
+    number: 'XIV',
+    type: 'major',
+    image: '🌈',
+    description: 'La Templanza simboliza el balance, la moderación y la armonía. Representa la fusión de elementos opuestos en perfect equilibrio.',
+    uprightMeaning: 'Balance, templanza, moderación, armonía, paciencia, encontrar el medio camino, fusión, salud, paz.',
+    reversedMeaning: 'Desbalance, exceso, impaciencia, conflicto, falta de armonía, enfermedad, desproporción, extremismo.'
+  },
+  {
+    id: 14,
+    name: 'El Diablo',
+    number: 'XV',
+    type: 'major',
+    image: '👿',
+    description: 'El Diablo representa la ilusión, los deseos materiales y la esclavitud a nuestros propios miedos. Es un recordatorio de que el verdadero poder radica en reconocer nuestras limitaciones.',
+    uprightMeaning: 'Sexualidad, materiales, deseos, poder, ilusión, esclavitud, oscuridad, ambición, atracción sensual.',
+    reversedMeaning: 'Liberación, desapego, rechazo del mal, revelación, sanación, libertad de las cadenas, arrepentimiento.'
+  },
+  {
+    id: 15,
+    name: 'La Torre',
+    number: 'XVI',
+    type: 'major',
+    image: '🌩️',
+    description: 'La Torre representa el colapso repentino de lo construido sobre bases falsas. Es una carta de ruptura violenta, pero también de liberación y verdad revelada.',
+    uprightMeaning: 'Ruptura, caída, crisis, revelación, destrucción necesaria, colapso, despertar abrupto, verdad, emergencia.',
+    reversedMeaning: 'Evitar la crisis, resistencia, demora inevitable, recuperación lenta, tensión sostenida, preocupación.'
+  },
+  {
+    id: 16,
+    name: 'La Estrella',
+    number: 'XVII',
+    type: 'major',
+    image: '⭐',
+    description: 'La Estrella representa la esperanza, la inspiración y la guía. Es una carta de luz en la oscuridad, de sueños y aspiraciones que iluminan el camino.',
+    uprightMeaning: 'Esperanza, fe, inspiración, claridad, guía, sueños, paz, renovación, gratitud, serenidad.',
+    reversedMeaning: 'Desesperación, cinismo, pérdida de fe, dudas, desconexión, pesimismo, confusión, pérdida de dirección.'
+  },
+  {
+    id: 17,
+    name: 'La Luna',
+    number: 'XVIII',
+    type: 'major',
+    image: '🌕',
+    description: 'La Luna simboliza lo inconsciente, los sueños y las ilusiones. Representa los miedos ocultos y la necesidad de confiar en la intuición, especialmente en tiempos de incertidumbre.',
+    uprightMeaning: 'Intuición, sueños, ilusión, lo inconsciente, miedo, misterio, transición, clarividencia, imaginación.',
+    reversedMeaning: 'Claridad, verdad revelada, fin de confusión, intuición clara, miedo dominado, liberación de miedos.'
+  },
+  {
+    id: 18,
+    name: 'El Sol',
+    number: 'XIX',
+    type: 'major',
+    image: '☀️',
+    description: 'El Sol es la carta de la claridad, la alegría y el éxito. Representa la victoria, la vitalidad y la manifestación plena de tu potencial bajo la luz de la conciencia.',
+    uprightMeaning: 'Claridad, alegría, éxito, vitalidad, diversión, inocencia, logros, felicidad, libertad, crecimiento.',
+    reversedMeaning: 'Tristeza, fracaso, pérdida de entusiasmo, depresión, energía baja, bloqueos, ausencia de alegría.'
+  },
+  {
+    id: 19,
+    name: 'El Juicio',
+    number: 'XX',
+    type: 'major',
+    image: '🔔',
+    description: 'El Juicio representa el llamado a despertar, la evaluación de lo vivido y la necesidad de tomar decisiones importantes. Es una carta de renacimiento y llamada del destino.',
+    uprightMeaning: 'Despertar, renacimiento, evaluación, llamada del destino, transformación, absolución, victoria, decisión importante.',
+    reversedMeaning: 'Autocrítica, dudas, dilación, apego al pasado, autocondena, pérdida, indecisión, fracaso en actuar.'
+  },
+  {
+    id: 20,
+    name: 'El Mundo',
+    number: 'XXI',
+    type: 'major',
+    image: '🌍',
+    description: 'El Mundo representa la culminación, la completitud y el cierre de un ciclo. Es la carta de realización plena, viajes y la sensación de estar en el lugar correcto.',
+    uprightMeaning: 'Completitud, cumplimiento, viajes, realización, cierre, triunfo, unidad, perfección, integración.',
+    reversedMeaning: 'Incompletitud, falta de cierre, estancamiento, incompleción, demora, búsqueda constante, fragmentación.'
+  },
+  {
+    id: 21,
+    name: 'El Loco',
+    number: '0',
+    type: 'major',
+    image: '🤡',
+    description: 'El Loco es el principio y el fin, el viajero eterno. Representa la libertad absoluta, los nuevos comienzos y el riesgo de lo desconocido con optimismo infantil.',
+    uprightMeaning: 'Nuevos comienzos, libertad, espontaneidad, inocencia, riesgo, aventura, fe, vida en el momento presente.',
+    reversedMeaning: 'Necedad, irresponsabilidad, recklessness, caos, indecisión, miedo a lo desconocido, estancamiento.'
+  }
+];
+
 let WEATHER_DATA = null;
 let LUNAR_DATA = null;
 
@@ -931,6 +1409,43 @@ function generateLunarCalendar(year, month) {
   return html;
 }
 
+// ── FUNCIONES DE TAROT ──
+function renderTarotGrid() {
+  const grid = document.getElementById('tarot-grid');
+  grid.innerHTML = TAROT_CARDS.map(card => `
+    <div class="tarot-card ${card.type}" onclick="openTarotModal(${card.id})">
+      <div class="tarot-card-image">${card.image}</div>
+      <div class="tarot-card-name">${card.name}</div>
+    </div>
+  `).join('');
+}
+
+function openTarotModal(cardId) {
+  const card = TAROT_CARDS[cardId];
+  document.getElementById('modal-card-number').textContent = `Arcano Mayor ${card.number}`;
+  document.getElementById('modal-card-name').textContent = card.name;
+  document.getElementById('modal-card-image').textContent = card.image;
+  document.getElementById('modal-card-image').style.fontSize = '120px';
+  document.getElementById('modal-card-description').textContent = card.description;
+  
+  document.getElementById('modal-card-meanings').innerHTML = `
+    <div class="meaning-box">
+      <div class="meaning-title">Significado Directo</div>
+      <div class="meaning-text">${card.uprightMeaning}</div>
+    </div>
+    <div class="meaning-box">
+      <div class="meaning-title">Significado Invertido</div>
+      <div class="meaning-text">${card.reversedMeaning}</div>
+    </div>
+  `;
+  
+  document.getElementById('tarot-modal').classList.add('active');
+}
+
+function closeTarotModal() {
+  document.getElementById('tarot-modal').classList.remove('active');
+}
+
 (async () => {
   let DATA = null;
   let currentView = 'lyric';
@@ -961,6 +1476,7 @@ function generateLunarCalendar(year, month) {
     document.getElementById('error-msg').style.display = 'block';
     document.getElementById('lyric-chunk').innerHTML = '';
     console.error('stats.json load failed:', e);
+    renderTarotGrid();
     return;
   }
 
@@ -1032,6 +1548,7 @@ function generateLunarCalendar(year, month) {
   renderLyric();
   renderTracks('short_term');
   renderArtists('short_term');
+  renderTarotGrid();
 
   // ── CLIMA (wttr.in) ──
   try {
@@ -1147,21 +1664,18 @@ async function listUpcomingEvents() {
     try {
       const agendaEl = document.getElementById('agenda-display');
       
-      // Lista con los IDs exactos de tus 3 flujos de telemetría (Principal + los 2 de estudios)
       const IDsCalendarios = [
-        'primary', // Tu cuenta por defecto
-        '9lakadg6pdjq048b0a23u6292o@group.calendar.google.com', // Exámenes/Proyectos 1
-        'ebm08rnaid3jn88v9ne56dc400@group.calendar.google.com'  // Exámenes/Proyectos 2
+        'primary',
+        '9lakadg6pdjq048b0a23u6292o@group.calendar.google.com',
+        'ebm08rnaid3jn88v9ne56dc400@group.calendar.google.com'
       ];
 
-      // Paleta fija para distinguir los vectores académicos en tu terminal
       const paletaColores = [
-        'var(--green)', // Verde Flipper para el Principal
-        '#38bdf8',      // Azul Neón para el segundo calendario
-        '#a855f7'       // Morado Eléctrico para el tercero
+        'var(--green)',
+        '#38bdf8',
+        '#a855f7'
       ];
 
-      // Lanzamos las consultas en paralelo apuntando directamente a sus IDs fijos
       const eventPromises = IDsCalendarios.map(async (idCalendario, index) => {
         try {
           const res = await gapi.client.calendar.events.list({
@@ -1173,10 +1687,8 @@ async function listUpcomingEvents() {
             'orderBy': 'startTime',
           });
           const items = res.result.items || [];
-          // Inyectamos el color estático correspondiente según su posición en la lista
           return items.map(event => ({ ...event, colorAsignado: paletaColores[index] }));
         } catch (err) {
-          // Si alguno falla temporalmente, la terminal lo ignora en silencio sin congelar la pantalla
           console.warn(`Sector omitido o sin sincronizar: ${idCalendario}`);
           return [];
         }
@@ -1190,12 +1702,10 @@ async function listUpcomingEvents() {
         return;
       }
 
-      // Ordenar cronológicamente la línea temporal unificada
       allEvents.sort((a, b) => {
         return new Date(a.start.dateTime || a.start.date) - new Date(b.start.dateTime || b.start.date);
       });
 
-      // Limitar a los 15 eventos globales más cercanos
       allEvents = allEvents.slice(0, 15);
 
       let html = '';
@@ -1229,6 +1739,7 @@ async function listUpcomingEvents() {
       document.getElementById('agenda-display').innerHTML = '• Error sincronizando telemetría de multicalendarios.';
     }
   }
+  
   // ── CONTROL DE NAVEGACIÓN ENTRE PESTAÑAS ──
   document.querySelectorAll('.nav-tab').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1287,7 +1798,7 @@ async function listUpcomingEvents() {
   });
 
   startPetBehavior();
-  setTimeout(handleClientLoad, 500); // Disparador automático de la API de Google
+  setTimeout(handleClientLoad, 500);
 
 })();
 
