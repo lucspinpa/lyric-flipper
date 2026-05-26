@@ -25,7 +25,7 @@
   body {
     display: grid;
     grid-template-columns: 1fr 320px;
-    grid-template-rows: auto auto auto 1fr auto auto; /* Añadido espacio inferior para las ciudades */
+    grid-template-rows: auto auto auto 1fr auto;
     max-width: 1080px;
     margin: 0 auto;
     padding: 3rem 2rem;
@@ -109,14 +109,14 @@
     margin: 40px 40px 0 0;
     width: 320px;        
     height: 320px; 
-    background-image: url('images/space-sector.png');
+    background-image: url('images/bckg.png');
     background-size: cover;
     background-position: center;
     overflow: hidden;
     border: 1px solid var(--border);
   }
 
-  /* ── TAMAÑO CONTROLADO DE LA MASCOTA ── */
+  /* ── CAJA DE LA MASCOTA ── */
   #web-pet {
     position: absolute;
     right: 20%;          
@@ -157,28 +157,28 @@
     50% { transform: scale(1.2); }
   }
 
-  /* ── NUEVA SECCIÓN INTEGRADA: MÓDULO INTERACTIVO DE CIUDADES ── */
+  /* ── NUEVA SECCIÓN: MÓDULO DE CIUDADES EN LA ZONA ROJA (ABAJO A LA IZQUIERDA) ── */
   .skyline-section {
-    grid-column: 1 / -1;
-    margin-top: 6rem;
+    margin-top: 5rem;
     border-top: 1px solid var(--border);
-    padding-top: 4rem;
+    padding-top: 3rem;
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
   }
   .skyline-meta .sky-label { font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 0.45rem; display: block; }
-  .skyline-meta .sky-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 2.2rem; color: var(--text); margin-bottom: 1rem; }
-  .skyline-meta .sky-desc { font-size: 0.75rem; color: var(--dim); max-width: 600px; line-height: 1.6; font-family: 'DM Mono', monospace; }
+  .skyline-meta .sky-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 2rem; color: var(--text); margin-bottom: 0.5rem; }
+  .skyline-meta .sky-desc { font-size: 0.7rem; color: var(--dim); max-width: 550px; line-height: 1.6; }
 
   .skyline-canvas-container {
     position: relative;
     width: 100%;
+    max-width: 550px;
     aspect-ratio: 1 / 1;
-    max-width: 600px;
-    margin: 3rem auto 0 auto;
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     background: var(--surface);
     overflow: hidden;
+    cursor: crosshair;
   }
   
   .visual-canvas-base { transition: filter 0.4s ease; }
@@ -195,7 +195,7 @@
   }
   .highlight-layer.active { opacity: 1; }
   
-  .hotspot { position: absolute; cursor: crosshair; z-index: 30; }
+  .hotspot { position: absolute; z-index: 30; }
   .monument-label {
     opacity: 0;
     transform: translateY(10px);
@@ -203,20 +203,59 @@
     white-space: nowrap;
     background: var(--green);
     color: var(--bg);
-    padding: 2px 8px;
-    font-size: 10px;
+    padding: 2px 6px;
+    font-size: 9px;
     font-weight: bold;
   }
   .hotspot:hover .monument-label { opacity: 1; transform: translateY(0); }
 
-  /* Mapeos poligonales de Stitch */
+  /* Mapeos de recorte de Stitch */
   .clip-london { clip-path: polygon(14% 15%, 26% 15%, 26% 85%, 14% 85%); }
   .clip-athens { clip-path: polygon(50% 5%, 85% 5%, 85% 35%, 50% 35%); }
   .clip-coruna { clip-path: polygon(75% 35%, 90% 35%, 90% 90%, 75% 90%); }
 
-  .hud-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 45; padding: 1.5rem; font-size: 10px; color: var(--dim); }
+  .hud-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 45; padding: 1.25rem; font-size: 9px; color: var(--dim); }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   .cursor-blink { animation: blink 1s step-end infinite; }
+
+  /* ── PANTALLA DE CARGA CIBERNÉTICA (STITCH SEQUENCE) ── */
+  #nav-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 9999;
+    transform: translateY(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+  }
+  #nav-screen.active { transform: translateY(0); }
+  .terminal-box {
+    width: 100%;
+    max-width: 550px;
+    border: 1px solid var(--green);
+    background: var(--surface);
+    padding: 2rem;
+  }
+  .term-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; color: var(--green); }
+  .term-title { font-size: 1rem; font-weight: bold; letter-spacing: 0.05em; text-transform: uppercase; }
+  .log-stream { height: 120px; overflow-hidden; font-size: 0.7rem; color: var(--dim); space-y: 0.25rem; display: flex; flex-direction: column; gap: 4px; }
+  .progress-track { w-full; height: 2px; background: var(--border); margin-top: 1.5rem; overflow: hidden; }
+  .progress-bar { width: 0%; height: 100%; background: var(--green); transition: width 0.3s ease; }
+  .abort-btn {
+    margin-top: 1.5rem;
+    background: none;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 0.4rem 1rem;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .abort-btn:hover { background: var(--green); color: var(--bg); }
 
   /* ── FOOTER ── */
   footer { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 4rem; font-size: 0.58rem; color: var(--muted); letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center; }
@@ -274,56 +313,69 @@
     </div>
 
     <div class="sent-badge">enviado al flipper zero &amp; iphone</div>
+
+    <section class="skyline-section">
+      <div class="skyline-meta">
+        <span class="sky-label">Architectural Digest</span>
+        <h2 class="sky-title">Skyline Explorer</h2>
+        <p class="sky-desc">Interactúa con los vectores de coordenadas tácticas para inicializar la extracción de datos de horizontes.</p>
+      </div>
+
+      <div class="skyline-canvas-container">
+        <div class="visual-canvas-base absolute inset-0" id="base-image">
+          <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Grid Base">
+        </div>
+
+        <div class="highlight-layer clip-london" id="london-highlight">
+          <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="London Layer">
+        </div>
+        <div class="highlight-layer clip-athens" id="athens-highlight">
+          <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Athens Layer">
+        </div>
+        <div class="highlight-layer clip-coruna" id="coruna-highlight">
+          <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Coruña Layer">
+        </div>
+
+        <div class="hotspot" onclick="navigateCity('LONDON')" onmouseenter="toggleHighlight('london', true)" onmouseleave="toggleHighlight('london', false)" style="top: 10%; left: 10%; width: 20%; height: 80%;">
+          <div class="absolute -top-6 left-0 monument-label">01_LONDON_LDN</div>
+        </div>
+        <div class="hotspot" onclick="navigateCity('ATHENS')" onmouseenter="toggleHighlight('athens', true)" onmouseleave="toggleHighlight('athens', false)" style="top: 5%; left: 50%; width: 40%; height: 35%;">
+          <div class="absolute -top-6 right-0 monument-label">02_ATHENS_ATH</div>
+        </div>
+        <div class="hotspot" onclick="navigateCity('A CORUÑA')" onmouseenter="toggleHighlight('coruna', true)" onmouseleave="toggleHighlight('coruna', false)" style="top: 35%; left: 75%; width: 20%; height: 60%;">
+          <div class="absolute -top-6 left-0 monument-label">03_ACORUNA_LCG</div>
+        </div>
+
+        <div class="hud-overlay">
+          <div style="display:flex; justify-content: space-between;">
+            <div style="background: rgba(0,0,0,0.6); padding: 2px 6px; border: 1px solid var(--border);">SYS_STABLE</div>
+            <div id="hud-clock" style="color: var(--green); font-weight: bold;">00:00:00</div>
+          </div>
+          <div style="position: absolute; bottom: 1.25rem; left: 1.25rem; max-width: 220px; background: rgba(0,0,0,0.7); padding: 6px; border-left: 2px solid var(--green);">
+            TARGET SCANNER READY... <span class="cursor-blink" style="display:inline-block; width:5px; height:9px; background: var(--green); vertical-align: middle;"></span>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   
   <aside>
     <div class="aside-label">top tracks · last 4 weeks</div>
     <ul id="tracks-list-lyric" style="list-style:none"></ul>
   </aside>
+</div>
 
-  <section class="skyline-section">
-    <div class="skyline-meta">
-      <span class="sky-label">Architectural Digest</span>
-      <h2 class="sky-title">Skyline Explorer</h2>
-      <p class="sky-desc">Selecciona un objetivo geográfico para iniciar la extracción de datos de horizontes arquitectónicos.</p>
+<div id="nav-screen">
+  <div class="terminal-box">
+    <div class="term-header">
+      <h2 class="term-title" id="dest-title">ESTABLISHING CONNECTION...</h2>
     </div>
-
-    <div class="skyline-canvas-container">
-      <div class="visual-canvas-base absolute inset-0" id="base-image">
-        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Skyline Base Grid">
-      </div>
-
-      <div class="highlight-layer clip-london" id="london-highlight">
-        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="London Grid">
-      </div>
-      <div class="highlight-layer clip-athens" id="athens-highlight">
-        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Athens Grid">
-      </div>
-      <div class="highlight-layer clip-coruna" id="coruna-highlight">
-        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="A Coruña Grid">
-      </div>
-
-      <div class="hotspot" onmouseenter="toggleHighlight('london', true)" onmouseleave="toggleHighlight('london', false)" style="top: 10%; left: 10%; width: 20%; height: 80%;">
-        <div class="absolute -top-6 left-0 monument-label">01_LONDON_LDN</div>
-      </div>
-      <div class="hotspot" onmouseenter="toggleHighlight('athens', true)" onmouseleave="toggleHighlight('athens', false)" style="top: 5%; left: 50%; width: 40%; height: 35%;">
-        <div class="absolute -top-6 right-0 monument-label">02_ATHENS_ATH</div>
-      </div>
-      <div class="hotspot" onmouseenter="toggleHighlight('coruna', true)" onmouseleave="toggleHighlight('coruna', false)" style="top: 35%; left: 75%; width: 20%; height: 60%;">
-        <div class="absolute -top-6 left-0 monument-label">03_ACORUNA_LCG</div>
-      </div>
-
-      <div class="hud-overlay">
-        <div style="display:flex; justify-content: space-between;">
-          <div style="background: rgba(0,0,0,0.5); padding: 4px 8px; border: 1px solid var(--border);">SYS_STATUS: ACTIVE</div>
-          <div id="hud-clock" style="color: var(--green); font-weight: bold;">00:00:00</div>
-        </div>
-        <div style="position: absolute; bottom: 1.5rem; left: 1.5rem; max-width: 240px; background: rgba(0,0,0,0.6); padding: 6px; border-left: 2px solid var(--green);">
-          SELECT HORIZON TARGET. COORD_READY... <span class="cursor-blink" style="display:inline-block; width:6px; height:10px; background: var(--green); vertical-align: middle;"></span>
-        </div>
-      </div>
+    <div class="log-stream" id="log-stream"></div>
+    <div class="progress-track">
+      <div class="progress-bar" id="progress-bar"></div>
     </div>
-  </section>
+    <button class="abort-btn" onclick="closeNav()">ABORT_SEQUENCE</button>
+  </div>
 </div>
 
 <div id="view-tracks" class="view">
@@ -360,7 +412,7 @@
 
   function esc(str) {
     if (!str) return '';
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return str.replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"');
   }
 
   function trackRow(t, i, isActive) {
@@ -516,7 +568,7 @@
 
 })();
 
-// ── SISTEMA DE MAPA DE CIUDADES (STITCH LOGIC) ──
+// ── LOGICA DE MAPAS TÁCTICOS Y PANTALLA DE CARGA (STITCH INTEGRATION) ──
 function updateHudClock() {
     const now = new Date();
     const clockEl = document.getElementById('hud-clock');
@@ -541,7 +593,55 @@ function toggleHighlight(city, isActive) {
     }
 }
 
-// Micro-glitch para el recuadro táctico
+function navigateCity(cityName) {
+    const navScreen = document.getElementById('nav-screen');
+    const destTitle = document.getElementById('dest-title');
+    const logStream = document.getElementById('log-stream');
+    const progressBar = document.getElementById('progress-bar');
+
+    if (!navScreen || !destTitle || !logStream || !progressBar) return;
+
+    destTitle.innerText = `LINKING_${cityName}_COORDINATES`;
+    navScreen.classList.add('active');
+    logStream.innerHTML = '';
+    progressBar.style.width = '0%';
+
+    const logs = [
+        `> AUTHENTICATING OPERATOR_01... [SUCCESS]`,
+        `> BYPASSING SECURE_GATEWAY_V4.2... [OK]`,
+        `> TARGET_SECTOR: ${cityName}`,
+        `> ESTABLISHING QUANTUM_STREAMS...`,
+        `> PIPELINING GEOMETRIC_DATA_0X884F...`,
+        `> INJECTING SECTOR_INTERFACE...`
+    ];
+
+    let i = 0;
+    const logInterval = setInterval(() => {
+        if (i < logs.length) {
+            const p = document.createElement('div');
+            p.innerText = logs[i];
+            p.style.marginBottom = '2px';
+            logStream.appendChild(p);
+            progressBar.style.width = `${((i + 1) / logs.length) * 100}%`;
+            i++;
+        } else {
+            clearInterval(logInterval);
+            const success = document.createElement('div');
+            success.innerText = "SUCCESS: LINK_STABLE. READY FOR EXTRACTION.";
+            success.style.color = 'var(--green)';
+            success.style.fontWeight = 'bold';
+            success.style.marginTop = '6px';
+            logStream.appendChild(success);
+        }
+    }, 500);
+}
+
+function closeNav() {
+    const navScreen = document.getElementById('nav-screen');
+    if (navScreen) navScreen.classList.remove('active');
+}
+
+// Micro-glitch mecánico en el Canvas
 const canvasBox = document.getElementById('base-image');
 if (canvasBox) {
     setInterval(() => {
