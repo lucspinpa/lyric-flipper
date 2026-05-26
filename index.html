@@ -78,6 +78,18 @@
   .dash-card { background: var(--surface); border: 1px solid var(--border); padding: 0.75rem; border-radius: 4px; font-size: 0.65rem; }
   .dash-card h4 { color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; font-size: 0.55rem; }
 
+  /* ── WEATHER CLICKABLE ── */
+  #weather-display {
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0.4rem;
+    border-radius: 3px;
+  }
+  #weather-display:hover {
+    background: var(--border);
+    color: var(--green);
+  }
+
   /* ── LYRIC ── */
   .song-meta { margin-bottom: 2rem; }
   .song-meta .s-artist { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 0.45rem; }
@@ -143,7 +155,7 @@
   .pet-click img { animation: pop 0.4s ease-out; }
   @keyframes pop { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
-  /* ── ◄ CONTENEDOR COMÚN INFERIOR (UNIFICA CIUDADES Y TRACKS LATERALES) ── */
+  /* ── CONTENEDOR COMÚN INFERIOR ── */
   .bottom-split-container {
     display: grid;
     grid-template-columns: 1fr 320px;
@@ -215,6 +227,82 @@
     flex-shrink: 0;
   }
 
+  /* ── MODAL METEOROLÓGICO ── */
+  #weather-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(13,13,13,0.96);
+    z-index: 9999;
+    transform: translateY(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+    overflow-y: auto;
+  }
+  #weather-modal.active { transform: translateY(0); }
+  
+  .weather-box { width: 100%; max-width: 600px; border: 1px solid var(--green); background: var(--surface); padding: 1.75rem; border-radius: 4px; }
+  .weather-header { font-size: 0.75rem; font-weight: bold; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; }
+  
+  .weather-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .weather-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 0.75rem;
+    border-radius: 3px;
+  }
+  
+  .weather-item-label {
+    font-size: 0.55rem;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  
+  .weather-item-value {
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+  
+  .weather-full-width {
+    grid-column: 1 / -1;
+  }
+  
+  .weather-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  
+  .weather-close-btn {
+    background: none;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 0.4rem 1rem;
+    font-size: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+  }
+  
+  .weather-close-btn:hover {
+    background: var(--green);
+    color: var(--bg);
+  }
+
   /* ── TERMINAL MODAL DE PROYECTOS PRIVADOS (TO-DO LIST) ── */
   #nav-screen {
     position: fixed;
@@ -252,6 +340,7 @@
     .bottom-split-container { grid-template-columns: 1fr; gap: 3rem; }
     .aside-nested, aside.aside-extended { border-left: none; padding-left: 0; width: 100%; }
     #space-sector { display: none; }
+    .weather-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -377,6 +466,17 @@
   </div>
 </div>
 
+<!-- ── MODAL METEOROLÓGICO ── -->
+<div id="weather-modal">
+  <div class="weather-box">
+    <div class="weather-header">// WEATHER_STATION: SATELLITE_TELEMETRY</div>
+    <div id="weather-content" class="weather-grid"></div>
+    <div class="weather-actions">
+      <button class="weather-close-btn" onclick="closeWeatherModal()">CLOSE_STATION</button>
+    </div>
+  </div>
+</div>
+
 <div id="view-tracks" class="view">
   <div class="tab-view-extended">
     <ul id="tracks-list-main" style="list-style:none"></ul>
@@ -404,6 +504,8 @@
 </footer>
 
 <script>
+let WEATHER_DATA = null;
+
 (async () => {
   let DATA = null;
   let currentView = 'lyric';
@@ -414,7 +516,6 @@
     return str.replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"');
   }
 
-  // Cambiado 't-img' vacío a vacío nativo para que pinte bien los bloques vacíos si no hay cover
   function trackRow(t, i, isActive) {
     return `<li class="track-row${isActive ? ' active' : ''}">
       <span class="t-rank">${String(i+1).padStart(2,'0')}</span>
@@ -503,12 +604,43 @@
     const weatherRes = await fetch('https://wttr.in/A_Coruna?format=j1');
     if (weatherRes.ok) {
       const wData = await weatherRes.json();
+      WEATHER_DATA = wData; // Guardar los datos completos
       const current = wData.current_condition[0];
       const temp = current.temp_C;
-      const desc = current.lang_es ? current.lang_es[0].value : current.weatherDesc[0].value;
-      document.getElementById('weather-display').innerHTML = `• Ubicación: A Coruña<br>• Estado: ${desc}<br>• Temp: ${temp}°C`;
+      const humidity = current.humidity;
+      const windKph = current.windspeedKmph;
+      
+      const weatherMap = {
+        'Sunny': 'Soleado',
+        'Clear': 'Despejado',
+        'Partly cloudy': 'Parcialmente nublado',
+        'Cloudy': 'Nublado',
+        'Overcast': 'Encapotado',
+        'Mist': 'Niebla',
+        'Patchy rain nearby': 'Lluvia dispersa',
+        'Patchy light rain': 'Lluvia ligera dispersa',
+        'Light rain': 'Lluvia ligera',
+        'Moderate rain': 'Lluvia moderada',
+        'Heavy rain': 'Lluvia fuerte',
+        'Light snow': 'Nieve ligera',
+        'Moderate snow': 'Nieve moderada',
+        'Heavy snow': 'Nieve fuerte',
+        'Thundery outbreaks possible': 'Posibles tormentas',
+        'Patchy light rain with thunder': 'Lluvia ligera con truenos',
+        'Light rain with thunder': 'Lluvia con truenos'
+      };
+      
+      let desc = current.weatherDesc?.[0]?.value || 'Datos no disponibles';
+      desc = weatherMap[desc] || desc;
+      
+      document.getElementById('weather-display').innerHTML = 
+        `• Ubicación: A Coruña<br>• Estado: ${desc}<br>• Temp: ${temp}°C<br>• Humedad: ${humidity}%<br>• Viento: ${windKph} km/h`;
+      
+      // Agregar listener al click
+      document.getElementById('weather-display').addEventListener('click', openWeatherModal);
     }
   } catch(err) {
+    console.error('Weather fetch failed:', err);
     document.getElementById('weather-display').textContent = '• Satélite fuera de rango local.';
   }
 
@@ -583,10 +715,78 @@
     setTimeout(() => { pet.className = currentClass; }, 400);
   });
 
-  // ¡Arreglado e inicializado el bucle aquí!
   startPetBehavior();
 
 })();
+
+// ── WEATHER MODAL ──
+function openWeatherModal() {
+  if (!WEATHER_DATA) return;
+  
+  const current = WEATHER_DATA.current_condition[0];
+  const nearest = WEATHER_DATA.nearest_area[0];
+  
+  let html = '';
+  
+  // Datos principales
+  html += `
+    <div class="weather-item">
+      <div class="weather-item-label">Localización</div>
+      <div class="weather-item-value">${nearest.areaName[0].value}, ${nearest.country[0].value}</div>
+    </div>
+    <div class="weather-item">
+      <div class="weather-item-label">Temperatura</div>
+      <div class="weather-item-value">${current.temp_C}°C / ${current.temp_F}°F</div>
+    </div>
+    <div class="weather-item">
+      <div class="weather-item-label">Sensación Térmica</div>
+      <div class="weather-item-value">${current.FeelsLikeC}°C / ${current.FeelsLikeF}°F</div>
+    </div>
+    <div class="weather-item">
+      <div class="weather-item-label">Humedad</div>
+      <div class="weather-item-value">${current.humidity}%</div>
+    </div>
+    <div class="weather-item">
+      <div class="weather-item-label">Viento (velocidad)</div>
+      <div class="weather-item-value">${current.windspeedKmph} km/h / ${current.windspeedMiles} mph</div>
+    </div>
+    <div class="weather-item">
+      <div class="weather-item-label">Dirección del Viento</div>
+      <div class="weather-item-value">${current.winddir16Point} (${current.winddirDegree}°)</div>
+    </div>
+    <div class="weather-item">
+      <div class="weather-item-label">Presión</div>
+      <div class="weather-item-value">${current.pressure_mb} mb / ${current.pressure_in} in</div>
+    </div>
+    <div class="weather-item">
+      <div class="weather-item-label">Precipitación</div>
+      <div class="weather-item-value">${current.precip_mm} mm / ${current.precip_in} in</div>
+    </div>
+    <div class="weather-item">
+      <div class="weather-item-label">Punto de Rocío</div>
+      <div class="weather-item-value">${current.DewPointC}°C / ${current.DewPointF}°F</div>
+    </div>
+    <div class="weather-item">
+      <div class="weather-item-label">Visibilidad</div>
+      <div class="weather-item-value">${current.visibility_km} km / ${current.visibility_miles} mi</div>
+    </div>
+    <div class="weather-item">
+      <div class="weather-item-label">Índice UV</div>
+      <div class="weather-item-value">${current.uv}</div>
+    </div>
+    <div class="weather-item full-width weather-full-width">
+      <div class="weather-item-label">Descripción</div>
+      <div class="weather-item-value">${current.weatherDesc?.[0]?.value || 'N/A'}</div>
+    </div>
+  `;
+  
+  document.getElementById('weather-content').innerHTML = html;
+  document.getElementById('weather-modal').classList.add('active');
+}
+
+function closeWeatherModal() {
+  document.getElementById('weather-modal').classList.remove('active');
+}
 
 // ── SISTEMA DE MAPA DE CIUDADES ──
 function updateHudClock() {
