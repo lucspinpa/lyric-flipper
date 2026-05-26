@@ -180,14 +180,18 @@
     overflow: hidden;
     border-radius: 4px;
     background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .tarot-card-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     filter: brightness(0.85) contrast(1.1);
     transition: filter 0.3s, transform 0.3s;
+    background: #1a1a1a;
   }
 
   .tarot-card:hover .tarot-card-image {
@@ -414,12 +418,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
   .tarot-modal-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: #1a1a1a;
   }
 
   .tarot-modal-info h2 {
@@ -816,6 +822,18 @@
   .abort-btn { background: none; border: 1px solid var(--green); color: var(--green); padding: 0.5rem 1rem; font-size: 10px; cursor: pointer; font-family: 'DM Mono', monospace; }
   .abort-btn:hover { background: var(--green); color: var(--bg); }
 
+  .image-loading-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--border) 25%, transparent 25%, transparent 50%, var(--border) 50%, var(--border) 75%, transparent 75%, transparent);
+    background-size: 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: var(--dim);
+  }
+
   @media (max-width: 900px) {
     body {
       background-color: var(--bg) !important; 
@@ -1084,96 +1102,95 @@
 </footer>
 
 <script>
-// ── BASE DE DATOS TAROT ──
+// ── BASE DE DATOS TAROT CON IMÁGENES RIDER-WAITE FUNCIONALES ──
 const TAROT_CARDS = [
   // === ARCANOS MAYORES ===
-  { id: 0, name: 'El Mago', number: 'I', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m01.jpg', description: 'El Mago representa el poder de la manifestación y el dominio de las fuerzas del universo.', uprightMeaning: 'Poder personal, manifestación, ingenio, confianza.', reversedMeaning: 'Manipulación, potencial sin usar, engaño.' },
-  { id: 1, name: 'La Sacerdotisa', number: 'II', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m02.jpg', description: 'La Sacerdotisa encarna el conocimiento oculto y la intuición profunda.', uprightMeaning: 'Intuición, sabiduría oculta, misterio.', reversedMeaning: 'Superficialidad, secretos revelados, desconfianza.' },
-  { id: 2, name: 'La Emperatriz', number: 'III', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m03.jpg', description: 'La Emperatriz es la encarnación de la fertilidad, la abundancia y la creatividad.', uprightMeaning: 'Fertilidad, abundancia, naturaleza, creatividad.', reversedMeaning: 'Bloqueos creativos, dependencia, negligencia.' },
-  { id: 3, name: 'El Emperador', number: 'IV', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m04.jpg', description: 'El Emperador simboliza la autoridad, el liderazgo y el control.', uprightMeaning: 'Autoridad, estructura, control, estabilidad.', reversedMeaning: 'Tiranía, falta de control, ineficiencia.' },
-  { id: 4, name: 'El Sumo Sacerdote', number: 'V', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m05.jpg', description: 'El Sumo Sacerdote representa la sabiduría espiritual y la enseñanza tradicional.', uprightMeaning: 'Tradición, conformidad, moralidad, mentoría.', reversedMeaning: 'Rebeldía, ortodoxia rígida, dogmatismo.' },
-  { id: 5, name: 'Los Enamorados', number: 'VI', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m06.jpg', description: 'Los Enamorados representan las relaciones, la armonía y elecciones cruciales.', uprightMeaning: 'Amor, armonía, elecciones alineadas, unión.', reversedMeaning: 'Desunión, conflicto, malas decisiones.' },
-  { id: 6, name: 'El Carro', number: 'VII', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m07.jpg', description: 'El Carro representa la determinación, la fuerza de voluntad y el triunfo.', uprightMeaning: 'Control, éxito, determinación, victoria.', reversedMeaning: 'Falta de dirección, pérdida de control.' },
-  { id: 7, name: 'La Justicia', number: 'VIII', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m08.jpg', description: 'La Justicia encarna la verdad, el equilibrio y la responsabilidad kármica.', uprightMeaning: 'Justicia, verdad, causa y efecto, honestidad.', reversedMeaning: 'Injusticia, desequilibrio, deshonestidad.' },
-  { id: 8, name: 'El Ermitaño', number: 'IX', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m09.jpg', description: 'El Ermitaño representa la búsqueda interior y la guía del autoconocimiento.', uprightMeaning: 'Introspección, soledad voluntaria, guía interna.', reversedMeaning: 'Aislamiento extremo, paranoia, rechazo.' },
-  { id: 9, name: 'La Rueda de la Fortuna', number: 'X', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m10.jpg', description: 'La Rueda de la Fortuna simboliza el cambio inevitable y los ciclos del destino.', uprightMeaning: 'Suerte, destino, ciclos vitales, puntos de inflexión.', reversedMeaning: 'Mala suerte, resistencia al cambio, estancamiento.' },
-  { id: 10, name: 'La Fortaleza', number: 'XI', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m11.jpg', description: 'La Fortaleza representa la valentía moral, la paciencia y el dominio de los impulsos.', uprightMeaning: 'Fuerza interior, compasión, coraje, resiliencia.', reversedMeaning: 'Debilidad, impulsividad, inseguridad.' },
-  { id: 11, name: 'El Ahorcado', number: 'XII', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m12.jpg', description: 'El Ahorcado invita a la pausa, el sacrificio voluntario y una nueva perspectiva.', uprightMeaning: 'Perspectiva, pausa, transición, iluminación.', reversedMeaning: 'Inercia, resistencia, estancamiento.' },
-  { id: 12, name: 'La Muerte', number: 'XIII', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m13.jpg', description: 'La Muerte no es física, simboliza cierres inevitables y renacimiento profundo.', uprightMeaning: 'Transformación, fines, transición, liberación.', reversedMeaning: 'Miedo al cambio, resistencia al cierre.' },
-  { id: 13, name: 'La Templanza', number: 'XIV', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m14.jpg', description: 'La Templanza simboliza la moderación, el equilibrio y la alquimia de la paz.', uprightMeaning: 'Equilibrio, paciencia, moderación, armonía.', reversedMeaning: 'Desequilibrio, excesos, falta de armonía.' },
-  { id: 14, name: 'El Diablo', number: 'XV', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m15.jpg', description: 'El Diablo representa las ataduras materiales, las adicciones y las sombras.', uprightMeaning: 'Materialismo, sombras, adicción, apego.', reversedMeaning: 'Liberación, desapego, superación.' },
-  { id: 15, name: 'La Torre', number: 'XVI', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m16.jpg', description: 'La Torre representa la deconstrucción súbita de las estructuras falsas.', uprightMeaning: 'Revelación, colapso repentino, caos liberador.', reversedMeaning: 'Desastre evitado, crisis prolongada.' },
-  { id: 16, name: 'La Estrella', number: 'XVII', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m17.jpg', description: 'La Estrella es la luz de la esperanza, la fe y la sanación cósmica.', uprightMeaning: 'Esperanza, fe, renovación, propósito.', reversedMeaning: 'Desesperación, falta de fe, pesimismo.' },
-  { id: 17, name: 'La Luna', number: 'XVIII', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m18.jpg', description: 'La Luna representa las ilusiones, los miedos subconscientes y los sueños.', uprightMeaning: 'Intuición, subconsciente, ilusión, miedos.', reversedMeaning: 'Claridad, verdad revelada, miedos superados.' },
-  { id: 18, name: 'El Sol', number: 'XIX', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m19.jpg', description: 'El Sol irradia vitalidad, éxito pleno y felicidad inocente.', uprightMeaning: 'Éxito, alegría, claridad, positividad.', reversedMeaning: 'Falta de entusiasmo, retrasos temporales.' },
-  { id: 19, name: 'El Juicio', number: 'XX', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m20.jpg', description: 'El Juicio es el llamado del despertar, la redención y la toma de decisiones.', uprightMeaning: 'Despertar, evaluación, absolución, destino.', reversedMeaning: 'Dudas, autocrítica severa, estancamiento.' },
-  { id: 20, name: 'El Mundo', number: 'XXI', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m21.jpg', description: 'El Mundo representa la culminación exitosa de un gran viaje o ciclo.', uprightMeaning: 'Completitud, éxito, integración, viajes.', reversedMeaning: 'Falta de cierre, proyectos inacabados.' },
-  { id: 21, name: 'El Loco', number: '0', type: 'major', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/m00.jpg', description: 'El Loco representa los saltos de fe, la libertad absoluta y los inicios puros.', uprightMeaning: 'Inicios, espontaneidad, libertad, aventura.', reversedMeaning: 'Irresponsabilidad, imprudencia, caos.' },
+  { id: 0, name: 'El Mago', number: 'I', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m01.jpg', description: 'El Mago representa el poder de la manifestación y el dominio de las fuerzas del universo.', uprightMeaning: 'Poder personal, manifestación, ingenio, confianza.', reversedMeaning: 'Manipulación, potencial sin usar, engaño.' },
+  { id: 1, name: 'La Sacerdotisa', number: 'II', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m02.jpg', description: 'La Sacerdotisa encarna el conocimiento oculto y la intuición profunda.', uprightMeaning: 'Intuición, sabiduría oculta, misterio.', reversedMeaning: 'Superficialidad, secretos revelados, desconfianza.' },
+  { id: 2, name: 'La Emperatriz', number: 'III', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m03.jpg', description: 'La Emperatriz es la encarnación de la fertilidad, la abundancia y la creatividad.', uprightMeaning: 'Fertilidad, abundancia, naturaleza, creatividad.', reversedMeaning: 'Bloqueos creativos, dependencia, negligencia.' },
+  { id: 3, name: 'El Emperador', number: 'IV', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m04.jpg', description: 'El Emperador simboliza la autoridad, el liderazgo y el control.', uprightMeaning: 'Autoridad, estructura, control, estabilidad.', reversedMeaning: 'Tiranía, falta de control, ineficiencia.' },
+  { id: 4, name: 'El Sumo Sacerdote', number: 'V', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m05.jpg', description: 'El Sumo Sacerdote representa la sabiduría espiritual y la enseñanza tradicional.', uprightMeaning: 'Tradición, conformidad, moralidad, mentoría.', reversedMeaning: 'Rebeldía, ortodoxia rígida, dogmatismo.' },
+  { id: 5, name: 'Los Enamorados', number: 'VI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m06.jpg', description: 'Los Enamorados representan las relaciones, la armonía y elecciones cruciales.', uprightMeaning: 'Amor, armonía, elecciones alineadas, unión.', reversedMeaning: 'Desunión, conflicto, malas decisiones.' },
+  { id: 6, name: 'El Carro', number: 'VII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m07.jpg', description: 'El Carro representa la determinación, la fuerza de voluntad y el triunfo.', uprightMeaning: 'Control, éxito, determinación, victoria.', reversedMeaning: 'Falta de dirección, pérdida de control.' },
+  { id: 7, name: 'La Justicia', number: 'VIII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m08.jpg', description: 'La Justicia encarna la verdad, el equilibrio y la responsabilidad kármica.', uprightMeaning: 'Justicia, verdad, causa y efecto, honestidad.', reversedMeaning: 'Injusticia, desequilibrio, deshonestidad.' },
+  { id: 8, name: 'El Ermitaño', number: 'IX', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m09.jpg', description: 'El Ermitaño representa la búsqueda interior y la guía del autoconocimiento.', uprightMeaning: 'Introspección, soledad voluntaria, guía interna.', reversedMeaning: 'Aislamiento extremo, paranoia, rechazo.' },
+  { id: 9, name: 'La Rueda de la Fortuna', number: 'X', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m10.jpg', description: 'La Rueda de la Fortuna simboliza el cambio inevitable y los ciclos del destino.', uprightMeaning: 'Suerte, destino, ciclos vitales, puntos de inflexión.', reversedMeaning: 'Mala suerte, resistencia al cambio, estancamiento.' },
+  { id: 10, name: 'La Fortaleza', number: 'XI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m11.jpg', description: 'La Fortaleza representa la valentía moral, la paciencia y el dominio de los impulsos.', uprightMeaning: 'Fuerza interior, compasión, coraje, resiliencia.', reversedMeaning: 'Debilidad, impulsividad, inseguridad.' },
+  { id: 11, name: 'El Ahorcado', number: 'XII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m12.jpg', description: 'El Ahorcado invita a la pausa, el sacrificio voluntario y una nueva perspectiva.', uprightMeaning: 'Perspectiva, pausa, transición, iluminación.', reversedMeaning: 'Inercia, resistencia, estancamiento.' },
+  { id: 12, name: 'La Muerte', number: 'XIII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m13.jpg', description: 'La Muerte no es física, simboliza cierres inevitables y renacimiento profundo.', uprightMeaning: 'Transformación, fines, transición, liberación.', reversedMeaning: 'Miedo al cambio, resistencia al cierre.' },
+  { id: 13, name: 'La Templanza', number: 'XIV', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m14.jpg', description: 'La Templanza simboliza la moderación, el equilibrio y la alquimia de la paz.', uprightMeaning: 'Equilibrio, paciencia, moderación, armonía.', reversedMeaning: 'Desequilibrio, excesos, falta de armonía.' },
+  { id: 14, name: 'El Diablo', number: 'XV', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m15.jpg', description: 'El Diablo representa las ataduras materiales, las adicciones y las sombras.', uprightMeaning: 'Materialismo, sombras, adicción, apego.', reversedMeaning: 'Liberación, desapego, superación.' },
+  { id: 15, name: 'La Torre', number: 'XVI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m16.jpg', description: 'La Torre representa la deconstrucción súbita de las estructuras falsas.', uprightMeaning: 'Revelación, colapso repentino, caos liberador.', reversedMeaning: 'Desastre evitado, crisis prolongada.' },
+  { id: 16, name: 'La Estrella', number: 'XVII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m17.jpg', description: 'La Estrella es la luz de la esperanza, la fe y la sanación cósmica.', uprightMeaning: 'Esperanza, fe, renovación, propósito.', reversedMeaning: 'Desesperación, falta de fe, pesimismo.' },
+  { id: 17, name: 'La Luna', number: 'XVIII', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m18.jpg', description: 'La Luna representa las ilusiones, los miedos subconscientes y los sueños.', uprightMeaning: 'Intuición, subconsciente, ilusión, miedos.', reversedMeaning: 'Claridad, verdad revelada, miedos superados.' },
+  { id: 18, name: 'El Sol', number: 'XIX', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m19.jpg', description: 'El Sol irradia vitalidad, éxito pleno y felicidad inocente.', uprightMeaning: 'Éxito, alegría, claridad, positividad.', reversedMeaning: 'Falta de entusiasmo, retrasos temporales.' },
+  { id: 19, name: 'El Juicio', number: 'XX', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m20.jpg', description: 'El Juicio es el llamado del despertar, la redención y la toma de decisiones.', uprightMeaning: 'Despertar, evaluación, absolución, destino.', reversedMeaning: 'Dudas, autocrítica severa, estancamiento.' },
+  { id: 20, name: 'El Mundo', number: 'XXI', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m21.jpg', description: 'El Mundo representa la culminación exitosa de un gran viaje o ciclo.', uprightMeaning: 'Completitud, éxito, integración, viajes.', reversedMeaning: 'Falta de cierre, proyectos inacabados.' },
+  { id: 21, name: 'El Loco', number: '0', type: 'major', image: 'https://www.sacred-texts.com/tarot/pkt/img/m00.jpg', description: 'El Loco representa los saltos de fe, la libertad absoluta y los inicios puros.', uprightMeaning: 'Inicios, espontaneidad, libertad, aventura.', reversedMeaning: 'Irresponsabilidad, imprudencia, caos.' },
 
-  // === ARCANOS MENORES (COMPLETOS) ===
-  // ── BASTOS (Wands) ──
-  { id: 22, name: 'As de Bastos', number: 'Ace', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w01.jpg', description: 'Inspiración pura y el despertar de una gran fuerza creativa.', uprightMeaning: 'Potencial creativo, entusiasmo.', reversedMeaning: 'Falta de dirección, bloques.' },
-  { id: 23, name: 'Dos de Bastos', number: 'II', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w02.jpg', description: 'Planificación futura y análisis de horizontes.', uprightMeaning: 'Decisiones, descubrimientos.', reversedMeaning: 'Miedo al riesgo.' },
-  { id: 24, name: 'Tres de Bastos', number: 'III', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w03.jpg', description: 'Tus esfuerzos comienzan a dar frutos en la distancia.', uprightMeaning: 'Expansión, progreso.', reversedMeaning: 'Retrasos en planes.' },
-  { id: 25, name: 'Cuatro de Bastos', number: 'IV', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w04.jpg', description: 'Celebración, armonía y el regreso a casa.', uprightMeaning: 'Celebración, hogar, alegría.', reversedMeaning: 'Transición, tensión familiar.' },
-  { id: 26, name: 'Cinco de Bastos', number: 'V', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w05.jpg', description: 'Conflictos menores, competencia y desacuerdos.', uprightMeaning: 'Competencia, conflicto, rivalidad.', reversedMeaning: 'Evitar el conflicto, acuerdo.' },
-  { id: 27, name: 'Seis de Bastos', number: 'VI', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w06.jpg', description: 'Éxito público, victoria y reconocimiento por tus logros.', uprightMeaning: 'Victoria, éxito, reconocimiento publico.', reversedMeaning: 'Falta de confianza, caída en desgracia.' },
-  { id: 28, name: 'Siete de Bastos', number: 'VII', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w07.jpg', description: 'Defensa de tu posición y resistencia ante la oposición.', uprightMeaning: 'Perseverancia, defensa, desafío.', reversedMeaning: 'Rendirse, abrumado.' },
-  { id: 29, name: 'Ocho de Bastos', number: 'VIII', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w08.jpg', description: 'Movimiento rápido, noticias y eventos que se aceleran.', uprightMeaning: 'Velocidad, acción rápida, viajes.', reversedMeaning: 'Retrasos, pánico, resistencia.' },
-  { id: 30, name: 'Nueve de Bastos', number: 'IX', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w09.jpg', description: 'La última línea de defensa; resistencia a pesar del cansancio.', uprightMeaning: 'Resiliencia, persistencia, empuje final.', reversedMeaning: 'Debilidad, rendirse.' },
-  { id: 31, name: 'Diez de Bastos', number: 'X', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w10.jpg', description: 'Cargas pesadas, exceso de responsabilidad y estrés.', uprightMeaning: 'Carga, responsabilidad, esfuerzo.', reversedMeaning: 'Delegar, colapso.' },
-  { id: 32, name: 'Sota de Bastos', number: 'Page', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w11.jpg', description: 'Chispa inicial de inspiración, descubridor entusiasta.', uprightMeaning: 'Entusiasmo, exploración, ideas.', reversedMeaning: 'Pesimismo, falta de metas.' },
-  { id: 33, name: 'Caballero de Bastos', number: 'Knight', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w12.jpg', description: 'Acción apasionada, impulsividad y búsqueda de aventuras.', uprightMeaning: 'Pasión, audacia, aventura.', reversedMeaning: 'Egoísmo, imprudencia.' },
-  { id: 34, name: 'Reina de Bastos', number: 'Queen', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w13.jpg', description: 'Seguridad en uno mismo, magnetismo y energía social vibrante.', uprightMeaning: 'Coraje, fertilidad, confianza.', reversedMeaning: 'Celos, demandas excesivas.' },
-  { id: 35, name: 'Rey de Bastos', number: 'King', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/w14.jpg', description: 'El líder visionario que transforma sus pasiones en imperios reales.', uprightMeaning: 'Liderazgo, visión, emprendimiento.', reversedMeaning: 'Impulsividad, tiranía.' },
+  // === ARCANOS MENORES - Bastos ===
+  { id: 22, name: 'As de Bastos', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w01.jpg', description: 'Inspiración pura y el despertar de una gran fuerza creativa.', uprightMeaning: 'Potencial creativo, entusiasmo.', reversedMeaning: 'Falta de dirección, bloques.' },
+  { id: 23, name: 'Dos de Bastos', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w02.jpg', description: 'Planificación futura y análisis de horizontes.', uprightMeaning: 'Decisiones, descubrimientos.', reversedMeaning: 'Miedo al riesgo.' },
+  { id: 24, name: 'Tres de Bastos', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w03.jpg', description: 'Tus esfuerzos comienzan a dar frutos en la distancia.', uprightMeaning: 'Expansión, progreso.', reversedMeaning: 'Retrasos en planes.' },
+  { id: 25, name: 'Cuatro de Bastos', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w04.jpg', description: 'Celebración, armonía y el regreso a casa.', uprightMeaning: 'Celebración, hogar, alegría.', reversedMeaning: 'Transición, tensión familiar.' },
+  { id: 26, name: 'Cinco de Bastos', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w05.jpg', description: 'Conflictos menores, competencia y desacuerdos.', uprightMeaning: 'Competencia, conflicto, rivalidad.', reversedMeaning: 'Evitar el conflicto, acuerdo.' },
+  { id: 27, name: 'Seis de Bastos', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w06.jpg', description: 'Éxito público, victoria y reconocimiento por tus logros.', uprightMeaning: 'Victoria, éxito, reconocimiento publico.', reversedMeaning: 'Falta de confianza, caída en desgracia.' },
+  { id: 28, name: 'Siete de Bastos', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w07.jpg', description: 'Defensa de tu posición y resistencia ante la oposición.', uprightMeaning: 'Perseverancia, defensa, desafío.', reversedMeaning: 'Rendirse, abrumado.' },
+  { id: 29, name: 'Ocho de Bastos', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w08.jpg', description: 'Movimiento rápido, noticias y eventos que se aceleran.', uprightMeaning: 'Velocidad, acción rápida, viajes.', reversedMeaning: 'Retrasos, pánico, resistencia.' },
+  { id: 30, name: 'Nueve de Bastos', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w09.jpg', description: 'La última línea de defensa; resistencia a pesar del cansancio.', uprightMeaning: 'Resiliencia, persistencia, empuje final.', reversedMeaning: 'Debilidad, rendirse.' },
+  { id: 31, name: 'Diez de Bastos', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w10.jpg', description: 'Cargas pesadas, exceso de responsabilidad y estrés.', uprightMeaning: 'Carga, responsabilidad, esfuerzo.', reversedMeaning: 'Delegar, colapso.' },
+  { id: 32, name: 'Sota de Bastos', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w11.jpg', description: 'Chispa inicial de inspiración, descubridor entusiasta.', uprightMeaning: 'Entusiasmo, exploración, ideas.', reversedMeaning: 'Pesimismo, falta de metas.' },
+  { id: 33, name: 'Caballero de Bastos', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w12.jpg', description: 'Acción apasionada, impulsividad y búsqueda de aventuras.', uprightMeaning: 'Pasión, audacia, aventura.', reversedMeaning: 'Egoísmo, imprudencia.' },
+  { id: 34, name: 'Reina de Bastos', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w13.jpg', description: 'Seguridad en uno mismo, magnetismo y energía social vibrante.', uprightMeaning: 'Coraje, fertilidad, confianza.', reversedMeaning: 'Celos, demandas excesivas.' },
+  { id: 35, name: 'Rey de Bastos', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/w14.jpg', description: 'El líder visionario que transforma sus pasiones en imperios reales.', uprightMeaning: 'Liderazgo, visión, emprendimiento.', reversedMeaning: 'Impulsividad, tiranía.' },
 
-  // ── COPAS (Cups) ──
-  { id: 36, name: 'As de Copas', number: 'Ace', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c01.jpg', description: 'Desborde de emociones puras, amor e intuición.', uprightMeaning: 'Amor nuevo, despertar emocional.', reversedMeaning: 'Bloqueo emocional.' },
-  { id: 37, name: 'Dos de Copas', number: 'II', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c02.jpg', description: 'Conexión profunda, romance o amistad simétrica.', uprightMeaning: 'Unión, romance, armonía.', reversedMeaning: 'Ruptura, falta de balance.' },
-  { id: 38, name: 'Tres de Copas', number: 'III', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c03.jpg', description: 'Celebración en comunidad y gratitud compartida.', uprightMeaning: 'Celebración, amistad, comunidad.', reversedMeaning: 'Excesos, chismes.' },
-  { id: 39, name: 'Cuatro de Copas', number: 'IV', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c04.jpg', description: 'Apatía, aburrimiento y desconexión del entorno.', uprightMeaning: 'Apatía, introspección, rechazo.', reversedMeaning: 'Nueva motivación, apertura.' },
-  { id: 40, name: 'Cinco de Copas', number: 'V', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c05.jpg', description: 'Lamento por las pérdidas pasadas sin ver lo que aún queda en pie.', uprightMeaning: 'Pérdida, arrepentimiento, decepción.', reversedMeaning: 'Aceptación, superación.' },
-  { id: 41, name: 'Seis de Copas', number: 'VI', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c06.jpg', description: 'Nostalgia, recuerdos de la infancia y reencuentros bondadosos.', uprightMeaning: 'Nostalgia, inocencia, reencuentro.', reversedMeaning: 'Estancado en el pasado, maduración.' },
-  { id: 42, name: 'Siete de Copas', number: 'VII', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c07.jpg', description: 'Demasiadas opciones e ilusiones que nublan el juicio.', uprightMeaning: 'Ilusión, opciones, fantasía.', reversedMeaning: 'Claridad, elección real.' },
-  { id: 43, name: 'Ocho de Copas', number: 'VIII', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c08.jpg', description: 'Abandonar lo conocido para buscar un significado más profundo.', uprightMeaning: 'Abandono, viaje espiritual, desapego.', reversedMeaning: 'Confusión, miedo a avanzar.' },
-  { id: 44, name: 'Nueve de Copas', number: 'IX', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c09.jpg', description: 'La carta de los deseos cumplidos, satisfacción y confort.', uprightMeaning: 'Satisfacción, deseo concedido, plenitud.', reversedMeaning: 'Materialismo, insatisfacción oculta.' },
-  { id: 45, name: 'Diez de Copas', number: 'X', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c10.jpg', description: 'Dicha familiar suprema, paz doméstica y amor verdadero.', uprightMeaning: 'Felicidad familiar, alineación emocional.', reversedMeaning: 'Conflictos en el hogar, desconexión.' },
-  { id: 46, name: 'Sota de Copas', number: 'Page', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c11.jpg', description: 'Sorpresas emocionales, sensibilidad artística y mensajes del corazón.', uprightMeaning: 'Sensibilidad, noticias alegres, intuición.', reversedMeaning: 'Inmadurez emocional, bloqueos.' },
-  { id: 47, name: 'Caballero de Copas', number: 'Knight', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c12.jpg', description: 'El heraldo del romance; idealista guiado por los sentimientos.', uprightMeaning: 'Romance, encanto, propuestas.', reversedMeaning: 'Manipulación emocional, desilusión.' },
-  { id: 48, name: 'Reina de Copas', number: 'Queen', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c13.jpg', description: 'La fuerza emocional madura que provee empatía incondicional.', uprightMeaning: 'Empatía, compasión, intuición.', reversedMeaning: 'Inestabilidad emocional, codependencia.' },
-  { id: 49, name: 'Rey de Copas', number: 'King', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/c14.jpg', description: 'Maestro de las emociones; mantiene la calma y el balance.', uprightMeaning: 'Control emocional, sabiduría, diplomacia.', reversedMeaning: 'Control, volatilidad, frialdad.' },
+  // === ARCANOS MENORES - Copas ===
+  { id: 36, name: 'As de Copas', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c01.jpg', description: 'Desborde de emociones puras, amor e intuición.', uprightMeaning: 'Amor nuevo, despertar emocional.', reversedMeaning: 'Bloqueo emocional.' },
+  { id: 37, name: 'Dos de Copas', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c02.jpg', description: 'Conexión profunda, romance o amistad simétrica.', uprightMeaning: 'Unión, romance, armonía.', reversedMeaning: 'Ruptura, falta de balance.' },
+  { id: 38, name: 'Tres de Copas', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c03.jpg', description: 'Celebración en comunidad y gratitud compartida.', uprightMeaning: 'Celebración, amistad, comunidad.', reversedMeaning: 'Excesos, chismes.' },
+  { id: 39, name: 'Cuatro de Copas', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c04.jpg', description: 'Apatía, aburrimiento y desconexión del entorno.', uprightMeaning: 'Apatía, introspección, rechazo.', reversedMeaning: 'Nueva motivación, apertura.' },
+  { id: 40, name: 'Cinco de Copas', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c05.jpg', description: 'Lamento por las pérdidas pasadas sin ver lo que aún queda en pie.', uprightMeaning: 'Pérdida, arrepentimiento, decepción.', reversedMeaning: 'Aceptación, superación.' },
+  { id: 41, name: 'Seis de Copas', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c06.jpg', description: 'Nostalgia, recuerdos de la infancia y reencuentros bondadosos.', uprightMeaning: 'Nostalgia, inocencia, reencuentro.', reversedMeaning: 'Estancado en el pasado, maduración.' },
+  { id: 42, name: 'Siete de Copas', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c07.jpg', description: 'Demasiadas opciones e ilusiones que nublan el juicio.', uprightMeaning: 'Ilusión, opciones, fantasía.', reversedMeaning: 'Claridad, elección real.' },
+  { id: 43, name: 'Ocho de Copas', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c08.jpg', description: 'Abandonar lo conocido para buscar un significado más profundo.', uprightMeaning: 'Abandono, viaje espiritual, desapego.', reversedMeaning: 'Confusión, miedo a avanzar.' },
+  { id: 44, name: 'Nueve de Copas', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c09.jpg', description: 'La carta de los deseos cumplidos, satisfacción y confort.', uprightMeaning: 'Satisfacción, deseo concedido, plenitud.', reversedMeaning: 'Materialismo, insatisfacción oculta.' },
+  { id: 45, name: 'Diez de Copas', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c10.jpg', description: 'Dicha familiar suprema, paz doméstica y amor verdadero.', uprightMeaning: 'Felicidad familiar, alineación emocional.', reversedMeaning: 'Conflictos en el hogar, desconexión.' },
+  { id: 46, name: 'Sota de Copas', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c11.jpg', description: 'Sorpresas emocionales, sensibilidad artística y mensajes del corazón.', uprightMeaning: 'Sensibilidad, noticias alegres, intuición.', reversedMeaning: 'Inmadurez emocional, bloqueos.' },
+  { id: 47, name: 'Caballero de Copas', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c12.jpg', description: 'El heraldo del romance; idealista guiado por los sentimientos.', uprightMeaning: 'Romance, encanto, propuestas.', reversedMeaning: 'Manipulación emocional, desilusión.' },
+  { id: 48, name: 'Reina de Copas', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c13.jpg', description: 'La fuerza emocional madura que provee empatía incondicional.', uprightMeaning: 'Empatía, compasión, intuición.', reversedMeaning: 'Inestabilidad emocional, codependencia.' },
+  { id: 49, name: 'Rey de Copas', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/c14.jpg', description: 'Maestro de las emociones; mantiene la calma y el balance.', uprightMeaning: 'Control emocional, sabiduría, diplomacia.', reversedMeaning: 'Control, volatilidad, frialdad.' },
 
-  // ── ESPADAS (Swords) ──
-  { id: 50, name: 'As de Espadas', number: 'Ace', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s01.jpg', description: 'Quiebre mental absoluto que trae verdades tajantes.', uprightMeaning: 'Claridad mental, verdad directa.', reversedMeaning: 'Confusión, argumentos destructivos.' },
-  { id: 51, name: 'Dos de Espadas', number: 'II', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s02.jpg', description: 'Encrucijada mental donde te niegas a ver la realidad.', uprightMeaning: 'Indecisión, tregua.', reversedMeaning: 'Movimiento forzado, revelación.' },
-  { id: 52, name: 'Tres de Espadas', number: 'III', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s03.jpg', description: 'Dolor emocional, desilusión inevitable o duelo necesario.', uprightMeaning: 'Desamor, pena, dolor necesario.', reversedMeaning: 'Sostener el dolor, negación.' },
-  { id: 53, name: 'Cuatro de Espadas', number: 'IV', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s04.jpg', description: 'Descanso mental, recuperación tras la batalla y meditación.', uprightMeaning: 'Reposo, recuperación, tregua.', reversedMeaning: 'Agotamiento, inquietud mental.' },
-  { id: 54, name: 'Cinco de Espadas', number: 'V', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s05.jpg', description: 'Victoria a un precio demasiado alto; hostilidad desatada.', uprightMeaning: 'Conflicto, victoria vacía, deshonor.', reversedMeaning: 'Fin de la disputa, reconciliación.' },
-  { id: 55, name: 'Seis de Espadas', number: 'VI', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s06.jpg', description: 'Transición hacia aguas más calmadas; dejando atrás la crisis.', uprightMeaning: 'Viaje, transición necesaria, alivio.', reversedMeaning: 'Equipaje atrapado, resistencia a cambiar.' },
-  { id: 56, name: 'Siete de Espadas', number: 'VII', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s07.jpg', description: 'Estrategias secretas, engaños o necesidad de actuar con astucia.', uprightMeaning: 'Estrategia, escape, sigilo.', reversedMeaning: 'Secretos revelados, cobardía.' },
-  { id: 57, name: 'Ocho de Espadas', number: 'VIII', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s08.jpg', description: 'Prisión mental autoimpuesta; te crees atrapado pero no lo estás.', uprightMeaning: 'Atrapado, restricción, ceguera.', reversedMeaning: 'Liberación, nueva perspectiva.' },
-  { id: 58, name: 'Nueve de Espadas', number: 'IX', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s09.jpg', description: 'Ansiedad extrema, pesadillas y preocupaciones agobiantes.', uprightMeaning: 'Ansiedad, insomnio, culpa.', reversedMeaning: 'Liberación del miedo, curación.' },
-  { id: 59, name: 'Diez de Espadas', number: 'X', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s10.jpg', description: 'El punto más bajo; final abrupto pero la promesa de un nuevo amanecer.', uprightMeaning: 'Derrota, final doloroso, traición.', reversedMeaning: 'Recuperación, resurgimiento.' },
-  { id: 60, name: 'Sota de Espadas', number: 'Page', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s11.jpg', description: 'Mentalidad curiosa, agudeza verbal y recopilación de datos.', uprightMeaning: 'Curiosidad, agilidad mental.', reversedMeaning: 'Espionaje, palabras hirientes.' },
-  { id: 61, name: 'Caballero de Espadas', number: 'Knight', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s12.jpg', description: 'Acción directa y rápida impulsada por el intelecto y las ideas.', uprightMeaning: 'Determinación, asertividad, prisa.', reversedMeaning: 'Falta de tacto, agresión desmedida.' },
-  { id: 62, name: 'Reina de Espadas', number: 'Queen', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s13.jpg', description: 'Intelecto afilado, juicio imparcial y fronteras claras.', uprightMeaning: 'Independencia, lucidez, objetividad.', reversedMeaning: 'Amargura, crítica cruel.' },
-  { id: 63, name: 'Rey de Espadas', number: 'King', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/s14.jpg', description: 'Autoridad intelectual, verdad racional y poder a través de la ley.', uprightMeaning: 'Lógica, disciplina, autoridad moral.', reversedMeaning: 'Manipulación, crueldad mental.' },
+  // === ARCANOS MENORES - Espadas ===
+  { id: 50, name: 'As de Espadas', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s01.jpg', description: 'Quiebre mental absoluto que trae verdades tajantes.', uprightMeaning: 'Claridad mental, verdad directa.', reversedMeaning: 'Confusión, argumentos destructivos.' },
+  { id: 51, name: 'Dos de Espadas', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s02.jpg', description: 'Encrucijada mental donde te niegas a ver la realidad.', uprightMeaning: 'Indecisión, tregua.', reversedMeaning: 'Movimiento forzado, revelación.' },
+  { id: 52, name: 'Tres de Espadas', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s03.jpg', description: 'Dolor emocional, desilusión inevitable o duelo necesario.', uprightMeaning: 'Desamor, pena, dolor necesario.', reversedMeaning: 'Sostener el dolor, negación.' },
+  { id: 53, name: 'Cuatro de Espadas', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s04.jpg', description: 'Descanso mental, recuperación tras la batalla y meditación.', uprightMeaning: 'Reposo, recuperación, tregua.', reversedMeaning: 'Agotamiento, inquietud mental.' },
+  { id: 54, name: 'Cinco de Espadas', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s05.jpg', description: 'Victoria a un precio demasiado alto; hostilidad desatada.', uprightMeaning: 'Conflicto, victoria vacía, deshonor.', reversedMeaning: 'Fin de la disputa, reconciliación.' },
+  { id: 55, name: 'Seis de Espadas', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s06.jpg', description: 'Transición hacia aguas más calmadas; dejando atrás la crisis.', uprightMeaning: 'Viaje, transición necesaria, alivio.', reversedMeaning: 'Equipaje atrapado, resistencia a cambiar.' },
+  { id: 56, name: 'Siete de Espadas', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s07.jpg', description: 'Estrategias secretas, engaños o necesidad de actuar con astucia.', uprightMeaning: 'Estrategia, escape, sigilo.', reversedMeaning: 'Secretos revelados, cobardía.' },
+  { id: 57, name: 'Ocho de Espadas', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s08.jpg', description: 'Prisión mental autoimpuesta; te crees atrapado pero no lo estás.', uprightMeaning: 'Atrapado, restricción, ceguera.', reversedMeaning: 'Liberación, nueva perspectiva.' },
+  { id: 58, name: 'Nueve de Espadas', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s09.jpg', description: 'Ansiedad extrema, pesadillas y preocupaciones agobiantes.', uprightMeaning: 'Ansiedad, insomnio, culpa.', reversedMeaning: 'Liberación del miedo, curación.' },
+  { id: 59, name: 'Diez de Espadas', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s10.jpg', description: 'El punto más bajo; final abrupto pero la promesa de un nuevo amanecer.', uprightMeaning: 'Derrota, final doloroso, traición.', reversedMeaning: 'Recuperación, resurgimiento.' },
+  { id: 60, name: 'Sota de Espadas', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s11.jpg', description: 'Mentalidad curiosa, agudeza verbal y recopilación de datos.', uprightMeaning: 'Curiosidad, agilidad mental.', reversedMeaning: 'Espionaje, palabras hirientes.' },
+  { id: 61, name: 'Caballero de Espadas', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s12.jpg', description: 'Acción directa y rápida impulsada por el intelecto y las ideas.', uprightMeaning: 'Determinación, asertividad, prisa.', reversedMeaning: 'Falta de tacto, agresión desmedida.' },
+  { id: 62, name: 'Reina de Espadas', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s13.jpg', description: 'Intelecto afilado, juicio imparcial y fronteras claras.', uprightMeaning: 'Independencia, lucidez, objetividad.', reversedMeaning: 'Amargura, crítica cruel.' },
+  { id: 63, name: 'Rey de Espadas', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/s14.jpg', description: 'Autoridad intelectual, verdad racional y poder a través de la ley.', uprightMeaning: 'Lógica, disciplina, autoridad moral.', reversedMeaning: 'Manipulación, crueldad mental.' },
 
-  // ── OROS (Pentacles) ──
-  { id: 64, name: 'As de Oros', number: 'Ace', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p01.jpg', description: 'Una oportunidad material tangible o salud renovada.', uprightMeaning: 'Abundancia material, bases sólidas.', reversedMeaning: 'Pérdida financiera, codicia.' },
-  { id: 65, name: 'Dos de Oros', number: 'II', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p02.jpg', description: 'Malabarismo de recursos y prioridades cambiantes.', uprightMeaning: 'Adaptabilidad, balance financiero.', reversedMeaning: 'Desorganización, deudas.' },
-  { id: 66, name: 'Tres de Oros', number: 'III', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p03.jpg', description: 'Trabajo en equipo, maestría en el oficio y colaboración constructiva.', uprightMeaning: 'Trabajo en equipo, aprendizaje, maestría.', reversedMeaning: 'Falta de cooperación, mediocridad.' },
-  { id: 67, name: 'Cuatro de Oros', number: 'IV', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p04.jpg', description: 'Aferrarse en exceso a lo material; miedo a la pérdida.', uprightMeaning: 'Seguridad, estabilidad, posesión.', reversedMeaning: 'Avaricia, rigidez material.' },
-  { id: 68, name: 'Cinco de Oros', number: 'V', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p05.jpg', description: 'Sensación de escasez o aislamiento exterior; la ayuda está cerca.', uprightMeaning: 'Escasez, aislamiento, dificultades.', reversedMeaning: 'Recuperación económica.' },
-  { id: 69, name: 'Seis de Oros', number: 'VI', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p06.jpg', description: 'Generosidad, caridad, dar y recibir en perfecto equilibrio.', uprightMeaning: 'Generosidad, soporte, balance kármico.', reversedMeaning: 'Deudas, abuso de poder monetario.' },
-  { id: 70, name: 'Siete de Oros', number: 'VII', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p07.jpg', description: 'Pausa para evaluar los resultados de tu siembra a largo plazo.', uprightMeaning: 'Paciencia, recompensa futura, evaluación.', reversedMeaning: 'Falta de progreso, frustración.' },
-  { id: 71, name: 'Ocho de Oros', number: 'VIII', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p08.jpg', description: 'Dedicación absoluta al detalle; desarrollo intensivo de habilidades.', uprightMeaning: 'Diligencia, artesanía, enfoque en la tarea.', reversedMeaning: 'Aburrimiento, falta de ambición.' },
-  { id: 72, name: 'Nueve de Oros', number: 'IX', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p09.jpg', description: 'Independencia financiera, lujo, refinamiento y disfrute de la soledad.', uprightMeaning: 'Independencia, éxito material, autosuficiencia.', reversedMeaning: 'Inseguridad financiera, gastos superficiales.' },
-  { id: 73, name: 'Diez de Oros', number: 'X', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p10.jpg', description: 'Riqueza generacional, legado familiar sólido y estabilidad duradera.', uprightMeaning: 'Legado, prosperidad familiar, tradición.', reversedMeaning: 'Pérdidas financieras, rupturas dinásticas.' },
-  { id: 74, name: 'Sota de Oros', number: 'Page', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p11.jpg', description: 'Deseo de aprender, planes prácticos iniciales o nuevas propuestas de negocio.', uprightMeaning: 'Ambición práctica, enfoque, progreso.', reversedMeaning: 'Falta de visión a largo plazo, pereza.' },
-  { id: 75, name: 'Caballero de Oros', number: 'Knight', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p12.jpg', description: 'Progreso lento pero constante; constancia absoluta.', uprightMeaning: 'Rutina sólida, trabajo duro.', reversedMeaning: 'Inercia, terquedad.' },
-  { id: 76, name: 'Reina de Oros', number: 'Queen', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p13.jpg', description: 'La madre tierra; proveedora práctica, hospitalaria y protectora del hogar.', uprightMeaning: 'Cuidado, practicidad, abundancia doméstica.', reversedMeaning: 'Desbalance entre trabajo y hogar, celos.' },
-  { id: 77, name: 'Rey de Oros', number: 'King', type: 'minor', image: 'https://raw.githubusercontent.com/ekelen/tarot-api/master/static/cards/p14.jpg', description: 'El magnate exitoso; dominio absoluto sobre el reino material.', uprightMeaning: 'Éxito financiero, disciplina, estabilidad.', reversedMeaning: 'Corrupción, tiranía material.' }
+  // === ARCANOS MENORES - Oros ===
+  { id: 64, name: 'As de Oros', number: 'Ace', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p01.jpg', description: 'Una oportunidad material tangible o salud renovada.', uprightMeaning: 'Abundancia material, bases sólidas.', reversedMeaning: 'Pérdida financiera, codicia.' },
+  { id: 65, name: 'Dos de Oros', number: 'II', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p02.jpg', description: 'Malabarismo de recursos y prioridades cambiantes.', uprightMeaning: 'Adaptabilidad, balance financiero.', reversedMeaning: 'Desorganización, deudas.' },
+  { id: 66, name: 'Tres de Oros', number: 'III', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p03.jpg', description: 'Trabajo en equipo, maestría en el oficio y colaboración constructiva.', uprightMeaning: 'Trabajo en equipo, aprendizaje, maestría.', reversedMeaning: 'Falta de cooperación, mediocridad.' },
+  { id: 67, name: 'Cuatro de Oros', number: 'IV', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p04.jpg', description: 'Aferrarse en exceso a lo material; miedo a la pérdida.', uprightMeaning: 'Seguridad, estabilidad, posesión.', reversedMeaning: 'Avaricia, rigidez material.' },
+  { id: 68, name: 'Cinco de Oros', number: 'V', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p05.jpg', description: 'Sensación de escasez o aislamiento exterior; la ayuda está cerca.', uprightMeaning: 'Escasez, aislamiento, dificultades.', reversedMeaning: 'Recuperación económica.' },
+  { id: 69, name: 'Seis de Oros', number: 'VI', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p06.jpg', description: 'Generosidad, caridad, dar y recibir en perfecto equilibrio.', uprightMeaning: 'Generosidad, soporte, balance kármico.', reversedMeaning: 'Deudas, abuso de poder monetario.' },
+  { id: 70, name: 'Siete de Oros', number: 'VII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p07.jpg', description: 'Pausa para evaluar los resultados de tu siembra a largo plazo.', uprightMeaning: 'Paciencia, recompensa futura, evaluación.', reversedMeaning: 'Falta de progreso, frustración.' },
+  { id: 71, name: 'Ocho de Oros', number: 'VIII', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p08.jpg', description: 'Dedicación absoluta al detalle; desarrollo intensivo de habilidades.', uprightMeaning: 'Diligencia, artesanía, enfoque en la tarea.', reversedMeaning: 'Aburrimiento, falta de ambición.' },
+  { id: 72, name: 'Nueve de Oros', number: 'IX', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p09.jpg', description: 'Independencia financiera, lujo, refinamiento y disfrute de la soledad.', uprightMeaning: 'Independencia, éxito material, autosuficiencia.', reversedMeaning: 'Inseguridad financiera, gastos superficiales.' },
+  { id: 73, name: 'Diez de Oros', number: 'X', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p10.jpg', description: 'Riqueza generacional, legado familiar sólido y estabilidad duradera.', uprightMeaning: 'Legado, prosperidad familiar, tradición.', reversedMeaning: 'Pérdidas financieras, rupturas dinásticas.' },
+  { id: 74, name: 'Sota de Oros', number: 'Page', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p11.jpg', description: 'Deseo de aprender, planes prácticos iniciales o nuevas propuestas de negocio.', uprightMeaning: 'Ambición práctica, enfoque, progreso.', reversedMeaning: 'Falta de visión a largo plazo, pereza.' },
+  { id: 75, name: 'Caballero de Oros', number: 'Knight', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p12.jpg', description: 'Progreso lento pero constante; constancia absoluta.', uprightMeaning: 'Rutina sólida, trabajo duro.', reversedMeaning: 'Inercia, terquedad.' },
+  { id: 76, name: 'Reina de Oros', number: 'Queen', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p13.jpg', description: 'La madre tierra; proveedora práctica, hospitalaria y protectora del hogar.', uprightMeaning: 'Cuidado, practicidad, abundancia doméstica.', reversedMeaning: 'Desbalance entre trabajo y hogar, celos.' },
+  { id: 77, name: 'Rey de Oros', number: 'King', type: 'minor', image: 'https://www.sacred-texts.com/tarot/pkt/img/p14.jpg', description: 'El magnate exitoso; dominio absoluto sobre el reino material.', uprightMeaning: 'Éxito financiero, disciplina, estabilidad.', reversedMeaning: 'Corrupción, tiranía material.' }
 ];
 
 let WEATHER_DATA = null;
@@ -1242,7 +1259,6 @@ function generateLunarCalendar(year, month) {
 }
 
 function renderTarotGrid() {
-  // 1. Definimos los bloques y los títulos que queremos mostrar
   const categories = [
     { key: 'major', title: 'Arcanos Mayores', label: '✦ Mystical Divination' },
     { key: 'bastos', title: 'Palo de Bastos (Wands)', label: '✦ Fuego & Creatividad' },
@@ -1251,13 +1267,11 @@ function renderTarotGrid() {
     { key: 'oros', title: 'Palo de Oros (Pentacles)', label: '✦ Tierra & Materia' }
   ];
 
-  // 2. Clasificamos las cartas de la base de datos en contenedores temporales
   const groups = { major: [], bastos: [], copas: [], espadas: [], oros: [] };
   TAROT_CARDS.forEach(card => {
     if (card.type === 'major') {
       groups.major.push(card);
     } else if (card.type === 'minor') {
-      // Identificamos el palo por el nombre de la carta
       const nameLower = card.name.toLowerCase();
       if (nameLower.includes('bastos') || nameLower.includes('wands')) {
         groups.bastos.push(card);
@@ -1271,13 +1285,11 @@ function renderTarotGrid() {
     }
   });
 
-  // 3. Construimos el HTML estructurado por secciones
   let htmlContent = '';
 
   categories.forEach(cat => {
     const cardsInGroup = groups[cat.key];
     
-    // Solo creamos la sección si el grupo tiene cartas cargadas
     if (cardsInGroup && cardsInGroup.length > 0) {
       htmlContent += `
         <div class="tarot-header" style="margin-top: 2.5rem; ${cat.key !== 'major' ? 'border-top: 1px dashed var(--border); padding-top: 2.5rem;' : ''}">
@@ -1288,7 +1300,7 @@ function renderTarotGrid() {
           ${cardsInGroup.map(card => `
             <div class="tarot-card ${card.type}" onclick="openTarotModal(${card.id})">
               <div class="tarot-card-image-wrapper">
-                 <img src="${card.image}" alt="${card.name}" class="tarot-card-image" loading="lazy">
+                 <img src="${card.image}" alt="${card.name}" class="tarot-card-image" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23222%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2275%22 font-size=%2210%22 fill=%22%23666%22 text-anchor=%22middle%22%3E${card.name}%3C/text%3E%3C/svg%3E'">
               </div>
               <div class="tarot-card-name">${card.name}</div>
             </div>
@@ -1298,15 +1310,14 @@ function renderTarotGrid() {
     }
   });
 
-  // 4. Inyectamos todo el árbol estructurado en el contenedor
   document.getElementById('tarot-container').innerHTML = htmlContent;
 }
 
 function openTarotModal(cardId) {
   const card = TAROT_CARDS[cardId];
-  document.getElementById('modal-card-number').textContent = `Arcano Mayor ${card.number}`;
+  document.getElementById('modal-card-number').textContent = `Arcano ${card.type === 'major' ? 'Mayor' : 'Menor'} ${card.number}`;
   document.getElementById('modal-card-name').textContent = card.name;
-  document.getElementById('modal-card-image').innerHTML = `<img src="${card.image}" alt="${card.name}" class="tarot-modal-image">`;
+  document.getElementById('modal-card-image').innerHTML = `<img src="${card.image}" alt="${card.name}" class="tarot-modal-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23222%22 width=%22100%22 height=%22150%22/%3E%3Ctext x=%2250%22 y=%2275%22 font-size=%2210%22 fill=%22%23666%22 text-anchor=%22middle%22%3E${card.name}%3C/text%3E%3C/svg%3E'">`;
   document.getElementById('modal-card-description').textContent = card.description;
   document.getElementById('modal-card-meanings').innerHTML = `
     <div class="meaning-box"><div class="meaning-title">Significado Directo</div><div class="meaning-text">${card.uprightMeaning}</div></div>
@@ -1409,133 +1420,7 @@ function closeTarotModal() { document.getElementById('tarot-modal').classList.re
     }
   } catch(err) { document.getElementById('weather-display').textContent = '• Satélite fuera de rango local.'; }
 
-  // ── CONFIGURACIÓN DE GOOGLE CALENDAR ──
-  const CLIENT_ID = '504339167916-t2tien08o6h0neq8bv28pi2p4hdn0qcr.apps.googleusercontent.com'; 
-  const SCOPES = 'https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.readonly';
-  
-  let tokenClient;
-  let gapiInited = false;
-  let gsiInited = false;
-
-  function gapiStart() {
-    gapi.client.init({
-      discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
-    }).then(() => { gapiInited = true; checkAuthAutomated(); });
-  }
-
-  window.gisInit = function() {
-    tokenClient = google.accounts.oauth2.initTokenClient({
-      client_id: CLIENT_ID,
-      scope: SCOPES,
-      callback: (tokenResponse) => {
-        if (tokenResponse.error !== undefined) throw tokenResponse;
-        localStorage.setItem('gcal_token', JSON.stringify(tokenResponse));
-        showLogoutButton();
-        listUpcomingEvents();
-      },
-    });
-    gsiInited = true;
-    checkAuthAutomated();
-  };
-
-  function handleClientLoad() {
-    gapi.load('client', gapiStart);
-    window.gisInit();
-  }
-
-  function checkAuthAutomated() {
-    if (gapiInited && gsiInited) {
-      const savedToken = localStorage.getItem('gcal_token');
-      if (savedToken) {
-        const token = JSON.parse(savedToken);
-        gapi.client.setToken(token);
-        showLogoutButton();
-        listUpcomingEvents();
-      } else {
-        document.getElementById('agenda-display').innerHTML = `• <span style="color:var(--dim)">Contenido protegido. Autentícate para sincronizar satélite.</span>`;
-      }
-    }
-  }
-
-  function showLogoutButton() {
-    document.getElementById('btn-login-google').style.display = 'none';
-    document.getElementById('btn-logout-google').style.display = 'inline-block';
-  }
-
-  document.getElementById('btn-login-google').onclick = () => {
-    const savedToken = localStorage.getItem('gcal_token');
-    if (!savedToken) { tokenClient.requestAccessToken({prompt: 'consent'}); } 
-    else { tokenClient.requestAccessToken({prompt: ''}); }
-  };
-
-  document.getElementById('btn-logout-google').onclick = () => {
-    const token = gapi.client.getToken();
-    if (token !== null) {
-      google.accounts.oauth2.revoke(token.access_token, () => {
-        gapi.client.setToken('');
-        localStorage.removeItem('gcal_token');
-        document.getElementById('btn-login-google').style.display = 'inline-block';
-        document.getElementById('btn-logout-google').style.display = 'none';
-        document.getElementById('agenda-display').innerHTML = `• <span style="color:var(--dim)">Contenido protegido. Conexión cerrada.</span>`;
-      });
-    }
-  };
-
-  async function listUpcomingEvents() {
-    try {
-      const agendaEl = document.getElementById('agenda-display');
-      const IDsCalendarios = [
-        'primary',
-        '9lakadg6pdjq048b0a23u6292o@group.calendar.google.com',
-        'ebm08rnaid3jn88v9ne56dc400@group.calendar.google.com'
-      ];
-      const paletaColores = ['var(--green)', '#38bdf8', '#a855f7'];
-
-      const eventPromises = IDsCalendarios.map(async (idCalendario, index) => {
-        try {
-          const res = await gapi.client.calendar.events.list({
-            'calendarId': idCalendario,
-            'timeMin': (new Date()).toISOString(),
-            'showDeleted': false,
-            'singleEvents': true,
-            'maxResults': 10,
-            'orderBy': 'startTime',
-          });
-          return (res.result.items || []).map(e => ({ ...e, colorAsignado: paletaColores[index] }));
-        } catch (err) {
-          console.warn(`Sector omitido o sin sincronizar: ${idCalendario}`);
-          return [];
-        }
-      });
-
-      const allCalendarsEvents = await Promise.all(eventPromises);
-      let allEvents = [].concat(...allCalendarsEvents);
-
-      if (allEvents.length === 0) {
-        agendaEl.innerHTML = '• No hay eventos próximos en órbita.';
-        return;
-      }
-
-      allEvents.sort((a, b) => new Date(a.start.dateTime || a.start.date) - new Date(b.start.dateTime || b.start.date));
-      allEvents = allEvents.slice(0, 15);
-
-      let html = '', lastDateString = '';
-      allEvents.forEach(event => {
-        const eventDate = new Date(event.start.dateTime || event.start.date);
-        const currentDateString = eventDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }).toUpperCase();
-        if (currentDateString !== lastDateString) {
-          if (lastDateString !== '') html += `<div style="margin-top: 0.8rem; border-top: 1px dashed var(--muted); padding-top: 0.4rem;"></div>`;
-          html += `<div style="font-size: 0.55rem; color: var(--dim); letter-spacing: 0.08em; margin-bottom: 0.3rem;">[--- ${currentDateString} ---]</div>`;
-          lastDateString = currentDateString;
-        }
-        let timeDisplay = event.start.dateTime ? eventDate.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }) : 'Todo el día';
-        html += `<div style="margin-bottom: 0.25rem; display: flex; align-items: start; gap: 0.5rem;"><span style="color: ${event.colorAsignado}; font-size: 0.6rem; flex-shrink:0; font-weight: bold;">${timeDisplay}</span><span style="color: var(--text); font-size: 0.65rem;">${esc(event.summary)}</span></div>`;
-      });
-      agendaEl.innerHTML = html;
-    } catch (err) { document.getElementById('agenda-display').innerHTML = '• Error sincronizando telemetría de multicalendarios.'; }
-  }
-  
-  // NAVEGACIÓN CORREGIDA CON SOPORTE PARA LA PANTALLA TAROT
+  // ── NAVEGACIÓN CORREGIDA CON SOPORTE PARA LA PANTALLA TAROT ──
   document.querySelectorAll('.nav-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       currentView = btn.dataset.view;
@@ -1575,7 +1460,6 @@ function closeTarotModal() { document.getElementById('tarot-modal').classList.re
   pet.addEventListener('click', () => { pet.className = 'pet-click'; setTimeout(() => { pet.className = 'pet-idle'; }, 400); });
 
   startPetBehavior();
-  setTimeout(handleClientLoad, 500);
 })();
 
 function openWeatherModal() {
