@@ -1,546 +1,503 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="dark" lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lyric Flipper</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lyric-flipper</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#131313",
+                        "tertiary-container": "#dfdcdb",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-container": "#201f1f",
+                        "surface-tint": "#00e639",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#72ff70",
+                        "on-surface": "#e5e2e1",
+                        "on-primary": "#003907",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-dim": "#131313",
+                        "on-tertiary": "#313030",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "outline": "#84967e",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-primary-container": "#007117",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "surface-container-highest": "#353534",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary-container": "#00ff41",
+                        "on-secondary-container": "#b4b5b5",
+                        "on-primary-fixed": "#002203",
+                        "on-surface-variant": "#b9ccb2",
+                        "primary": "#ebffe2",
+                        "tertiary": "#fcf8f8",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-bright": "#3a3939",
+                        "inverse-primary": "#006e16",
+                        "on-background": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "on-primary-fixed-variant": "#00530e",
+                        "inverse-on-surface": "#313030",
+                        "outline-variant": "#3b4b37",
+                        "primary-fixed-dim": "#00e639",
+                        "on-secondary": "#2f3131",
+                        "error-container": "#93000a",
+                        "secondary-container": "#454747",
+                        "background": "#131313",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-tertiary-container": "#616060",
+                        "secondary": "#c6c6c7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1200px",
+                        "margin-sm": "16px",
+                        "unit": "4px",
+                        "margin-lg": "40px"
+                    },
+                    "fontFamily": {
+                        "label-code": ["JetBrains Mono"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "body-mono": ["Space Mono"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "display-lg-mobile": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "label-code": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "headline-md": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-mono": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ── CRT & SCANLINES EFFECTS ── */
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(18, 16, 16, 0) 50%,
+                rgba(0, 0, 0, 0.15) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 40;
+        }
+        .crt-glow::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: radial-gradient(circle, rgba(18, 16, 16, 0) 40%, rgba(0, 0, 0, 0.4) 100%);
+            pointer-events: none;
+            z-index: 41;
+        }
 
-  :root {
-    --bg:      #0d0d0d;
-    --surface: #141414;
-    --border:  #1e1e1e;
-    --green:   #1DB954;
-    --muted:   #444;
-    --text:    #e8e8e0;
-    --dim:     #666;
-  }
+        /* ── CANVAS EXPLORER LAYERS ── */
+        .visual-canvas-base { transition: filter 0.4s ease; }
+        .visual-canvas-base.dimmed { filter: grayscale(100%) brightness(0.35) contrast(1.1); }
+        .highlight-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 10px rgba(0, 255, 65, 0.5));
+        }
+        .highlight-layer.active { opacity: 1; }
+        .hotspot { position: absolute; cursor: crosshair; z-index: 30; transition: all 0.3s ease; }
+        .monument-label { opacity: 0; transform: translateY(10px); transition: all 0.3s ease; white-space: nowrap; }
+        .hotspot:hover .monument-label { opacity: 1; transform: translateY(0); }
 
-  html, body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; min-height: 100vh; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .cursor-blink { animation: blink 1s step-end infinite; }
 
-  body {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    grid-template-rows: auto auto auto 1fr auto auto; /* Añadida fila para el skyline */
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-    gap: 0 3.5rem;
-  }
+        /* Clip-paths para el Skyline de la obra de Stitch */
+        .clip-london { clip-path: polygon(14% 15%, 26% 15%, 26% 85%, 14% 85%); }
+        .clip-athens { clip-path: polygon(50% 5%, 85% 5%, 85% 35%, 50% 35%); }
+        .clip-coruna { clip-path: polygon(75% 35%, 90% 35%, 90% 90%, 75% 90%); }
 
-  /* ── HEADER ── */
-  header { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 1.25rem; margin-bottom: 2rem; }
-  .logo { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); }
-  .logo em { color: var(--muted); font-style: normal; }
-  #header-date { font-size: 0.65rem; color: var(--dim); letter-spacing: 0.08em; }
+        /* ── MEDIDAS DE LA MASCOTA NATIVA RE-EVALUADA ── */
+        #space-sector {
+            position: absolute;
+            right: -360px; 
+            top: 0;
+            border-radius: 8px;
+            width: 320px;        
+            height: 320px; 
+            background-image: url('images/bckg.png');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            border: 1px solid #3b4b37;
+        }
+        #web-pet {
+            position: absolute;
+            right: 20%;          
+            top: 30%;
+            width: 50px;         
+            height: 50px;        
+            z-index: 10;
+            cursor: pointer;
+            transition: top 1s ease-in-out, right 1s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #web-pet img {
+            width: 100%;         
+            height: 100%;        
+            object-fit: contain;
+            display: block;
+            image-rendering: pixelated; 
+        }
+        .pet-idle img { animation: float-around 3s infinite ease-in-out; }
+        @keyframes float-around {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .pet-moving img { animation: wobble 0.2s infinite linear; }
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        .pet-click img { animation: pop 0.4s ease-out; }
+        @keyframes pop {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
 
-  /* ── NAV TABS ── */
-  .nav { grid-column: 1 / -1; display: flex; gap: 2rem; margin-bottom: 0; border-bottom: 1px solid var(--border); }
-  .nav-tab { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); background: none; border: none; border-bottom: 1px solid transparent; padding-bottom: 0.75rem; cursor: pointer; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; }
-  .nav-tab.active { color: var(--text); border-bottom-color: var(--green); }
-  .nav-tab:hover:not(.active) { color: var(--text); }
-
-  /* ── TIME RANGE PILLS ── */
-  .range-pills { grid-column: 1 / -1; display: flex; gap: 0.5rem; padding-top: 1.75rem; }
-  .pill { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); background: none; border: 1px solid var(--border); border-radius: 20px; padding: 0.3rem 0.85rem; cursor: pointer; transition: all 0.15s; }
-  .pill.active { color: var(--bg); background: var(--text); border-color: var(--text); }
-  .pill:hover:not(.active) { border-color: var(--muted); color: var(--text); }
-
-  /* ── TRACK ROW ── */
-  .track-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.65rem 0.5rem;
-    border-bottom: 1px solid var(--border);
-    list-style: none;
-  }
-  .track-row:last-child { border-bottom: none; }
-  .track-row.active .t-name { color: var(--green); }
-  .t-rank { font-size: 0.6rem; color: var(--muted); min-width: 1.6rem; letter-spacing: 0.05em; flex-shrink: 0; }
-  .t-img { width: 40px; height: 40px; border-radius: 5px; object-fit: cover; flex-shrink: 0; background: var(--surface); display: block; }
-  .t-info { display: flex; flex-direction: column; gap: 0.15rem; overflow: hidden; }
-  .t-name { font-size: 0.78rem; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .t-artist { font-size: 0.62rem; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-  /* ── MAIN areas ── */
-  main { grid-column: 1; display: flex; flex-direction: column; justify-content: center; padding: 2rem 0 3rem; min-height: 300px; position: relative; }
-  aside { grid-column: 2; grid-row: 4; border-left: 1px solid var(--border); padding-left: 2rem; padding-top: 2rem; }
-  .aside-label { font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 1rem; }
-
-  /* ── LYRIC ── */
-  .song-meta { margin-bottom: 2rem; }
-  .song-meta .s-artist { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 0.45rem; }
-  .song-meta .s-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.7rem, 3.5vw, 2.6rem); color: var(--text); line-height: 1.15; }
-  blockquote { border-left: 1px solid var(--green); padding-left: 1.75rem; font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 1.8; color: var(--text); }
-  .sent-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
-  .sent-badge::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-
-  /* ── ARTISTS ── */
-  #artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-  .artist-card { display: flex; align-items: center; gap: 0.85rem; padding: 0.65rem; border: 1px solid var(--border); border-radius: 6px; }
-  .artist-card.top1 { grid-column: 1 / -1; }
-  .a-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: var(--surface); }
-  .artist-card.top1 .a-img { width: 52px; height: 52px; }
-  .a-info { overflow: hidden; }
-  .a-rank { font-size: 0.55rem; color: var(--dim); letter-spacing: 0.08em; margin-bottom: 0.15rem; }
-  .a-name { font-size: 0.75rem; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .a-genre { font-size: 0.6rem; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-  /* ── SKELETON ── */
-  .skel { background: var(--surface); border-radius: 3px; animation: pulse 1.4s ease-in-out infinite; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-  /* ── VIEWS ── */
-  .view { display: none; }
-  .view.active { display: contents; }
-
-  /* ── CUADRANTE DEL ESPACIO RETRO ── */
-  #space-sector {
-    position: absolute;
-    right: calc(-320px - 3.5rem); 
-    top: 0;
-    border-radius: 8px;
-    margin: 40px 40px 0 0;
-    width: 320px;        
-    height: 320px; 
-    background-image: url('images/bckg.png'); /* Restaurada tu imagen espacial */
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-
-  /* ── TAMAÑO CONTROLADO DE LA MASCOTA ── */
-  #web-pet {
-    position: absolute;
-    right: 20%;          
-    top: 30%;
-    width: 50px;         
-    height: 50px;        
-    z-index: 10;
-    cursor: pointer;
-    transition: top 1s ease-in-out, right 1s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-       
-  #web-pet img {
-    width: 100%;         
-    height: 100%;        
-    object-fit: contain;
-    display: block;
-    image-rendering: pixelated; 
-  }
-       
-  .pet-idle img { animation: float-around 3s infinite ease-in-out; }
-  @keyframes float-around {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-       
-  .pet-moving img { animation: wobble 0.2s infinite linear; }
-  @keyframes wobble {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-  }
-       
-  .pet-click img { animation: pop 0.4s ease-out; }
-  @keyframes pop {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-  }
-
-  /* ── NUEVA SECCIÓN: SKYLINE EXPLORER (ESTILO BASE NATIVO) ── */
-  .skyline-section {
-    grid-column: 1 / -1;
-    margin-top: 6rem;
-    border-top: 1px solid var(--border);
-    padding-top: 4rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .skyline-meta .sky-label { font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 0.45rem; display: block; }
-  .skyline-meta .sky-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 2.2rem; color: var(--text); margin-bottom: 1rem; }
-  .skyline-meta .sky-desc { font-size: 0.75rem; color: var(--dim); max-width: 600px; line-height: 1.6; }
-
-  .skyline-container {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    margin-top: 3rem;
-    overflow: hidden;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    cursor: crosshair;
-  }
-  .skyline-layer {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
-    filter: invert(1) brightness(1.5);
-  }
-  .skyline-layer img { h-full; object-fit: contain; max-height: 90%; }
-  .skyline-layer:hover { filter: invert(1) brightness(2) drop-shadow(0 0 10px var(--green)); opacity: 1 !important; }
-  
-  .layer-tag { position: absolute; font-size: 0.6rem; letter-spacing: 0.6em; color: var(--dim); pointer-events: none; text-transform: uppercase; text-align: center; width: 100%; }
-  
-  /* Hotspots interactivos */
-  .hotspot-trigger {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    border: 1px solid var(--green);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: help;
-    z-index: 60;
-    pointer-events: auto;
-  }
-  .hotspot-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); }
-  .hotspot-card {
-    position: absolute;
-    bottom: 35px;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 1rem;
-    border-radius: 6px;
-    width: 240px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 100;
-  }
-  .hotspot-trigger:hover .hotspot-card { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); border-color: var(--green); }
-  .hotspot-card .h-label { font-size: 0.5rem; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
-  .hotspot-card .h-title { font-size: 0.8rem; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-  .hotspot-card .h-desc { font-size: 0.65rem; color: var(--dim); line-height: 1.4; }
-
-  /* ── FOOTER ── */
-  footer { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 4rem; font-size: 0.58rem; color: var(--muted); letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center; }
-  footer a { color: var(--dim); text-decoration: none; }
-  footer a:hover { color: var(--green); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 660px) {
-    body { grid-template-columns: 1fr; padding: 2rem 1.25rem; gap: 0; }
-    aside { grid-column: 1; grid-row: unset; border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 2rem; margin-top: 2rem; }
-    #artists-grid { grid-template-columns: 1fr; }
-    .artist-card.top1 { grid-column: 1; }
-    #space-sector { display: none; }
-    .skyline-container { height: 280px; }
-  }
-</style>
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #3b4b37; border-radius: 2px; }
+    </style>
 </head>
-<body>
+<body class="bg-background text-on-background overflow-y-auto overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container custom-scrollbar pb-16">
 
-<header>
-  <div class="logo">Lyric<em>/</em>Flipper</div>
-  <div id="header-date">cargando…</div>
-</header>
-
-<nav class="nav">
-  <button class="nav-tab active" data-view="lyric">lyric del día</button>
-  <button class="nav-tab" data-view="tracks">top tracks</button>
-  <button class="nav-tab" data-view="artists">top artists</button>
-</nav>
-
-<div class="range-pills" id="range-pills" style="display:none">
-  <button class="pill active" data-range="short_term">last 4 weeks</button>
-  <button class="pill" data-range="medium_term">last 6 months</button>
-  <button class="pill" data-range="long_term">last 12 months</button>
-</div>
-
-<div id="view-lyric" class="view active">
-  <main>
-    <div class="song-meta">
-      <div class="s-artist" id="lyric-artist"><span class="skel" style="width:120px;height:10px;display:inline-block"></span></div>
-      <div class="s-title" id="lyric-track"><span class="skel" style="width:280px;height:32px;display:inline-block"></span></div>
-    </div>
-    <blockquote id="lyric-chunk">
-      <span class="skel" style="width:100%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:85%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:90%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:75%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:80%;height:16px;display:block"></span>
-    </blockquote>
-
-    <div id="space-sector">
-      <div id="web-pet" class="pet-idle">
-        <img src="images/chateau.png" alt="Mascotita">
-      </div>
-    </div>
-
-    <div class="sent-badge">enviado al flipper zero &amp; iphone</div>
-  </main>
-  <aside>
-    <div class="aside-label">top tracks · last 4 weeks</div>
-    <ul id="tracks-list-lyric" style="list-style:none"></ul>
-  </aside>
-
-  <section class="skyline-section">
-    <div class="skyline-meta">
-      <span class="sky-label">Architectural Digest</span>
-      <h2 class="sky-title">Skyline Explorer</h2>
-      <p class="sky-desc">Pasa el cursor sobre los horizontes por capas de Londres, Atenas y A Coruña para descubrir monumentos históricos. Un viaje a través de la geometría urbana y el patrimonio cultural.</p>
-    </div>
-    
-    <div class="skyline-container">
-      <div class="skyline-layer layer-coruna" style="z-index: 10; opacity: 0.3;">
-        <img src="https://lh3.googleusercontent.com/aida/ADBb0uh1rAZDeMkN7lXzHPBif8-Nw9BxMImihAWlMAe10OVpwnXr2C_OkjnpqLIJQ2cCbzuGzdKml_URihl9v1KNsjpJeZiDcXyfkdr0470DFu4xuqKU00MWcawM-VY54NZSixVQU7TdsEZq-7HIyj1IJ2cCBM3BKfhXhOgXe6VisuEBMEmdF96N9QaSWentw7JL_hGZ7TLxune1eVKPaG2XX5PRl0JZJEPDKS2xuw2t0nFEOLT9XM_hhtmDgTg" alt="A Coruña Skyline">
-        <div class="layer-tag" style="bottom: 15px;">A Coruña</div>
-      </div>
-      <div class="skyline-layer layer-london" style="z-index: 20; opacity: 0.5;">
-        <img src="https://lh3.googleusercontent.com/aida/ADBb0uhL_l1i0SCUlFjulAB2-HSAqxI_IRA7GaCJh4x1bwpzGVVUbKndRlVXfKCJWvXw-sYQX2-IF51YVwX4JXsbSHfZsMv_QNr1larVUck31EQ5ZSwllM9ykW_1flzGh-xeIwoVcWpWhD3V1QS7Xt2y6NIjCNEJyIxYbUylZfSkyaxbHkDXMBBjx3g_Dk2I7-3Sk9kYOZIKLp1xHjtEMSu_Vg02LaO4oMuHQOvfV6j6SLKOEVpzH25wPHSYaiQ" alt="London Skyline">
-        <div class="layer-tag" style="bottom: 30px; left: -20%;">London</div>
-      </div>
-      <div class="skyline-layer layer-athens" style="z-index: 30; opacity: 0.7;">
-        <img src="https://lh3.googleusercontent.com/aida/ADBb0uj2dsasL6b-aM4gljvXlkGu6i5ygnpMgUNjP6yS5dSZafbf_W5Nv-ckWwdyELYNs2yvtWd3tn_IU4DTIGoLxUKOsu_ur0dn-aIBkW660As8t3PFW5l4a8m5uOUshWhv24nAr8bPDoRS3xV0EZbPT49o3K3HJrCILLQF31b9k8YtagcNQRhW_NSRiis_6QhpZbHKLGHfq-cr97VN8Ol-y5AQuBhKUqgRtOHFi0NB3WhVde7xgXwQdAKqhsk" alt="Athens Skyline">
-        <div class="layer-tag" style="bottom: 45px; right: -20%;">Athens</div>
-      </div>
-
-      <div class="hotspot-trigger" style="top: 25%; left: 45%;">
-        <div class="hotspot-dot"></div>
-        <div class="hotspot-card">
-          <p class="h-label">LANDMARK</p>
-          <p class="h-title">Elizabeth Tower</p>
-          <p class="h-desc">Construida en 1859, la icónica torre del reloj es una obra maestra de la arquitectura neogótica.</p>
+    <header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-sm md:px-margin-lg h-16 bg-background border-b border-outline-variant">
+        <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">terminal</span>
+            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary-fixed tracking-tighter uppercase">CYBER-LYRIC TERMINAL</h1>
         </div>
-      </div>
-      <div class="hotspot-trigger" style="top: 40%; right: 35%;">
-        <div class="hotspot-dot"></div>
-        <div class="hotspot-card">
-          <p class="h-label">LANDMARK</p>
-          <p class="h-title">El Partenón</p>
-          <p class="h-desc">Antiguo templo en la Acrópolis de Atenas, dedicado a la diosa Atenea, construido en el 447 a.C.</p>
+        <nav class="hidden md:flex gap-8">
+            <button onclick="currentView='lyric'; document.getElementById('view-lyric').classList.add('active');" class="font-body-mono text-body-mono text-primary-fixed hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors duration-100 px-2">TERMINAL</button>
+            <button class="font-body-mono text-body-mono text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors duration-100 px-2">STATS</button>
+        </nav>
+        <div class="flex gap-4">
+            <button class="text-primary-fixed active:scale-95 transition-transform"><span class="material-symbols-outlined">terminal</span></button>
+            <button class="text-primary-fixed active:scale-95 transition-transform"><span class="material-symbols-outlined">settings</span></button>
         </div>
-      </div>
-    </div>
-  </section>
-</div>
+    </header>
 
-<div id="view-tracks" class="view">
-  <main style="justify-content:flex-start;min-height:unset">
-    <ul id="tracks-list-main" style="list-style:none"></ul>
-  </main>
-  <aside>
-    <div class="aside-label" id="tracks-aside-label">&nbsp;</div>
-  </aside>
-</div>
-
-<div id="view-artists" class="view">
-  <main style="justify-content:flex-start;min-height:unset;display:block;padding:2rem 0 3rem">
-    <div id="artists-grid"></div>
-  </main>
-  <aside>
-    <div class="aside-label">géneros frecuentes</div>
-    <div id="genres-list" style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem"></div>
-  </aside>
-</div>
-
-<div id="error-msg">no se pudo cargar stats.json — ¿se ejecutó el pipeline hoy?</div>
-
-<footer>
-  <a href="https://github.com/lucspinpa/lyric-flipper" target="_blank">github.com/lucspinpa/lyric-flipper</a>
-  <span id="footer-generated"></span>
-</footer>
-
-<script>
-(async () => {
-  let DATA = null;
-  let currentView = 'lyric';
-  let currentRange = 'short_term';
-
-  function esc(str) {
-    if (!str) return '';
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function trackRow(t, i, isActive) {
-    return `<li class="track-row${isActive ? ' active' : ''}">
-      <span class="t-rank">${String(i+1).padStart(2,'0')}</span>
-      ${t.image ? `<img class="t-img" src="${esc(t.image)}" alt="" loading="lazy">` : '<span class="t-img"></span>'}
-      <span class="t-info">
-        <span class="t-name">${esc(t.track)}</span>
-        <span class="t-artist">${esc(t.artist)}</span>
-      </span>
-    </li>`;
-  }
-
-  // ── Fetch ──
-  try {
-    const res = await fetch(`stats.json?t=${Date.now()}`);
-    if (!res.ok) throw new Error(res.status);
-    DATA = await res.json();
-  } catch(e) {
-    document.getElementById('error-msg').style.display = 'block';
-    document.getElementById('lyric-chunk').innerHTML = '';
-    console.error('stats.json load failed:', e);
-    return;
-  }
-
-  // ── Header / footer ──
-  const dt = new Date(DATA.generated + 'T12:00:00');
-  document.getElementById('header-date').textContent =
-    dt.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-  document.getElementById('footer-generated').textContent = 'generado automáticamente · ' + DATA.generated;
-
-  // ── Lyric tab ──
-  function renderLyric() {
-    document.getElementById('lyric-artist').textContent = DATA.lyric.artist;
-    document.getElementById('lyric-track').textContent  = DATA.lyric.track;
-    document.getElementById('lyric-chunk').innerHTML =
-      DATA.lyric.chunk.split('\n').map(l => `<span>${esc(l)}</span>`).join('<br>');
-
-    const tracks = DATA.tracks.short_term || [];
-    document.getElementById('tracks-list-lyric').innerHTML =
-      tracks.map((t, i) => trackRow(t, i, t.track === DATA.lyric.track && t.artist === DATA.lyric.artist)).join('');
-  }
-
-  // ── Tracks tab ──
-  function renderTracks(range) {
-    const tracks = DATA.tracks[range] || [];
-    document.getElementById('tracks-list-main').innerHTML =
-      tracks.map((t, i) => trackRow(t, i, false)).join('');
-  }
-
-  // ── Artists tab ──
-  function renderArtists(range) {
-    const artists = DATA.artists[range] || [];
-
-    document.getElementById('artists-grid').innerHTML = artists.map((a, i) => `
-      <div class="artist-card${i === 0 ? ' top1' : ''}">
-        ${a.image ? `<img class="a-img" src="${esc(a.image)}" alt="" loading="lazy">` : '<span class="a-img"></span>'}
-        <div class="a-info">
-          <div class="a-rank">${String(i+1).padStart(2,'0')}</div>
-          <div class="a-name">${esc(a.name)}</div>
-          ${a.genres && a.genres.length ? `<div class="a-genre">${a.genres.map(esc).join(' · ')}</div>` : ''}
+    <aside class="fixed left-0 top-16 h-[calc(100vh-64px)] hidden md:flex flex-col border-r border-outline-variant bg-surface-container-lowest w-64 z-40">
+        <div class="p-6 border-b border-outline-variant">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 border border-primary-fixed bg-surface-container flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary-fixed">person</span>
+                </div>
+                <div>
+                    <div class="font-label-code text-label-code text-primary-fixed">OPERATOR_01</div>
+                    <div class="font-label-code text-[10px] text-on-surface-variant">SECTOR: EUROPE</div>
+                </div>
+            </div>
         </div>
-      </div>`).join('');
-
-    const genreCount = {};
-    artists.forEach(a => (a.genres || []).forEach(g => { genreCount[g] = (genreCount[g]||0) + 1; }));
-    const sorted = Object.entries(genreCount).sort((a,b) => b[1]-a[1]).slice(0, 8);
-    const max = sorted[0]?.[1] || 1;
-    document.getElementById('genres-list').innerHTML = sorted.map(([g, c]) => `
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-size:0.62rem;color:var(--text)">${esc(g)}</span>
-          <span style="font-size:0.55rem;color:var(--dim)">${c}</span>
+        <nav class="flex-1 py-4">
+            <div class="px-4 py-3 bg-primary-fixed text-on-primary-fixed font-bold flex items-center gap-3 cursor-pointer">
+                <span class="material-symbols-outlined">location_on</span>
+                <span class="font-body-mono text-body-mono">COORDINATES</span>
+            </div>
+            <div class="px-4 py-3 text-on-surface-variant flex items-center gap-3 cursor-pointer hover:bg-surface-container-high hover:text-primary-fixed transition-all">
+                <span class="material-symbols-outlined">account_balance</span>
+                <span class="font-body-mono text-body-mono">MONUMENTS</span>
+            </div>
+        </nav>
+        <div class="p-4 border-t border-outline-variant bg-surface-container-low">
+            <div class="font-label-code text-[10px] text-primary-fixed mb-1">STREAMS: ACTIVE</div>
+            <div class="w-full h-1 bg-outline-variant">
+                <div class="w-2/3 h-full bg-primary-fixed"></div>
+            </div>
         </div>
-        <div style="height:2px;background:var(--border);border-radius:2px">
-          <div style="height:100%;width:${Math.round(c/max*100)}%;background:var(--green);border-radius:2px"></div>
-        </div>
-      </div>`).join('');
-  }
+    </aside>
 
-  // ── Initial render ──
-  renderLyric();
-  renderTracks('short_term');
-  renderArtists('short_term');
-
-  // ── Nav tabs ──
-  document.querySelectorAll('.nav-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentView = btn.dataset.view;
-      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById('view-' + currentView).classList.add('active');
-      document.getElementById('range-pills').style.display = currentView === 'lyric' ? 'none' : 'flex';
-    });
-  });
-
-  // ── Range pills ──
-  document.querySelectorAll('.pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentRange = btn.dataset.range;
-      document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      if (currentView === 'tracks')  renderTracks(currentRange);
-      if (currentView === 'artists') renderArtists(currentRange);
-    });
-  });
-
-  // ── EFECTO PARALLAX PARA LOS SKYLINES DEL NUEVO MÓDULO ──
-  document.addEventListener('mousemove', (e) => {
-    if (currentView === 'lyric') {
-      const amount = 30;
-      const x = (e.clientX / window.innerWidth - 0.5) * amount;
-      const y = (e.clientY / window.innerHeight - 0.5) * (amount / 2);
-      
-      const layers = document.querySelectorAll('.skyline-layer');
-      layers.forEach((layer, index) => {
-        const depth = (index + 1) * 0.25;
-        // Identificar el desplazamiento base de cada capa
-        let originalY = 0;
-        if (layer.classList.contains('layer-coruna')) originalY = 64;
-        if (layer.classList.contains('layer-london')) originalY = 32;
+    <div class="md:ml-64 pt-24 px-6 md:px-12 max-w-[1200px]">
         
-        layer.style.transform = `translate(${x * depth}px, ${(y * depth) + originalY}px)`;
-      });
-    }
-  });
+        <div id="view-lyric" class="view active grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+            <main class="xl:col-span-8 relative min-h-[340px]">
+                <div class="mb-8">
+                    <div class="font-label-code text-primary-fixed uppercase tracking-wider mb-2" id="lyric-artist">CARGANDO...</div>
+                    <h2 class="font-headline-md text-headline-md text-on-surface mb-6" id="lyric-track">CARGANDO...</h2>
+                </div>
+                <blockquote id="lyric-chunk" class="border-l-2 border-primary-fixed pl-6 font-headline-md text-on-surface/90 italic text-xl space-y-4 leading-relaxed">
+                    <span class="skel block w-full h-4"></span>
+                    <span class="skel block w-5/6 h-4"></span>
+                </blockquote>
 
-  // ── COMPORTAMIENTO DE LA MASCOTA ──
-  const pet = document.getElementById('web-pet');
-  
-  function moveMascotRandomly() {
-    if (document.getElementById('view-lyric').classList.contains('active')) {
-      pet.className = 'pet-moving';
+                <div id="space-sector">
+                    <div id="web-pet" class="pet-idle">
+                        <img src="images/chateau.png" alt="Mascotita">
+                    </div>
+                </div>
 
-      const randomRight = Math.floor(Math.random() * (70 - 10) + 10); 
-      const randomTop = Math.floor(Math.random() * (70 - 10) + 10);   
+                <div class="mt-8 flex items-center gap-3">
+                    <div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></div>
+                    <div class="font-label-code text-[11px] text-primary-fixed/80 uppercase">ENVIADO AL FLIPPER ZERO & iPHONE</div>
+                </div>
+            </main>
 
-      const currentRight = parseFloat(pet.style.right) || 20;
-      
-      if (randomRight < currentRight) {
-        pet.querySelector('img').style.transform = 'scaleX(-1)'; 
-      } else {
-        pet.querySelector('img').style.transform = 'scaleX(1)';  
-      }
+            <aside class="xl:col-span-4 bg-surface-container-low p-6 border border-outline-variant rounded">
+                <div class="font-label-code text-[11px] text-on-surface-variant uppercase tracking-wider mb-4 border-b border-outline-variant pb-2">TOP TRACKS · LAST 4 WEEKS</div>
+                <ul id="tracks-list-lyric" class="space-y-4"></ul>
+            </aside>
 
-      pet.style.right = `${randomRight}%`;
-      pet.style.top = `${randomTop}%`;
+            <section class="col-span-12 mt-12 border-t border-outline-variant pt-12 pb-12">
+                <div class="mb-6">
+                    <span class="font-label-code text-primary-fixed text-[11px] tracking-widest uppercase block mb-1">ARCHITECTURAL_DIGEST</span>
+                    <h3 class="font-display-lg text-2xl text-on-surface">SKYLINE EXPLORER</h3>
+                </div>
 
-      setTimeout(() => {
-        pet.className = 'pet-idle';
-      }, 1000);
-    }
-  }
+                <div class="relative aspect-square max-h-[60vh] w-full max-w-[60vh] border-2 border-outline-variant bg-surface-container-lowest overflow-hidden mx-auto">
+                    <div class="visual-canvas-base absolute inset-0" id="base-image">
+                        <img alt="Terminal Visual" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg"/>
+                    </div>
+                    <div class="highlight-layer clip-london" id="london-highlight">
+                        <img alt="London Focus" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg"/>
+                    </div>
+                    <div class="highlight-layer clip-athens" id="athens-highlight">
+                        <img alt="Athens Focus" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg"/>
+                    </div>
+                    <div class="highlight-layer clip-coruna" id="coruna-highlight">
+                        <img alt="A Coruña Focus" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg"/>
+                    </div>
+                    
+                    <div class="absolute inset-0 scanlines z-40"></div>
+                    <div class="absolute inset-0 crt-glow z-41"></div>
 
-  function startPetBehavior() {
-    const nextMoveTime = Math.random() * (9000 - 5000) + 5000;
-    setTimeout(() => {
-      moveMascotRandomly();
-      startPetBehavior();
-    }, nextMoveTime);
-  }
+                    <div class="hotspot" onclick="navigateCity('LONDON')" onmouseenter="toggleHighlight('london', true)" onmouseleave="toggleHighlight('london', false)" style="top: 10%; left: 10%; width: 20%; height: 80%;">
+                        <div class="absolute -top-8 left-0 monument-label bg-primary-fixed text-on-primary-fixed px-2 py-1 font-label-code text-[10px] z-50">01_LONDON_LDN (STABLE)</div>
+                    </div>
+                    <div class="hotspot" onclick="navigateCity('ATHENS')" onmouseenter="toggleHighlight('athens', true)" onmouseleave="toggleHighlight('athens', false)" style="top: 5%; left: 50%; width: 40%; height: 35%;">
+                        <div class="absolute -top-8 right-0 monument-label bg-primary-fixed text-on-primary-fixed px-2 py-1 font-label-code text-[10px] text-right z-50">02_ATHENS_ATH (CONNECTED)</div>
+                    </div>
+                    <div class="hotspot" onclick="navigateCity('A CORUÑA')" onmouseenter="toggleHighlight('coruna', true)" onmouseleave="toggleHighlight('coruna', false)" style="top: 35%; left: 75%; width: 20%; height: 60%;">
+                        <div class="absolute -top-8 left-0 monument-label bg-primary-fixed text-on-primary-fixed px-2 py-1 font-label-code text-[10px] z-50">03_ACORUNA_LCG (STABLE)</div>
+                    </div>
 
-  pet.addEventListener('click', () => {
-    const currentClass = pet.className;
-    pet.className = 'pet-click';
-    setTimeout(() => {
-      pet.className = currentClass;
-    }, 400);
-  });
+                    <div class="absolute inset-0 pointer-events-none z-45 font-label-code p-6">
+                        <div class="flex justify-between items-start">
+                            <div class="bg-black/60 p-2 border border-outline-variant backdrop-blur-sm">
+                                <div class="text-primary-fixed text-[10px]">SIGNAL_STRENGTH: 98.4%</div>
+                                <div class="text-on-surface-variant text-[10px]">ENCRYPTION: SECTOR_ACTIVE</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-primary-fixed text-xl font-bold tracking-tighter" id="clock">00:00:00</div>
+                                <div class="text-on-surface-variant text-[8px] uppercase">timestamp_sync_ok</div>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-6 left-6 max-w-[200px] bg-black/60 p-2 border-l-2 border-primary-fixed backdrop-blur-sm">
+                            <p class="text-on-surface-variant text-[9px] leading-relaxed italic">
+                                SELECT TARGET COORDINATE TO INITIATE DATA EXTRACTION. SYSTEM READY... <span class="cursor-blink bg-primary-fixed inline-block w-1.5 h-3 align-middle"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 
-  startPetBehavior();
+    <div class="fixed inset-0 bg-background z-[100] translate-y-full flex flex-col items-center justify-center p-6 transition-transform duration-700 ease-[cubic-bezier(0.85,0,0.15,1)]" id="nav-screen">
+        <div class="w-full max-w-2xl border border-primary-fixed p-8 relative bg-surface-container-lowest">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="material-symbols-outlined text-primary-fixed text-4xl animate-spin">downloading</span>
+                <h2 class="font-headline-md text-headline-md text-primary-fixed uppercase tracking-widest" id="dest-title">LOADING SECTOR...</h2>
+            </div>
+            <div class="space-y-2 font-body-mono text-on-surface-variant mb-10 h-32 overflow-hidden custom-scrollbar" id="log-stream"></div>
+            <div class="w-full h-1 bg-surface-container-highest overflow-hidden">
+                <div class="w-0 h-full bg-primary-fixed transition-all duration-300" id="progress-bar"></div>
+            </div>
+            <button class="mt-8 border border-primary-fixed px-6 py-2 font-label-code text-primary-fixed hover:bg-primary-fixed hover:text-on-primary-fixed transition-all active:scale-95" onclick="closeNav()">ABORT_SEQUENCE</button>
+        </div>
+    </div>
 
-})();
-</script>
+    <footer class="fixed bottom-0 w-full z-40 flex justify-between items-center px-margin-sm py-2 bg-background border-t border-outline-variant h-10">
+        <div class="font-label-code text-[10px] uppercase text-secondary">SYSTEM_ARCHIVE.EXE</div>
+        <div class="font-label-code text-[10px] text-on-tertiary-container hidden sm:block uppercase">© 1994-2026 TERMINAL_OS</div>
+    </footer>
+
+    <script>
+        (async () => {
+            let DATA = null;
+            let currentView = 'lyric';
+
+            function esc(str) {
+                if (!str) return '';
+                return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            }
+
+            function trackRow(t, i, isActive) {
+                return `<li class="flex items-center gap-3 p-2 border-b border-outline-variant/30${isActive ? ' text-primary-fixed' : ''}">
+                    <span class="font-label-code text-on-surface-variant text-[10px] w-6">${String(i+1).padStart(2,'0')}</span>
+                    <span class="flex-grow overflow-hidden">
+                        <span class="block text-sm font-medium truncate">${esc(t.track)}</span>
+                        <span class="block text-xs text-on-surface-variant truncate">${esc(t.artist)}</span>
+                    </span>
+                </li>`;
+            }
+
+            // ── Fetch Spotify Stats ──
+            try {
+                const res = await fetch(`stats.json?t=${Date.now()}`);
+                if (!res.ok) throw new Error(res.status);
+                DATA = await res.json();
+            } catch(e) {
+                console.error('stats.json load failed:', e);
+                return;
+            }
+
+            // ── Lyric Rendering ──
+            function renderLyric() {
+                document.getElementById('lyric-artist').textContent = DATA.lyric.artist;
+                document.getElementById('lyric-track').textContent  = DATA.lyric.track;
+                document.getElementById('lyric-chunk').innerHTML =
+                    DATA.lyric.chunk.split('\n').map(l => `<span>${esc(l)}</span>`).join('<br>');
+
+                const tracks = DATA.tracks.short_term || [];
+                document.getElementById('tracks-list-lyric').innerHTML =
+                    tracks.map((t, i) => trackRow(t, i, t.track === DATA.lyric.track && t.artist === DATA.lyric.artist)).join('');
+            }
+
+            renderLyric();
+
+            // ── COMPORTAMIENTO AUTOMÁTICO DE LA MASCOTA ──
+            const pet = document.getElementById('web-pet');
+            
+            function moveMascotRandomly() {
+                if (document.getElementById('view-lyric').classList.contains('active')) {
+                    pet.className = 'pet-moving';
+
+                    const randomRight = Math.floor(Math.random() * (70 - 10) + 10); 
+                    const randomTop = Math.floor(Math.random() * (70 - 10) + 10);   
+
+                    const currentRight = parseFloat(pet.style.right) || 20;
+                    
+                    if (randomRight < currentRight) {
+                        pet.querySelector('img').style.transform = 'scaleX(-1)'; 
+                    } else {
+                        pet.querySelector('img').style.transform = 'scaleX(1)';  
+                    }
+
+                    pet.style.right = `${randomRight}%`;
+                    pet.style.top = `${randomTop}%`;
+
+                    setTimeout(() => { pet.className = 'pet-idle'; }, 1000);
+                }
+            }
+
+            function startPetBehavior() {
+                const nextMoveTime = Math.random() * (9000 - 5000) + 5000;
+                setTimeout(() => { moveMascotRandomly(); startPetBehavior(); }, nextMoveTime);
+            }
+
+            pet.addEventListener('click', () => {
+                const currentClass = pet.className;
+                pet.className = 'pet-click';
+                setTimeout(() => { pet.className = currentClass; }, 400);
+            });
+
+            startPetBehavior();
+        })();
+
+        // ── STITCH TERMINAL FUNCTIONS ──
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = 
+                `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        function toggleHighlight(city, isActive) {
+            const baseImage = document.getElementById('base-image');
+            const highlight = document.getElementById(`${city}-highlight`);
+            if (isActive) {
+                baseImage.classList.add('dimmed');
+                highlight.classList.add('active');
+            } else {
+                baseImage.classList.remove('dimmed');
+                highlight.classList.remove('active');
+            }
+        }
+
+        function navigateCity(cityName) {
+            const navScreen = document.getElementById('nav-screen');
+            const destTitle = document.getElementById('dest-title');
+            const logStream = document.getElementById('log-stream');
+            const progressBar = document.getElementById('progress-bar');
+
+            destTitle.innerText = `LINKING_${cityName}_COORDINATES`;
+            navScreen.style.transform = 'translateY(0)';
+            logStream.innerHTML = '';
+            progressBar.style.width = '0%';
+
+            const logs = [
+                `> AUTHENTICATING OPERATOR_01... [SUCCESS]`,
+                `> BYPASSING SECURE_GATEWAY_V4.2... [OK]`,
+                `> TARGET: ${cityName}`,
+                `> ESTABLISHING QUANTUM_STREAMS...`,
+                `> PIPELINING GEOMETRIC_DATA_0X884F...`,
+                `> INJECTING SECTOR_INTERFACE...`
+            ];
+
+            let i = 0;
+            const logInterval = setInterval(() => {
+                if (i < logs.length) {
+                    const p = document.createElement('p');
+                    p.innerText = logs[i];
+                    p.className = "text-[12px] animate-pulse";
+                    logStream.appendChild(p);
+                    progressBar.style.width = `${((i + 1) / logs.length) * 100}%`;
+                    i++;
+                } else {
+                    clearInterval(logInterval);
+                    const success = document.createElement('p');
+                    success.innerText = "SUCCESS: LINK_STABLE. READY FOR EXTRACTION.";
+                    success.className = "text-primary-fixed font-bold text-[13px] pt-2";
+                    logStream.appendChild(success);
+                }
+            }, 600);
+        }
+
+        function closeNav() { document.getElementById('nav-screen').style.transform = 'translateY(100%)'; }
+
+        // Micro-glitch Canvas effect
+        const canvasImage = document.getElementById('base-image');
+        setInterval(() => {
+            if (Math.random() > 0.98) {
+                canvasImage.style.transform = `translate(${Math.random() * 2 - 1}px, ${Math.random() * 2 - 1}px) skew(${Math.random() * 0.5}deg)`;
+                setTimeout(() => { canvasImage.style.transform = 'none'; }, 40);
+            }
+        }, 150);
+    </script>
 </body>
 </html>
