@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lyric Flipper</title>
+<title>Lyric Flipper & Control Center</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -42,12 +42,6 @@
   .nav-tab.active { color: var(--text); border-bottom-color: var(--green); }
   .nav-tab:hover:not(.active) { color: var(--text); }
 
-  /* ── TIME RANGE PILLS ── */
-  .range-pills { display: flex; gap: 0.5rem; padding-top: 1.75rem; }
-  .pill { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); background: none; border: 1px solid var(--border); border-radius: 20px; padding: 0.3rem 0.85rem; cursor: pointer; transition: all 0.15s; }
-  .pill.active { color: var(--bg); background: var(--text); border-color: var(--text); }
-  .pill:hover:not(.active) { border-color: var(--muted); color: var(--text); }
-
   /* ── TRACK ROW ── */
   .track-row {
     display: flex;
@@ -71,7 +65,11 @@
   aside { border-left: 1px solid var(--border); padding-left: 2rem; width: 320px; flex-shrink: 0; }
   .aside-label { font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 1rem; }
 
-  /* ── LYRIC ── */
+  /* ── LYRIC & DASHBOARD INFOS ── */
+  .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; max-width: 650px; }
+  .dash-card { background: var(--surface); border: 1px solid var(--border); padding: 0.75rem; border-radius: 4px; font-size: 0.65rem; }
+  .dash-card h4 { color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; font-size: 0.6rem; }
+  
   .song-meta { margin-bottom: 2rem; max-width: 650px; }
   .song-meta .s-artist { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 0.45rem; }
   .song-meta .s-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.7rem, 3.5vw, 2.6rem); color: var(--text); line-height: 1.15; }
@@ -79,42 +77,21 @@
   .sent-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
   .sent-badge::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
-  /* ── ARTISTS ── */
-  #artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; width: 100%; padding: 2rem 0; }
-  .artist-card { display: flex; align-items: center; gap: 0.85rem; padding: 0.65rem; border: 1px solid var(--border); border-radius: 6px; }
-  .artist-card.top1 { grid-column: 1 / -1; }
-  .a-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: var(--surface); }
-  .a-img-empty { width: 40px; height: 40px; border-radius: 50%; background: var(--surface); flex-shrink: 0; display: block; }
-  .a-info { overflow: hidden; }
-  .a-rank { font-size: 0.55rem; color: var(--dim); letter-spacing: 0.08em; margin-bottom: 0.15rem; }
-  .a-name { font-size: 0.75rem; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .a-genre { font-size: 0.6rem; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-  /* ── SKELETON ── */
-  .skel { background: var(--surface); border-radius: 3px; animation: pulse 1.4s ease-in-out infinite; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-  /* ── VIEWS ── */
-  .view { display: none; }
-  .view.active { display: flex; flex-direction: column; width: 100%; }
-
-  /* ── CUADRANTE DEL ESPACIO RETRO (Fijo arriba a la derecha de las letras) ── */
+  /* ── MASCOTA CUADRANTE ── */
   #space-sector {
     position: absolute;
     right: 40px; 
     top: 0;
     border-radius: 8px;
     width: 320px;        
-    height: 320px;
-    margin: 40px 30px 0 0;
-    background-image: url('images/bckg.png');
+    height: 320px; 
+    background-image: url('images/space-sector.png');
     background-size: cover;
     background-position: center;
     overflow: hidden;
     border: 1px solid var(--border);
   }
 
-  /* ── MASCOTA ── */
   #web-pet {
     position: absolute;
     right: 20%;          
@@ -128,37 +105,18 @@
     justify-content: center;
     align-items: center;
   }
-       
-  #web-pet img {
-    width: 100%;         
-    height: 100%;        
-    object-fit: contain;
-    display: block;
-    image-rendering: pixelated; 
-  }
-       
+  #web-pet img { width: 100%; height: 100%; object-fit: contain; display: block; image-rendering: pixelated; }
   .pet-idle img { animation: float-around 3s infinite ease-in-out; }
-  @keyframes float-around {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-       
+  @keyframes float-around { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
   .pet-moving img { animation: wobble 0.2s infinite linear; }
-  @keyframes wobble {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-  }
-       
+  @keyframes wobble { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
   .pet-click img { animation: pop 0.4s ease-out; }
-  @keyframes pop {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-  }
+  @keyframes pop { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
-  /* ── BLOQUE DE DISTRIBUCIÓN INFERIOR (CIUDADES AL LADO DE CANCIONES) ── */
+  /* ── DISTRIBUCIÓN INFERIOR ── */
   .bottom-split-grid {
     display: grid;
-    grid-template-columns: 1fr 320px; /* Misma anchura exacta que el bloque de arriba */
+    grid-template-columns: 1fr 320px; 
     gap: 3.5rem;
     margin-top: 4rem;
     border-top: 1px solid var(--border);
@@ -167,12 +125,7 @@
     width: 100%;
   }
 
-  .skyline-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-  }
+  .skyline-section { display: flex; flex-direction: column; gap: 1.5rem; width: 100%; }
   .skyline-meta .sky-label { font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 0.45rem; display: block; }
   .skyline-meta .sky-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 2rem; color: var(--text); margin-bottom: 0.5rem; }
   .skyline-meta .sky-desc { font-size: 0.7rem; color: var(--dim); line-height: 1.6; }
@@ -184,7 +137,7 @@
     border: 1px solid var(--border);
     background: var(--surface);
     overflow: hidden;
-    cursor: crosshair;
+    vertical-align: middle;
   }
   
   .visual-canvas-base { transition: filter 0.4s ease; }
@@ -200,7 +153,6 @@
     filter: brightness(1.3) contrast(1.2) drop-shadow(0 0 12px var(--green));
   }
   .highlight-layer.active { opacity: 1; }
-  
   .hotspot { position: absolute; z-index: 30; }
   .monument-label {
     opacity: 0;
@@ -223,11 +175,11 @@
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   .cursor-blink { animation: blink 1s step-end infinite; }
 
-  /* ── PANTALLA DE CARGA (STITCH SEQUENCE) ── */
+  /* ── PROYECTOS INTERACTIVOS (TERMINAL MODAL DESPLEGABLE) ── */
   #nav-screen {
     position: fixed;
     inset: 0;
-    background: var(--bg);
+    background: rgba(13,13,13,0.95);
     z-index: 9999;
     transform: translateY(100%);
     display: flex;
@@ -235,50 +187,36 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+    transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
   }
   #nav-screen.active { transform: translateY(0); }
-  .terminal-box {
-    width: 100%;
-    max-width: 550px;
-    border: 1px solid var(--green);
-    background: var(--surface);
-    padding: 2rem;
-  }
-  .term-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; color: var(--green); }
-  .term-title { font-size: 1rem; font-weight: bold; letter-spacing: 0.05em; text-transform: uppercase; }
-  .log-stream { height: 120px; font-size: 0.7rem; color: var(--dim); display: flex; flex-direction: column; gap: 4px; }
-  .progress-track { width: 100%; height: 2px; background: var(--border); margin-top: 1.5rem; overflow: hidden; }
-  .progress-bar { width: 0%; height: 100%; background: var(--green); transition: width 0.3s ease; }
-  .abort-btn {
-    margin-top: 1.5rem;
-    background: none;
-    border: 1px solid var(--green);
-    color: var(--green);
-    padding: 0.4rem 1rem;
-    font-size: 10px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .abort-btn:hover { background: var(--green); color: var(--bg); }
+  .terminal-box { width: 100%; max-width: 500px; border: 1px solid var(--green); background: var(--surface); padding: 1.75rem; }
+  .term-header { font-size: 0.8rem; font-weight: bold; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+  
+  .todo-input-container { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .todo-input { flex-grow: 1; background: var(--bg); border: 1px solid var(--border); padding: 0.4rem; color: var(--text); font-family: 'DM Mono', monospace; font-size: 0.75rem; }
+  .todo-input:focus { border-color: var(--green); outline: none; }
+  .todo-btn { background: none; border: 1px solid var(--green); color: var(--green); padding: 0 1rem; font-size: 0.7rem; cursor: pointer; text-transform: uppercase; }
+  .todo-btn:hover { background: var(--green); color: var(--bg); }
+  
+  .todo-list { height: 160px; overflow-y: auto; list-style: none; display: flex; flex-direction: column; gap: 6px; padding-right: 4px; }
+  .todo-list::-webkit-scrollbar { width: 3px; }
+  .todo-list::-webkit-scrollbar-thumb { background: var(--border); }
+  .todo-item { display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; background: var(--bg); padding: 0.4rem 0.6rem; border: 1px solid var(--border); }
+  .todo-del-btn { background: none; border: none; color: var(--dim); cursor: pointer; font-size: 0.65rem; }
+  .todo-del-btn:hover { color: #ff4a4a; }
 
-  /* ── MÓDULOS DE VISTAS SECUNDARIAS (SE QUEDAN ABAJO TAMBIÉN) ── */
-  .tracks-view-main, .artists-view-main {
-    margin-top: 3rem;
-    border-top: 1px solid var(--border);
-    padding-top: 3rem;
-    width: 100%;
-  }
+  .term-actions { display: flex; justify-content: space-between; margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem; }
 
-  /* ── FOOTER ── */
-  footer { border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 4rem; font-size: 0.58rem; color: var(--muted); letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+  /* ── VIEWS EXTRA ── */
+  .view { display: none; }
+  .view.active { display: flex; flex-direction: column; width: 100%; }
+  .tracks-view-main { margin-top: 3rem; width: 100%; }
+  footer { border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 4rem; font-size: 0.58rem; color: var(--muted); display: flex; justify-content: space-between; align-items: center; width: 100%; }
   footer a { color: var(--dim); text-decoration: none; }
   footer a:hover { color: var(--green); }
-  #error-msg { display: none; font-size: 0.7rem; color: var(--dim); padding: 2rem 0; width: 100%; }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    body { padding: 2rem 1.25rem; }
     .bottom-split-grid { grid-template-columns: 1fr; gap: 3rem; }
     aside { border-left: none; padding-left: 0; width: 100%; }
     #space-sector { display: none; }
@@ -295,17 +233,24 @@
 <nav class="nav">
   <button class="nav-tab active" data-view="lyric">lyric del día</button>
   <button class="nav-tab" data-view="tracks">top tracks</button>
-  <button class="nav-tab" data-view="artists">top artists</button>
 </nav>
-
-<div class="range-pills" id="range-pills" style="display:none">
-  <button class="pill active" data-range="short_term">last 4 weeks</button>
-  <button class="pill" data-range="medium_term">last 6 months</button>
-  <button class="pill" data-range="long_term">last 12 months</button>
-</div>
 
 <div id="view-lyric" class="view active">
   <main>
+    <div class="dashboard-grid">
+      <div class="dash-card">
+        <h4>METEO // LOCAL STATUS</h4>
+        <div id="weather-display" style="color: var(--dim);">Cargando telemetría satélite…</div>
+      </div>
+      <div class="dash-card">
+        <h4>DAILY AGENDA // EXCLUSIVE OPERATOR LOG</h4>
+        <div id="agenda-display" style="line-height: 1.4;">
+          • System check: OK<br>
+          • No public logs found.
+        </div>
+      </div>
+    </div>
+
     <div class="song-meta">
       <div class="s-artist" id="lyric-artist"><span class="skel" style="width:120px;height:10px;display:inline-block"></span></div>
       <div class="s-title" id="lyric-track"><span class="skel" style="width:280px;height:32px;display:inline-block"></span></div>
@@ -313,9 +258,6 @@
     <blockquote id="lyric-chunk">
       <span class="skel" style="width:100%;height:16px;display:block;margin-bottom:10px"></span>
       <span class="skel" style="width:85%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:90%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:75%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:80%;height:16px;display:block"></span>
     </blockquote>
 
     <div id="space-sector">
@@ -332,7 +274,7 @@
       <div class="skyline-meta">
         <span class="sky-label">Architectural Digest</span>
         <h2 class="sky-title">Skyline Explorer</h2>
-        <p class="sky-desc">Interactúa con los vectores de coordenadas tácticas para inicializar la extracción de datos de horizontes.</p>
+        <p class="sky-desc">Pulsa en la Torre de Hércules (A Coruña) para desplegar el editor de proyectos local cifrado.</p>
       </div>
 
       <div class="skyline-canvas-container">
@@ -356,8 +298,9 @@
         <div class="hotspot" onclick="navigateCity('ATHENS')" onmouseenter="toggleHighlight('athens', true)" onmouseleave="toggleHighlight('athens', false)" style="top: 5%; left: 50%; width: 40%; height: 35%;">
           <div class="absolute -top-6 right-0 monument-label">02_ATHENS_ATH</div>
         </div>
-        <div class="hotspot" onclick="navigateCity('A CORUÑA')" onmouseenter="toggleHighlight('coruna', true)" onmouseleave="toggleHighlight('coruna', false)" style="top: 35%; left: 75%; width: 20%; height: 60%;">
-          <div class="absolute -top-6 left-0 monument-label">03_ACORUNA_LCG</div>
+        
+        <div class="hotspot" onclick="openProjectTerminal()" onmouseenter="toggleHighlight('coruna', true)" onmouseleave="toggleHighlight('coruna', false)" style="top: 35%; left: 75%; width: 20%; height: 60%;">
+          <div class="absolute -top-6 left-0 monument-label">03_ACORUNA_PROJECTS_LOG</div>
         </div>
 
         <div class="hud-overlay">
@@ -366,7 +309,7 @@
             <div id="hud-clock" style="color: var(--green); font-weight: bold;">00:00:00</div>
           </div>
           <div style="position: absolute; bottom: 1.25rem; left: 1.25rem; max-width: 220px; background: rgba(0,0,0,0.7); padding: 6px; border-left: 2px solid var(--green);">
-            TARGET SCANNER READY... <span class="cursor-blink" style="display:inline-block; width:5px; height:9px; background: var(--green); vertical-align: middle;"></span>
+            SYSTEM LINKED // CHOOSE INTERACTION VECTOR... <span class="cursor-blink" style="display:inline-block; width:5px; height:9px; background: var(--green); vertical-align: middle;"></span>
           </div>
         </div>
       </div>
@@ -382,13 +325,21 @@
 <div id="nav-screen">
   <div class="terminal-box">
     <div class="term-header">
-      <h2 class="term-title" id="dest-title">ESTABLISHING CONNECTION...</h2>
+      <h2>// SYSTEM_CORE: PROJECT_TRACKER.EXE</h2>
     </div>
-    <div class="log-stream" id="log-stream"></div>
-    <div class="progress-track">
-      <div class="progress-bar" id="progress-bar"></div>
+    
+    <div class="todo-input-container">
+      <input type="text" id="todo-input" class="todo-input" placeholder="Nombre del nuevo proyecto a crear...">
+      <button class="todo-btn" onclick="addProject()">ADD</button>
     </div>
-    <button class="abort-btn" onclick="closeNav()">ABORT_SEQUENCE</button>
+
+    <ul id="todo-list" class="todo-list">
+      </ul>
+
+    <div class="term-actions">
+      <button class="abort-btn" onclick="exportToTxt()" style="border-color: var(--text); color: var(--text);">EXPORT_TXT</button>
+      <button class="abort-btn" onclick="closeNav()">CLOSE_CORE</button>
+    </div>
   </div>
 </div>
 
@@ -397,16 +348,6 @@
     <ul id="tracks-list-main" style="list-style:none"></ul>
   </div>
 </div>
-
-<div id="view-artists" class="view">
-  <div class="artists-view-main">
-    <div id="artists-grid"></div>
-    <div class="aside-label" style="margin-top: 2rem;">géneros frecuentes</div>
-    <div id="genres-list" style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem;max-width: 600px;"></div>
-  </div>
-</div>
-
-<div id="error-msg">no se pudo cargar stats.json — ¿se ejecutó el pipeline hoy?</div>
 
 <footer>
   <a href="https://github.com/lucspinpa/lyric-flipper" target="_blank">github.com/lucspinpa/lyric-flipper</a>
@@ -417,7 +358,6 @@
 (async () => {
   let DATA = null;
   let currentView = 'lyric';
-  let currentRange = 'short_term';
 
   function esc(str) {
     if (!str) return '';
@@ -435,25 +375,22 @@
     </li>`;
   }
 
-  // ── Fetch ──
+  // ── Fetch de Spotify ──
   try {
     const res = await fetch(`stats.json?t=${Date.now()}`);
     if (!res.ok) throw new Error(res.status);
     DATA = await res.json();
   } catch(e) {
     document.getElementById('error-msg').style.display = 'block';
-    document.getElementById('lyric-chunk').innerHTML = '';
-    console.error('stats.json load failed:', e);
+    console.error('stats.json failed:', e);
     return;
   }
 
-  // ── Header / footer ──
   const dt = new Date(DATA.generated + 'T12:00:00');
   document.getElementById('header-date').textContent =
     dt.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
   document.getElementById('footer-generated').textContent = 'generado automáticamente · ' + DATA.generated;
 
-  // ── Lyric tab ──
   function renderLyric() {
     document.getElementById('lyric-artist').textContent = DATA.lyric.artist;
     document.getElementById('lyric-track').textContent  = DATA.lyric.track;
@@ -465,49 +402,38 @@
       tracks.map((t, i) => trackRow(t, i, t.track === DATA.lyric.track && t.artist === DATA.lyric.artist)).join('');
   }
 
-  // ── Tracks tab ──
-  function renderTracks(range) {
-    const tracks = DATA.tracks[range] || [];
-    document.getElementById('tracks-list-main').innerHTML =
-      tracks.map((t, i) => trackRow(t, i, false)).join('');
-  }
-
-  // ── Artists tab ──
-  function renderArtists(range) {
-    const artists = DATA.artists[range] || [];
-
-    document.getElementById('artists-grid').innerHTML = artists.map((a, i) => `
-      <div class="artist-card${i === 0 ? ' top1' : ''}">
-        ${a.image ? `<img class="a-img" src="${esc(a.image)}" alt="" loading="lazy">` : '<span class="a-img-empty"></span>'}
-        <div class="a-info">
-          <div class="a-rank">${String(i+1).padStart(2,'0')}</div>
-          <div class="a-name">${esc(a.name)}</div>
-          ${a.genres && a.genres.length ? `<div class="a-genre">${a.genres.map(esc).join(' · ')}</div>` : ''}
-        </div>
-      </div>`).join('');
-
-    const genreCount = {};
-    artists.forEach(a => (a.genres || []).forEach(g => { genreCount[g] = (genreCount[g]||0) + 1; }));
-    const sorted = Object.entries(genreCount).sort((a,b) => b[1]-a[1]).slice(0, 8);
-    const max = sorted[0]?.[1] || 1;
-    document.getElementById('genres-list').innerHTML = sorted.map(([g, c]) => `
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-size:0.62rem;color:var(--text)">${esc(g)}</span>
-          <span style="font-size:0.55rem;color:var(--dim)">${c}</span>
-        </div>
-        <div style="height:2px;background:var(--border);border-radius:2px">
-          <div style="height:100%;width:${Math.round(c/max*100)}%;background:var(--green);border-radius:2px"></div>
-        </div>
-      </div>`).join('');
-  }
-
-  // ── Initial render ──
   renderLyric();
-  renderTracks('short_term');
-  renderArtists('short_term');
 
-  // ── Nav tabs ──
+  // ── CONEXIÓN SEGURA AL CLIMA (wttr.in) ──
+  try {
+    // Busca automáticamente el clima de A Coruña formateado en formato JSON amigable
+    const weatherRes = await fetch('https://wttr.in/A_Coruna?format=j1');
+    if (weatherRes.ok) {
+      const wData = await weatherRes.json();
+      const current = wData.current_condition[0];
+      const temp = current.temp_C;
+      const desc = current.lang_es ? current.lang_es[0].value : current.weatherDesc[0].value;
+      document.getElementById('weather-display').innerHTML = `• Ubicación: A Coruña<br>• Estado: ${desc}<br>• Temp: ${temp}°C`;
+    }
+  } catch(err) {
+    document.getElementById('weather-display').textContent = '• Satélite fuera de rango local.';
+  }
+
+  // ── CARGAR AGENDA Y RECORDATORIOS DESDE TU LOCAL STORAGE PRIVADO ──
+  function refreshAgenda() {
+    const localProjects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
+    const agendaEl = document.getElementById('agenda-display');
+    if (localProjects.length === 0) {
+      agendaEl.innerHTML = `• Modo Invitado activo.<br>• No hay recordatorios ni tareas en cola.`;
+    } else {
+      agendaEl.innerHTML = `• Pendientes: ${localProjects.length} proyectos activos.<br>` + 
+        localProjects.slice(0, 2).map(p => `• Próximo: ${esc(p)}`).join('<br>');
+    }
+  }
+  refreshAgenda();
+  window.refreshAgendaDisplay = refreshAgenda; // Compartir función
+
+  // ── PESTAÑAS NAV ──
   document.querySelectorAll('.nav-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       currentView = btn.dataset.view;
@@ -515,31 +441,16 @@
       btn.classList.add('active');
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById('view-' + currentView).classList.add('active');
-      document.getElementById('range-pills').style.display = currentView === 'lyric' ? 'none' : 'flex';
     });
   });
 
-  // ── Range pills ──
-  document.querySelectorAll('.pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentRange = btn.dataset.range;
-      document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      if (currentView === 'tracks')  renderTracks(currentRange);
-      if (currentView === 'artists') renderArtists(currentRange);
-    });
-  });
-
-  // ── COMPORTAMIENTO DE LA MASCOTA ──
+  // ── MASCOTA ──
   const pet = document.getElementById('web-pet');
-  
   function moveMascotRandomly() {
     if (document.getElementById('view-lyric').classList.contains('active')) {
       pet.className = 'pet-moving';
-
       const randomRight = Math.floor(Math.random() * (70 - 10) + 10); 
       const randomTop = Math.floor(Math.random() * (70 - 10) + 10);   
-
       const currentRight = parseFloat(pet.style.right) || 20;
       
       if (randomRight < currentRight) {
@@ -547,37 +458,21 @@
       } else {
         pet.querySelector('img').style.transform = 'scaleX(1)';  
       }
-
       pet.style.right = `${randomRight}%`;
       pet.style.top = `${randomTop}%`;
-
-      setTimeout(() => {
-        pet.className = 'pet-idle';
-      }, 1000);
+      setTimeout(() => { pet.className = 'pet-idle'; }, 1000);
     }
   }
-
-  function startPetBehavior() {
-    const nextMoveTime = Math.random() * (9000 - 5000) + 5000;
-    setTimeout(() => {
-      moveMascotRandomly();
-      startPetBehavior();
-    }, nextMoveTime);
-  }
+  setInterval(moveMascotRandomly, 7000);
 
   pet.addEventListener('click', () => {
-    const currentClass = pet.className;
     pet.className = 'pet-click';
-    setTimeout(() => {
-      pet.className = currentClass;
-    }, 400);
+    setTimeout(() => { pet.className = 'pet-idle'; }, 400);
   });
-
-  startPetBehavior();
 
 })();
 
-// ── SISTEMA DE MAPA DE CIUDADES (STITCH LOGIC) ──
+// ── LOGICA DE MAPAS TÁCTICOS (STITCH LOGIC) ──
 function updateHudClock() {
     const now = new Date();
     const clockEl = document.getElementById('hud-clock');
@@ -591,73 +486,73 @@ updateHudClock();
 function toggleHighlight(city, isActive) {
     const baseImage = document.getElementById('base-image');
     const highlight = document.getElementById(`${city}-highlight`);
-    if (!baseImage || !highlight) return;
-    
-    if (isActive) {
-        baseImage.classList.add('dimmed');
-        highlight.classList.add('active');
-    } else {
-        baseImage.classList.remove('dimmed');
-        highlight.classList.remove('active');
+    if (baseImage && highlight) {
+        if (isActive) { baseImage.classList.add('dimmed'); highlight.classList.add('active'); }
+        else { baseImage.classList.remove('dimmed'); highlight.classList.remove('active'); }
     }
 }
 
-function navigateCity(cityName) {
-    const navScreen = document.getElementById('nav-screen');
-    const destTitle = document.getElementById('dest-title');
-    const logStream = document.getElementById('log-stream');
-    const progressBar = document.getElementById('progress-bar');
-
-    if (!navScreen || !destTitle || !logStream || !progressBar) return;
-
-    destTitle.innerText = `LINKING_${cityName}_COORDINATES`;
-    navScreen.classList.add('active');
-    logStream.innerHTML = '';
-    progressBar.style.width = '0%';
-
-    const logs = [
-        `> AUTHENTICATING OPERATOR_01... [SUCCESS]`,
-        `> BYPASSING SECURE_GATEWAY_V4.2... [OK]`,
-        `> TARGET_SECTOR: ${cityName}`,
-        `> ESTABLISHING QUANTUM_STREAMS...`,
-        `> PIPELINING GEOMETRIC_DATA_0X884F...`,
-        `> INJECTING SECTOR_INTERFACE...`
-    ];
-
-    let i = 0;
-    const logInterval = setInterval(() => {
-        if (i < logs.length) {
-            const p = document.createElement('div');
-            p.innerText = logs[i];
-            p.style.marginBottom = '2px';
-            logStream.appendChild(p);
-            progressBar.style.width = `${((i + 1) / logs.length) * 100}%`;
-            i++;
-        } else {
-            clearInterval(logInterval);
-            const success = document.createElement('div');
-            success.innerText = "SUCCESS: LINK_STABLE. READY FOR EXTRACTION.";
-            success.style.color = 'var(--green)';
-            success.style.fontWeight = 'bold';
-            success.style.marginTop = '6px';
-            logStream.appendChild(success);
-        }
-    }, 500);
+// ── SISTEMA DE PROYECTOS PRIVADOS (LOCAL TO-DO LOG) ──
+function openProjectTerminal() {
+    document.getElementById('nav-screen').classList.add('active');
+    renderProjects();
 }
 
 function closeNav() {
-    const navScreen = document.getElementById('nav-screen');
-    if (navScreen) navScreen.classList.remove('active');
+    document.getElementById('nav-screen').classList.remove('active');
+    if (window.refreshAgendaDisplay) window.refreshAgendaDisplay();
 }
 
-const canvasBox = document.getElementById('base-image');
-if (canvasBox) {
-    setInterval(() => {
-        if (Math.random() > 0.98) {
-            canvasBox.style.transform = `translate(${Math.random() * 2 - 1}px, ${Math.random() * 2 - 1}px) skew(${Math.random() * 0.5}deg)`;
-            setTimeout(() => { canvasBox.style.transform = 'none'; }, 40);
-        }
-    }, 150);
+function renderProjects() {
+    const listEl = document.getElementById('todo-list');
+    const projects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
+    listEl.innerHTML = projects.map((p, i) => `
+      <li class="todo-item">
+        <span>> ${p}</span>
+        <button class="todo-del-btn" onclick="deleteProject(${i})">[ELIMINAR]</button>
+      </li>
+    `).join('');
+}
+
+function addProject() {
+    const input = document.getElementById('todo-input');
+    const text = input.value.trim();
+    if (!text) return;
+    
+    const projects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
+    projects.push(text);
+    localStorage.setItem('flipper_projects', JSON.stringify(projects));
+    input.value = '';
+    renderProjects();
+}
+
+function deleteProject(index) {
+    const projects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
+    projects.splice(index, 1);
+    localStorage.setItem('flipper_projects', JSON.stringify(projects));
+    renderProjects();
+}
+
+// Genera un txt formateado automáticamente y lo descarga al PC
+function exportToTxt() {
+    const projects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
+    if (projects.length === 0) { alert('No hay proyectos para exportar.'); return; }
+    
+    let content = "=========================================\n";
+    content += "   CYBER-LYRIC CORE // SYSTEM_PROJECT_LOG\n";
+    content += `   GENERADO: ${new Date().toLocaleDateString()}\n`;
+    content += "=========================================\n\n";
+    projects.forEach((p, idx) => {
+        content += `${String(idx + 1).padStart(2, '0')}. [PENDIENTE] > ${p}\n`;
+    });
+    content += "\n=========================================\n";
+    content += "STATUS: ARCHIVE_UPDATED // END OF LOG\n";
+
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `projects_archive_${new Date().toISOString().slice(0,10)}.txt`;
+    link.click();
 }
 </script>
 </body>
