@@ -67,7 +67,10 @@
 
   /* ── NAV TABS ── */
   .nav { grid-column: 1 / -1; display: flex; gap: 3rem; margin-bottom: 0; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
-  .nav-tab { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); background: none; border: none; border-bottom: 2px solid transparent; padding-bottom: 0.75rem; cursor: pointer; transition: color 0.15s, border-color 0.15s; }
+  .nav-tab { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); background: none; border: none; border-bottom: 2px solid transparent; padding-bottom: 0.75rem; cursor: pointer; transition: color 0.15s, border-color 0.15s;
+  text-decoration: none !important; /* Fuerza a quitar el subrayado */
+  border-bottom: none !important;   /* Asegúrate de que no haya un borde abajo */
+}
   .nav-tab.active { color: var(--text); border-bottom-color: var(--green); }
   .nav-tab:hover:not(.active) { color: var(--text); }
 
