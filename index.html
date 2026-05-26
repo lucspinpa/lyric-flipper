@@ -12,23 +12,31 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-/* FONDO Y SUPERFICIES (Oscuros para que resalten las tarjetas y el widget) */
-    --bg:      #0b0f0c; /* Tu negro original con un levísimo toque verde */
-    --surface: #121914; /* Superficie oscura con matiz verde */
-    --border:  #1c261f; /* Bordes para separar secciones */
-    --green:   #1DB954; /* Tu verde original intacto */
-    --muted:   #444444; /* Tu gris original */
-    --text:    #e8e8e0; /* Tu texto original intacto */
-    --dim:     #2d4a36; /* Un verde oscuro apagado para contrastes menores */
-}
+  :root {
+    /* FONDO Y SUPERFICIES (Oscuros modificados con matiz verde sutil) */
+    --bg:      #0b0f0c; 
+    --surface: #121914; 
+    --border:  #1c261f; 
+    --green:   #1DB954; 
+    --muted:   #444444; 
+    --text:    #e8e8e0; 
+    --dim:     #2d4a36; 
+    
+    /* Variables secundarias integradas correctamente */
     --purple:  #a855f7;
     --gold:    #fbbf24;
+  } /* <-- Aquí se cierra :root correctamente ahora */
+
+  /* Aplicamos el color de fondo tanto al documento completo como al cuerpo */
+  html {
+    background-color: var(--bg);
   }
 
-  html, body { background: var(--bg); color: var(--text); font-family: 'DM Mono', mono; min-height: 100vh; }
-
   body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace; 
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 350px;
     grid-template-rows: auto auto auto auto 1fr auto;
