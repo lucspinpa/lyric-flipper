@@ -67,13 +67,14 @@
   .t-name { font-size: 0.78rem; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .t-artist { font-size: 0.62rem; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-  /* ── MAIN areas ── */
-  main { grid-column: 1; display: flex; flex-direction: column; justify-content: center; padding: 2rem 0 3rem; min-height: 300px; position: relative; }
-  aside { grid-column: 2; grid-row: 4; border-left: 1px solid var(--border); padding-left: 2rem; padding-top: 2rem; }
+  /* ── AREAS DEL DISEÑO GRID GLOBAL ── */
+  main { grid-column: 1 / -1; display: flex; flex-direction: column; padding: 2rem 0 0 0; position: relative; }
+  .tab-view-extended { grid-column: 1; display: flex; flex-direction: column; padding: 2rem 0; }
+  aside.aside-extended { grid-column: 2; grid-row: 4; border-left: 1px solid var(--border); padding-left: 2rem; padding-top: 2rem; }
   .aside-label { font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 1rem; }
 
-  /* ── DASHBOARD MÓDULOS INTERNOS ── */
-  .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; width: 100%; }
+  /* ── DASHBOARD MÓDULOS ── */
+  .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; max-width: 650px; }
   .dash-card { background: var(--surface); border: 1px solid var(--border); padding: 0.75rem; border-radius: 4px; font-size: 0.65rem; }
   .dash-card h4 { color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; font-size: 0.55rem; }
 
@@ -81,7 +82,7 @@
   .song-meta { margin-bottom: 2rem; }
   .song-meta .s-artist { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 0.45rem; }
   .song-meta .s-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.7rem, 3.5vw, 2.6rem); color: var(--text); line-height: 1.15; }
-  blockquote { border-left: 1px solid var(--green); padding-left: 1.75rem; font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 1.8; color: var(--text); }
+  blockquote { border-left: 1px solid var(--green); padding-left: 1.75rem; font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 1.8; color: var(--text); max-width: 650px; }
   .sent-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
   .sent-badge::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
@@ -107,13 +108,13 @@
   /* ── CUADRANTE DEL ESPACIO RETRO ── */
   #space-sector {
     position: absolute;
-    right: calc(-320px - 3.5rem); 
-    top: 0;
+    right: 40px; 
+    top: 2rem;
     border-radius: 8px;
-    margin: 40px 40px 0 0;
     width: 320px;        
     height: 320px; 
-    background-image: url('images/space-sector.png');
+    margin: 60px 30px 0 0;
+    background-image: url('images/bckg.png');
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -142,11 +143,19 @@
   .pet-click img { animation: pop 0.4s ease-out; }
   @keyframes pop { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
-  /* ── SEC_CIUDADES (ZONA ROJA INFERIOR IZQUIERDA) ── */
-  .skyline-section {
+  /* ── ◄ CONTENEDOR COMÚN INFERIOR (UNIFICA CIUDADES Y TRACKS LATERALES) ── */
+  .bottom-split-container {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 3.5rem;
     margin-top: 4rem;
     border-top: 1px solid var(--border);
     padding-top: 3rem;
+    align-items: start;
+    width: 100%;
+  }
+
+  .skyline-section {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -199,7 +208,14 @@
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   .cursor-blink { animation: blink 1s step-end infinite; }
 
-  /* ── TERMINAL DE PROYECTOS PRIVADOS (MODAL) ── */
+  .aside-nested {
+    border-left: 1px solid var(--border);
+    padding-left: 2rem;
+    width: 320px;
+    flex-shrink: 0;
+  }
+
+  /* ── TERMINAL MODAL DE PROYECTOS PRIVADOS (TO-DO LIST) ── */
   #nav-screen {
     position: fixed;
     inset: 0;
@@ -231,18 +247,10 @@
   .abort-btn { background: none; border: 1px solid var(--green); color: var(--green); padding: 0.4rem 1rem; font-size: 10px; cursor: pointer; }
   .abort-btn:hover { background: var(--green); color: var(--bg); }
 
-  /* ── FOOTER ── */
-  footer { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 3rem; font-size: 0.58rem; color: var(--muted); letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center; }
-  footer a { color: var(--dim); text-decoration: none; }
-  footer a:hover { color: var(--green); }
-  #error-msg { display: none; font-size: 0.7rem; color: var(--dim); padding: 2rem 0; grid-column: 1 / -1; }
-
-  /* ── RESPONSIVE ── */
   @media (max-width: 660px) {
     body { grid-template-columns: 1fr; padding: 2rem 1.25rem; gap: 0; }
-    aside { grid-column: 1; grid-row: unset; border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 2rem; margin-top: 2rem; }
-    #artists-grid { grid-template-columns: 1fr; }
-    .artist-card.top1 { grid-column: 1; }
+    .bottom-split-container { grid-template-columns: 1fr; gap: 3rem; }
+    .aside-nested, aside.aside-extended { border-left: none; padding-left: 0; width: 100%; }
     #space-sector { display: none; }
   }
 </style>
@@ -299,56 +307,57 @@
 
     <div class="sent-badge">enviado al flipper zero & iphone</div>
 
-    <section class="skyline-section">
-      <div class="skyline-meta">
-        <span class="sky-label">Architectural Digest</span>
-        <h2 class="sky-title">Skyline Explorer</h2>
-        <p class="sky-desc">Haz clic en la Torre de Hércules (A Coruña) para desplegar el gestor secreto de tus proyectos.</p>
-      </div>
-
-      <div class="skyline-canvas-container">
-        <div class="visual-canvas-base absolute inset-0" id="base-image">
-          <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Base">
+    <div class="bottom-split-container">
+      <section class="skyline-section">
+        <div class="skyline-meta">
+          <span class="sky-label">Architectural Digest</span>
+          <h2 class="sky-title">Skyline Explorer</h2>
+          <p class="sky-desc">Haz clic en la Torre de Hércules (A Coruña) para desplegar el gestor secreto de tus proyectos.</p>
         </div>
 
-        <div class="highlight-layer clip-london" id="london-highlight">
-          <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="London">
-        </div>
-        <div class="highlight-layer clip-athens" id="athens-highlight">
-          <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Athens">
-        </div>
-        <div class="highlight-layer clip-coruna" id="coruna-highlight">
-          <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Coruña">
-        </div>
-
-        <div class="hotspot" onmouseenter="toggleHighlight('london', true)" onmouseleave="toggleHighlight('london', false)" style="top: 10%; left: 10%; width: 20%; height: 80%;">
-          <div class="absolute -top-6 left-0 monument-label">01_LONDON_LDN</div>
-        </div>
-        <div class="hotspot" onmouseenter="toggleHighlight('athens', true)" onmouseleave="toggleHighlight('athens', false)" style="top: 5%; left: 50%; width: 40%; height: 35%;">
-          <div class="absolute -top-6 right-0 monument-label">02_ATHENS_ATH</div>
-        </div>
-        
-        <div class="hotspot" onclick="openProjectTerminal()" onmouseenter="toggleHighlight('coruna', true)" onmouseleave="toggleHighlight('coruna', false)" style="top: 35%; left: 75%; width: 20%; height: 60%;">
-          <div class="absolute -top-6 left-0 monument-label">03_ACORUNA_PROJECTS_LOG</div>
-        </div>
-
-        <div class="hud-overlay">
-          <div style="display:flex; justify-content: space-between;">
-            <div style="background: rgba(0,0,0,0.6); padding: 2px 6px; border: 1px solid var(--border);">SYS_STABLE</div>
-            <div id="hud-clock" style="color: var(--green); font-weight: bold;">00:00:00</div>
+        <div class="skyline-canvas-container">
+          <div class="visual-canvas-base absolute inset-0" id="base-image">
+            <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Base">
           </div>
-          <div style="position: absolute; bottom: 1.25rem; left: 1.25rem; max-width: 220px; background: rgba(0,0,0,0.7); padding: 6px; border-left: 2px solid var(--green);">
-            CHOOSE VECTOR INTERACTION... <span class="cursor-blink" style="display:inline-block; width:5px; height:9px; background: var(--green); vertical-align: middle;"></span>
+
+          <div class="highlight-layer clip-london" id="london-highlight">
+            <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="London">
+          </div>
+          <div class="highlight-layer clip-athens" id="athens-highlight">
+            <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Athens">
+          </div>
+          <div class="highlight-layer clip-coruna" id="coruna-highlight">
+            <img style="width:100%; height:100%; object-fit:cover;" src="https://lh3.googleusercontent.com/aida/ADBb0uhQadYO1eXAQTFkLVPgJs_CWZMg5Xt73M1VYwvTtOPIiGxQ1iP3J0sJr_BkjI_L49K-SNg0GOnDS6i62FvX9L6LvHnCSFJTIC_Q1fdsbDum84pZj1RVqHjupQffollR0lwBpsdVK54olNAINB3ID7Du0lRZtuLB1mZswWnLrZ1Fu1cVM0RjnXDx8PeUBHLaLOJRcu7aF9N9Zz3kUODU-mbDUdpckVGJye7-mfpvGdmv68cfGJPg32nIWg" alt="Coruña">
+          </div>
+
+          <div class="hotspot" onmouseenter="toggleHighlight('london', true)" onmouseleave="toggleHighlight('london', false)" style="top: 10%; left: 10%; width: 20%; height: 80%;">
+            <div class="absolute -top-6 left-0 monument-label">01_LONDON_LDN</div>
+          </div>
+          <div class="hotspot" onmouseenter="toggleHighlight('athens', true)" onmouseleave="toggleHighlight('athens', false)" style="top: 5%; left: 50%; width: 40%; height: 35%;">
+            <div class="absolute -top-6 right-0 monument-label">02_ATHENS_ATH</div>
+          </div>
+          <div class="hotspot" onclick="openProjectTerminal()" onmouseenter="toggleHighlight('coruna', true)" onmouseleave="toggleHighlight('coruna', false)" style="top: 35%; left: 75%; width: 20%; height: 60%;">
+            <div class="absolute -top-6 left-0 monument-label">03_ACORUNA_PROJECTS_LOG</div>
+          </div>
+
+          <div class="hud-overlay">
+            <div style="display:flex; justify-content: space-between;">
+              <div style="background: rgba(0,0,0,0.6); padding: 2px 6px; border: 1px solid var(--border);">SYS_STABLE</div>
+              <div id="hud-clock" style="color: var(--green); font-weight: bold;">00:00:00</div>
+            </div>
+            <div style="position: absolute; bottom: 1.25rem; left: 1.25rem; max-width: 220px; background: rgba(0,0,0,0.7); padding: 6px; border-left: 2px solid var(--green);">
+              CHOOSE VECTOR INTERACTION... <span class="cursor-blink" style="display:inline-block; width:5px; height:9px; background: var(--green); vertical-align: middle;"></span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <aside class="aside-nested">
+        <div class="aside-label">top tracks · last 4 weeks</div>
+        <ul id="tracks-list-lyric" style="list-style:none"></ul>
+      </aside>
+    </div>
   </main>
-  
-  <aside>
-    <div class="aside-label">top tracks · last 4 weeks</div>
-    <ul id="tracks-list-lyric" style="list-style:none"></ul>
-  </aside>
 </div>
 
 <div id="nav-screen">
@@ -369,19 +378,19 @@
 </div>
 
 <div id="view-tracks" class="view">
-  <main style="justify-content:flex-start;min-height:unset">
+  <div class="tab-view-extended">
     <ul id="tracks-list-main" style="list-style:none"></ul>
-  </main>
-  <aside>
+  </div>
+  <aside class="aside-extended">
     <div class="aside-label" id="tracks-aside-label"> </div>
   </aside>
 </div>
 
 <div id="view-artists" class="view">
-  <main style="justify-content:flex-start;min-height:unset;display:block;padding:2rem 0 3rem">
+  <div class="tab-view-extended">
     <div id="artists-grid"></div>
-  </main>
-  <aside>
+  </div>
+  <aside class="aside-extended">
     <div class="aside-label">géneros frecuentes</div>
     <div id="genres-list" style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem"></div>
   </aside>
@@ -405,10 +414,11 @@
     return str.replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"');
   }
 
+  // Cambiado 't-img' vacío a vacío nativo para que pinte bien los bloques vacíos si no hay cover
   function trackRow(t, i, isActive) {
     return `<li class="track-row${isActive ? ' active' : ''}">
       <span class="t-rank">${String(i+1).padStart(2,'0')}</span>
-      ${t.image ? `<img class="t-img" src="${esc(t.image)}" alt="" loading="lazy">` : '<span class="t-img"></span>'}
+      ${t.image ? `<img class="t-img" src="${esc(t.image)}" alt="" loading="lazy">` : '<span class="t-img" style="background:var(--surface)"></span>'}
       <span class="t-info">
         <span class="t-name">${esc(t.track)}</span>
         <span class="t-artist">${esc(t.artist)}</span>
@@ -459,7 +469,7 @@
 
     document.getElementById('artists-grid').innerHTML = artists.map((a, i) => `
       <div class="artist-card${i === 0 ? ' top1' : ''}">
-        ${a.image ? `<img class="a-img" src="${esc(a.image)}" alt="" loading="lazy">` : '<span class="a-img"></span>'}
+        ${a.image ? `<img class="a-img" src="${esc(a.image)}" alt="" loading="lazy">` : '<span class="a-img" style="background:var(--surface)"></span>'}
         <div class="a-info">
           <div class="a-rank">${String(i+1).padStart(2,'0')}</div>
           <div class="a-name">${esc(a.name)}</div>
@@ -488,7 +498,7 @@
   renderTracks('short_term');
   renderArtists('short_term');
 
-  // ── CLIMA PRIVADO ABIERTO (wttr.in) ──
+  // ── CLIMA (wttr.in) ──
   try {
     const weatherRes = await fetch('https://wttr.in/A_Coruna?format=j1');
     if (weatherRes.ok) {
@@ -502,7 +512,7 @@
     document.getElementById('weather-display').textContent = '• Satélite fuera de rango local.';
   }
 
-  // ── PANEL DE CONSECUCIÓN LOCAL ──
+  // ── GESTIÓN DE NOTAS AGENDA EN REGISTRO LOCAL ──
   function refreshAgenda() {
     const localProjects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
     const agendaEl = document.getElementById('agenda-display');
@@ -558,7 +568,14 @@
       setTimeout(() => { pet.className = 'pet-idle'; }, 1000);
     }
   }
-  setInterval(moveMascotRandomly, 7000);
+
+  function startPetBehavior() {
+    const nextMoveTime = Math.random() * (9000 - 5000) + 5000;
+    setTimeout(() => {
+      moveMascotRandomly();
+      startPetBehavior();
+    }, nextMoveTime);
+  }
 
   pet.addEventListener('click', () => {
     const currentClass = pet.className;
@@ -566,9 +583,12 @@
     setTimeout(() => { pet.className = currentClass; }, 400);
   });
 
+  // ¡Arreglado e inicializado el bucle aquí!
+  startPetBehavior();
+
 })();
 
-// ── SISTEMA DE MAPA DE CIUDADES (STITCH CORE) ──
+// ── SISTEMA DE MAPA DE CIUDADES ──
 function updateHudClock() {
     const now = new Date();
     const clockEl = document.getElementById('hud-clock');
