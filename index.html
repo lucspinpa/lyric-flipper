@@ -92,9 +92,9 @@
     width: 320px;        
     height: 320px; 
     background-image: url('images/bckg.png');
+    margin: 40px 30px 0 0;
     background-size: cover;
     background-position: center;
-    margin: 40px 30px 0 0;
     overflow: hidden;
     border: 1px solid var(--border);
   }
@@ -120,7 +120,7 @@
   .pet-click img { animation: pop 0.4s ease-out; }
   @keyframes pop { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
-  /* ── DISTRIBUCIÓN INFERIOR ── */
+  /* ── DISTRIBUCIÓN INFERIOR (COMPACTADA) ── */
   .bottom-split-grid {
     display: grid;
     grid-template-columns: 1fr 320px; 
@@ -214,10 +214,11 @@
 
   .term-actions { display: flex; justify-content: space-between; margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem; }
 
-  /* ── VIEWS EXTRA ── */
+  /* ── ESTILOS MÓDULOS EXTRAS PARA PESTAÑAS ── */
   .view { display: none; }
   .view.active { display: flex; flex-direction: column; width: 100%; }
-  .tracks-view-main { margin-top: 3rem; width: 100%; }
+  .tab-view-container { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 3rem; width: 100%; }
+
   footer { border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 4rem; font-size: 0.58rem; color: var(--muted); display: flex; justify-content: space-between; align-items: center; width: 100%; }
   footer a { color: var(--dim); text-decoration: none; }
   footer a:hover { color: var(--green); }
@@ -240,7 +241,7 @@
 <nav class="nav">
   <button class="nav-tab active" data-view="lyric">lyric del día</button>
   <button class="nav-tab" data-view="tracks">top tracks</button>
-</nav>
+  <button class="nav-tab" data-view="artists">top artists</button> </nav>
 
 <div class="range-pills" id="range-pills" style="display:none">
   <button class="pill active" data-range="short_term">last 4 weeks</button>
@@ -311,7 +312,6 @@
         <div class="hotspot" onclick="navigateCity('ATHENS')" onmouseenter="toggleHighlight('athens', true)" onmouseleave="toggleHighlight('athens', false)" style="top: 5%; left: 50%; width: 40%; height: 35%;">
           <div class="absolute -top-6 right-0 monument-label">02_ATHENS_ATH</div>
         </div>
-        
         <div class="hotspot" onclick="openProjectTerminal()" onmouseenter="toggleHighlight('coruna', true)" onmouseleave="toggleHighlight('coruna', false)" style="top: 35%; left: 75%; width: 20%; height: 60%;">
           <div class="absolute -top-6 left-0 monument-label">03_ACORUNA_PROJECTS_LOG</div>
         </div>
@@ -340,14 +340,11 @@
     <div class="term-header">
       <h2>// SYSTEM_CORE: PROJECT_TRACKER.EXE</h2>
     </div>
-    
     <div class="todo-input-container">
       <input type="text" id="todo-input" class="todo-input" placeholder="Nombre del nuevo proyecto a crear...">
       <button class="todo-btn" onclick="addProject()">ADD</button>
     </div>
-
     <ul id="todo-list" class="todo-list"></ul>
-
     <div class="term-actions">
       <button class="abort-btn" onclick="exportToTxt()" style="border-color: var(--text); color: var(--text);">EXPORT_TXT</button>
       <button class="abort-btn" onclick="closeNav()">CLOSE_CORE</button>
@@ -356,8 +353,16 @@
 </div>
 
 <div id="view-tracks" class="view">
-  <div class="tracks-view-main">
+  <div class="tab-view-container">
     <ul id="tracks-list-main" style="list-style:none"></ul>
+  </div>
+</div>
+
+<div id="view-artists" class="view">
+  <div class="tab-view-container">
+    <div id="artists-grid"></div>
+    <div class="aside-label" style="margin-top: 3rem;">géneros frecuentes</div>
+    <div id="genres-list" style="display:flex; flex-direction:column; gap:0.6rem; max-width: 600px;"></div>
   </div>
 </div>
 
@@ -390,7 +395,7 @@
     </li>`;
   }
 
-  // ── Fetch ──
+  // ── Fetch de tu JSON ──
   try {
     const res = await fetch(`stats.json?t=${Date.now()}`);
     if (!res.ok) throw new Error(res.status);
@@ -406,17 +411,39 @@
     dt.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
   document.getElementById('footer-generated').textContent = 'generado automáticamente · ' + DATA.generated;
 
-  // Renderizador unificado para ambas listas
-  function renderAllTracks(range) {
-    // 1. Lista compacta lateral del Lyric Tab
-    const tracksLyric = DATA.tracks.short_term || [];
-    document.getElementById('tracks-list-lyric').innerHTML =
-      tracksLyric.map((t, i) => trackRow(t, i, t.track === DATA.lyric.track && t.artist === DATA.lyric.artist)).join('');
-
-    // 2. Lista extendida del Tracks Tab principal (¡RE-HABILITADO AQUÍ!)
+  // Renderizadores unificados
+  function renderTracksTab(range) {
     const tracksMain = DATA.tracks[range] || [];
     document.getElementById('tracks-list-main').innerHTML =
       tracksMain.map((t, i) => trackRow(t, i, false)).join('');
+  }
+
+  function renderArtistsTab(range) {
+    const artists = DATA.artists[range] || [];
+    document.getElementById('artists-grid').innerHTML = artists.map((a, i) => `
+      <div class="artist-card${i === 0 ? ' top1' : ''}">
+        ${a.image ? `<img class="a-img" src="${esc(a.image)}" alt="" loading="lazy">` : '<span class="a-img-empty"></span>'}
+        <div class="a-info">
+          <div class="a-rank">${String(i+1).padStart(2,'0')}</div>
+          <div class="a-name">${esc(a.name)}</div>
+          ${a.genres && a.genres.length ? `<div class="a-genre">${a.genres.map(esc).join(' · ')}</div>` : ''}
+        </div>
+      </div>`).join('');
+
+    const genreCount = {};
+    artists.forEach(a => (a.genres || []).forEach(g => { genreCount[g] = (genreCount[g]||0) + 1; }));
+    const sorted = Object.entries(genreCount).sort((a,b) => b[1]-a[1]).slice(0, 8);
+    const max = sorted[0]?.[1] || 1;
+    document.getElementById('genres-list').innerHTML = sorted.map(([g, c]) => `
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:0.62rem;color:var(--text)">${esc(g)}</span>
+          <span style="font-size:0.55rem;color:var(--dim)">${c}</span>
+        </div>
+        <div style="height:2px;background:var(--border);border-radius:2px">
+          <div style="height:100%;width:${Math.round(c/max*100)}%;background:var(--green);border-radius:2px"></div>
+        </div>
+      </div>`).join('');
   }
 
   function renderLyric() {
@@ -424,8 +451,14 @@
     document.getElementById('lyric-track').textContent  = DATA.lyric.track;
     document.getElementById('lyric-chunk').innerHTML =
       DATA.lyric.chunk.split('\n').map(l => `<span>${esc(l)}</span>`).join('<br>');
+
+    const tracksLyric = DATA.tracks.short_term || [];
+    document.getElementById('tracks-list-lyric').innerHTML =
+      tracksLyric.map((t, i) => trackRow(t, i, t.track === DATA.lyric.track && t.artist === DATA.lyric.artist)).join('');
     
-    renderAllTracks(currentRange);
+    // Dejar pre-renderizadas las secundarias
+    renderTracksTab(currentRange);
+    renderArtistsTab(currentRange);
   }
 
   renderLyric();
@@ -444,7 +477,7 @@
     document.getElementById('weather-display').textContent = '• Satélite fuera de rango local.';
   }
 
-  // ── AGENDA LOCAL storage ──
+  // ── AGENDA LOCAL ──
   function refreshAgenda() {
     const localProjects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
     const agendaEl = document.getElementById('agenda-display');
@@ -458,7 +491,7 @@
   refreshAgenda();
   window.refreshAgendaDisplay = refreshAgenda;
 
-  // ── NAV PESTAÑAS ──
+  // ── GESTOR DE PESTAÑAS NAV ──
   document.querySelectorAll('.nav-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       currentView = btn.dataset.view;
@@ -467,22 +500,24 @@
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById('view-' + currentView).classList.add('active');
       
-      // Control de píldoras de tiempo
-      document.getElementById('range-pills').style.display = currentView === 'tracks' ? 'flex' : 'none';
+      // Control de visibilidad de las pills de tiempo (Para tracks y artistas)
+      document.getElementById('range-pills').style.display = currentView === 'lyric' ? 'none' : 'flex';
     });
   });
 
-  // ── RANGE PILLS ──
+  // ── CONTROL PILLS DE TIEMPO ──
   document.querySelectorAll('.pill').forEach(btn => {
     btn.addEventListener('click', () => {
       currentRange = btn.dataset.range;
       document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderAllTracks(currentRange);
+      
+      if (currentView === 'tracks')  renderTracksTab(currentRange);
+      if (currentView === 'artists') renderArtistsTab(currentRange);
     });
   });
 
-  // ── MASCOTA ──
+  // ── MOVIMIENTO AUTOMÁTICO MASCOTA ──
   const pet = document.getElementById('web-pet');
   function moveMascotRandomly() {
     if (document.getElementById('view-lyric').classList.contains('active')) {
@@ -510,7 +545,7 @@
 
 })();
 
-// ── MAPAS Y HUD (STITCH ARCHIVE) ──
+// ── SISTEMA DE MAPA DE CIUDADES (STITCH LOGIC) ──
 function updateHudClock() {
     const now = new Date();
     const clockEl = document.getElementById('hud-clock');
@@ -530,15 +565,58 @@ function toggleHighlight(city, isActive) {
     }
 }
 
-// ── TO-DO CORE CONTROL ──
-function openProjectTerminal() {
-    document.getElementById('nav-screen').classList.add('active');
-    renderProjects();
+function navigateCity(cityName) {
+    const navScreen = document.getElementById('nav-screen');
+    const destTitle = document.getElementById('dest-title');
+    const logStream = document.getElementById('log-stream');
+    const progressBar = document.getElementById('progress-bar');
+
+    if (!navScreen || !destTitle || !logStream || !progressBar) return;
+
+    destTitle.innerText = `LINKING_${cityName}_COORDINATES`;
+    navScreen.classList.add('active');
+    logStream.innerHTML = '';
+    progressBar.style.width = '0%';
+
+    const logs = [
+        `> AUTHENTICATING OPERATOR_01... [SUCCESS]`,
+        `> BYPASSING SECURE_GATEWAY_V4.2... [OK]`,
+        `> TARGET_SECTOR: ${cityName}`,
+        `> ESTABLISHING QUANTUM_STREAMS...`,
+        `> PIPELINING GEOMETRIC_DATA_0X884F...`,
+        `> INJECTING SECTOR_INTERFACE...`
+    ];
+
+    let i = 0;
+    const logInterval = setInterval(() => {
+        if (i < logs.length) {
+            const p = document.createElement('div');
+            p.innerText = logs[i];
+            p.style.marginBottom = '2px';
+            logStream.appendChild(p);
+            progressBar.style.width = `${((i + 1) / logs.length) * 100}%`;
+            i++;
+        } else {
+            clearInterval(logInterval);
+            const success = document.createElement('div');
+            success.innerText = "SUCCESS: LINK_STABLE. READY FOR EXTRACTION.";
+            success.style.color = 'var(--green)';
+            success.style.fontWeight = 'bold';
+            success.style.marginTop = '6px';
+            logStream.appendChild(success);
+        }
+    }, 500);
 }
 
 function closeNav() {
-    document.getElementById('nav-screen').classList.remove('active');
+    const navScreen = document.getElementById('nav-screen');
+    if (navScreen) navScreen.classList.remove('active');
     if (window.refreshAgendaDisplay) window.refreshAgendaDisplay();
+}
+
+function openProjectTerminal() {
+    document.getElementById('nav-screen').classList.add('active');
+    renderProjects();
 }
 
 function renderProjects() {
@@ -590,6 +668,16 @@ function exportToTxt() {
     link.href = URL.createObjectURL(blob);
     link.download = `projects_archive_${new Date().toISOString().slice(0,10)}.txt`;
     link.click();
+}
+
+const canvasBox = document.getElementById('base-image');
+if (canvasBox) {
+    setInterval(() => {
+        if (Math.random() > 0.98) {
+            canvasBox.style.transform = `translate(${Math.random() * 2 - 1}px, ${Math.random() * 2 - 1}px) skew(${Math.random() * 0.5}deg)`;
+            setTimeout(() => { canvasBox.style.transform = 'none'; }, 40);
+        }
+    }, 150);
 }
 </script>
 </body>
