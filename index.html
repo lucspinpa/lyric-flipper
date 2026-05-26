@@ -1145,11 +1145,14 @@ async function listUpcomingEvents() {
     try {
       const agendaEl = document.getElementById('agenda-display');
       
-      const calendarListResponse = await gapi.client.calendar.calendarList.list({});
+      // 1. Solicitar solo calendarios donde seas dueño o escritor (así evitamos el error 403 de festivos o compartidos rígidos)
+      const calendarListResponse = await gapi.client.calendar.calendarList.list({
+        minAccessRole: 'writer' 
+      });
       const calendars = calendarListResponse.result.items;
       
       if (!calendars || calendars.length === 0) {
-        agendaEl.innerHTML = '• No se encontraron calendarios en tu cuenta.';
+        agendaEl.innerHTML = '• No se encontraron calendarios editables activos.';
         return;
       }
 
@@ -1159,6 +1162,7 @@ async function listUpcomingEvents() {
         mapaColoresCalendario[cal.id] = paletaColores[index % paletaColores.length];
       });
 
+      // 2. Traer eventos de cada calendario de forma segura con un bloque try/catch individualizado
       const eventPromises = calendars.map(async (cal) => {
         try {
           const res = await gapi.client.calendar.events.list({
@@ -1166,14 +1170,14 @@ async function listUpcomingEvents() {
             'timeMin': (new Date()).toISOString(),
             'showDeleted': false,
             'singleEvents': true,
-            'maxResults': 15,
+            'maxResults': 10,
             'orderBy': 'startTime',
           });
           const items = res.result.items || [];
-          // CORREGIDO: Guardamos la propiedad exactamente como colorAsignado
           return items.map(event => ({ ...event, colorAsignado: mapaColoresCalendario[cal.id] || '#1DB954' }));
         } catch (err) {
-          console.warn(`No se pudieron cargar eventos del calendario: ${cal.summary}`, err);
+          // Si un calendario secundario sigue dando 403, se ignora en silencio y no tumba la agenda completa
+          console.warn(`Aviso: Sincronización omitida para el sector [${cal.summary}]`);
           return [];
         }
       });
@@ -1186,6 +1190,7 @@ async function listUpcomingEvents() {
         return;
       }
 
+      // 3. Ordenar la línea temporal global
       allEvents.sort((a, b) => {
         return new Date(a.start.dateTime || a.start.date) - new Date(b.start.dateTime || b.start.date);
       });
@@ -1211,7 +1216,6 @@ async function listUpcomingEvents() {
           timeDisplay = eventDate.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
         }
 
-        // CORREGIDO: Aquí ya lee perfectamente event.colorAsignado sin fallar
         html += `<div style="margin-bottom: 0.25rem; display: flex; align-items: start; gap: 0.5rem;">
           <span style="color: ${event.colorAsignado}; font-size: 0.6rem; flex-shrink: 0; font-weight: bold;">${timeDisplay}</span>
           <span style="color: var(--text); font-size: 0.65rem;">${esc(event.summary)}</span>
@@ -1220,7 +1224,7 @@ async function listUpcomingEvents() {
 
       agendaEl.innerHTML = html;
     } catch (err) {
-      console.error(err);
+      console.error("Fallo general de telemetría:", err);
       document.getElementById('agenda-display').innerHTML = '• Error sincronizando telemetría de multicalendarios.';
     }
   }
