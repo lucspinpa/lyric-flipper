@@ -798,7 +798,9 @@
   .abort-btn:hover { background: var(--green); color: var(--bg); }
 
   @media (max-width: 900px) {
-    body { 
+    body {
+      background-color: var(--bg) !important; /* Forzamos a que todo el fondo use tu nueva variable */
+      color: var(--text);
       grid-template-columns: 1fr; 
       padding: 2.5rem 2rem; 
       gap: 0;
