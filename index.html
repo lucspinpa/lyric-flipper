@@ -1144,7 +1144,9 @@ function generateLunarCalendar(year, month) {
   async function listUpcomingEvents() {
     try {
       const agendaEl = document.getElementById('agenda-display');
-      const calendarListResponse = await gapi.client.calendar.calendarList.list();
+      
+      // REPARADO: Añadido .calendarList.list() apuntando correctamente a la colección de la API
+      const calendarListResponse = await gapi.client.calendar.calendarList.list({});
       const calendars = calendarListResponse.result.items;
       
       if (!calendars || calendars.length === 0) {
@@ -1169,7 +1171,7 @@ function generateLunarCalendar(year, month) {
             'orderBy': 'startTime',
           });
           const items = res.result.items || [];
-          return items.map(event => ({ ...event, colorAsignado: mapaColoresCalendario[cal.id] }));
+          return items.map(event => ({ ...event, colorAsAssign: mapaColoresCalendario[cal.id] || '#1DB954' }));
         } catch (err) {
           console.warn(`No se pudieron cargar eventos del calendario: ${cal.summary}`, err);
           return [];
@@ -1210,7 +1212,7 @@ function generateLunarCalendar(year, month) {
         }
 
         html += `<div style="margin-bottom: 0.25rem; display: flex; align-items: start; gap: 0.5rem;">
-          <span style="color: ${event.colorAsignado}; font-size: 0.6rem; flex-shrink: 0; font-weight: bold;">${timeDisplay}</span>
+          <span style="color: ${event.colorAsAssign}; font-size: 0.6rem; flex-shrink: 0; font-weight: bold;">${timeDisplay}</span>
           <span style="color: var(--text); font-size: 0.65rem;">${esc(event.summary)}</span>
         </div>`;
       });
