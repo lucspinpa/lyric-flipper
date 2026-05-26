@@ -980,12 +980,8 @@
 
 <div id="view-tarot" class="view">
   <div class="tab-view-extended" style="grid-column: 1 / -1;">
-    <section class="tarot-section">
-      <div class="tarot-header">
-        <span class="tarot-label">✦ Mystical Divination</span>
-        <h2 class="tarot-title">Arcanos Mayores</h2>
-      </div>
-      <div class="tarot-grid" id="tarot-grid"></div>
+    <section class="tarot-section" id="tarot-container">
+      <!-- Los palos y sub-grids se generarán aquí dinámicamente -->
     </section>
   </div>
 </div>
@@ -1206,13 +1202,60 @@ function generateLunarCalendar(year, month) {
 }
 
 function renderTarotGrid() {
-  document.getElementById('tarot-grid').innerHTML = TAROT_CARDS.map(card => `
-    <div class="tarot-card ${card.type}" onclick="openTarotModal(${card.id})">
-      <div class="tarot-card-image-wrapper">
-         <img src="${card.image}" alt="${card.name}" class="tarot-card-image" loading="lazy">
-      </div>
-      <div class="tarot-card-name">${card.name}</div>
-    </div>`).join('');
+  // 1. Definimos los bloques y los títulos que queremos mostrar
+  const categories = [
+    { key: 'major', title: 'Arcanos Mayores', label: '✦ Mystical Divination' },
+    { key: 'bastos', title: 'Palo de Bastos (Wands)', label: '✦ Fuego & Creatividad' },
+    { key: 'copas', title: 'Palo de Copas (Cups)', label: '✦ Agua & Emociones' },
+    { key: 'espadas', title: 'Palo de Espadas (Swords)', label: '✦ Aire & Mente' },
+    { key: 'oros', title: 'Palo de Oros (Pentacles)', label: '✦ Tierra & Materia' }
+  ];
+
+  // 2. Clasificamos las cartas de la base de datos en contenedores temporales
+  const groups = { major: [], bastos: [], copas: [], espadas: [], oros: [] };
+
+  TAROT_CARDS.forEach(card => {
+    if (card.type === 'major') {
+      groups.major.push(card);
+    } else {
+      // Identificamos el palo por el nombre de la carta
+      const nameLower = card.name.toLowerCase();
+      if (nameLower.includes('bastos')) groups.bastos.push(card);
+      else if (nameLower.includes('copas')) groups.copas.push(card);
+      else if (nameLower.includes('espadas')) groups.espadas.push(card);
+      else if (nameLower.includes('oros')) groups.oros.push(card);
+    }
+  });
+
+  // 3. Construimos el HTML estructurado por secciones
+  let htmlContent = '';
+
+  categories.forEach(cat => {
+    const cardsInGroup = groups[cat.key];
+    
+    // Solo creamos la sección si el grupo tiene cartas cargadas
+    if (cardsInGroup && cardsInGroup.length > 0) {
+      htmlContent += `
+        <div class="tarot-header" style="margin-top: 2.5rem; ${cat.key !== 'major' ? 'border-top: 1px dashed var(--border); padding-top: 2.5rem;' : ''}">
+          <span class="tarot-label" style="${cat.key !== 'major' ? 'color: var(--green);' : ''}">${cat.label}</span>
+          <h2 class="tarot-title">${cat.title}</h2>
+        </div>
+        <div class="tarot-grid" style="margin-bottom: 3rem;">
+          ${cardsInGroup.map(card => `
+            <div class="tarot-card ${card.type}" onclick="openTarotModal(${card.id})">
+              <div class="tarot-card-image-wrapper">
+                 <img src="${card.image}" alt="${card.name}" class="tarot-card-image" loading="lazy">
+              </div>
+              <div class="tarot-card-name">${card.name}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+  });
+
+  // 4. Inyectamos todo el árbol estructurado en el contenedor
+  document.getElementById('tarot-container').innerHTML = htmlContent;
 }
 
 function openTarotModal(cardId) {
