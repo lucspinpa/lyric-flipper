@@ -1213,17 +1213,21 @@ function renderTarotGrid() {
 
   // 2. Clasificamos las cartas de la base de datos en contenedores temporales
   const groups = { major: [], bastos: [], copas: [], espadas: [], oros: [] };
-
   TAROT_CARDS.forEach(card => {
     if (card.type === 'major') {
       groups.major.push(card);
-    } else {
+    } else if (card.type === 'minor') {
       // Identificamos el palo por el nombre de la carta
       const nameLower = card.name.toLowerCase();
-      if (nameLower.includes('bastos')) groups.bastos.push(card);
-      else if (nameLower.includes('copas')) groups.copas.push(card);
-      else if (nameLower.includes('espadas')) groups.espadas.push(card);
-      else if (nameLower.includes('oros')) groups.oros.push(card);
+      if (nameLower.includes('bastos') || nameLower.includes('wands')) {
+        groups.bastos.push(card);
+      } else if (nameLower.includes('copas') || nameLower.includes('cups')) {
+        groups.copas.push(card);
+      } else if (nameLower.includes('espadas') || nameLower.includes('swords')) {
+        groups.espadas.push(card);
+      } else if (nameLower.includes('oros') || nameLower.includes('pentacles')) {
+        groups.oros.push(card);
+      }
     }
   });
 
