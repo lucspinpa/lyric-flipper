@@ -1147,28 +1147,25 @@ async function listUpcomingEvents() {
     try {
       const agendaEl = document.getElementById('agenda-display');
       
-      // 1. Solicitar solo calendarios donde seas dueño o escritor (así evitamos el error 403 de festivos o compartidos rígidos)
-      const calendarListResponse = await gapi.client.calendar.calendarList.list({
-        minAccessRole: 'writer' 
-      });
-      const calendars = calendarListResponse.result.items;
-      
-      if (!calendars || calendars.length === 0) {
-        agendaEl.innerHTML = '• No se encontraron calendarios editables activos.';
-        return;
-      }
+      // Lista con los IDs exactos de tus 3 flujos de telemetría (Principal + los 2 de estudios)
+      const IDsCalendarios = [
+        'primary', // Tu cuenta por defecto
+        '9lakadg6pdjq048b0a23u6292o@group.calendar.google.com', // Exámenes/Proyectos 1
+        'ebm08rnaid3jn88v9ne56dc400@group.calendar.google.com'  // Exámenes/Proyectos 2
+      ];
 
-      const paletaColores = ['#1DB954', '#38bdf8', '#a855f7', '#f43f5e', '#fb923c', '#eab308', '#22d3ee', '#f472b6'];
-      const mapaColoresCalendario = {};
-      calendars.forEach((cal, index) => {
-        mapaColoresCalendario[cal.id] = paletaColores[index % paletaColores.length];
-      });
+      // Paleta fija para distinguir los vectores académicos en tu terminal
+      const paletaColores = [
+        'var(--green)', // Verde Flipper para el Principal
+        '#38bdf8',      // Azul Neón para el segundo calendario
+        '#a855f7'       // Morado Eléctrico para el tercero
+      ];
 
-      // 2. Traer eventos de cada calendario de forma segura con un bloque try/catch individualizado
-      const eventPromises = calendars.map(async (cal) => {
+      // Lanzamos las consultas en paralelo apuntando directamente a sus IDs fijos
+      const eventPromises = IDsCalendarios.map(async (idCalendario, index) => {
         try {
           const res = await gapi.client.calendar.events.list({
-            'calendarId': cal.id,
+            'calendarId': idCalendario,
             'timeMin': (new Date()).toISOString(),
             'showDeleted': false,
             'singleEvents': true,
@@ -1176,10 +1173,11 @@ async function listUpcomingEvents() {
             'orderBy': 'startTime',
           });
           const items = res.result.items || [];
-          return items.map(event => ({ ...event, colorAsignado: mapaColoresCalendario[cal.id] || '#1DB954' }));
+          // Inyectamos el color estático correspondiente según su posición en la lista
+          return items.map(event => ({ ...event, colorAsignado: paletaColores[index] }));
         } catch (err) {
-          // Si un calendario secundario sigue dando 403, se ignora en silencio y no tumba la agenda completa
-          console.warn(`Aviso: Sincronización omitida para el sector [${cal.summary}]`);
+          // Si alguno falla temporalmente, la terminal lo ignora en silencio sin congelar la pantalla
+          console.warn(`Sector omitido o sin sincronizar: ${idCalendario}`);
           return [];
         }
       });
@@ -1192,11 +1190,12 @@ async function listUpcomingEvents() {
         return;
       }
 
-      // 3. Ordenar la línea temporal global
+      // Ordenar cronológicamente la línea temporal unificada
       allEvents.sort((a, b) => {
         return new Date(a.start.dateTime || a.start.date) - new Date(b.start.dateTime || b.start.date);
       });
 
+      // Limitar a los 15 eventos globales más cercanos
       allEvents = allEvents.slice(0, 15);
 
       let html = '';
@@ -1230,7 +1229,6 @@ async function listUpcomingEvents() {
       document.getElementById('agenda-display').innerHTML = '• Error sincronizando telemetría de multicalendarios.';
     }
   }
-
   // ── CONTROL DE NAVEGACIÓN ENTRE PESTAÑAS ──
   document.querySelectorAll('.nav-tab').forEach(btn => {
     btn.addEventListener('click', () => {
