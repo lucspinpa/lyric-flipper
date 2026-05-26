@@ -23,14 +23,15 @@
     <button class="pill" data-range="long_term">last 12 months</button>
   </div>
 
-  <div class="tab-view-extended">
-    <div id="artists-grid"></div>
-  </div>
+  <div class="artists-layout" style="display: flex; gap: 4rem; align-items: start; padding-top: 2rem;">
+    
+    <div id="artists-grid" style="flex: 2;"></div>
 
-  <aside class="aside-extended" style="padding-left: 2.5rem;">
-    <div class="aside-label">géneros frecuentes</div>
-    <div id="genres-list" style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem"></div>
-  </aside>
+    <div class="genres-sidebar" style="flex: 1; min-width: 250px; position: sticky; top: 2rem;">
+      <div class="aside-label">géneros frecuentes</div>
+      <div id="genres-list" style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem"></div>
+    </div>
+  </div>
 
   <script>
     (async () => {
@@ -44,19 +45,35 @@
       async function renderArtists(range) {
         const artists = DATA.artists[range] || [];
         
-        // Renderizar grid de artistas
-        // Dentro de tu función renderArtists en artists.html:
-document.getElementById('artists-grid').innerHTML = artists.map((a, i) => `
-  <div class="artist-card${i === 0 ? ' top1' : ''}">
-    ${a.image ? `<img class="a-img" src="${esc(a.image)}" alt="" loading="lazy">` : '<span class="a-img" style="background:var(--surface)"></span>'}
-    <div class="a-info">
-      <div class="a-rank">${String(i+1).padStart(2,'0')}</div>
-      <div class="a-header">
-        <span class="a-name">${esc(a.name)}</span>
-        ${a.genres && a.genres.length ? `<span class="a-genre"> // ${a.genres.slice(0, 2).map(esc).join(' · ')}</span>` : ''}
-      </div>
-    </div>
-  </div>`).join('');
+        // 1. Renderizar Grid de Artistas
+        document.getElementById('artists-grid').innerHTML = artists.map((a, i) => `
+          <div class="artist-card">
+            ${a.image ? `<img class="a-img" src="${esc(a.image)}" alt="" loading="lazy">` : '<span class="a-img" style="background:var(--surface)"></span>'}
+            <div class="a-info">
+              <div class="a-rank">${String(i+1).padStart(2,'0')}</div>
+              <div class="a-header" style="display:flex; align-items: baseline; gap: 0.5rem; overflow: hidden;">
+                <span class="a-name">${esc(a.name)}</span>
+                ${a.genres && a.genres.length ? `<span class="a-genre" style="font-size: 0.6rem; color: var(--dim); white-space: nowrap;"> // ${a.genres.slice(0, 1).map(esc).join(' · ')}</span>` : ''}
+              </div>
+            </div>
+          </div>`).join('');
+
+        // 2. Renderizar Lista de Géneros
+        const genreCount = {};
+        artists.forEach(a => (a.genres || []).forEach(g => { genreCount[g] = (genreCount[g]||0) + 1; }));
+        const sorted = Object.entries(genreCount).sort((a,b) => b[1]-a[1]).slice(0, 10);
+        const max = sorted[0]?.[1] || 1;
+        
+        document.getElementById('genres-list').innerHTML = sorted.map(([g, c]) => `
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:0.62rem;color:var(--text)">${esc(g)}</span>
+              <span style="font-size:0.55rem;color:var(--dim)">${c}</span>
+            </div>
+            <div style="height:2px;background:var(--border);border-radius:2px">
+              <div style="height:100%;width:${Math.round(c/max*100)}%;background:var(--green);border-radius:2px"></div>
+            </div>
+          </div>`).join('');
       }
 
       // Cargar datos
@@ -68,12 +85,12 @@ document.getElementById('artists-grid').innerHTML = artists.map((a, i) => `
         console.error("Error cargando stats:", e);
       }
 
-      // Lógica de los botones
+      // Lógica de botones
       document.querySelectorAll('.pill').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
           document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          renderArtists(btn.dataset.range);
+          e.target.classList.add('active');
+          renderArtists(e.target.dataset.range);
         });
       });
     })();
