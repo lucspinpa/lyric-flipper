@@ -993,6 +993,7 @@ function generateLunarCalendar(year, month) {
     const tracks = DATA.tracks[range] || [];
     document.getElementById('tracks-list-main').innerHTML =
       tracks.map((t, i) => trackRow(t, i, false)).join('');
+    document.getElementById('tracks-aside-label').textContent = 'top tracks · ' + (range === 'short_term' ? 'last 4 weeks' : range === 'medium_term' ? 'last 6 months' : 'last 12 months');
   }
 
   // ── Artists tab ──
@@ -1042,23 +1043,11 @@ function generateLunarCalendar(year, month) {
       const windKph = current.windspeedKmph;
       
       const weatherMap = {
-        'Sunny': 'Soleado',
-        'Clear': 'Despejado',
-        'Partly cloudy': 'Parcialmente nublado',
-        'Cloudy': 'Nublado',
-        'Overcast': 'Encapotado',
-        'Mist': 'Niebla',
-        'Patchy rain nearby': 'Lluvia dispersa',
-        'Patchy light rain': 'Lluvia ligera dispersa',
-        'Light rain': 'Lluvia ligera',
-        'Moderate rain': 'Lluvia moderada',
-        'Heavy rain': 'Lluvia fuerte',
-        'Light snow': 'Nieve ligera',
-        'Moderate snow': 'Nieve moderada',
-        'Heavy snow': 'Nieve fuerte',
-        'Thundery outbreaks possible': 'Posibles tormentas',
-        'Patchy light rain with thunder': 'Lluvia ligera con truenos',
-        'Light rain with thunder': 'Lluvia con truenos'
+        'Sunny': 'Soleado', 'Clear': 'Despejado', 'Partly cloudy': 'Parcialmente nublado',
+        'Cloudy': 'Nublado', 'Overcast': 'Encapotado', 'Mist': 'Niebla',
+        'Patchy rain nearby': 'Lluvia dispersa', 'Patchy light rain': 'Lluvia ligera dispersa',
+        'Light rain': 'Lluvia ligera', 'Moderate rain': 'Lluvia moderada', 'Heavy rain': 'Lluvia fuerte',
+        'Thundery outbreaks possible': 'Posibles tormentas'
       };
       
       let desc = current.weatherDesc?.[0]?.value || 'Datos no disponibles';
@@ -1233,7 +1222,7 @@ function generateLunarCalendar(year, month) {
     }
   }
 
-  // ── CONTROL DE NAVEGACIÓN ENTRE PESTAÑAS (RESTAURADO) ──
+  // ── CONTROL DE NAVEGACIÓN ENTRE PESTAÑAS ──
   document.querySelectorAll('.nav-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       currentView = btn.dataset.view;
@@ -1298,70 +1287,20 @@ function generateLunarCalendar(year, month) {
 // ── WEATHER MODAL ──
 function openWeatherModal() {
   if (!WEATHER_DATA) return;
-  
   const current = WEATHER_DATA.current_condition[0];
   const nearest = WEATHER_DATA.nearest_area[0];
-  
-  let html = '';
-  
-  html += `
-    <div class="weather-item">
-      <div class="weather-item-label">Localización</div>
-      <div class="weather-item-value">${nearest.areaName[0].value}, ${nearest.country[0].value}</div>
-    </div>
-    <div class="weather-item">
-      <div class="weather-item-label">Temperatura</div>
-      <div class="weather-item-value">${current.temp_C}°C / ${current.temp_F}°F</div>
-    </div>
-    <div class="weather-item">
-      <div class="weather-item-label">Sensación Térmica</div>
-      <div class="weather-item-value">${current.FeelsLikeC}°C / ${current.FeelsLikeF}°F</div>
-    </div>
-    <div class="weather-item">
-      <div class="weather-item-label">Humedad</div>
-      <div class="weather-item-value">${current.humidity}%</div>
-    </div>
-    <div class="weather-item">
-      <div class="weather-item-label">Viento (velocidad)</div>
-      <div class="weather-item-value">${current.windspeedKmph} km/h / ${current.windspeedMiles} mph</div>
-    </div>
-    <div class="weather-item">
-      <div class="weather-item-label">Dirección del Viento</div>
-      <div class="weather-item-value">${current.winddir16Point} (${current.winddirDegree}°)</div>
-    </div>
-    <div class="weather-item">
-      <div class="weather-item-label">Presión</div>
-      <div class="weather-item-value">${current.pressure_mb} mb / ${current.pressure_in} in</div>
-    </div>
-    <div class="weather-item">
-      <div class="weather-item-label">Precipitación</div>
-      <div class="weather-item-value">${current.precip_mm} mm / ${current.precip_in} in</div>
-    </div>
-    <div class="weather-item">
-      <div class="weather-item-label">Punto de Rocío</div>
-      <div class="weather-item-value">${current.DewPointC}°C / ${current.DewPointF}°F</div>
-    </div>
-    <div class="weather-item">
-      <div class="weather-item-label">Visibilidad</div>
-      <div class="weather-item-value">${current.visibility_km} km / ${current.visibility_miles} mi</div>
-    </div>
-    <div class="weather-item">
-      <div class="weather-item-label">Índice UV</div>
-      <div class="weather-item-value">${current.uv}</div>
-    </div>
-    <div class="weather-item weather-full-width">
-      <div class="weather-item-label">Descripción</div>
-      <div class="weather-item-value">${current.weatherDesc?.[0]?.value || 'N/A'}</div>
-    </div>
-  `;
-  
+  let html = `
+    <div class="weather-item"><div class="weather-item-label">Localización</div><div class="weather-item-value">${nearest.areaName[0].value}, ${nearest.country[0].value}</div></div>
+    <div class="weather-item"><div class="weather-item-label">Temperatura</div><div class="weather-item-value">${current.temp_C}°C / ${current.temp_F}°F</div></div>
+    <div class="weather-item"><div class="weather-item-label">Sensación Térmica</div><div class="weather-item-value">${current.FeelsLikeC}°C / ${current.FeelsLikeF}°F</div></div>
+    <div class="weather-item"><div class="weather-item-label">Humedad</div><div class="weather-item-value">${current.humidity}%</div></div>
+    <div class="weather-item"><div class="weather-item-label">Viento</div><div class="weather-item-value">${current.windspeedKmph} km/h</div></div>
+    <div class="weather-item weather-full-width"><div class="weather-item-label">Descripción</div><div class="weather-item-value">${current.weatherDesc?.[0]?.value || 'N/A'}</div></div>`;
   document.getElementById('weather-content').innerHTML = html;
   document.getElementById('weather-modal').classList.add('active');
 }
 
-function closeWeatherModal() {
-  document.getElementById('weather-modal').classList.remove('active');
-}
+function closeWeatherModal() { document.getElementById('weather-modal').classList.remove('active'); }
 
 // ── LUNAR MODAL ──
 function openLunarModal() {
@@ -1373,47 +1312,29 @@ function openLunarModal() {
   document.getElementById('modal-illumination').textContent = LUNAR_DATA.illumination + '%';
   document.getElementById('modal-lunar-age').textContent = LUNAR_DATA.age + ' días';
   document.getElementById('modal-lunar-distance').textContent = '384,400 km';
+  document.getElementById('next-full-moon-date').textContent = nextFullMoon.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('next-full-moon-days').textContent = `Faltan ${daysUntilFullMoon} días`;
   
-  document.getElementById('next-full-moon-date').textContent = 
-    nextFullMoon.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  document.getElementById('next-full-moon-days').textContent = 
-    `Faltan ${daysUntilFullMoon} días`;
-  
-  // ── Eclipses ──
   const upcomingEclipses = getUpcomingEclipses(today);
   if (upcomingEclipses.length > 0) {
-    const alertsDiv = document.getElementById('eclipse-alerts');
-    let alertHTML = '<ul style="margin: 0; padding-left: 1.2rem;">';
-    upcomingEclipses.forEach(eclipse => {
-      const eclipseDate = new Date(eclipse.date);
-      const daysUntil = Math.ceil((eclipseDate - today) / (1000 * 60 * 60 * 24));
-      const typeIcon = eclipse.type === 'lunar' ? '🌑' : '☀️';
-      alertHTML += `<li style="margin-bottom: 0.5rem;"><strong>${typeIcon} ${eclipse.name}</strong><br><small>${eclipseDate.toLocaleDateString('es-ES')} (en ${daysUntil} días)</small></li>`;
+    let alertHTML = '<ul style="margin:0; padding-left:1.2rem;">';
+    upcomingEclipses.forEach(e => {
+      alertHTML += `<li><strong>${e.type === 'lunar' ? '🌑' : '☀️'} ${e.name}</strong><br><small>${new Date(e.date).toLocaleDateString('es-ES')}</small></li>`;
     });
-    alertHTML += '</ul>';
-    document.getElementById('eclipse-content').innerHTML = alertHTML;
-    alertsDiv.style.display = 'block';
-  } else {
-    document.getElementById('eclipse-alerts').style.display = 'none';
+    document.getElementById('eclipse-content').innerHTML = alertHTML + '</ul>';
+    document.getElementById('eclipse-alerts').style.display = 'block';
   }
-  
-  const calendarHTML = generateLunarCalendar(today.getFullYear(), today.getMonth());
-  document.getElementById('lunar-calendar').innerHTML = calendarHTML;
-  
+  document.getElementById('lunar-calendar').innerHTML = generateLunarCalendar(today.getFullYear(), today.getMonth());
   document.getElementById('lunar-modal').classList.add('active');
 }
 
-function closeLunarModal() {
-  document.getElementById('lunar-modal').classList.remove('active');
-}
+function closeLunarModal() { document.getElementById('lunar-modal').classList.remove('active'); }
 
 // ── SISTEMA DE MAPA DE CIUDADES ──
 function updateHudClock() {
     const now = new Date();
     const clockEl = document.getElementById('hud-clock');
-    if (clockEl) {
-        clockEl.innerText = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-    }
+    if (clockEl) clockEl.innerText = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
 }
 setInterval(updateHudClock, 1000);
 updateHudClock();
@@ -1427,24 +1348,13 @@ function toggleHighlight(city, isActive) {
     }
 }
 
-function openProjectTerminal() {
-    document.getElementById('nav-screen').classList.add('active');
-    renderProjects();
-}
-
-function closeNav() {
-    document.getElementById('nav-screen').classList.remove('active');
-}
+function openProjectTerminal() { document.getElementById('nav-screen').classList.add('active'); renderProjects(); }
+function closeNav() { document.getElementById('nav-screen').classList.remove('active'); }
 
 function renderProjects() {
     const listEl = document.getElementById('todo-list');
     const projects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
-    listEl.innerHTML = projects.map((p, i) => `
-      <li class="todo-item">
-        <span>> ${p}</span>
-        <button class="todo-del-btn" onclick="deleteProject(${i})">[ELIMINAR]</button>
-      </li>
-    `).join('');
+    listEl.innerHTML = projects.map((p, i) => `<li class="todo-item"><span>> ${p}</span><button class="todo-del-btn" onclick="deleteProject(${i})">[ELIMINAR]</button></li>`).join('');
 }
 
 function addProject() {
@@ -1468,12 +1378,8 @@ function deleteProject(index) {
 function exportToTxt() {
     const projects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
     if (projects.length === 0) { alert('No hay proyectos para exportar.'); return; }
-    let content = "=========================================\n";
-    content += "   CYBER-LYRIC CORE // SYSTEM_PROJECT_LOG\n";
-    content += `   GENERADO: ${new Date().toLocaleDateString()}\n`;
-    content += "=========================================\n\n";
+    let content = "=========================================\n   CYBER-LYRIC CORE // SYSTEM_PROJECT_LOG\n=========================================\n\n";
     projects.forEach((p, idx) => { content += `${String(idx + 1).padStart(2, '0')}. [PENDIENTE] > ${p}\n`; });
-    content += "\n=========================================\nSTATUS: ARCHIVE_UPDATED // END OF LOG\n";
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
