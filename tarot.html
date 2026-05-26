@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tarot Arcana</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+</head>
+<body>
+  <header><div class="logo">Lyric<em>/</em>sh0p1t</div></header>
+  
+  <nav class="nav">
+    <a href="index.html" class="nav-tab">lyric del día</a>
+    <a href="tracks.html" class="nav-tab">top tracks</a>
+    <a href="artists.html" class="nav-tab">top artists</a>
+    <a href="tarot.html" class="nav-tab active">tarot arcana</a>
+  </nav>
+
+  <div class="tab-view-extended">
+    <section class="tarot-section" id="tarot-container"></section>
+  </div>
+
+  <!-- AÑADIDO: El HTML del Modal para que las cartas tengan dónde abrirse -->
+  <div id="tarot-modal">
+    <div class="tarot-modal-box">
+      <div class="tarot-modal-header">// ARCANA_DIVINATION: CARD_READING_SYSTEM</div>
+      <div class="tarot-modal-content">
+        <div id="modal-card-image" class="tarot-modal-image-wrapper"></div>
+        <div class="tarot-modal-info">
+          <div class="card-number" id="modal-card-number"></div>
+          <h2 id="modal-card-name"></h2>
+          <div class="tarot-description" id="modal-card-description"></div>
+          <div class="tarot-meanings" id="modal-card-meanings"></div>
+        </div>
+      </div>
+      <div class="tarot-modal-actions">
+        <button class="tarot-close-btn" onclick="closeTarotModal()">CLOSE_ARCANA</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="tarot-data.js"></script>
+  <script>
+    function renderTarotGrid() {
+      const categories = [
+        { key: 'major', title: 'Arcanos Mayores', label: '✦ Mystical Divination' },
+        { key: 'bastos', title: 'Palo de Bastos (Wands)', label: '✦ Fuego & Creatividad' },
+        { key: 'copas', title: 'Palo de Copas (Cups)', label: '✦ Agua & Emociones' },
+        { key: 'espadas', title: 'Palo de Espadas (Swords)', label: '✦ Aire & Mente' },
+        { key: 'oros', title: 'Palo de Oros (Pentacles)', label: '✦ Tierra & Materia' }
+      ];
+
+      const groups = { major: [], bastos: [], copas: [], espadas: [], oros: [] };
+      TAROT_CARDS.forEach(card => {
+        if (card.type === 'major') {
+          groups.major.push(card);
+        } else if (card.type === 'minor') {
+          const nameLower = card.name.toLowerCase();
+          if (nameLower.includes('bastos')) groups.bastos.push(card);
+          else if (nameLower.includes('copas')) groups.copas.push(card);
+          else if (nameLower.includes('espadas')) groups.espadas.push(card);
+          else if (nameLower.includes('oros')) groups.oros.push(card);
+        }
+      });
+
+      let htmlContent = '';
+
+      categories.forEach(cat => {
+        const cardsInGroup = groups[cat.key];
+        if (cardsInGroup && cardsInGroup.length > 0) {
+          htmlContent += `
+            <div class="tarot-header" style="margin-top: 2.5rem; ${cat.key !== 'major' ? 'border-top: 1px dashed var(--border); padding-top: 2.5rem;' : ''}">
+              <span class="tarot-label" style="${cat.key !== 'major' ? 'color: var(--green);' : ''}">${cat.label}</span>
+              <h2 class="tarot-title">${cat.title}</h2>
+            </div>
+            <div class="tarot-grid" style="margin-bottom: 3rem;">
+              ${cardsInGroup.map(card => `
+                <div class="tarot-card ${card.type}" onclick="openTarotModal(${card.id})">
+                  <div class="tarot-card-image-wrapper">
+                     <img src="${card.image}" alt="${card.name}" class="tarot-card-image" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23141414%22 width=%22100%22 height=%22150%22/%3E%3Crect fill=%22none%22 stroke=%22%23a855f7%22 stroke-width=%221%22 x=%222%22 y=%222%22 width=%2296%22 height=%22146%22/%3E%3Ctext x=%2250%22 y=%2275%22 font-family=%22monospace%22 font-size=%226%22 fill=%22%23fbbf24%22 text-anchor=%22middle%22%3E${encodeURIComponent(card.name)}%3C/text%3E%3C/svg%3E'">
+                  </div>
+                  <div class="tarot-card-name">${card.name}</div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+      });
+
+      document.getElementById('tarot-container').innerHTML = htmlContent;
+    }
+
+    function openTarotModal(cardId) {
+      const card = TAROT_CARDS[cardId];
+      document.getElementById('modal-card-number').textContent = `Arcano ${card.type === 'major' ? 'Mayor' : 'Menor'} ${card.number}`;
+      document.getElementById('modal-card-name').textContent = card.name;
+      document.getElementById('modal-card-image').innerHTML = `<img src="${card.image}" alt="${card.name}" class="tarot-modal-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 150%22%3E%3Crect fill=%22%23141414%22 width=%22100%22 height=%22150%22/%3E%3Crect fill=%22none%22 stroke=%22%23a855f7%22 stroke-width=%221%22 x=%222%22 y=%222%22 width=%2296%22 height=%22146%22/%3E%3Ctext x=%2250%22 y=%2275%22 font-family=%22monospace%22 font-size=%226%22 fill=%22%23fbbf24%22 text-anchor=%22middle%22%3E${encodeURIComponent(card.name)}%3C/text%3E%3C/svg%3E'">`;
+      document.getElementById('modal-card-description').textContent = card.description;
+      document.getElementById('modal-card-meanings').innerHTML = `
+        <div class="meaning-box"><div class="meaning-title">Significado Directo</div><div class="meaning-text">${card.uprightMeaning}</div></div>
+        <div class="meaning-box"><div class="meaning-title">Significado Invertido</div><div class="meaning-text">${card.reversedMeaning}</div></div>`;
+      document.getElementById('tarot-modal').classList.add('active');
+    }
+    
+    function closeTarotModal() { 
+      document.getElementById('tarot-modal').classList.remove('active'); 
+    }
+
+    window.openTarotModal = openTarotModal;
+    window.closeTarotModal = closeTarotModal;
+
+    // AÑADIDO: Ejecutamos la función para que las cartas se pinten en pantalla
+    renderTarotGrid();
+  </script>
+</body>
+</html>
