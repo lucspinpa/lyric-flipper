@@ -726,7 +726,6 @@
   </div>
 </div>
 
-<!-- ── MODAL METEOROLÓGICO ── -->
 <div id="weather-modal">
   <div class="weather-box">
     <div class="weather-header">// WEATHER_STATION: SATELLITE_TELEMETRY</div>
@@ -737,7 +736,6 @@
   </div>
 </div>
 
-<!-- ── MODAL LUNAR ── -->
 <div id="lunar-modal">
   <div class="lunar-box">
     <div class="lunar-header">// LUNAR_OBSERVATORY: MOON_TRACKING_SYSTEM</div>
@@ -938,7 +936,7 @@ function generateLunarCalendar(year, month) {
 
   function esc(str) {
     if (!str) return '';
-    return str.replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"');
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
   function trackRow(t, i, isActive) {
@@ -1076,8 +1074,7 @@ function generateLunarCalendar(year, month) {
     document.getElementById('weather-display').textContent = '• Satélite fuera de rango local.';
   }
 
-// ── CONFIGURACIÓN DE GOOGLE CALENDAR (PRIVADO) ──
-  // Reemplaza esto con el ID de cliente que copiaste en el Paso 1
+  // ── CONFIGURACIÓN DE GOOGLE CALENDAR (PRIVADO) ──
   const CLIENT_ID = '504339167916-t2tien08o6h0neq8bv28pi2p4hdn0qcr.apps.googleusercontent.com'; 
   const SCOPES = 'https://www.googleapis.com/auth/calendar.events.readonly';
   
@@ -1085,7 +1082,6 @@ function generateLunarCalendar(year, month) {
   let gapiInited = false;
   let gsiInited = false;
 
-  // Iniciar la librería GAPI de Google
   function gapiStart() {
     gapi.client.init({
       discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
@@ -1095,7 +1091,6 @@ function generateLunarCalendar(year, month) {
     });
   }
 
-  // Cargar las herramientas de autenticación
   window.gisInit = function() {
     tokenClient = google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
@@ -1111,19 +1106,16 @@ function generateLunarCalendar(year, month) {
     checkAuthAutomated();
   };
 
-  // Cargar las librerías al iniciar la web
   function handleClientLoad() {
     gapi.load('client', gapiStart);
     window.gisInit();
   }
 
-  // Comprobar si ya iniciaste sesión previamente en este navegador
   function checkAuthAutomated() {
     if (gapiInited && gsiInited) {
       const savedToken = localStorage.getItem('gcal_token');
       if (savedToken) {
         const token = JSON.parse(savedToken);
-        // Verificar si el token sigue vigente o renovarlo
         gapi.client.setToken(token);
         showLogoutButton();
         listUpcomingEvents();
@@ -1133,13 +1125,11 @@ function generateLunarCalendar(year, month) {
     }
   }
 
-  // Mostrar/Ocultar botones de sesión
   function showLogoutButton() {
     document.getElementById('btn-login-google').style.display = 'none';
     document.getElementById('btn-logout-google').style.display = 'inline-block';
   }
 
-  // Solicitar acceso interactivo (Solo tú podrás ver la ventana emergente de tu cuenta)
   document.getElementById('btn-login-google').onclick = () => {
     const savedToken = localStorage.getItem('gcal_token');
     if (!savedToken) {
@@ -1149,7 +1139,6 @@ function generateLunarCalendar(year, month) {
     }
   };
 
-  // Cerrar sesión limpiando los datos del navegador local
   document.getElementById('btn-logout-google').onclick = () => {
     const token = gapi.client.getToken();
     if (token !== null) {
@@ -1163,12 +1152,9 @@ function generateLunarCalendar(year, month) {
     }
   };
 
-    // Obtener y listar los eventos futuros de TODOS los calendarios con colores aleatorios asignados por calendario
   async function listUpcomingEvents() {
     try {
       const agendaEl = document.getElementById('agenda-display');
-      
-      // 1. Obtener la lista de todos los calendarios del usuario
       const calendarListResponse = await gapi.client.calendar.calendarList.list();
       const calendars = calendarListResponse.result.items;
       
@@ -1177,26 +1163,12 @@ function generateLunarCalendar(year, month) {
         return;
       }
 
-      // Paleta de colores Cyberpunk/Retro-futuristas para la asignación aleatoria
-      const paletaColores = [
-        '#1DB954', // Verde Flipper original
-        '#38bdf8', // Azul Neón
-        '#a855f7', // Morado Eléctrico
-        '#f43f5e', // Rosa Intenso
-        '#fb923c', // Naranja Código
-        '#eab308', // Amarillo Alerta
-        '#22d3ee', // Cyan Glitch
-        '#f472b6'  // Magenta Pastel
-      ];
-
-      // Mapeamos un color fijo a cada ID de calendario para mantener consistencia visual
+      const paletaColores = ['#1DB954', '#38bdf8', '#a855f7', '#f43f5e', '#fb923c', '#eab308', '#22d3ee', '#f472b6'];
       const mapaColoresCalendario = {};
       calendars.forEach((cal, index) => {
-        // Asigna un color de la paleta de forma secuencial/aleatoria basada en el índice
         mapaColoresCalendario[cal.id] = paletaColores[index % paletaColores.length];
       });
 
-      // 2. Lanzar peticiones en paralelo para extraer los datos de cada calendario activo
       const eventPromises = calendars.map(async (cal) => {
         try {
           const res = await gapi.client.calendar.events.list({
@@ -1207,9 +1179,7 @@ function generateLunarCalendar(year, month) {
             'maxResults': 15,
             'orderBy': 'startTime',
           });
-          
           const items = res.result.items || [];
-          // Inyectamos el color aleatorio asignado a este calendario específico a todos sus eventos
           return items.map(event => ({ ...event, colorAsignado: mapaColoresCalendario[cal.id] }));
         } catch (err) {
           console.warn(`No se pudieron cargar eventos del calendario: ${cal.summary}`, err);
@@ -1217,10 +1187,7 @@ function generateLunarCalendar(year, month) {
         }
       });
 
-      // Esperamos a que terminen todas las consultas simultáneas
       const allCalendarsEvents = await Promise.all(eventPromises);
-      
-      // 3. Unificar todos los eventos en una sola matriz plana
       let allEvents = [].concat(...allCalendarsEvents);
 
       if (allEvents.length === 0) {
@@ -1228,30 +1195,19 @@ function generateLunarCalendar(year, month) {
         return;
       }
 
-      // 4. Ordenar TODOS los eventos de forma cronológica global
       allEvents.sort((a, b) => {
-        const dateA = new Date(a.start.dateTime || a.start.date);
-        const dateB = new Date(b.start.dateTime || b.start.date);
-        return dateA - dateB;
+        return new Date(a.start.dateTime || a.start.date) - new Date(b.start.dateTime || b.start.date);
       });
 
-      // 5. Limitar el resultado final a la ventana de los 15 más próximos globales
       allEvents = allEvents.slice(0, 15);
 
-      // 6. Renderizar con la estructura de agenda táctica
       let html = '';
       let lastDateString = '';
 
       allEvents.forEach(event => {
         const when = event.start.dateTime || event.start.date;
         const eventDate = new Date(when);
-        
-        // Estructura de fechas del separador por día
-        const currentDateString = eventDate.toLocaleDateString('es-ES', {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long'
-        }).toUpperCase();
+        const currentDateString = eventDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }).toUpperCase();
 
         if (currentDateString !== lastDateString) {
           if (lastDateString !== '') html += `<div style="margin-top: 0.8rem; border-top: 1px dashed var(--muted); padding-top: 0.4rem;"></div>`;
@@ -1259,16 +1215,11 @@ function generateLunarCalendar(year, month) {
           lastDateString = currentDateString;
         }
 
-        // Formato para los marcadores horarios
         let timeDisplay = 'Todo el día';
         if (event.start.dateTime) {
-          timeDisplay = eventDate.toLocaleTimeString('es-ES', {
-            hour: '2-digit',
-            minute: '2-digit'
-          });
+          timeDisplay = eventDate.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
         }
 
-        // Renderizado usando el color dinámico asignado a su flujo de origen
         html += `<div style="margin-bottom: 0.25rem; display: flex; align-items: start; gap: 0.5rem;">
           <span style="color: ${event.colorAsignado}; font-size: 0.6rem; flex-shrink: 0; font-weight: bold;">${timeDisplay}</span>
           <span style="color: var(--text); font-size: 0.65rem;">${esc(event.summary)}</span>
@@ -1281,6 +1232,18 @@ function generateLunarCalendar(year, month) {
       document.getElementById('agenda-display').innerHTML = '• Error sincronizando telemetría de multicalendarios.';
     }
   }
+
+  // ── CONTROL DE NAVEGACIÓN ENTRE PESTAÑAS (RESTAURADO) ──
+  document.querySelectorAll('.nav-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentView = btn.dataset.view;
+      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById('view-' + currentView).classList.add('active');
+      document.getElementById('range-pills').style.display = currentView === 'lyric' ? 'none' : 'flex';
+    });
+  });
 
   // ── Range pills ──
   document.querySelectorAll('.pill').forEach(btn => {
@@ -1328,6 +1291,7 @@ function generateLunarCalendar(year, month) {
   });
 
   startPetBehavior();
+  setTimeout(handleClientLoad, 500); // Disparador automático de la API de Google
 
 })();
 
@@ -1470,7 +1434,6 @@ function openProjectTerminal() {
 
 function closeNav() {
     document.getElementById('nav-screen').classList.remove('active');
-    if (window.refreshAgendaDisplay) window.refreshAgendaDisplay();
 }
 
 function renderProjects() {
