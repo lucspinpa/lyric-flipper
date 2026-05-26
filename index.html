@@ -1163,49 +1163,103 @@ function generateLunarCalendar(year, month) {
     }
   };
 
-  // Obtener y listar los próximos 5 eventos de tu calendario
-  // Obtener y listar los eventos futuros en formato Agenda estructurada
+    // Obtener y listar los eventos futuros de TODOS los calendarios con colores aleatorios asignados por calendario
   async function listUpcomingEvents() {
     try {
-      const response = await gapi.client.calendar.events.list({
-        'calendarId': 'primary',
-        'timeMin': (new Date()).toISOString(),
-        'showDeleted': false,
-        'singleEvents': true,
-        'maxResults': 15, // Aumentamos el rango de intercepción a 15 eventos
-        'orderBy': 'startTime',
-      });
-      
-      const events = response.result.items;
       const agendaEl = document.getElementById('agenda-display');
       
-      if (!events || events.length === 0) {
+      // 1. Obtener la lista de todos los calendarios del usuario
+      const calendarListResponse = await gapi.client.calendar.calendarList.list();
+      const calendars = calendarListResponse.result.items;
+      
+      if (!calendars || calendars.length === 0) {
+        agendaEl.innerHTML = '• No se encontraron calendarios en tu cuenta.';
+        return;
+      }
+
+      // Paleta de colores Cyberpunk/Retro-futuristas para la asignación aleatoria
+      const paletaColores = [
+        '#1DB954', // Verde Flipper original
+        '#38bdf8', // Azul Neón
+        '#a855f7', // Morado Eléctrico
+        '#f43f5e', // Rosa Intenso
+        '#fb923c', // Naranja Código
+        '#eab308', // Amarillo Alerta
+        '#22d3ee', // Cyan Glitch
+        '#f472b6'  // Magenta Pastel
+      ];
+
+      // Mapeamos un color fijo a cada ID de calendario para mantener consistencia visual
+      const mapaColoresCalendario = {};
+      calendars.forEach((cal, index) => {
+        // Asigna un color de la paleta de forma secuencial/aleatoria basada en el índice
+        mapaColoresCalendario[cal.id] = paletaColores[index % paletaColores.length];
+      });
+
+      // 2. Lanzar peticiones en paralelo para extraer los datos de cada calendario activo
+      const eventPromises = calendars.map(async (cal) => {
+        try {
+          const res = await gapi.client.calendar.events.list({
+            'calendarId': cal.id,
+            'timeMin': (new Date()).toISOString(),
+            'showDeleted': false,
+            'singleEvents': true,
+            'maxResults': 15,
+            'orderBy': 'startTime',
+          });
+          
+          const items = res.result.items || [];
+          // Inyectamos el color aleatorio asignado a este calendario específico a todos sus eventos
+          return items.map(event => ({ ...event, colorAsignado: mapaColoresCalendario[cal.id] }));
+        } catch (err) {
+          console.warn(`No se pudieron cargar eventos del calendario: ${cal.summary}`, err);
+          return [];
+        }
+      });
+
+      // Esperamos a que terminen todas las consultas simultáneas
+      const allCalendarsEvents = await Promise.all(eventPromises);
+      
+      // 3. Unificar todos los eventos en una sola matriz plana
+      let allEvents = [].concat(...allCalendarsEvents);
+
+      if (allEvents.length === 0) {
         agendaEl.innerHTML = '• No hay eventos próximos en órbita.';
         return;
       }
 
+      // 4. Ordenar TODOS los eventos de forma cronológica global
+      allEvents.sort((a, b) => {
+        const dateA = new Date(a.start.dateTime || a.start.date);
+        const dateB = new Date(b.start.dateTime || b.start.date);
+        return dateA - dateB;
+      });
+
+      // 5. Limitar el resultado final a la ventana de los 15 más próximos globales
+      allEvents = allEvents.slice(0, 15);
+
+      // 6. Renderizar con la estructura de agenda táctica
       let html = '';
       let lastDateString = '';
 
-      events.forEach(event => {
+      allEvents.forEach(event => {
         const when = event.start.dateTime || event.start.date;
         const eventDate = new Date(when);
         
-        // Formato para el separador de día (Ej: "MARTES, 26 DE MAYO")
+        // Estructura de fechas del separador por día
         const currentDateString = eventDate.toLocaleDateString('es-ES', {
           weekday: 'long',
           day: 'numeric',
           month: 'long'
         }).toUpperCase();
 
-        // Si cambiamos de día, renderizamos un separador visual retro
         if (currentDateString !== lastDateString) {
           if (lastDateString !== '') html += `<div style="margin-top: 0.8rem; border-top: 1px dashed var(--muted); padding-top: 0.4rem;"></div>`;
           html += `<div style="font-size: 0.55rem; color: var(--dim); letter-spacing: 0.08em; margin-bottom: 0.3rem;">[--- ${currentDateString} ---]</div>`;
           lastDateString = currentDateString;
         }
 
-        // Formato para las horas de los eventos individuales
+        // Formato para los marcadores horarios
         let timeDisplay = 'Todo el día';
         if (event.start.dateTime) {
           timeDisplay = eventDate.toLocaleTimeString('es-ES', {
@@ -1214,9 +1268,9 @@ function generateLunarCalendar(year, month) {
           });
         }
 
-        // Añadimos el evento estructurado
+        // Renderizado usando el color dinámico asignado a su flujo de origen
         html += `<div style="margin-bottom: 0.25rem; display: flex; align-items: start; gap: 0.5rem;">
-          <span style="color: var(--green); font-size: 0.6rem; flex-shrink: 0; font-weight: bold;">${timeDisplay}</span>
+          <span style="color: ${event.colorAsignado}; font-size: 0.6rem; flex-shrink: 0; font-weight: bold;">${timeDisplay}</span>
           <span style="color: var(--text); font-size: 0.65rem;">${esc(event.summary)}</span>
         </div>`;
       });
@@ -1224,24 +1278,9 @@ function generateLunarCalendar(year, month) {
       agendaEl.innerHTML = html;
     } catch (err) {
       console.error(err);
-      document.getElementById('agenda-display').innerHTML = '• Error sincronizando telemetría del calendario.';
+      document.getElementById('agenda-display').innerHTML = '• Error sincronizando telemetría de multicalendarios.';
     }
   }
-
-  // Ejecutar carga automática al abrir
-  setTimeout(handleClientLoad, 500);
-
-  // ── Nav tabs ──
-  document.querySelectorAll('.nav-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentView = btn.dataset.view;
-      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById('view-' + currentView).classList.add('active');
-      document.getElementById('range-pills').style.display = currentView === 'lyric' ? 'none' : 'flex';
-    });
-  });
 
   // ── Range pills ──
   document.querySelectorAll('.pill').forEach(btn => {
