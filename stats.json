@@ -1,10 +1,10 @@
 {
-  "generated": "2026-05-25",
+  "generated": "2026-05-26",
   "lyric": {
-    "artist": "Gracie Abrams",
-    "track": "Hit the Wall",
-    "album": "Hit the Wall",
-    "chunk": "I hit the wall, I hit the wall\n\"A Case Of You\" playing in the hallway\nHallucinations that I downplay\nI'm numb 'til I'm aching for the sharp pain\nWatch my blade ricochet"
+    "artist": "RAYE",
+    "track": "Winter Woman.",
+    "album": "THIS MUSIC MAY CONTAIN HOPE.",
+    "chunk": "Until then I'm numb and\nLife goes on, life goes on\nShe gets her money, then a taxi home\nShe hunt alone, hurts alone\nIn her castle on the hill, where no one comes or no one goes"
   },
   "tracks": {
     "short_term": [
@@ -12,6 +12,11 @@
         "track": "Hit the Wall",
         "artist": "Gracie Abrams",
         "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
+      },
+      {
+        "track": "Questions",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
         "track": "Calypso",
@@ -29,12 +34,12 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       },
       {
-        "track": "Questions",
+        "track": "Say My Name In Your Sleep",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Say My Name In Your Sleep",
+        "track": "My Regards",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
@@ -44,17 +49,12 @@
         "image": "https://i.scdn.co/image/ab67616d00001e021a1495ff41046065b9475366"
       },
       {
-        "track": "Happier Times Ahead.",
-        "artist": "RAYE",
-        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
+        "track": "Girl’s Just Flying",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Rock Music",
-        "artist": "Charli xcx",
-        "image": "https://i.scdn.co/image/ab67616d00001e02b7bc469a85354ff1ae7a1386"
-      },
-      {
-        "track": "My Regards",
+        "track": "Kingmaker (with Julia Michaels)",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       }
@@ -245,16 +245,16 @@
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
       },
       {
+        "name": "Maisie Peters",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
+      },
+      {
         "name": "Olivia Dean",
         "genres": [
           "pop soul"
         ],
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
-      },
-      {
-        "name": "Maisie Peters",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
         "name": "RAYE",
