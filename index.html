@@ -12,22 +12,18 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    /* FONDO Y SUPERFICIES (Oscuros modificados con matiz verde sutil) */
-    --bg:      #0b0f0c; 
-    --surface: #121914; 
-    --border:  #1c261f; 
-    --green:   #1DB954; 
-    --muted:   #444444; 
-    --text:    #e8e8e0; 
-    --dim:     #2d4a36; 
-    
-    /* Variables secundarias integradas correctamente */
+   :root {
+    --bg:      #0d0d0d;
+    --surface: #141414;
+    --border:  #1e1e1e;
+    --green:   #1DB954;
+    --muted:   #444;
+    --text:    #e8e8e0;
+    --dim:     #666;
     --purple:  #a855f7;
     --gold:    #fbbf24;
-  } /* <-- Aquí se cierra :root correctamente ahora */
+  }
 
-  /* Aplicamos el color de fondo tanto al documento completo como al cuerpo */
   html {
     background-color: var(--bg);
   }
