@@ -4,7 +4,7 @@ on:
   schedule:
     # Cada día a las 9:00 hora de España (8:00 UTC en invierno, 7:00 UTC en verano)
     # Ajusta el horario aquí: https://crontab.guru
-    - cron: '17 8 * * *'
+    - cron: '27 11 * * *'
   # Permite ejecutarlo manualmente desde GitHub para probar
   workflow_dispatch:
 
