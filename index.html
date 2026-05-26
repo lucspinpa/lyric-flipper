@@ -42,6 +42,12 @@
   .nav-tab.active { color: var(--text); border-bottom-color: var(--green); }
   .nav-tab:hover:not(.active) { color: var(--text); }
 
+  /* ── TIME RANGE PILLS ── */
+  .range-pills { display: flex; gap: 0.5rem; padding-top: 1.75rem; }
+  .pill { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); background: none; border: 1px solid var(--border); border-radius: 20px; padding: 0.3rem 0.85rem; cursor: pointer; transition: all 0.15s; }
+  .pill.active { color: var(--bg); background: var(--text); border-color: var(--text); }
+  .pill:hover:not(.active) { border-color: var(--muted); color: var(--text); }
+
   /* ── TRACK ROW ── */
   .track-row {
     display: flex;
@@ -137,7 +143,6 @@
     border: 1px solid var(--border);
     background: var(--surface);
     overflow: hidden;
-    vertical-align: middle;
   }
   
   .visual-canvas-base { transition: filter 0.4s ease; }
@@ -175,7 +180,7 @@
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   .cursor-blink { animation: blink 1s step-end infinite; }
 
-  /* ── PROYECTOS INTERACTIVOS (TERMINAL MODAL DESPLEGABLE) ── */
+  /* ── TERMINAL DE PROYECTOS PRIVADOS (TO-DO) ── */
   #nav-screen {
     position: fixed;
     inset: 0;
@@ -215,6 +220,7 @@
   footer { border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 4rem; font-size: 0.58rem; color: var(--muted); display: flex; justify-content: space-between; align-items: center; width: 100%; }
   footer a { color: var(--dim); text-decoration: none; }
   footer a:hover { color: var(--green); }
+  #error-msg { display: none; font-size: 0.7rem; color: var(--dim); padding: 2rem 0; width: 100%; }
 
   @media (max-width: 768px) {
     .bottom-split-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -234,6 +240,12 @@
   <button class="nav-tab active" data-view="lyric">lyric del día</button>
   <button class="nav-tab" data-view="tracks">top tracks</button>
 </nav>
+
+<div class="range-pills" id="range-pills" style="display:none">
+  <button class="pill active" data-range="short_term">last 4 weeks</button>
+  <button class="pill" data-range="medium_term">last 6 months</button>
+  <button class="pill" data-range="long_term">last 12 months</button>
+</div>
 
 <div id="view-lyric" class="view active">
   <main>
@@ -333,8 +345,7 @@
       <button class="todo-btn" onclick="addProject()">ADD</button>
     </div>
 
-    <ul id="todo-list" class="todo-list">
-      </ul>
+    <ul id="todo-list" class="todo-list"></ul>
 
     <div class="term-actions">
       <button class="abort-btn" onclick="exportToTxt()" style="border-color: var(--text); color: var(--text);">EXPORT_TXT</button>
@@ -349,6 +360,8 @@
   </div>
 </div>
 
+<div id="error-msg">no se pudo cargar stats.json — ¿se ejecutó el pipeline hoy?</div>
+
 <footer>
   <a href="https://github.com/lucspinpa/lyric-flipper" target="_blank">github.com/lucspinpa/lyric-flipper</a>
   <span id="footer-generated"></span>
@@ -358,6 +371,7 @@
 (async () => {
   let DATA = null;
   let currentView = 'lyric';
+  let currentRange = 'short_term';
 
   function esc(str) {
     if (!str) return '';
@@ -375,7 +389,7 @@
     </li>`;
   }
 
-  // ── Fetch de Spotify ──
+  // ── Fetch ──
   try {
     const res = await fetch(`stats.json?t=${Date.now()}`);
     if (!res.ok) throw new Error(res.status);
@@ -391,22 +405,32 @@
     dt.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
   document.getElementById('footer-generated').textContent = 'generado automáticamente · ' + DATA.generated;
 
+  // Renderizador unificado para ambas listas
+  function renderAllTracks(range) {
+    // 1. Lista compacta lateral del Lyric Tab
+    const tracksLyric = DATA.tracks.short_term || [];
+    document.getElementById('tracks-list-lyric').innerHTML =
+      tracksLyric.map((t, i) => trackRow(t, i, t.track === DATA.lyric.track && t.artist === DATA.lyric.artist)).join('');
+
+    // 2. Lista extendida del Tracks Tab principal (¡RE-HABILITADO AQUÍ!)
+    const tracksMain = DATA.tracks[range] || [];
+    document.getElementById('tracks-list-main').innerHTML =
+      tracksMain.map((t, i) => trackRow(t, i, false)).join('');
+  }
+
   function renderLyric() {
     document.getElementById('lyric-artist').textContent = DATA.lyric.artist;
     document.getElementById('lyric-track').textContent  = DATA.lyric.track;
     document.getElementById('lyric-chunk').innerHTML =
       DATA.lyric.chunk.split('\n').map(l => `<span>${esc(l)}</span>`).join('<br>');
-
-    const tracks = DATA.tracks.short_term || [];
-    document.getElementById('tracks-list-lyric').innerHTML =
-      tracks.map((t, i) => trackRow(t, i, t.track === DATA.lyric.track && t.artist === DATA.lyric.artist)).join('');
+    
+    renderAllTracks(currentRange);
   }
 
   renderLyric();
 
-  // ── CONEXIÓN SEGURA AL CLIMA (wttr.in) ──
+  // ── CLIMA (wttr.in) ──
   try {
-    // Busca automáticamente el clima de A Coruña formateado en formato JSON amigable
     const weatherRes = await fetch('https://wttr.in/A_Coruna?format=j1');
     if (weatherRes.ok) {
       const wData = await weatherRes.json();
@@ -419,7 +443,7 @@
     document.getElementById('weather-display').textContent = '• Satélite fuera de rango local.';
   }
 
-  // ── CARGAR AGENDA Y RECORDATORIOS DESDE TU LOCAL STORAGE PRIVADO ──
+  // ── AGENDA LOCAL storage ──
   function refreshAgenda() {
     const localProjects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
     const agendaEl = document.getElementById('agenda-display');
@@ -431,9 +455,9 @@
     }
   }
   refreshAgenda();
-  window.refreshAgendaDisplay = refreshAgenda; // Compartir función
+  window.refreshAgendaDisplay = refreshAgenda;
 
-  // ── PESTAÑAS NAV ──
+  // ── NAV PESTAÑAS ──
   document.querySelectorAll('.nav-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       currentView = btn.dataset.view;
@@ -441,6 +465,19 @@
       btn.classList.add('active');
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById('view-' + currentView).classList.add('active');
+      
+      // Control de píldoras de tiempo
+      document.getElementById('range-pills').style.display = currentView === 'tracks' ? 'flex' : 'none';
+    });
+  });
+
+  // ── RANGE PILLS ──
+  document.querySelectorAll('.pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentRange = btn.dataset.range;
+      document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderAllTracks(currentRange);
     });
   });
 
@@ -472,7 +509,7 @@
 
 })();
 
-// ── LOGICA DE MAPAS TÁCTICOS (STITCH LOGIC) ──
+// ── MAPAS Y HUD (STITCH ARCHIVE) ──
 function updateHudClock() {
     const now = new Date();
     const clockEl = document.getElementById('hud-clock');
@@ -492,7 +529,7 @@ function toggleHighlight(city, isActive) {
     }
 }
 
-// ── SISTEMA DE PROYECTOS PRIVADOS (LOCAL TO-DO LOG) ──
+// ── TO-DO CORE CONTROL ──
 function openProjectTerminal() {
     document.getElementById('nav-screen').classList.add('active');
     renderProjects();
@@ -533,7 +570,6 @@ function deleteProject(index) {
     renderProjects();
 }
 
-// Genera un txt formateado automáticamente y lo descarga al PC
 function exportToTxt() {
     const projects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
     if (projects.length === 0) { alert('No hay proyectos para exportar.'); return; }
