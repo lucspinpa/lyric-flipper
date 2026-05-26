@@ -132,15 +132,34 @@
   .sent-badge::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
   /* ── ARTISTS ── */
-  #artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   .artist-card { display: flex; align-items: center; gap: 1rem; padding: 0.85rem; border: 1px solid var(--border); border-radius: 6px; }
   .artist-card.top1 { grid-column: 1 / -1; }
   .a-img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: var(--surface); }
   .artist-card.top1 .a-img { width: 56px; height: 56px; }
   .a-info { overflow: hidden; }
   .a-rank { font-size: 0.55rem; color: var(--dim); letter-spacing: 0.08em; margin-bottom: 0.2rem; }
-  .a-name { font-size: 0.75rem; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .a-genre { font-size: 0.6rem; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.a-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+.a-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.a-genre {
+  font-size: 0.6rem;
+  color: var(--dim); /* Color gris tenue */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#artists-grid { 
+  display: grid; 
+  grid-template-columns: 1fr; /* Una sola columna para que se vea más limpio */
+  gap: 0.5rem; 
+}
 
   /* ── SKELETON ── */
   .skel { background: var(--surface); border-radius: 3px; animation: pulse 1.4s ease-in-out infinite; }
