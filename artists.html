@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top Artists</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+</head>
+<body>
+  <header><div class="logo">Lyric<em>/</em>sh0p1t</div></header>
+  
+  <nav class="nav">
+    <a href="index.html" class="nav-tab">lyric del día</a>
+    <a href="tracks.html" class="nav-tab">top tracks</a>
+    <a href="artists.html" class="nav-tab active">top artists</a>
+    <a href="tarot.html" class="nav-tab">tarot arcana</a>
+  </nav>
+
+  <div class="range-pills" style="display:flex">
+    <button class="pill active" data-range="short_term">last 4 weeks</button>
+    <button class="pill" data-range="medium_term">last 6 months</button>
+    <button class="pill" data-range="long_term">last 12 months</button>
+  </div>
+
+  <div class="tab-view-extended">
+    <div id="artists-grid"></div>
+  </div>
+
+  <aside class="aside-extended" style="padding-left: 2.5rem;">
+    <div class="aside-label">géneros frecuentes</div>
+    <div id="genres-list" style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem"></div>
+  </aside>
+
+  <script>
+    (async () => {
+      let DATA = null;
+
+      function esc(str) {
+        if (!str) return '';
+        return str.replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"');
+      }
+
+      async function renderArtists(range) {
+        const artists = DATA.artists[range] || [];
+        
+        // Renderizar grid de artistas
+        document.getElementById('artists-grid').innerHTML = artists.map((a, i) => `
+          <div class="artist-card${i === 0 ? ' top1' : ''}">
+            ${a.image ? `<img class="a-img" src="${esc(a.image)}" alt="" loading="lazy">` : '<span class="a-img" style="background:var(--surface)"></span>'}
+            <div class="a-info">
+              <div class="a-rank">${String(i+1).padStart(2,'0')}</div>
+              <div class="a-name">${esc(a.name)}</div>
+              ${a.genres && a.genres.length ? `<div class="a-genre">${a.genres.map(esc).join(' · ')}</div>` : ''}
+            </div>
+          </div>`).join('');
+
+        // Renderizar lista de géneros
+        const genreCount = {};
+        artists.forEach(a => (a.genres || []).forEach(g => { genreCount[g] = (genreCount[g]||0) + 1; }));
+        const sorted = Object.entries(genreCount).sort((a,b) => b[1]-a[1]).slice(0, 8);
+        const max = sorted[0]?.[1] || 1;
+        
+        document.getElementById('genres-list').innerHTML = sorted.map(([g, c]) => `
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.62rem;color:var(--text)">${esc(g)}</span><span style="font-size:0.55rem;color:var(--dim)">${c}</span></div>
+            <div style="height:2px;background:var(--border);border-radius:2px"><div style="height:100%;width:${Math.round(c/max*100)}%;background:var(--green);border-radius:2px"></div></div>
+          </div>`).join('');
+      }
+
+      // Cargar datos
+      try {
+        const res = await fetch(`stats.json?t=${Date.now()}`);
+        DATA = await res.json();
+        renderArtists('short_term');
+      } catch(e) {
+        console.error("Error cargando stats:", e);
+      }
+
+      // Lógica de los botones
+      document.querySelectorAll('.pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderArtists(btn.dataset.range);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
