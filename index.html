@@ -202,7 +202,8 @@
 let WEATHER_DATA = null;
 let LUNAR_DATA = null;
 let BUBBLE_TIMER = null; // Guardar referencia para limpiar el bocadillo automático
-
+let FRASES_MASCOTA = [];
+  
 const ECLIPSE_DATA = [
   { date: '2024-10-02', type: 'lunar', name: 'Eclipse Lunar Penumbral', visible: true },
   { date: '2024-10-02', type: 'solar', name: 'Eclipse Solar Anular', visible: true },
@@ -281,6 +282,7 @@ function generateLunarCalendar(year, month) {
     </li>`;
   }
 
+  // 1. CARGAR PRIMERO LOS DATOS DEL SISTEMA (STATS)
   try {
     const res = await fetch(`stats.json?t=${Date.now()}`);
     if (!res.ok) throw new Error(res.status);
@@ -289,6 +291,16 @@ function generateLunarCalendar(year, month) {
     document.getElementById('error-msg').style.display = 'block';
     document.getElementById('lyric-chunk').innerHTML = '';
     return;
+  }
+
+  // 2. AHORA CARGAR LAS FRASES DE LA MASCOTA SIN INTERRUMPIR EL FLUJO
+  try {
+    const frasesRes = await fetch(`frases.json?t=${Date.now()}`);
+    if (frasesRes.ok) {
+      FRASES_MASCOTA = await frasesRes.json();
+    }
+  } catch(e) {
+    console.log("No se pudo mapear frases.json. Activando protocolo de respaldo.");
   }
 
   const today = new Date();
@@ -328,26 +340,21 @@ function generateLunarCalendar(year, month) {
   const pet = document.getElementById('web-pet');
   const bubble = document.getElementById('pet-speech');
 
+  // CORREGIDO: Eliminada la re-declaración conflictiva de 'bubble' aquí dentro
   function triggerPetSpeech() {
-    if (!DATA || !DATA.tracks || !DATA.tracks.short_term) return;
+    // 1. Si el archivo cargó correctamente, elige una fila al azar
+    if (FRASES_MASCOTA && FRASES_MASCOTA.length > 0) {
+      const itemAleatorio = FRASES_MASCOTA[Math.floor(Math.random() * FRASES_MASCOTA.length)];
+      bubble.innerHTML = `"${esc(itemAleatorio.texto)}"<span class="bubble-credit">♪ ${esc(itemAleatorio.autor)} - ${esc(itemAleatorio.tema)} ♪</span>`;
+    } else {
+      // Frase de respaldo por si borras el JSON por error
+      bubble.innerHTML = `"-_-"<span class="bubble-credit">♪ SYS_CORE ♪</span>`;
+    }
     
-    // 1. Elegir una canción aleatoria del top tracks que se ha descargado
-    const tracks = DATA.tracks.short_term;
-    if (tracks.length === 0) return;
-    const randomTrack = tracks[Math.floor(Math.random() * tracks.length)];
-    
-    // 2. Simular un fragmento o usar la canción activa actual de la UI
-    const finalTrack = Math.random() > 0.5 ? randomTrack : DATA.lyric;
-    
-    // Si elegimos la de la UI, podemos partir su bloque en frases individuales
-    const lines = finalTrack.chunk ? finalTrack.chunk.split('\n').filter(l => l.trim().length > 3) : ["¿Qué vector de datos analizamos hoy?"];
-    const randomLine = lines[Math.floor(Math.random() * lines.length)];
-
-    // 3. Modificar el HTML del bocadillo
-    bubble.innerHTML = `"${esc(randomLine)}"<span class="bubble-credit">♪ ${esc(finalTrack.artist)} - ${esc(finalTrack.track)} ♪</span>`;
+    // 2. Mostrar bocadillo
     bubble.classList.add('active');
 
-    // 4. Ocultar de forma limpia tras 5 segundos
+    // 3. Ocultar tras 5 segundos de forma limpia
     clearTimeout(BUBBLE_TIMER);
     BUBBLE_TIMER = setTimeout(() => {
       bubble.classList.remove('active');
