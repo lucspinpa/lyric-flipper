@@ -28,23 +28,63 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests beautifulsoup4
 
-    # 4. Ejecutar el Scraper forzando el método de la API directamente
-    - name: Ejecutar Scraper de Pinterest (Modo API)
+    # 4. Ejecutar el Scraper adaptado a la API v5 de Pinterest
+    - name: Ejecutar Scraper de Pinterest (Modo API v5)
       env:
         PINTEREST_TOKEN: ${{ secrets.PINTEREST_TOKEN }}
       run: |
         python -c "
-        from pinterest_scraper import PinterestScraper
-        scraper = PinterestScraper('lucaspineirop')
-        print('🔐 Conectando de forma segura mediante la API...')
-        if scraper.fetch_boards_api():
-            if scraper.save_to_json('pinterest_data.json'):
-                scraper.print_summary()
-                print('✨ ¡Listo!')
-            else:
-                import sys; sys.exit(1)
-        else:
-            import sys; sys.exit(1)
+        import requests
+        import json
+        import sys
+
+        token = '${{ secrets.PINTEREST_TOKEN }}'
+        username = 'lucaspineirop'
+        
+        print('🔐 Conectando de forma segura mediante la API v5 moderna...')
+        
+        # URL oficial de la API v5 para obtener los tableros del usuario autenticado
+        url = 'https://api.pinterest.com/v5/boards'
+        headers = {
+            'Authorization': f'Bearer {token}',
+            'Content-Type': 'application/json'
+        }
+        
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            
+            data = response.json()
+            items = data.get('items', [])
+            
+            processed_boards = []
+            for board in items:
+                processed = {
+                    'id': board.get('id', ''),
+                    'name': board.get('name', 'Sin nombre'),
+                    'description': board.get('description', '') or '',
+                    'image_url': board.get('media', {}).get('image_cover_url', '') or '',
+                    'pin_count': 0,  # La API v5 requiere endpoints separados para conteos, dejamos valor base
+                    'collaborators_count': 1,
+                    'is_owner': True,
+                    'url': f'https://pinterest.com/{username}/{board.get(\"name\", \"\").lower().replace(\" \", \"-\")}'
+                }
+                processed_boards.append(processed)
+            
+            if not processed_boards:
+                print('⚠️ No se encontraron tableros en la respuesta de la API.')
+                sys.exit(1)
+                
+            with open('pinterest_data.json', 'w', encoding='utf-8') as f:
+                json.dump(processed_boards, f, ensure_ascii=False, indent=2)
+                
+            print(f'✅ ¡Éxito! Se han guardado {len(processed_boards)} tableros en pinterest_data.json')
+            
+        except requests.RequestException as e:
+            print(f'❌ Error con API v5: {e}')
+            if e.response is not None:
+                print(f'Respuesta del servidor: {e.response.text}')
+            sys.exit(1)
         "
 
     # 5. Guardar el archivo 'pinterest_data.json' generado y subirlo a tu repositorio
