@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="global.css">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://apis.google.com/js/api.js" async defer></script>
+
 </head>
 <body>
 
@@ -29,7 +30,6 @@
   <a href="tracks.html" class="nav-tab">top tracks</a>
   <a href="artists.html" class="nav-tab">top artists</a>
   <a href="tarot.html" class="nav-tab">tarot arcana</a>
-  <!--<a href="pinterest.html" class="nav-tab">pinterest boards</a> -->
 </nav>
 
 <div id="view-lyric" class="view active">
@@ -64,8 +64,9 @@
     </blockquote>
 
     <div id="space-sector">
-      <div id="web-pet" class="pet-idle">
-        <img src="images/chateau.png" alt="Mascotita">
+      <div id="web-pet" class="pet-idle" style="right: 20%; top: 20%;">
+        <div id="pet-speech" class="pet-bubble"></div>
+        <img src="images/chateau.png" alt="Mascotita" style="width: 80px; height: 80px; object-fit: contain;">
       </div>
     </div>
 
@@ -115,10 +116,10 @@
         </div>
       </section>
 
-      <aside class="aside-nested">
+      <section class="aside-nested">
         <div class="aside-label">top tracks · last 4 weeks</div>
         <ul id="tracks-list-lyric" style="list-style:none"></ul>
-      </aside>
+      </section>
     </div>
   </main>
 </div>
@@ -153,18 +154,15 @@
 <div id="lunar-modal">
   <div class="lunar-box">
     <div class="lunar-header">// LUNAR_OBSERVATORY: MOON_TRACKING_SYSTEM</div>
-    
     <div id="eclipse-alerts" class="lunar-alerts" style="display:none;">
       <div class="alert-title">⚠️ ALERTA ASTRONÓMICA</div>
       <div class="alert-content" id="eclipse-content"></div>
     </div>
-    
     <div class="next-full-moon">
       <div class="next-full-moon-label">Próxima Luna Llena</div>
       <div class="next-full-moon-date" id="next-full-moon-date">Cargando…</div>
       <div class="next-full-moon-days" id="next-full-moon-days"></div>
     </div>
-
     <div class="lunar-info">
       <div class="lunar-stat">
         <div class="lunar-stat-label">Fase Actual</div>
@@ -183,12 +181,10 @@
         <div class="lunar-stat-value" id="modal-lunar-distance">—</div>
       </div>
     </div>
-
     <div class="lunar-calendar">
       <div class="lunar-calendar-title">Calendario Lunar - Mes Actual</div>
       <div class="moon-grid" id="lunar-calendar"></div>
     </div>
-
     <div class="lunar-actions">
       <button class="lunar-close-btn" onclick="closeLunarModal()">CLOSE_OBSERVATORY</button>
     </div>
@@ -205,6 +201,7 @@
 <script>
 let WEATHER_DATA = null;
 let LUNAR_DATA = null;
+let BUBBLE_TIMER = null; // Guardar referencia para limpiar el bocadillo automático
 
 const ECLIPSE_DATA = [
   { date: '2024-10-02', type: 'lunar', name: 'Eclipse Lunar Penumbral', visible: true },
@@ -273,7 +270,7 @@ function generateLunarCalendar(year, month) {
 
   function esc(str) {
     if (!str) return '';
-    return str.replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"');
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
   function trackRow(t, i, isActive) {
@@ -327,22 +324,79 @@ function generateLunarCalendar(year, month) {
     }
   } catch(err) { document.getElementById('weather-display').textContent = '• Satélite fuera de rango local.'; }
 
+  // ── COMPORTAMIENTO MEJORADO DE LA MASCOTA INTEGRADOR ──
   const pet = document.getElementById('web-pet');
+  const bubble = document.getElementById('pet-speech');
+
+  function triggerPetSpeech() {
+    if (!DATA || !DATA.tracks || !DATA.tracks.short_term) return;
+    
+    // 1. Elegir una canción aleatoria del top tracks que se ha descargado
+    const tracks = DATA.tracks.short_term;
+    if (tracks.length === 0) return;
+    const randomTrack = tracks[Math.floor(Math.random() * tracks.length)];
+    
+    // 2. Simular un fragmento o usar la canción activa actual de la UI
+    const finalTrack = Math.random() > 0.5 ? randomTrack : DATA.lyric;
+    
+    // Si elegimos la de la UI, podemos partir su bloque en frases individuales
+    const lines = finalTrack.chunk ? finalTrack.chunk.split('\n').filter(l => l.trim().length > 3) : ["¿Qué vector de datos analizamos hoy?"];
+    const randomLine = lines[Math.floor(Math.random() * lines.length)];
+
+    // 3. Modificar el HTML del bocadillo
+    bubble.innerHTML = `"${esc(randomLine)}"<span class="bubble-credit">♪ ${esc(finalTrack.artist)} - ${esc(finalTrack.track)} ♪</span>`;
+    bubble.classList.add('active');
+
+    // 4. Ocultar de forma limpia tras 5 segundos
+    clearTimeout(BUBBLE_TIMER);
+    BUBBLE_TIMER = setTimeout(() => {
+      bubble.classList.remove('active');
+    }, 5000);
+  }
+
   function moveMascotRandomly() {
     pet.className = 'pet-moving';
     const randomRight = Math.floor(Math.random() * 60 + 10); 
-    const randomTop = Math.floor(Math.random() * 60 + 10);   
-    pet.querySelector('img').style.transform = (randomRight < (parseFloat(pet.style.right) || 20)) ? 'scaleX(-1)' : 'scaleX(1)';  
-    pet.style.right = `${randomRight}%`; pet.style.top = `${randomTop}%`;
-    setTimeout(() => { pet.className = 'pet-idle'; }, 1000);
+    const randomTop = Math.floor(Math.random() * 40 + 10);   
+    
+    // Girar la imagen según el vector de movimiento horizontal
+    const currentRight = parseFloat(pet.style.right) || 20;
+    pet.querySelector('img').style.transform = (randomRight < currentRight) ? 'scaleX(-1)' : 'scaleX(1)';  
+    
+    pet.style.right = `${randomRight}%`; 
+    pet.style.top = `${randomTop}%`;
+    
+    // Al detenerse tras el movimiento, hay probabilidad de que decida cantar una letra
+    setTimeout(() => { 
+      pet.className = 'pet-idle'; 
+      if (Math.random() > 0.4) {
+        triggerPetSpeech();
+      }
+    }, 1000);
   }
 
-  function startPetBehavior() { setTimeout(() => { moveMascotRandomly(); startPetBehavior(); }, Math.random() * 4000 + 5000); }
-  pet.addEventListener('click', () => { pet.className = 'pet-click'; setTimeout(() => { pet.className = 'pet-idle'; }, 400); });
+  function startPetBehavior() { 
+    setTimeout(() => { 
+      moveMascotRandomly(); 
+      startPetBehavior(); 
+    }, Math.random() * 6000 + 7000); // Tiempos ligeramente más espaciados para dejar leer los bocadillos
+  }
 
+  // Interacción al hacer clic manual
+  pet.addEventListener('click', (e) => {
+    // Si hace clic en la burbuja no reiniciar
+    if (e.target.classList.contains('pet-bubble')) return;
+    
+    pet.className = 'pet-click'; 
+    triggerPetSpeech();
+    setTimeout(() => { pet.className = 'pet-idle'; }, 400); 
+  });
+
+  // Lanzar bucle de vida automatizado
   startPetBehavior();
 })();
 
+// ── EL RESTO DE TUS FUNCIONES DEL SISTEMA QUEDAN INTACTAS ──
 function openWeatherModal() {
   if (!WEATHER_DATA) return;
   const current = WEATHER_DATA.current_condition[0];
