@@ -2,161 +2,305 @@
   {
     "id": "favs",
     "name": "favs (:",
-    "description": "Mis pines e ideas de favs (:",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // FAVS (:",
+    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/favs/"
+    "url": "https://pinterest.com/lucaspineirop/favs/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "lon",
-    "name": "LON",
-    "description": "Mis pines e ideas de LON",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "name": "lon",
+    "description": "Visual mood collection // LON",
+    "image_url": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/lon/"
+    "url": "https://pinterest.com/lucaspineirop/lon/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "fits",
     "name": "fits",
-    "description": "Mis pines e ideas de fits",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // FITS",
+    "image_url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/fits/"
+    "url": "https://pinterest.com/lucaspineirop/fits/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "2026",
     "name": "2026",
-    "description": "Mis pines e ideas de 2026",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // 2026",
+    "image_url": "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/2026/"
+    "url": "https://pinterest.com/lucaspineirop/2026/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "whispers",
     "name": "whispers",
-    "description": "Mis pines e ideas de whispers",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // WHISPERS",
+    "image_url": "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/whispers/"
+    "url": "https://pinterest.com/lucaspineirop/whispers/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "ath",
     "name": "ath",
-    "description": "Mis pines e ideas de ath",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // ATH",
+    "image_url": "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/ath/"
+    "url": "https://pinterest.com/lucaspineirop/ath/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "doorman",
     "name": "doorman",
-    "description": "Mis pines e ideas de doorman",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // DOORMAN",
+    "image_url": "https://images.unsplash.com/photo-1554050857-c84a8abdb5e2?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/doorman/"
+    "url": "https://pinterest.com/lucaspineirop/doorman/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1554050857-c84a8abdb5e2?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "slow",
     "name": "slow",
-    "description": "Mis pines e ideas de slow",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // SLOW",
+    "image_url": "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/slow/"
+    "url": "https://pinterest.com/lucaspineirop/slow/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "welcome-home",
     "name": "welcome home",
-    "description": "Mis pines e ideas de welcome home",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // WELCOME HOME",
+    "image_url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/welcome-home/"
+    "url": "https://pinterest.com/lucaspineirop/welcome-home/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "bought",
     "name": "bought",
-    "description": "Mis pines e ideas de bought",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // BOUGHT",
+    "image_url": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/bought/"
+    "url": "https://pinterest.com/lucaspineirop/bought/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "aaa",
     "name": "AAA",
-    "description": "Mis pines e ideas de AAA",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // AAA",
+    "image_url": "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/aaa/"
+    "url": "https://pinterest.com/lucaspineirop/aaa/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "room-inspo",
     "name": "room inspo",
-    "description": "Mis pines e ideas de room inspo",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // ROOM INSPO",
+    "image_url": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/room-inspo/"
+    "url": "https://pinterest.com/lucaspineirop/room-inspo/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "libros",
     "name": "libros",
-    "description": "Mis pines e ideas de libros",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // LIBROS",
+    "image_url": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/libros/"
+    "url": "https://pinterest.com/lucaspineirop/libros/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "hades-ii",
-    "name": "hades II",
-    "description": "Mis pines e ideas de hades II",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "name": "hades ii",
+    "description": "Visual mood collection // HADES II",
+    "image_url": "https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/hades-ii/"
+    "url": "https://pinterest.com/lucaspineirop/hades-ii/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "moomin",
     "name": "moomin",
-    "description": "Mis pines e ideas de moomin",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // MOOMIN",
+    "image_url": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/moomin/"
+    "url": "https://pinterest.com/lucaspineirop/moomin/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   },
   {
     "id": "supermn",
     "name": "supermn",
-    "description": "Mis pines e ideas de supermn",
-    "image_url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500",
+    "description": "Visual mood collection // SUPERMN",
+    "image_url": "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?w=600",
     "pin_count": 32,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/lucaspineirop/supermn/"
+    "url": "https://pinterest.com/lucaspineirop/supermn/",
+    "images": {
+      "original": {
+        "url": "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?w=600"
+      }
+    },
+    "counts": {
+      "pins": 32,
+      "collaborators": 1
+    }
   }
 ]
