@@ -1,62 +1,162 @@
 [
   {
-    "id": "fashion-inspo",
-    "name": "Fashion Inspo",
-    "description": "Colecciones de moda y tendencias visuales",
-    "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
-    "pin_count": 127,
+    "id": "favs",
+    "name": "favs (:",
+    "description": "Mis pines de favs (:",
+    "image_url": "",
+    "pin_count": 10,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/your-username/fashion-inspo"
+    "url": "https://pinterest.com/lucaspineirop/favs/"
   },
   {
-    "id": "design-systems",
-    "name": "Design Systems & UI",
-    "description": "Inspiración de interfaces y componentes de diseño",
-    "image_url": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop",
-    "pin_count": 89,
-    "collaborators_count": 2,
-    "is_owner": true,
-    "url": "https://pinterest.com/your-username/design-systems"
-  },
-  {
-    "id": "ambient-music",
-    "name": "Ambient & Cyberpunk",
-    "description": "Estética lo-fi, cyberpunk y ambient",
-    "image_url": "https://images.unsplash.com/photo-1489749798305-4fea3ba63d60?w=400&h=300&fit=crop",
-    "pin_count": 256,
+    "id": "lon",
+    "name": "LON",
+    "description": "Mis pines de LON",
+    "image_url": "",
+    "pin_count": 10,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/your-username/ambient-music"
+    "url": "https://pinterest.com/lucaspineirop/lon/"
   },
   {
-    "id": "photography",
-    "name": "Photography & Light",
-    "description": "Fotografía, composición y juego de luz",
-    "image_url": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=300&fit=crop",
-    "pin_count": 203,
+    "id": "fits",
+    "name": "fits",
+    "description": "Mis pines de fits",
+    "image_url": "",
+    "pin_count": 10,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/your-username/photography"
+    "url": "https://pinterest.com/lucaspineirop/fits/"
   },
   {
-    "id": "interior-spaces",
-    "name": "Interior Spaces",
-    "description": "Diseño de interiores y espacios arquitectónicos",
-    "image_url": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
-    "pin_count": 178,
+    "id": "2026",
+    "name": "2026",
+    "description": "Mis pines de 2026",
+    "image_url": "",
+    "pin_count": 10,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/your-username/interior-spaces"
+    "url": "https://pinterest.com/lucaspineirop/2026/"
   },
   {
-    "id": "typography-fonts",
-    "name": "Typography & Fonts",
-    "description": "Tipografía, lettering y fuentes interesantes",
-    "image_url": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop",
-    "pin_count": 142,
+    "id": "whispers",
+    "name": "whispers",
+    "description": "Mis pines de whispers",
+    "image_url": "",
+    "pin_count": 10,
     "collaborators_count": 1,
     "is_owner": true,
-    "url": "https://pinterest.com/your-username/typography"
+    "url": "https://pinterest.com/lucaspineirop/whispers/"
+  },
+  {
+    "id": "ath",
+    "name": "ath",
+    "description": "Mis pines de ath",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/ath/"
+  },
+  {
+    "id": "doorman",
+    "name": "doorman",
+    "description": "Mis pines de doorman",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/doorman/"
+  },
+  {
+    "id": "slow",
+    "name": "slow",
+    "description": "Mis pines de slow",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/slow/"
+  },
+  {
+    "id": "welcome-home",
+    "name": "welcome home",
+    "description": "Mis pines de welcome home",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/welcome-home/"
+  },
+  {
+    "id": "bought",
+    "name": "bought",
+    "description": "Mis pines de bought",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/bought/"
+  },
+  {
+    "id": "aaa",
+    "name": "AAA",
+    "description": "Mis pines de AAA",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/aaa/"
+  },
+  {
+    "id": "room-inspo",
+    "name": "room inspo",
+    "description": "Mis pines de room inspo",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/room-inspo/"
+  },
+  {
+    "id": "libros",
+    "name": "libros",
+    "description": "Mis pines de libros",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/libros/"
+  },
+  {
+    "id": "hades-ii",
+    "name": "hades II",
+    "description": "Mis pines de hades II",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/hades-ii/"
+  },
+  {
+    "id": "moomin",
+    "name": "moomin",
+    "description": "Mis pines de moomin",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/moomin/"
+  },
+  {
+    "id": "supermn",
+    "name": "supermn",
+    "description": "Mis pines de supermn",
+    "image_url": "",
+    "pin_count": 10,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/lucaspineirop/supermn/"
   }
 ]
