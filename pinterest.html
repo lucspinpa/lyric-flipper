@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pinterest Boards - Lyric sh0p1t & Control Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="pinterest.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">Lyric<em>/</em>sh0p1t</div>
+  <div class="header-right">
+    <div id="lunar-phase" onclick="openLunarModal()">
+      <span id="lunar-icon">🌕</span><span id="lunar-text">Cargando fase lunar…</span>
+    </div>
+    <div id="header-date">cargando…</div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="index.html" class="nav-tab">lyric del día</a>
+  <a href="tracks.html" class="nav-tab">top tracks</a>
+  <a href="artists.html" class="nav-tab">top artists</a>
+  <a href="tarot.html" class="nav-tab">tarot arcana</a>
+  <a href="pinterest.html" class="nav-tab active">pinterest boards</a>
+</nav>
+
+<div id="view-pinterest" class="view active">
+  <main class="pinterest-main">
+    
+    <section class="pinterest-header">
+      <div class="header-content">
+        <h1>PINTEREST BOARDS</h1>
+        <p class="header-subtitle">// VISUAL MOOD COLLECTIONS & INSPIRATION_HUB</p>
+        <div class="header-actions">
+          <button id="btn-refresh-boards" class="action-btn" onclick="refreshBoards()">
+            SYNC_BOARDS
+          </button>
+          <button id="btn-filter-toggle" class="action-btn" onclick="toggleFilterPanel()">
+            FILTER
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="filter-panel" id="filter-panel">
+      <div class="filter-header">// SEARCH & FILTER</div>
+      <input 
+        type="text" 
+        id="search-input" 
+        class="filter-search" 
+        placeholder="Buscar tableros..."
+        onkeyup="filterBoards()"
+      >
+      <div class="filter-options">
+        <label class="filter-checkbox">
+          <input type="checkbox" id="filter-saved" checked onchange="filterBoards()">
+          <span>Mis tableros</span>
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" id="filter-collaborated" checked onchange="filterBoards()">
+          <span>Colaborativos</span>
+        </label>
+      </div>
+    </aside>
+
+    <div class="boards-container" id="boards-container">
+      <!-- Tableros se cargan aquí -->
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Cargando tus tableros...</p>
+      </div>
+    </div>
+
+    <div id="board-modal" class="board-modal">
+      <div class="board-modal-content">
+        <button class="modal-close" onclick="closeBoardModal()">✕</button>
+        <div id="modal-body" class="modal-body">
+          <!-- Contenido del tablero se carga aquí -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <a href="https://github.com/lucspinpa/lyric-flipper" target="_blank">github.com/lucspinpa/lyric-flipper</a>
+  <span id="footer-generated"></span>
+</footer>
+
+<script src="pinterest.js"></script>
+<script>
+// Inicializar página de Pinterest
+document.addEventListener('DOMContentLoaded', function() {
+  initPinterestPage();
+});
+</script>
+
+</body>
+</html>
