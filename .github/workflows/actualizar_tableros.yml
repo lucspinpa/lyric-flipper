@@ -28,12 +28,24 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests beautifulsoup4
 
-    # 4. Ejecutar tu script pasándole tu usuario y usando el secreto guardado
-    - name: Ejecutar Scraper de Pinterest
+    # 4. Ejecutar el Scraper forzando el método de la API directamente
+    - name: Ejecutar Scraper de Pinterest (Modo API)
       env:
         PINTEREST_TOKEN: ${{ secrets.PINTEREST_TOKEN }}
       run: |
-        python pinterest_scraper.py lucaspineirop
+        python -c "
+        from pinterest_scraper import PinterestScraper
+        scraper = PinterestScraper('lucaspineirop')
+        print('🔐 Conectando de forma segura mediante la API...')
+        if scraper.fetch_boards_api():
+            if scraper.save_to_json('pinterest_data.json'):
+                scraper.print_summary()
+                print('✨ ¡Listo!')
+            else:
+                import sys; sys.exit(1)
+        else:
+            import sys; sys.exit(1)
+        "
 
     # 5. Guardar el archivo 'pinterest_data.json' generado y subirlo a tu repositorio
     - name: Hacer commit y push de los nuevos datos
