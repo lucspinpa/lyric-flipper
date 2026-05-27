@@ -30,6 +30,61 @@
     gap: 0 4.5rem;
   }
 
+/* ── ESTILOS DEL NUEVO BOCADILLO DE LA MASCOTA ── */
+  #space-sector {
+    position: relative;
+    min-height: 180px; /* Asegura espacio vertical para el bocadillo */
+  }
+  
+  #web-pet {
+    position: absolute;
+    transition: all 0.8s ease-in-out;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .pet-bubble {
+    position: absolute;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid var(--border, #444);
+    padding: 8px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    line-height: 1.4;
+    width: max-content;
+    max-width: 240px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .pet-bubble.active {
+    opacity: 1;
+  }
+
+  .pet-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #000000 transparent transparent transparent;
+  }
+
+  .pet-bubble .bubble-credit {
+    display: block;
+    margin-top: 4px;
+    color: var(--dim, #888);
+    font-size: 0.55rem;
+  }
   /* ── HEADER ── */
   header { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 2rem; margin-bottom: 3rem; }
   .logo { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); }
