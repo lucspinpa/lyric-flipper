@@ -1,0 +1,62 @@
+[
+  {
+    "id": "fashion-inspo",
+    "name": "Fashion Inspo",
+    "description": "Colecciones de moda y tendencias visuales",
+    "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "pin_count": 127,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/your-username/fashion-inspo"
+  },
+  {
+    "id": "design-systems",
+    "name": "Design Systems & UI",
+    "description": "Inspiración de interfaces y componentes de diseño",
+    "image_url": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop",
+    "pin_count": 89,
+    "collaborators_count": 2,
+    "is_owner": true,
+    "url": "https://pinterest.com/your-username/design-systems"
+  },
+  {
+    "id": "ambient-music",
+    "name": "Ambient & Cyberpunk",
+    "description": "Estética lo-fi, cyberpunk y ambient",
+    "image_url": "https://images.unsplash.com/photo-1489749798305-4fea3ba63d60?w=400&h=300&fit=crop",
+    "pin_count": 256,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/your-username/ambient-music"
+  },
+  {
+    "id": "photography",
+    "name": "Photography & Light",
+    "description": "Fotografía, composición y juego de luz",
+    "image_url": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=300&fit=crop",
+    "pin_count": 203,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/your-username/photography"
+  },
+  {
+    "id": "interior-spaces",
+    "name": "Interior Spaces",
+    "description": "Diseño de interiores y espacios arquitectónicos",
+    "image_url": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
+    "pin_count": 178,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/your-username/interior-spaces"
+  },
+  {
+    "id": "typography-fonts",
+    "name": "Typography & Fonts",
+    "description": "Tipografía, lettering y fuentes interesantes",
+    "image_url": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop",
+    "pin_count": 142,
+    "collaborators_count": 1,
+    "is_owner": true,
+    "url": "https://pinterest.com/your-username/typography"
+  }
+]
