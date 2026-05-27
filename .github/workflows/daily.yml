@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          # Trae el historial completo para que el push funcione
+          # Trae el historial completo para que el push funcione sin problemas de historial
           fetch-depth: 0
  
       - name: Set up Python
@@ -42,8 +42,6 @@ jobs:
             echo "⚠️  SPOTIFY_TOKEN_CACHE no configurado — el pipeline fallará en el módulo 1."
           fi
  
-      #
- 
       - name: Run pipeline
         env:
           SPOTIFY_CLIENT_ID:     ${{ secrets.SPOTIFY_CLIENT_ID }}
@@ -56,6 +54,14 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add lyric_of_day.txt stats.json index.html .lyric_state.json
-          git diff --cached --quiet || git commit -m "chore: lyric of the day $(date +'%Y-%m-%d') [skip ci]"
-          git push
+          
+          # Añade los archivos si existen (evita fallos si alguno no se generó aún)
+          git add lyric_of_day.txt stats.json index.html .lyric_state.json 2>/dev/null || true
+          
+          # Comprueba si hay cambios antes de hacer commit y push explícito a la rama activa
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: lyric of the day $(date +'%Y-%m-%d') [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
+          else
+            echo "No hay cambios generados hoy para subir."
+          fi
