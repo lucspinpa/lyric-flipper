@@ -33,7 +33,7 @@ jobs:
       env:
         PINTEREST_TOKEN: ${{ secrets.PINTEREST_TOKEN }}
       run: |
-        python pinterest_scraper.py lucspinpa
+        python pinterest_scraper.py lucaspineirop
 
     # 5. Guardar el archivo 'pinterest_data.json' generado y subirlo a tu repositorio
     - name: Hacer commit y push de los nuevos datos
