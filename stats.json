@@ -1,10 +1,10 @@
 {
-  "generated": "2026-05-28",
+  "generated": "2026-05-29",
   "lyric": {
-    "artist": "Olivia Rodrigo",
-    "track": "drop dead",
-    "album": "drop dead (taken that eurostar to france video)",
-    "chunk": "All pressed up in the bathroom line\nYou’re looking like an angel on the walls of Versailles\nThe most alive I’ve ever been\nBut kiss me and I might\nKiss me and I might"
+    "artist": "Charli xcx",
+    "track": "Rock Music",
+    "album": "Rock Music",
+    "chunk": "Hurt yourself\nYeah, maybe jump off the stage\nI hope they catch you today\nBut if they don't, it's okay\nI think the dance floor is dead"
   },
   "tracks": {
     "short_term": [
@@ -19,17 +19,22 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Beware.. The South London Lover Boy.",
-        "artist": "RAYE",
-        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
-      },
-      {
         "track": "Vampire Time",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
+        "track": "Beware.. The South London Lover Boy.",
+        "artist": "RAYE",
+        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
+      },
+      {
         "track": "Say My Name In Your Sleep",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "Houses",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
@@ -39,14 +44,9 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       },
       {
-        "track": "Houses",
+        "track": "Kingmaker (with Julia Michaels)",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "Calypso",
-        "artist": "Guitarricadelafuente",
-        "image": "https://i.scdn.co/image/ab67616d00001e02e736673db223d6bfa1de5355"
       },
       {
         "track": "My Regards",
@@ -54,7 +54,7 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Kingmaker (with Julia Michaels)",
+        "track": "Mary Janes",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       }
