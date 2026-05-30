@@ -25,37 +25,40 @@
   <a href="index.html" class="nav-tab active">lyric del día</a>
   <a href="tracks.html" class="nav-tab">top tracks</a>
   <a href="artists.html" class="nav-tab">top artists</a>
-  <!--<a href="tarot.html" class="nav-tab">tarot arcana</a> -->
-  <!--<a href="pinterest.html" class="nav-tab">pinterest</a> -->
+  <a href="tarot.html" class="nav-tab">tarot arcana</a>
 </nav>
 
 <div id="view-lyric" class="view active">
   <main>
 
-    <!-- LYRIC DEL DÍA -->
-    <div class="song-meta">
-      <div class="s-artist" id="lyric-artist">
-        <span class="skel" style="width:120px;height:10px;display:inline-block"></span>
-      </div>
-      <div class="s-title" id="lyric-track">
-        <span class="skel" style="width:280px;height:32px;display:inline-block"></span>
-      </div>
-    </div>
+    <!-- LYRIC + MASCOTA -->
+    <div class="lyric-pet-container">
 
-    <blockquote id="lyric-chunk">
-      <span class="skel" style="width:100%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:85%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:90%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:75%;height:16px;display:block;margin-bottom:10px"></span>
-      <span class="skel" style="width:80%;height:16px;display:block"></span>
-    </blockquote>
-
-    <!-- MASCOTA -->
-    <div id="space-sector">
-      <div id="web-pet" class="pet-idle" style="right: 20%; top: 20%;">
-        <div id="pet-speech" class="pet-bubble"></div>
-        <img src="images/chateau.png" alt="Mascotita" style="width: 80px; height: 80px; object-fit: contain;">
+      <div class="lyric-side">
+        <div class="song-meta">
+          <div class="s-artist" id="lyric-artist">
+            <span class="skel" style="width:120px;height:10px;display:inline-block"></span>
+          </div>
+          <div class="s-title" id="lyric-track">
+            <span class="skel" style="width:280px;height:32px;display:inline-block"></span>
+          </div>
+        </div>
+        <blockquote id="lyric-chunk">
+          <span class="skel" style="width:100%;height:16px;display:block;margin-bottom:10px"></span>
+          <span class="skel" style="width:85%;height:16px;display:block;margin-bottom:10px"></span>
+          <span class="skel" style="width:90%;height:16px;display:block;margin-bottom:10px"></span>
+          <span class="skel" style="width:75%;height:16px;display:block;margin-bottom:10px"></span>
+          <span class="skel" style="width:80%;height:16px;display:block"></span>
+        </blockquote>
       </div>
+
+      <div id="space-sector">
+        <div id="web-pet" class="pet-idle">
+          <div id="pet-speech" class="pet-bubble"></div>
+          <img src="images/chateau.png" alt="Mascotita" style="width: 80px; height: 80px; object-fit: contain;">
+        </div>
+      </div>
+
     </div>
 
     <div class="sent-badge">enviado sh0p1t & iphone</div>
@@ -269,12 +272,12 @@ function closeLunarModal() {
 
   function moveMascot() {
     pet.className = 'pet-moving';
-    const r = Math.floor(Math.random() * 60 + 10);
-    const t = Math.floor(Math.random() * 40 + 10);
-    pet.querySelector('img').style.transform =
-      r < (parseFloat(pet.style.right) || 20) ? 'scaleX(-1)' : 'scaleX(1)';
-    pet.style.right = `${r}%`;
-    pet.style.top   = `${t}%`;
+    const offX = (Math.random() - 0.5) * 40; // ±20px dentro del sector
+    const offY = (Math.random() - 0.5) * 40;
+    const prevX = parseFloat(pet.dataset.offX || 0);
+    pet.querySelector('img').style.transform = offX < prevX ? 'scaleX(-1)' : 'scaleX(1)';
+    pet.dataset.offX = offX;
+    pet.style.transform = `translate(calc(-50% + ${offX}px), calc(-50% + ${offY}px))`;
     setTimeout(() => { pet.className = 'pet-idle'; }, 1000);
   }
 
