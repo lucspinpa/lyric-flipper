@@ -31,18 +31,6 @@
   }
 
 /* ── ESTILOS DEL NUEVO BOCADILLO DE LA MASCOTA ── */
-  #space-sector {
-    position: relative;
-    min-height: 180px; /* Asegura espacio vertical para el bocadillo */
-   bg-image: 'images/bckg.png';
-  }
-  
-  #web-pet {
-    position: absolute;
-    transition: all 0.8s ease-in-out;
-    cursor: pointer;
-    z-index: 10;
-  }
   
   .pet-bubble {
     position: absolute;
@@ -222,7 +210,8 @@
   .view.active { display: contents; }
 
   /* ── CUADRANTE DEL ESPACIO RETRO ── */
-  #space-sector { position: absolute; right: 50px; top: 3rem; border-radius: 8px; width: 340px; height: 340px; background-image: url('images/bckg.png'); background-size: cover; background-position: center; overflow: hidden; border: 1px solid var(--border); }
+  #space-sector { position: relative;
+    min-height: 180px; /* Asegura espacio vertical para el bocadillo */ right: 50px; top: 3rem; border-radius: 8px; width: 340px; height: 340px; background-image: url('images/bckg.png'); background-size: cover; background-position: center; overflow: hidden; border: 1px solid var(--border); }
 
   /* ── MASCOTA ── */
   #web-pet { position: absolute; right: 20%; top: 30%; width: 60px; height: 60px; z-index: 10; cursor: pointer; transition: top 1s ease-in-out, right 1s ease-in-out; display: flex; justify-content: center; align-items: center; }
