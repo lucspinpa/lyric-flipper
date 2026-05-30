@@ -34,6 +34,7 @@
   #space-sector {
     position: relative;
     min-height: 180px; /* Asegura espacio vertical para el bocadillo */
+   bg-image: 'images/bckg.png';
   }
   
   #web-pet {
