@@ -262,7 +262,7 @@ function closeLunarModal() {
     if (FRASES_MASCOTA.length > 0) {
       const item = FRASES_MASCOTA[Math.floor(Math.random() * FRASES_MASCOTA.length)];
       bubble.innerHTML =
-        `"${esc(item.texto)}"<span class="bubble-credit">♪ ${esc(item.autor)} - ${esc(item.tema)} ♪</span>`;
+        `"${esc(item.texto)}`;
     } else {
       bubble.innerHTML = `"-_-"<span class="bubble-credit">♪ SYS_CORE ♪</span>`;
     }
