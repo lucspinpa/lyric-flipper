@@ -7,11 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="global.css">
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="https://apis.google.com/js/api.js" async defer></script>
-
 </head>
 <body>
 
@@ -29,33 +25,23 @@
   <a href="index.html" class="nav-tab active">lyric del día</a>
   <a href="tracks.html" class="nav-tab">top tracks</a>
   <a href="artists.html" class="nav-tab">top artists</a>
-  <a href="tarot.html" class="nav-tab">tarot arcana</a>
+  <!--<a href="tarot.html" class="nav-tab">tarot arcana</a> -->
+  <!--<a href="pinterest.html" class="nav-tab">pinterest</a> -->
 </nav>
 
 <div id="view-lyric" class="view active">
   <main>
-    <div class="dashboard-grid">
-      <div class="dash-card">
-        <h4>METEO // LOCAL STATUS</h4>
-        <div id="weather-display" style="color: var(--dim);">Cargando telemetría satélite…</div>
-      </div>
-      <div class="dash-card">
-        <h4>DAILY AGENDA // GOOGLE CALENDAR</h4>
-        <div id="agenda-actions" style="margin-bottom: 0.5rem; display: flex; gap: 0.5rem;">
-          <button id="btn-login-google" class="todo-btn" style="padding: 0.2rem 0.5rem; font-size: 0.55rem;">CONECTAR GOOGLE</button>
-          <button id="btn-logout-google" class="todo-btn" style="padding: 0.2rem 0.5rem; font-size: 0.55rem; border-color: #ff4a4a; color: #ff4a4a; display:none;">DESCONECTAR</button>
-        </div>
-        <div id="agenda-display" style="line-height: 1.6; max-height: 120px; overflow-y: auto;">
-          • Esperando autenticación segura...
-        </div>
-      </div>
-    </div>
-<div class="main-row">
-  <section>
+
+    <!-- LYRIC DEL DÍA -->
     <div class="song-meta">
-      <div class="s-artist" id="lyric-artist"><span class="skel" style="width:120px;height:10px;display:inline-block"></span></div>
-      <div class="s-title" id="lyric-track"><span class="skel" style="width:280px;height:32px;display:inline-block"></span></div>
+      <div class="s-artist" id="lyric-artist">
+        <span class="skel" style="width:120px;height:10px;display:inline-block"></span>
+      </div>
+      <div class="s-title" id="lyric-track">
+        <span class="skel" style="width:280px;height:32px;display:inline-block"></span>
+      </div>
     </div>
+
     <blockquote id="lyric-chunk">
       <span class="skel" style="width:100%;height:16px;display:block;margin-bottom:10px"></span>
       <span class="skel" style="width:85%;height:16px;display:block;margin-bottom:10px"></span>
@@ -63,113 +49,21 @@
       <span class="skel" style="width:75%;height:16px;display:block;margin-bottom:10px"></span>
       <span class="skel" style="width:80%;height:16px;display:block"></span>
     </blockquote>
-<<<<<<< HEAD
 
+    <!-- MASCOTA -->
     <div id="space-sector">
       <div id="web-pet" class="pet-idle" style="right: 20%; top: 20%;">
         <div id="pet-speech" class="pet-bubble"></div>
         <img src="images/chateau.png" alt="Mascotita" style="width: 80px; height: 80px; object-fit: contain;">
       </div>
-=======
-  </section>
-  <section id="space-sector">
-    <div id="web-pet" class="pet-idle" style="right: 20%; top: 20%;">
-      <div id="pet-speech" class="pet-bubble"></div>
-      <img src="images/chateau.png" alt="Mascotita" style="width: 80px; height: 80px; object-fit: contain;">
->>>>>>> 3019c7d (parche_manual)
     </div>
-    </section>
-</div>
+
     <div class="sent-badge">enviado sh0p1t & iphone</div>
 
-    <div class="bottom-split-container">
-      <section class="skyline-section">
-        <div class="skyline-meta">
-          <span class="sky-label">Architectural Digest</span>
-          <h2 class="sky-title">Skyline Explorer</h2>
-          <p class="sky-desc">Haz clic en la Torre de Hércules (A Coruña) para desplegar el gestor secreto de tus proyectos.</p>
-        </div>
-
-        <div class="skyline-canvas-container">
-          <!-- BASE IMAGE: Skyline general -->
-          <div class="visual-canvas-base absolute inset-0" id="base-image">
-            
-          </div>
-          
-          <!-- LONDON OVERLAY -->
-          <div class="highlight-layer clip-london" id="london-highlight">
-            
-          </div>
-          
-          <!-- ATHENS OVERLAY -->
-          <div class="highlight-layer clip-athens" id="athens-highlight">
-            
-          </div>
-          
-          <!-- A CORUÑA OVERLAY -->
-          <div class="highlight-layer clip-coruna" id="coruna-highlight">
-            
-          </div>
-
-          <!-- HOTSPOTS INTERACTIVOS -->
-          <div class="hotspot" onmouseenter="toggleHighlight('london', true)" onmouseleave="toggleHighlight('london', false)" style="top: 10%; left: 10%; width: 20%; height: 80%;">
-            <div class="absolute -top-6 left-0 monument-label">01_LONDON_LDN</div>
-          </div>
-          <div class="hotspot" onmouseenter="toggleHighlight('athens', true)" onmouseleave="toggleHighlight('athens', false)" style="top: 5%; left: 50%; width: 40%; height: 35%;">
-            <div class="absolute -top-6 right-0 monument-label">02_ATHENS_ATH</div>
-          </div>
-          <div class="hotspot" onclick="openProjectTerminal()" onmouseenter="toggleHighlight('coruna', true)" onmouseleave="toggleHighlight('coruna', false)" style="top: 35%; left: 75%; width: 20%; height: 60%;">
-            <div class="absolute -top-6 left-0 monument-label">03_ACORUNA_PROJECTS_LOG</div>
-          </div>
-
-          <!-- HUD OVERLAY -->
-          <div class="hud-overlay">
-            <div style="display:flex; justify-content: space-between;">
-              <div style="background: rgba(0,0,0,0.6); padding: 2px 6px; border: 1px solid var(--border);">SYS_STABLE</div>
-              <div id="hud-clock" style="color: var(--green); font-weight: bold;">00:00:00</div>
-            </div>
-            <div style="position: absolute; bottom: 1.25rem; left: 1.25rem; max-width: 220px; background: rgba(0,0,0,0.7); padding: 6px; border-left: 2px solid var(--green);">
-              CHOOSE VECTOR INTERACTION... <span class="cursor-blink" style="display:inline-block; width:5px; height:9px; background: var(--green); vertical-align: middle;"></span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="aside-nested">
-        <div class="aside-label">top tracks · last 4 weeks</div>
-        <ul id="tracks-list-lyric" style="list-style:none"></ul>
-      </section>
-    </div>
   </main>
 </div>
 
-<div id="nav-screen">
-  <div class="terminal-box">
-    <div class="term-header">
-      <h2>// SYSTEM_CORE: PROJECT_TRACKER.EXE</h2>
-    </div>
-    <div class="todo-input-container">
-      <input type="text" id="todo-input" class="todo-input" placeholder="Nombre del nuevo proyecto a crear...">
-      <button class="todo-btn" onclick="addProject()">ADD</button>
-    </div>
-    <ul id="todo-list" class="todo-list"></ul>
-    <div class="term-actions">
-      <button class="abort-btn" onclick="exportToTxt()" style="border-color: var(--text); color: var(--text);">EXPORT_TXT</button>
-      <button class="abort-btn" onclick="closeNav()">CLOSE_CORE</button>
-    </div>
-  </div>
-</div>
-
-<div id="weather-modal">
-  <div class="weather-box">
-    <div class="weather-header">// WEATHER_STATION: SATELLITE_TELEMETRY</div>
-    <div id="weather-content" class="weather-grid"></div>
-    <div class="weather-actions">
-      <button class="weather-close-btn" onclick="closeWeatherModal()">CLOSE_STATION</button>
-    </div>
-  </div>
-</div>
-
+<!-- MODAL LUNAR -->
 <div id="lunar-modal">
   <div class="lunar-box">
     <div class="lunar-header">// LUNAR_OBSERVATORY: MOON_TRACKING_SYSTEM</div>
@@ -218,223 +112,115 @@
 </footer>
 
 <script>
-let WEATHER_DATA = null;
-let LUNAR_DATA = null;
-<<<<<<< HEAD
-let BUBBLE_TIMER = null; // Guardar referencia para limpiar el bocadillo automático
-let FRASES_MASCOTA = [];
-  
-=======
-let BUBBLE_TIMER = null;
+// ═══════════════════════════════════════════════════════════════════════════
+// ESTADO GLOBAL
+// ═══════════════════════════════════════════════════════════════════════════
+let LUNAR_DATA     = null;
+let BUBBLE_TIMER   = null;
 let FRASES_MASCOTA = [];
 
-// ═══════════════════════════════════════════════════════════════════════════
-// GOOGLE CALENDAR CONFIG - REEMPLAZA CON TUS CREDENCIALES
-// ═══════════════════════════════════════════════════════════════════════════
-const GOOGLE_CONFIG = {
-  CLIENT_ID: 'TU_CLIENT_ID.apps.googleusercontent.com', // ← REEMPLAZAR
-  API_KEY: 'TU_API_KEY', // ← REEMPLAZAR
-  SCOPES: 'https://www.googleapis.com/auth/calendar.readonly',
-  CALENDAR_ID: 'primary' // O tu calendar ID específico
-};
-
-let googleToken = null;
-
->>>>>>> 3019c7d (parche_manual)
 const ECLIPSE_DATA = [
-  { date: '2024-10-02', type: 'lunar', name: 'Eclipse Lunar Penumbral', visible: true },
-  { date: '2024-10-02', type: 'solar', name: 'Eclipse Solar Anular', visible: true },
-  { date: '2025-03-29', type: 'lunar', name: 'Eclipse Lunar Total', visible: true },
-  { date: '2025-09-18', type: 'lunar', name: 'Eclipse Lunar Parcial', visible: true },
-  { date: '2026-02-17', type: 'lunar', name: 'Eclipse Lunar Total', visible: true },
-  { date: '2026-08-12', type: 'solar', name: 'Eclipse Solar Total', visible: true }
+  { date: '2025-03-29', type: 'lunar', name: 'Eclipse Lunar Total' },
+  { date: '2025-09-18', type: 'lunar', name: 'Eclipse Lunar Parcial' },
+  { date: '2026-02-17', type: 'lunar', name: 'Eclipse Lunar Total' },
+  { date: '2026-08-12', type: 'solar', name: 'Eclipse Solar Total' }
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
-// FUNCIONES LUNARES
+// LUNAR
 // ═══════════════════════════════════════════════════════════════════════════
-
 function calculateLunarPhase(date) {
-  const lunarPhaseDate = new Date(2000, 0, 6);
-  const millisecondsPerDay = 1000 * 60 * 60 * 24;
-  const lunarCycle = 29.53058867;
-  const daysSincePhase = (date - lunarPhaseDate) / millisecondsPerDay;
-  const lunarPhaseNumber = daysSincePhase % lunarCycle;
-  const illumination = Math.round((1 - Math.cos((2 * Math.PI * lunarPhaseNumber) / lunarCycle)) / 2 * 100);
-  let phaseName = '', icon = '';
-  if (lunarPhaseNumber < 1.84) { phaseName = 'Luna Nueva'; icon = '🌑'; }
-  else if (lunarPhaseNumber < 7.38) { phaseName = 'Cuarto Creciente'; icon = '🌒'; }
-  else if (lunarPhaseNumber < 14.77) { phaseName = 'Luna Llena'; icon = '🌕'; }
-  else if (lunarPhaseNumber < 22.15) { phaseName = 'Cuarto Menguante'; icon = '🌘'; }
-  else { phaseName = 'Luna Nueva'; icon = '🌑'; }
-  return { phaseName, icon, illumination, age: Math.round(lunarPhaseNumber) };
+  const ref = new Date(2000, 0, 6);
+  const msDay = 1000 * 60 * 60 * 24;
+  const cycle = 29.53058867;
+  const age = ((date - ref) / msDay) % cycle;
+  const illumination = Math.round((1 - Math.cos((2 * Math.PI * age) / cycle)) / 2 * 100);
+  let phaseName, icon;
+  if      (age < 1.84)  { phaseName = 'Luna Nueva';        icon = '🌑'; }
+  else if (age < 7.38)  { phaseName = 'Cuarto Creciente';  icon = '🌒'; }
+  else if (age < 14.77) { phaseName = 'Luna Llena';         icon = '🌕'; }
+  else if (age < 22.15) { phaseName = 'Cuarto Menguante';  icon = '🌘'; }
+  else                  { phaseName = 'Luna Nueva';        icon = '🌑'; }
+  return { phaseName, icon, illumination, age: Math.round(age) };
 }
 
-function getNextFullMoon(startDate) {
-  const lunarPhaseDate = new Date(2000, 0, 6);
-  const millisecondsPerDay = 1000 * 60 * 60 * 24;
-  const lunarCycle = 29.53058867;
-  let date = new Date(startDate);
+function getNextFullMoon(from) {
+  const ref   = new Date(2000, 0, 6);
+  const msDay = 1000 * 60 * 60 * 24;
+  const cycle = 29.53058867;
+  let d = new Date(from);
   while (true) {
-    const daysSincePhase = (date - lunarPhaseDate) / millisecondsPerDay;
-    const lunarPhaseNumber = daysSincePhase % lunarCycle;
-    if (lunarPhaseNumber >= 14 && lunarPhaseNumber <= 15.5) return date;
-    date.setDate(date.getDate() + 1);
+    const age = ((d - ref) / msDay) % cycle;
+    if (age >= 14 && age <= 15.5) return d;
+    d.setDate(d.getDate() + 1);
   }
 }
 
-function getUpcomingEclipses(fromDate) {
-  return ECLIPSE_DATA.filter(e => new Date(e.date) >= fromDate).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 3);
-}
-
 function generateLunarCalendar(year, month) {
-  const firstDay = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const startingDayOfWeek = firstDay.getDay();
-  let html = '';
-  const dayNames = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sab'];
-  dayNames.forEach(day => { html += `<div class="moon-day-header">${day}</div>`; });
-  for (let i = 0; i < startingDayOfWeek; i++) { html += '<div class="moon-day other-month"></div>'; }
-  const today = new Date();
+  const startDay    = new Date(year, month, 1).getDay();
+  const today       = new Date();
+  const dayNames    = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sab'];
+  let html = dayNames.map(d => `<div class="moon-day-header">${d}</div>`).join('');
+  for (let i = 0; i < startDay; i++) html += '<div class="moon-day other-month"></div>';
   for (let day = 1; day <= daysInMonth; day++) {
-    const currentDate = new Date(year, month, day);
-    const lunar = calculateLunarPhase(currentDate);
-    let classes = 'moon-day';
-    if (currentDate.toDateString() === today.toDateString()) classes += ' today';
+    const d      = new Date(year, month, day);
+    const lunar  = calculateLunarPhase(d);
+    let classes  = 'moon-day';
+    if (d.toDateString() === today.toDateString()) classes += ' today';
     if (lunar.phaseName === 'Luna Llena' || lunar.phaseName === 'Luna Nueva') classes += ' full-moon';
     html += `<div class="${classes}" title="${lunar.phaseName} (${lunar.illumination}%)">${day}</div>`;
   }
   return html;
 }
 
-<<<<<<< HEAD
-=======
-// ═══════════════════════════════════════════════════════════════════════════
-// GOOGLE CALENDAR SETUP
-// ═══════════════════════════════════════════════════════════════════════════
+function openLunarModal() {
+  const today       = new Date();
+  const nextFull    = getNextFullMoon(today);
+  const daysLeft    = Math.ceil((nextFull - today) / 86400000);
 
-function initGoogleCalendar() {
-  window.google.accounts.id.initialize({
-    client_id: GOOGLE_CONFIG.CLIENT_ID,
-    callback: handleGoogleLogin
-  });
+  document.getElementById('modal-current-phase').textContent  = LUNAR_DATA.phaseName;
+  document.getElementById('modal-illumination').textContent   = LUNAR_DATA.illumination + '%';
+  document.getElementById('modal-lunar-age').textContent      = LUNAR_DATA.age + ' días';
+  document.getElementById('modal-lunar-distance').textContent = '384,400 km';
+  document.getElementById('next-full-moon-date').textContent  =
+    nextFull.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('next-full-moon-days').textContent  = `Faltan ${daysLeft} días`;
 
-  const loginBtn = document.getElementById('btn-login-google');
-  const logoutBtn = document.getElementById('btn-logout-google');
-
-  if (loginBtn) {
-    loginBtn.addEventListener('click', () => {
-      window.google.accounts.oauth2.initTokenClient({
-        client_id: GOOGLE_CONFIG.CLIENT_ID,
-        scope: GOOGLE_CONFIG.SCOPES,
-        callback: handleGoogleLogin
-      }).requestAccessToken({ prompt: 'consent' });
-    });
+  const upcoming = ECLIPSE_DATA.filter(e => new Date(e.date) >= today).slice(0, 3);
+  if (upcoming.length > 0) {
+    const alertHTML = '<ul style="margin:0;padding-left:1.2rem;">' +
+      upcoming.map(e => `<li><strong>${e.name}</strong><br><small>${new Date(e.date).toLocaleDateString('es-ES')}</small></li>`).join('') +
+      '</ul>';
+    document.getElementById('eclipse-content').innerHTML = alertHTML;
+    document.getElementById('eclipse-alerts').style.display = 'block';
   }
 
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', handleGoogleLogout);
-  }
-
-  // Cargar token guardado si existe
-  const savedToken = localStorage.getItem('google_token');
-  if (savedToken) {
-    googleToken = savedToken;
-    updateGoogleCalendarUI(true);
-    fetchGoogleCalendarEvents();
-  }
+  document.getElementById('lunar-calendar').innerHTML =
+    generateLunarCalendar(today.getFullYear(), today.getMonth());
+  document.getElementById('lunar-modal').classList.add('active');
 }
 
-function handleGoogleLogin(response) {
-  googleToken = response.access_token;
-  localStorage.setItem('google_token', googleToken);
-  updateGoogleCalendarUI(true);
-  fetchGoogleCalendarEvents();
-}
-
-function handleGoogleLogout() {
-  googleToken = null;
-  localStorage.removeItem('google_token');
-  updateGoogleCalendarUI(false);
-  document.getElementById('agenda-display').innerHTML = '• Desconectado';
-}
-
-function updateGoogleCalendarUI(isConnected) {
-  const loginBtn = document.getElementById('btn-login-google');
-  const logoutBtn = document.getElementById('btn-logout-google');
-  
-  if (loginBtn) loginBtn.style.display = isConnected ? 'none' : 'block';
-  if (logoutBtn) logoutBtn.style.display = isConnected ? 'block' : 'none';
-}
-
-async function fetchGoogleCalendarEvents() {
-  if (!googleToken) return;
-
-  try {
-    const now = new Date();
-    const timeMin = now.toISOString();
-    const timeMax = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString();
-
-    const response = await fetch(`https://www.googleapis.com/calendar/v3/calendars/${GOOGLE_CONFIG.CALENDAR_ID}/events?timeMin=${timeMin}&timeMax=${timeMax}&singleEvents=true&orderBy=startTime&key=${GOOGLE_CONFIG.API_KEY}`, {
-      headers: {
-        Authorization: `Bearer ${googleToken}`
-      }
-    });
-
-    if (!response.ok) throw new Error('Error fetching calendar');
-
-    const data = await response.json();
-    displayCalendarEvents(data.items || []);
-
-  } catch (error) {
-    console.error('Calendar error:', error);
-    document.getElementById('agenda-display').innerHTML = '• Error cargando calendario';
-  }
-}
-
-function displayCalendarEvents(events) {
-  const container = document.getElementById('agenda-display');
-  
-  if (events.length === 0) {
-    container.innerHTML = '• Sin eventos próximos';
-    return;
-  }
-
-  let html = events.slice(0, 5).map(event => {
-    const start = new Date(event.start.dateTime || event.start.date);
-    const time = start.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-    return `• ${event.summary} <span style="color: var(--dim);">${time}</span>`;
-  }).join('<br>');
-
-  container.innerHTML = html;
+function closeLunarModal() {
+  document.getElementById('lunar-modal').classList.remove('active');
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
 // INICIALIZACIÓN PRINCIPAL
 // ═══════════════════════════════════════════════════════════════════════════
-
->>>>>>> 3019c7d (parche_manual)
 (async () => {
-  let DATA = null;
-
   function esc(str) {
     if (!str) return '';
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  function trackRow(t, i, isActive) {
-    return `<li class="track-row${isActive ? ' active' : ''}">
-      <span class="t-rank">${String(i+1).padStart(2,'0')}</span>
-      ${t.image ? `<img class="t-img" src="${esc(t.image)}" alt="" loading="lazy">` : '<span class="t-img" style="background:var(--surface)"></span>'}
-      <span class="t-info"><span class="t-name">${esc(t.track)}</span><span class="t-artist">${esc(t.artist)}</span></span>
-    </li>`;
-  }
+  // Fase lunar en header
+  LUNAR_DATA = calculateLunarPhase(new Date());
+  document.getElementById('lunar-icon').textContent = LUNAR_DATA.icon;
+  document.getElementById('lunar-text').textContent = `${LUNAR_DATA.phaseName} (${LUNAR_DATA.illumination}%)`;
 
-<<<<<<< HEAD
-  // 1. CARGAR PRIMERO LOS DATOS DEL SISTEMA (STATS)
-=======
-  // Cargar stats.json
->>>>>>> 3019c7d (parche_manual)
+  // Stats de Spotify
+  let DATA = null;
   try {
     const res = await fetch(`stats.json?t=${Date.now()}`);
     if (!res.ok) throw new Error(res.status);
@@ -445,274 +231,73 @@ function displayCalendarEvents(events) {
     return;
   }
 
-<<<<<<< HEAD
-  // 2. AHORA CARGAR LAS FRASES DE LA MASCOTA SIN INTERRUMPIR EL FLUJO
-=======
-  // Cargar frases de mascota
->>>>>>> 3019c7d (parche_manual)
+  // Frases mascota
   try {
-    const frasesRes = await fetch(`frases.json?t=${Date.now()}`);
-    if (frasesRes.ok) {
-      FRASES_MASCOTA = await frasesRes.json();
-    }
-  } catch(e) {
-<<<<<<< HEAD
-    console.log("No se pudo mapear frases.json. Activando protocolo de respaldo.");
-  }
+    const r = await fetch(`frases.json?t=${Date.now()}`);
+    if (r.ok) FRASES_MASCOTA = await r.json();
+  } catch(e) { /* sin frases, usa respaldo */ }
 
-=======
-    console.log("frases.json no encontrado");
-  }
-
-  // Setup lunar
->>>>>>> 3019c7d (parche_manual)
-  const today = new Date();
-  LUNAR_DATA = calculateLunarPhase(today);
-  document.getElementById('lunar-icon').textContent = LUNAR_DATA.icon;
-  document.getElementById('lunar-text').textContent = `${LUNAR_DATA.phaseName} (${LUNAR_DATA.illumination}%)`;
-
+  // Fecha header y footer
   const dt = new Date(DATA.generated + 'T12:00:00');
-  document.getElementById('header-date').textContent = dt.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-  document.getElementById('footer-generated').textContent = 'generado automáticamente · ' + DATA.generated;
+  document.getElementById('header-date').textContent =
+    dt.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+  document.getElementById('footer-generated').textContent =
+    'generado automáticamente · ' + DATA.generated;
 
-  function renderLyric() {
-    document.getElementById('lyric-artist').textContent = DATA.lyric.artist;
-    document.getElementById('lyric-track').textContent  = DATA.lyric.track;
-    document.getElementById('lyric-chunk').innerHTML = DATA.lyric.chunk.split('\n').map(l => `<span>${esc(l)}</span>`).join('<br>');
-    const tracks = DATA.tracks.short_term || [];
-    document.getElementById('tracks-list-lyric').innerHTML = tracks.map((t, i) => trackRow(t, i, t.track === DATA.lyric.track && t.artist === DATA.lyric.artist)).join('');
-  }
+  // Lyric
+  document.getElementById('lyric-artist').textContent = DATA.lyric.artist;
+  document.getElementById('lyric-track').textContent  = DATA.lyric.track;
+  document.getElementById('lyric-chunk').innerHTML =
+    DATA.lyric.chunk.split('\n').map(l => `<span>${esc(l)}</span>`).join('<br>');
 
-  renderLyric();
-
-  // Weather
-  try {
-    const weatherRes = await fetch('https://wttr.in/A_Coruna?format=j1');
-    if (weatherRes.ok) {
-      const wData = await weatherRes.json();
-      WEATHER_DATA = wData;
-      const current = wData.current_condition[0];
-      const weatherMap = { 'Sunny': 'Soleado', 'Clear': 'Despejado', 'Partly cloudy': 'Parcialmente nublado', 'Cloudy': 'Nublado', 'Overcast': 'Encapotado', 'Mist': 'Niebla', 'Light rain': 'Lluvia ligera' };
-      let desc = current.weatherDesc?.[0]?.value || 'N/A';
-      desc = weatherMap[desc] || desc;
-      document.getElementById('weather-display').innerHTML = `• Ubicación: A Coruña<br>• Estado: ${desc}<br>• Temp: ${current.temp_C}°C<br>• Humedad: ${current.humidity}%<br>• Viento: ${current.windspeedKmph} km/h`;
-      document.getElementById('weather-display').addEventListener('click', openWeatherModal);
-    }
-  } catch(err) { 
-    document.getElementById('weather-display').textContent = '• Satélite fuera de rango local.'; 
-  }
-
-  // Mascota
-  const pet = document.getElementById('web-pet');
+  // Mascota — solo habla al hacer clic
+  const pet    = document.getElementById('web-pet');
   const bubble = document.getElementById('pet-speech');
 
-<<<<<<< HEAD
-  // CORREGIDO: Eliminada la re-declaración conflictiva de 'bubble' aquí dentro
   function triggerPetSpeech() {
-    // 1. Si el archivo cargó correctamente, elige una fila al azar
-    if (FRASES_MASCOTA && FRASES_MASCOTA.length > 0) {
-      const itemAleatorio = FRASES_MASCOTA[Math.floor(Math.random() * FRASES_MASCOTA.length)];
-      bubble.innerHTML = `"${esc(itemAleatorio.texto)}"<span class="bubble-credit">♪ ${esc(itemAleatorio.autor)} - ${esc(itemAleatorio.tema)} ♪</span>`;
-    } else {
-      // Frase de respaldo por si borras el JSON por error
-      bubble.innerHTML = `"-_-"<span class="bubble-credit">♪ SYS_CORE ♪</span>`;
-    }
-    
-    // 2. Mostrar bocadillo
-    bubble.classList.add('active');
-
-    // 3. Ocultar tras 5 segundos de forma limpia
-=======
-  function triggerPetSpeech() {
-    if (FRASES_MASCOTA && FRASES_MASCOTA.length > 0) {
-      const itemAleatorio = FRASES_MASCOTA[Math.floor(Math.random() * FRASES_MASCOTA.length)];
-      bubble.innerHTML = `"${esc(itemAleatorio.texto)}"`;
+    if (FRASES_MASCOTA.length > 0) {
+      const item = FRASES_MASCOTA[Math.floor(Math.random() * FRASES_MASCOTA.length)];
+      bubble.innerHTML =
+        `"${esc(item.texto)}"<span class="bubble-credit">♪ ${esc(item.autor)} - ${esc(item.tema)} ♪</span>`;
     } else {
       bubble.innerHTML = `"-_-"<span class="bubble-credit">♪ SYS_CORE ♪</span>`;
     }
-    
     bubble.classList.add('active');
->>>>>>> 3019c7d (parche_manual)
     clearTimeout(BUBBLE_TIMER);
-    BUBBLE_TIMER = setTimeout(() => {
-      bubble.classList.remove('active');
-    }, 5000);
+    BUBBLE_TIMER = setTimeout(() => bubble.classList.remove('active'), 5000);
   }
 
-  function moveMascotRandomly() {
+  function moveMascot() {
     pet.className = 'pet-moving';
-    const randomRight = Math.floor(Math.random() * 60 + 10); 
-    const randomTop = Math.floor(Math.random() * 40 + 10);   
-    
-    const currentRight = parseFloat(pet.style.right) || 20;
-    pet.querySelector('img').style.transform = (randomRight < currentRight) ? 'scaleX(-1)' : 'scaleX(1)';  
-    
-    pet.style.right = `${randomRight}%`; 
-    pet.style.top = `${randomTop}%`;
-    
-    setTimeout(() => { 
-      pet.className = 'pet-idle'; 
-      if (Math.random() > 0.4) {
-        triggerPetSpeech();
-      }
-    }, 1000);
+    const r = Math.floor(Math.random() * 60 + 10);
+    const t = Math.floor(Math.random() * 40 + 10);
+    pet.querySelector('img').style.transform =
+      r < (parseFloat(pet.style.right) || 20) ? 'scaleX(-1)' : 'scaleX(1)';
+    pet.style.right = `${r}%`;
+    pet.style.top   = `${t}%`;
+    setTimeout(() => { pet.className = 'pet-idle'; }, 1000);
   }
 
-  function startPetBehavior() { 
-    setTimeout(() => { 
-      moveMascotRandomly(); 
-      startPetBehavior(); 
-<<<<<<< HEAD
-    }, Math.random() * 6000 + 7000); // Tiempos ligeramente más espaciados para dejar leer los bocadillos
-  }
-=======
-    }, Math.random() * 6000 + 7000);
+  function startPetMovement() {
+    setTimeout(() => { moveMascot(); startPetMovement(); }, Math.random() * 6000 + 7000);
   }
 
   pet.addEventListener('click', (e) => {
     if (e.target.classList.contains('pet-bubble')) return;
-    pet.className = 'pet-click'; 
+    pet.className = 'pet-click';
     triggerPetSpeech();
-    setTimeout(() => { pet.className = 'pet-idle'; }, 400); 
-  });
->>>>>>> 3019c7d (parche_manual)
-
-  // Interacción al hacer clic manual
-  pet.addEventListener('click', (e) => {
-    // Si hace clic en la burbuja no reiniciar
-    if (e.target.classList.contains('pet-bubble')) return;
-    
-    pet.className = 'pet-click'; 
-    triggerPetSpeech();
-    setTimeout(() => { pet.className = 'pet-idle'; }, 400); 
+    setTimeout(() => { pet.className = 'pet-idle'; }, 400);
   });
 
-  // Lanzar bucle de vida automatizado
-  startPetBehavior();
-
-  // Inicializar Google Calendar cuando los scripts estén listos
-  window.addEventListener('load', () => {
-    if (window.google) {
-      setTimeout(initGoogleCalendar, 500);
-    }
-  });
+  startPetMovement();
 })();
 
-<<<<<<< HEAD
-// ── EL RESTO DE TUS FUNCIONES DEL SISTEMA QUEDAN INTACTAS ──
-=======
 // ═══════════════════════════════════════════════════════════════════════════
-// FUNCIONES DE MODAL
+// EXPORTS GLOBALES
 // ═══════════════════════════════════════════════════════════════════════════
-
->>>>>>> 3019c7d (parche_manual)
-function openWeatherModal() {
-  if (!WEATHER_DATA) return;
-  const current = WEATHER_DATA.current_condition[0];
-  const nearest = WEATHER_DATA.nearest_area[0];
-  let html = `
-    <div class="weather-item"><div class="weather-item-label">Localización</div><div class="weather-item-value">${nearest.areaName[0].value}</div></div>
-    <div class="weather-item"><div class="weather-item-label">Temperatura</div><div class="weather-item-value">${current.temp_C}°C</div></div>
-    <div class="weather-item"><div class="weather-item-label">Humedad</div><div class="weather-item-value">${current.humidity}%</div></div>
-    <div class="weather-item"><div class="weather-item-label">Viento</div><div class="weather-item-value">${current.windspeedKmph} km/h</div></div>`;
-  document.getElementById('weather-content').innerHTML = html;
-  document.getElementById('weather-modal').classList.add('active');
-}
-
-function closeWeatherModal() { document.getElementById('weather-modal').classList.remove('active'); }
-
-function openLunarModal() {
-  const today = new Date();
-  const nextFullMoon = getNextFullMoon(today);
-  document.getElementById('modal-current-phase').textContent = LUNAR_DATA.phaseName;
-  document.getElementById('modal-illumination').textContent = LUNAR_DATA.illumination + '%';
-  document.getElementById('modal-lunar-age').textContent = LUNAR_DATA.age + ' días';
-  document.getElementById('modal-lunar-distance').textContent = '384,400 km';
-  document.getElementById('next-full-moon-date').textContent = nextFullMoon.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  document.getElementById('next-full-moon-days').textContent = `Faltan ${Math.ceil((nextFullMoon - today) / 86400000)} días`;
-  
-  const upcomingEclipses = getUpcomingEclipses(today);
-  if (upcomingEclipses.length > 0) {
-    let alertHTML = '<ul style="margin:0; padding-left:1.2rem;">';
-    upcomingEclipses.forEach(e => { alertHTML += `<li><strong>${e.name}</strong><br><small>${new Date(e.date).toLocaleDateString('es-ES')}</small></li>`; });
-    document.getElementById('eclipse-content').innerHTML = alertHTML + '</ul>';
-    document.getElementById('eclipse-alerts').style.display = 'block';
-  }
-  document.getElementById('lunar-calendar').innerHTML = generateLunarCalendar(today.getFullYear(), today.getMonth());
-  document.getElementById('lunar-modal').classList.add('active');
-}
-
-function closeLunarModal() { document.getElementById('lunar-modal').classList.remove('active'); }
-
-function updateHudClock() {
-  const now = new Date();
-  const clockEl = document.getElementById('hud-clock');
-  if (clockEl) clockEl.innerText = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-}
-
-setInterval(updateHudClock, 1000);
-updateHudClock();
-
-function toggleHighlight(city, isActive) {
-  const baseImage = document.getElementById('base-image');
-  const highlight = document.getElementById(`${city}-highlight`);
-  if (baseImage && highlight) {
-    if (isActive) { baseImage.classList.add('dimmed'); highlight.classList.add('active'); }
-    else { baseImage.classList.remove('dimmed'); highlight.classList.remove('active'); }
-  }
-}
-
-function openProjectTerminal() { document.getElementById('nav-screen').classList.add('active'); renderProjects(); }
-function closeNav() { document.getElementById('nav-screen').classList.remove('active'); }
-
-function renderProjects() {
-  const listEl = document.getElementById('todo-list');
-  const projects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
-  listEl.innerHTML = projects.map((p, i) => `<li class="todo-item"><span>> ${p}</span><button class="todo-del-btn" onclick="deleteProject(${i})">[ELIMINAR]</button></li>`).join('');
-}
-
-function addProject() {
-  const input = document.getElementById('todo-input');
-  const text = input.value.trim(); if (!text) return;
-  const projects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
-  projects.push(text); localStorage.setItem('flipper_projects', JSON.stringify(projects));
-  input.value = ''; renderProjects();
-}
-
-function deleteProject(index) {
-  const projects = JSON.parse(localStorage.getItem('flipper_projects')) || [];
-  projects.splice(index, 1); localStorage.setItem('flipper_projects', JSON.stringify(projects));
-  renderProjects();
-}
-
-function exportToTxt() {
-  const projects = JSON.parse(localStorage.getItem('flipper_projects')) || []; if (projects.length === 0) return;
-  let content = "=========================================\n   CYBER-LYRIC CORE // SYSTEM_PROJECT_LOG\n=========================================\n\n";
-  projects.forEach((p, idx) => { content += `${String(idx + 1).padStart(2, '0')}. [PENDIENTE] > ${p}\n`; });
-  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-  const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = `projects_archive_${new Date().toISOString().slice(0,10)}.txt`; link.click();
-}
-
-const canvasBox = document.getElementById('base-image');
-if (canvasBox) {
-  setInterval(() => {
-    if (Math.random() > 0.98) {
-      canvasBox.style.transform = `translate(${Math.random() * 2 - 1}px, ${Math.random() * 2 - 1}px) skew(${Math.random() * 0.5}deg)`;
-      setTimeout(() => { canvasBox.style.transform = 'none'; }, 40);
-    }
-  }, 150);
-}
-
-window.openWeatherModal = openWeatherModal;
-window.closeWeatherModal = closeWeatherModal;
-window.openLunarModal = openLunarModal;
+window.openLunarModal  = openLunarModal;
 window.closeLunarModal = closeLunarModal;
-window.toggleHighlight = toggleHighlight;
-window.openProjectTerminal = openProjectTerminal;
-window.closeNav = closeNav;
-window.addProject = addProject;
-window.deleteProject = deleteProject;
-window.exportToTxt = exportToTxt;
 </script>
+
 </body>
 </html>
