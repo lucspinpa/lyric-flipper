@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-02",
+  "generated": "2026-06-03",
   "lyric": {
     "artist": "Maisie Peters",
-    "track": "Say My Name In Your Sleep",
+    "track": "Audrey Hepburn",
     "album": "Florescence",
-    "chunk": "You're better far away from me\nYou're happy now, I'm happy for ya\nBut I hope you say my name in your sleep\nThere are pieces of me in your strawberries\nIn your hallways, if these walls could talk, I swear they'd scream"
+    "chunk": "I was chasing phantoms\nAlways starving, never full\nThen you made me dinner\nWhere there was push, now there is pull\nTo you, like a magnet"
   },
   "tracks": {
     "short_term": [
@@ -29,17 +29,17 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       },
       {
+        "track": "Girl’s Just Flying",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
         "track": "Say My Name In Your Sleep",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
         "track": "Houses",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "Girl’s Just Flying",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
@@ -199,17 +199,17 @@
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
-        "name": "Harry Styles",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
-      },
-      {
         "name": "Charli xcx",
         "genres": [
           "hyperpop",
           "art pop"
         ],
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
+      },
+      {
+        "name": "Harry Styles",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       },
       {
         "name": "Tate McRae",
@@ -248,16 +248,16 @@
         "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
+        "name": "RAYE",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
+      },
+      {
         "name": "Olivia Dean",
         "genres": [
           "pop soul"
         ],
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
-      },
-      {
-        "name": "RAYE",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
       },
       {
         "name": "Gracie Abrams",
