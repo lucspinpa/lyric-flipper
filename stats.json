@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-08",
+  "generated": "2026-06-09",
   "lyric": {
-    "artist": "Olivia Rodrigo",
-    "track": "drop dead",
-    "album": "drop dead (taken that eurostar to france video)",
-    "chunk": "One night I was bored in bed\nAnd stalked you on the internet\nIt’s feminine intuition\n‘Cuz I always had a vision of us standing like this\nAll pressed up in the bathroom line"
+    "artist": "Maisie Peters",
+    "track": "Kingmaker (with Julia Michaels)",
+    "album": "Florescence",
+    "chunk": "Guess I walked so you could run all the way from me\nNow you say you're self-made, guess your memory's fuzzy\nI put a crown on your head, should've put wax paper\nDid you get off going to bed with the kingmaker?\nAh, kingmaker"
   },
   "tracks": {
     "short_term": [
@@ -29,14 +29,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Beware.. The South London Lover Boy.",
-        "artist": "RAYE",
-        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
-      },
-      {
         "track": "Houses",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "Beware.. The South London Lover Boy.",
+        "artist": "RAYE",
+        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       },
       {
         "track": "Say My Name In Your Sleep",
@@ -207,21 +207,21 @@
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       },
       {
-        "name": "Tate McRae",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174bed8016bd64422793ff3bc75"
-      },
-      {
         "name": "Harry Styles",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       },
       {
-        "name": "Olivia Dean",
+        "name": "Tate McRae",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174bed8016bd64422793ff3bc75"
+      },
+      {
+        "name": "ROLE MODEL",
         "genres": [
-          "pop soul"
+          "bedroom pop"
         ],
-        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
+        "image": "https://i.scdn.co/image/ab67616100005174fe9486c9ef6d86b4f39805c8"
       }
     ],
     "medium_term": [
