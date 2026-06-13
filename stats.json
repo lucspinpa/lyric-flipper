@@ -1,22 +1,22 @@
 {
-  "generated": "2026-06-12",
+  "generated": "2026-06-13",
   "lyric": {
     "artist": "Maisie Peters",
-    "track": "Girl’s Just Flying",
+    "track": "You Then Me Now",
     "album": "Florescence",
-    "chunk": "I'm not bitter, I'm not dying\nI forget about you when I'm not even trying\nThey play our song, and I keep driving, oh\nCan't bait the girl if the girl's not biting\nCan't get to the girl now, the girl's just flying"
+    "chunk": "Clinging to a time everybody's moved on from\nClinging to a girl you could never keep a hold on\nYou were the god, I was the puzzle\nYou in the clouds, me in the tunnels\nI couldn't see it for the trees, oh Lord"
   },
   "tracks": {
     "short_term": [
       {
-        "track": "Hit the Wall",
-        "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
-      },
-      {
         "track": "Questions",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "Hit the Wall",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
       },
       {
         "track": "Vampire Time",
@@ -199,6 +199,11 @@
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
+        "name": "Olivia Rodrigo",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
+      },
+      {
         "name": "Charli xcx",
         "genres": [
           "hyperpop",
@@ -207,21 +212,17 @@
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       },
       {
+        "name": "Fleetwood Mac",
+        "genres": [
+          "yacht rock",
+          "classic rock"
+        ],
+        "image": "https://i.scdn.co/image/ab67616100005174c8752dd511cda8c31e9daee8"
+      },
+      {
         "name": "Harry Styles",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
-      },
-      {
-        "name": "Tate McRae",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174bed8016bd64422793ff3bc75"
-      },
-      {
-        "name": "Olivia Dean",
-        "genres": [
-          "pop soul"
-        ],
-        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       }
     ],
     "medium_term": [
