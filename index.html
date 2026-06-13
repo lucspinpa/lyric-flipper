@@ -67,22 +67,47 @@
 
   </main>
 </div>
-<div id="now-playing-widget" class="now-playing">
-  <div class="np-cover">
-    <img id="np-artwork" src="" alt="Album cover" />
-    <div id="np-status" class="np-status-badge">cargando…</div>
-  </div>
+<!-- NOW PLAYING WIDGET (CYBERPUNK REDESIGN) -->
+<div class="now-playing-terminal">
+  <div class="terminal-scanline"></div>
   
-  <div class="np-info">
-    <div id="np-artist" class="np-artist">—</div>
-    <div id="np-track" class="np-track">—</div>
+  <!-- Album Art (Left) -->
+  <div class="np-album-container">
+    <img id="np-artwork" src="" alt="Album art" class="np-album-art" />
+    <div id="np-status" class="np-status-tag">synced</div>
   </div>
 
-  <div class="np-controls">
-    <button id="np-prev" class="np-btn">⏮</button>
-    <button id="np-play" class="np-btn np-play-btn">▶</button>
-    <button id="np-next" class="np-btn">⏭</button>
+  <!-- Metadata (Center) -->
+  <div class="np-metadata">
+    <div class="np-label">NOW_PLAYING</div>
+    <h3 id="np-track" class="np-track-title">—</h3>
+    <div class="np-artist-row">
+      <span id="np-artist" class="np-artist-name">—</span>
+      <span class="np-pulse-dot"></span>
+    </div>
+    <div class="np-progress-container">
+      <div class="np-progress-bar">
+        <div id="np-progress-fill" class="np-progress-fill"></div>
+      </div>
+      <span id="np-time" class="np-time-display">0:00 / 0:00</span>
+    </div>
   </div>
+
+  <!-- Controls (Right) -->
+  <div class="np-controls-group">
+    <button id="np-prev" class="np-control-btn np-skip-btn" title="Previous">
+      <span class="control-icon">⏮</span>
+    </button>
+    <button id="np-play" class="np-control-btn np-play-main" title="Play/Pause">
+      <span class="control-icon">▶</span>
+    </button>
+    <button id="np-next" class="np-control-btn np-skip-btn" title="Next">
+      <span class="control-icon">⏭</span>
+    </button>
+  </div>
+
+  <!-- Corner Ornament (Cyberpunk Detail) -->
+  <div class="np-corner-accent"></div>
 </div>
 <!-- MODAL LUNAR -->
 <div id="lunar-modal">
