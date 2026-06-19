@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-18",
+  "generated": "2026-06-19",
   "lyric": {
-    "artist": "Taylor Swift",
-    "track": "coney island (feat. The National)",
-    "album": "evermore",
-    "chunk": "Over and over\nLost again with no surprises\nDisappointments close your eyes\nAnd it gets colder and colder\nWhen the sun goes down"
+    "artist": "RAYE",
+    "track": "I Hate The Way I Look Today.",
+    "album": "THIS MUSIC MAY CONTAIN HOPE.",
+    "chunk": "Okay, boys\nShe hates the way she looks tonight, she does\nOh, she hates the way she looks, hates the way she looks\nHates the way she looks tonight\nI can't shake this, I can't fake this"
   },
   "tracks": {
     "short_term": [
@@ -24,14 +24,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Hit the Wall",
-        "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
-      },
-      {
         "track": "Houses",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "Hit the Wall",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
       },
       {
         "track": "Kingmaker (with Julia Michaels)",
@@ -39,14 +39,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Say My Name In Your Sleep",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+        "track": "Beware.. The South London Lover Boy.",
+        "artist": "RAYE",
+        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       },
       {
-        "track": "Mary Janes",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+        "track": "I Knew It, I Knew You",
+        "artist": "Taylor Swift",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
       },
       {
         "track": "Old Fashioned",
@@ -54,9 +54,9 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Beware.. The South London Lover Boy.",
-        "artist": "RAYE",
-        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
+        "track": "Mary Janes",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       }
     ],
     "medium_term": [
@@ -101,14 +101,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
       },
       {
-        "track": "Say My Name In Your Sleep",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
         "track": "Hit the Wall",
         "artist": "Gracie Abrams",
         "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
+      },
+      {
+        "track": "Carla's Song",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
       }
     ],
     "long_term": [
@@ -184,14 +184,14 @@
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
       },
       {
-        "name": "Gracie Abrams",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
-      },
-      {
         "name": "Olivia Rodrigo",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
+      },
+      {
+        "name": "Gracie Abrams",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
       },
       {
         "name": "RAYE",
@@ -271,16 +271,16 @@
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
-        "name": "Sam Fender",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab676161000051744a3dfbf28e00c02d9d9494e8"
-      },
-      {
         "name": "Ariana Grande",
         "genres": [
           "pop"
         ],
         "image": "https://i.scdn.co/image/ab67616100005174766397ec42a573a53eb5fb87"
+      },
+      {
+        "name": "Sam Fender",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab676161000051744a3dfbf28e00c02d9d9494e8"
       }
     ],
     "long_term": [
