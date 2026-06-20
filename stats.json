@@ -1,18 +1,13 @@
 {
-  "generated": "2026-06-19",
+  "generated": "2026-06-20",
   "lyric": {
-    "artist": "RAYE",
-    "track": "I Hate The Way I Look Today.",
-    "album": "THIS MUSIC MAY CONTAIN HOPE.",
-    "chunk": "Okay, boys\nShe hates the way she looks tonight, she does\nOh, she hates the way she looks, hates the way she looks\nHates the way she looks tonight\nI can't shake this, I can't fake this"
+    "artist": "Maisie Peters",
+    "track": "Audrey Hepburn",
+    "album": "Florescence",
+    "chunk": "Well, it always points you home\nSo take me back to the country, to the hills, and to the spires\nI hate the after parties, I want forests, I want fires\nTake me back to your parents\nI was barefaced in the light you swore"
   },
   "tracks": {
     "short_term": [
-      {
-        "track": "Questions",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
       {
         "track": "Vampire Time",
         "artist": "Maisie Peters",
@@ -24,24 +19,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
+        "track": "Questions",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
         "track": "Houses",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "Hit the Wall",
-        "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
-      },
-      {
-        "track": "Kingmaker (with Julia Michaels)",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "Beware.. The South London Lover Boy.",
-        "artist": "RAYE",
-        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       },
       {
         "track": "I Knew It, I Knew You",
@@ -54,9 +39,24 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
+        "track": "Kingmaker (with Julia Michaels)",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "Hit the Wall",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
+      },
+      {
         "track": "Mary Janes",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "Beware.. The South London Lover Boy.",
+        "artist": "RAYE",
+        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       }
     ],
     "medium_term": [
@@ -184,14 +184,14 @@
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
       },
       {
-        "name": "Olivia Rodrigo",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
-      },
-      {
         "name": "Gracie Abrams",
         "genres": [],
         "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
+      },
+      {
+        "name": "Olivia Rodrigo",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
         "name": "RAYE",
