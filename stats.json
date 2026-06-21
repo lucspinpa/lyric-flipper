@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-20",
+  "generated": "2026-06-21",
   "lyric": {
-    "artist": "Maisie Peters",
-    "track": "Audrey Hepburn",
-    "album": "Florescence",
-    "chunk": "Well, it always points you home\nSo take me back to the country, to the hills, and to the spires\nI hate the after parties, I want forests, I want fires\nTake me back to your parents\nI was barefaced in the light you swore"
+    "artist": "Taylor Swift",
+    "track": "mad woman",
+    "album": "folklore",
+    "chunk": "What did you think I'd say to that?\nDoes a scorpion sting when fighting back?\nThey strike to kill and you know I will\nYou know I will\nWhat do you sing on your drive home?"
   },
   "tracks": {
     "short_term": [
@@ -34,12 +34,17 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
       },
       {
+        "track": "Kingmaker (with Julia Michaels)",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
         "track": "Old Fashioned",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Kingmaker (with Julia Michaels)",
+        "track": "Mary Janes",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
@@ -49,14 +54,9 @@
         "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
       },
       {
-        "track": "Mary Janes",
+        "track": "Say My Name In Your Sleep",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "Beware.. The South London Lover Boy.",
-        "artist": "RAYE",
-        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       }
     ],
     "medium_term": [
@@ -217,12 +217,11 @@
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       },
       {
-        "name": "Fleetwood Mac",
+        "name": "PinkPantheress",
         "genres": [
-          "yacht rock",
-          "classic rock"
+          "bedroom pop"
         ],
-        "image": "https://i.scdn.co/image/ab67616100005174c8752dd511cda8c31e9daee8"
+        "image": "https://i.scdn.co/image/ab676161000051746bf10d74063b45938f5d8656"
       }
     ],
     "medium_term": [
@@ -232,14 +231,14 @@
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
-        "name": "Harry Styles",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
-      },
-      {
         "name": "Maisie Peters",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
+      },
+      {
+        "name": "Harry Styles",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       },
       {
         "name": "Sabrina Carpenter",
