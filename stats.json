@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-21",
+  "generated": "2026-06-22",
   "lyric": {
-    "artist": "Taylor Swift",
-    "track": "mad woman",
-    "album": "folklore",
-    "chunk": "What did you think I'd say to that?\nDoes a scorpion sting when fighting back?\nThey strike to kill and you know I will\nYou know I will\nWhat do you sing on your drive home?"
+    "artist": "Maisie Peters",
+    "track": "Houses",
+    "album": "Florescence",
+    "chunk": "If I'd loved you a little less\nOh, I can hear it\nThe coffee machine in the kitchen\nThe life it could've been if I'd given up the high road\nMade my peace there, in your bed"
   },
   "tracks": {
     "short_term": [
@@ -29,6 +29,11 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
+        "track": "Old Fashioned",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
         "track": "I Knew It, I Knew You",
         "artist": "Taylor Swift",
         "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
@@ -39,22 +44,17 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Old Fashioned",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "Mary Janes",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
         "track": "Hit the Wall",
         "artist": "Gracie Abrams",
         "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
       },
       {
-        "track": "Say My Name In Your Sleep",
+        "track": "You Then Me Now",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "My Regards",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       }
@@ -177,16 +177,16 @@
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
+        "name": "Gracie Abrams",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
+      },
+      {
         "name": "Sabrina Carpenter",
         "genres": [
           "pop"
         ],
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
-      },
-      {
-        "name": "Gracie Abrams",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
       },
       {
         "name": "Olivia Rodrigo",
