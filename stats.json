@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-22",
+  "generated": "2026-06-23",
   "lyric": {
     "artist": "Maisie Peters",
-    "track": "Houses",
+    "track": "You You You",
     "album": "Florescence",
-    "chunk": "If I'd loved you a little less\nOh, I can hear it\nThe coffee machine in the kitchen\nThe life it could've been if I'd given up the high road\nMade my peace there, in your bed"
+    "chunk": "The way you stained my summer\nI eat about you, so I weigh less than when we met\nI sleep about you, dream of you two having sex\nI breathe about you, yeah, your name lives in my chest\nMy lips around you, you're my constant cigarette"
   },
   "tracks": {
     "short_term": [
@@ -29,14 +29,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Old Fashioned",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
         "track": "I Knew It, I Knew You",
         "artist": "Taylor Swift",
         "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
+      },
+      {
+        "track": "Old Fashioned",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
         "track": "Kingmaker (with Julia Michaels)",
@@ -44,19 +44,19 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Hit the Wall",
+        "track": "expectations",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
+      },
+      {
+        "track": "I Told You Things",
         "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
+        "image": "https://i.scdn.co/image/ab67616d00001e02aa03e0d932f0f936f2f81f9f"
       },
       {
-        "track": "You Then Me Now",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "My Regards",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+        "track": "drop dead",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       }
     ],
     "medium_term": [
