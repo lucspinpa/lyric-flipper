@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-23",
+  "generated": "2026-06-24",
   "lyric": {
-    "artist": "Maisie Peters",
-    "track": "You You You",
-    "album": "Florescence",
-    "chunk": "The way you stained my summer\nI eat about you, so I weigh less than when we met\nI sleep about you, dream of you two having sex\nI breathe about you, yeah, your name lives in my chest\nMy lips around you, you're my constant cigarette"
+    "artist": "Taylor Swift",
+    "track": "mad woman",
+    "album": "folklore",
+    "chunk": "Watchin' you climb\nWatchin' you climb\nOver people like me\nThe master of spin\nHas a couple side flings"
   },
   "tracks": {
     "short_term": [
@@ -19,19 +19,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Questions",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "Houses",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
         "track": "I Knew It, I Knew You",
         "artist": "Taylor Swift",
         "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
+      },
+      {
+        "track": "Questions",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
         "track": "Old Fashioned",
@@ -44,19 +39,24 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
+        "track": "Houses",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
         "track": "expectations",
         "artist": "Olivia Rodrigo",
         "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
-        "track": "I Told You Things",
-        "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e02aa03e0d932f0f936f2f81f9f"
-      },
-      {
         "track": "drop dead",
         "artist": "Olivia Rodrigo",
         "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
+      },
+      {
+        "track": "Hit the Wall",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
       }
     ],
     "medium_term": [
@@ -167,19 +167,14 @@
   "artists": {
     "short_term": [
       {
-        "name": "Maisie Peters",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
-      },
-      {
         "name": "Taylor Swift",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
-        "name": "Gracie Abrams",
+        "name": "Maisie Peters",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
+        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
         "name": "Sabrina Carpenter",
@@ -192,6 +187,11 @@
         "name": "Olivia Rodrigo",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
+      },
+      {
+        "name": "Gracie Abrams",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
       },
       {
         "name": "RAYE",
