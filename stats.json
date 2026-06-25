@@ -1,20 +1,20 @@
 {
-  "generated": "2026-06-24",
+  "generated": "2026-06-25",
   "lyric": {
-    "artist": "Taylor Swift",
-    "track": "mad woman",
-    "album": "folklore",
-    "chunk": "Watchin' you climb\nWatchin' you climb\nOver people like me\nThe master of spin\nHas a couple side flings"
+    "artist": "Gracie Abrams",
+    "track": "I Told You Things",
+    "album": "The Secret of Us (Deluxe)",
+    "chunk": "know we're in pain\nknow we're in pain\nknow we're in pain\nI told you things that I never said to anybody else\nI regret them"
   },
   "tracks": {
     "short_term": [
       {
-        "track": "Vampire Time",
+        "track": "Girl’s Just Flying",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Girl’s Just Flying",
+        "track": "Vampire Time",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
@@ -29,9 +29,19 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
+        "track": "expectations",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
+      },
+      {
         "track": "Old Fashioned",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "drop dead",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
         "track": "Kingmaker (with Julia Michaels)",
@@ -39,17 +49,7 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Houses",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "expectations",
-        "artist": "Olivia Rodrigo",
-        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
-      },
-      {
-        "track": "drop dead",
+        "track": "purple",
         "artist": "Olivia Rodrigo",
         "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
@@ -128,19 +128,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02062c6573009fdebd43de443b"
       },
       {
-        "track": "decode",
-        "artist": "Sabrina Carpenter",
-        "image": "https://i.scdn.co/image/ab67616d00001e02700f7bf79c9f063ad0362bdf"
-      },
-      {
         "track": "Taste Back",
         "artist": "Harry Styles",
         "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
       },
       {
-        "track": "us. (feat. Taylor Swift)",
-        "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e026e2101520787791370f4a96b"
+        "track": "decode",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02700f7bf79c9f063ad0362bdf"
       },
       {
         "track": "Coincidence",
@@ -161,6 +156,11 @@
         "track": "Aperture",
         "artist": "Harry Styles",
         "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "Free Now - Live From Vevo",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e021dac3694b3289cd903cb3acf"
       }
     ]
   },
@@ -168,7 +168,10 @@
     "short_term": [
       {
         "name": "Taylor Swift",
-        "genres": [],
+        "genres": [
+          "hyperpop",
+          "art pop"
+        ],
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
@@ -178,20 +181,18 @@
       },
       {
         "name": "Sabrina Carpenter",
-        "genres": [
-          "pop"
-        ],
-        "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
-      },
-      {
-        "name": "Olivia Rodrigo",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
+        "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
       },
       {
         "name": "Gracie Abrams",
         "genres": [],
         "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
+      },
+      {
+        "name": "Olivia Rodrigo",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
         "name": "RAYE",
@@ -200,28 +201,27 @@
       },
       {
         "name": "Noah Kahan",
-        "genres": [],
+        "genres": [
+          "pop"
+        ],
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
         "name": "Harry Styles",
-        "genres": [],
+        "genres": [
+          "pop soul"
+        ],
         "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       },
       {
         "name": "Charli xcx",
-        "genres": [
-          "hyperpop",
-          "art pop"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       },
       {
-        "name": "PinkPantheress",
-        "genres": [
-          "bedroom pop"
-        ],
-        "image": "https://i.scdn.co/image/ab676161000051746bf10d74063b45938f5d8656"
+        "name": "Olivia Dean",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       }
     ],
     "medium_term": [
@@ -242,14 +242,14 @@
       },
       {
         "name": "Sabrina Carpenter",
-        "genres": [
-          "pop"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
       },
       {
         "name": "RAYE",
-        "genres": [],
+        "genres": [
+          "pop"
+        ],
         "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
       },
       {
@@ -285,21 +285,20 @@
     "long_term": [
       {
         "name": "Taylor Swift",
-        "genres": [],
+        "genres": [
+          "hyperpop",
+          "art pop"
+        ],
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
         "name": "Sabrina Carpenter",
-        "genres": [
-          "pop"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
       },
       {
         "name": "Ariana Grande",
-        "genres": [
-          "pop"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174766397ec42a573a53eb5fb87"
       },
       {
@@ -314,32 +313,33 @@
       },
       {
         "name": "Olivia Rodrigo",
-        "genres": [],
+        "genres": [
+          "pop"
+        ],
         "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
         "name": "Noah Kahan",
-        "genres": [],
+        "genres": [
+          "pop soul"
+        ],
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
         "name": "Charli xcx",
-        "genres": [
-          "hyperpop",
-          "art pop"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       },
       {
         "name": "Lizzy McAlpine",
-        "genres": [],
+        "genres": [
+          "pop"
+        ],
         "image": "https://i.scdn.co/image/ab67616100005174912df0c93a5dc290d3c8816e"
       },
       {
         "name": "Olivia Dean",
-        "genres": [
-          "pop soul"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       }
     ]
