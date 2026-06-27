@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-26",
+  "generated": "2026-06-27",
   "lyric": {
-    "artist": "RAYE",
-    "track": "I Know You're Hurting.",
-    "album": "THIS MUSIC MAY CONTAIN HOPE.",
-    "chunk": "I know it's hurting\nIt's just 6:30\nI know it's hurting\nPray Lord, have mercy\nI know He's working"
+    "artist": "Olivia Rodrigo",
+    "track": "drop dead",
+    "album": "you seem pretty sad for a girl so in love",
+    "chunk": "If you let me stay the night\nWell I think I might just have to stay forever\nPisces and a Gemini\nBut I think we might go really nice together\nIf you let me stay the night"
   },
   "tracks": {
     "short_term": [
@@ -19,7 +19,7 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "I Knew It, I Knew You",
+        "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
         "artist": "Taylor Swift",
         "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
       },
@@ -44,11 +44,6 @@
         "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
-        "track": "Hit the Wall",
-        "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
-      },
-      {
         "track": "Intro: Girl Under The Grey Cloud.",
         "artist": "RAYE",
         "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
@@ -57,6 +52,11 @@
         "track": "Kingmaker (with Julia Michaels)",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "Winter Woman.",
+        "artist": "RAYE",
+        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       }
     ],
     "medium_term": [
@@ -173,15 +173,15 @@
       },
       {
         "name": "Maisie Peters",
-        "genres": [
-          "hyperpop",
-          "art pop"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
         "name": "Sabrina Carpenter",
-        "genres": [],
+        "genres": [
+          "hyperpop",
+          "art pop"
+        ],
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
       },
       {
@@ -190,14 +190,19 @@
         "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
+        "name": "RAYE",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
+      },
+      {
         "name": "Gracie Abrams",
         "genres": [],
         "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
       },
       {
-        "name": "RAYE",
+        "name": "Harry Styles",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
+        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       },
       {
         "name": "Noah Kahan",
@@ -205,11 +210,6 @@
           "pop"
         ],
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
-      },
-      {
-        "name": "Harry Styles",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       },
       {
         "name": "Charli xcx",
@@ -227,23 +227,17 @@
     "medium_term": [
       {
         "name": "Taylor Swift",
-        "genres": [
-          "pop"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
         "name": "Maisie Peters",
-        "genres": [
-          "pop soul"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
         "name": "Harry Styles",
-        "genres": [
-          "pop"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       },
       {
@@ -253,7 +247,9 @@
       },
       {
         "name": "RAYE",
-        "genres": [],
+        "genres": [
+          "pop"
+        ],
         "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
       },
       {
@@ -268,12 +264,16 @@
       },
       {
         "name": "Noah Kahan",
-        "genres": [],
+        "genres": [
+          "pop soul"
+        ],
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
         "name": "Ariana Grande",
-        "genres": [],
+        "genres": [
+          "pop"
+        ],
         "image": "https://i.scdn.co/image/ab67616100005174766397ec42a573a53eb5fb87"
       },
       {
@@ -285,7 +285,9 @@
     "long_term": [
       {
         "name": "Taylor Swift",
-        "genres": [],
+        "genres": [
+          "pop soul"
+        ],
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
@@ -313,28 +315,26 @@
       },
       {
         "name": "Olivia Rodrigo",
-        "genres": [
-          "pop"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
         "name": "Noah Kahan",
         "genres": [
-          "pop soul"
+          "pop"
         ],
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
         "name": "Charli xcx",
-        "genres": [
-          "pop"
-        ],
+        "genres": [],
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       },
       {
         "name": "Lizzy McAlpine",
-        "genres": [],
+        "genres": [
+          "pop"
+        ],
         "image": "https://i.scdn.co/image/ab67616100005174912df0c93a5dc290d3c8816e"
       },
       {
