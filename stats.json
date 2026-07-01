@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-30",
+  "generated": "2026-07-01",
   "lyric": {
-    "artist": "Sabrina Carpenter",
-    "track": "Never Getting Laid",
-    "album": "Man’s Best Friend",
-    "chunk": "No way to know just who you're thinkin' of\nI just wish you didn't have a mind\nThat could flip like a switch\nThat could wander and drift\nTo a neighboring bitch"
+    "artist": "Taylor Swift",
+    "track": "mad woman",
+    "album": "folklore",
+    "chunk": "Do you see my face in the neighbor's lawn?\nDoes she smile?\nOr does she mouth, \"Fuck you forever\"?\nEvery time you call me crazy\nI get more crazy"
   },
   "tracks": {
     "short_term": [
@@ -44,12 +44,12 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "drop dead",
+        "track": "purple",
         "artist": "Olivia Rodrigo",
         "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
-        "track": "purple",
+        "track": "drop dead",
         "artist": "Olivia Rodrigo",
         "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
@@ -177,16 +177,16 @@
         "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
-        "name": "Olivia Rodrigo",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
-      },
-      {
         "name": "Sabrina Carpenter",
         "genres": [
           "pop"
         ],
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
+      },
+      {
+        "name": "Olivia Rodrigo",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
         "name": "RAYE",
@@ -217,11 +217,11 @@
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       },
       {
-        "name": "PinkPantheress",
+        "name": "Olivia Dean",
         "genres": [
-          "bedroom pop"
+          "pop soul"
         ],
-        "image": "https://i.scdn.co/image/ab676161000051746bf10d74063b45938f5d8656"
+        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       }
     ],
     "medium_term": [
