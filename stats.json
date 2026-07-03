@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-02",
+  "generated": "2026-07-03",
   "lyric": {
-    "artist": "Gracie Abrams",
-    "track": "Look at My Life",
-    "album": "Look at My Life",
-    "chunk": "I've been thinking through the hard stuff\nOver light drugs like every night\nNo, you don't need to come over\n'Cause I'd crowd please and I'm tired\nSlowly morphed into a poser"
+    "artist": "Maisie Peters",
+    "track": "Vampire Time",
+    "album": "Florescence",
+    "chunk": "I had to see about you\nTell me, oh, are you still on vampire time?\n'Cause heaven knows that you're still on my mind\nI had to know what you're doing tonight\nAnd what you're doing tomorrow"
   },
   "tracks": {
     "short_term": [
@@ -19,14 +19,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Vampire Time",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
         "track": "Look at My Life",
         "artist": "Gracie Abrams",
         "image": "https://i.scdn.co/image/ab67616d00001e022a6c9aa7070279c1c3193338"
+      },
+      {
+        "track": "Vampire Time",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
         "track": "expectations",
@@ -204,16 +204,16 @@
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
+        "name": "Harry Styles",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
+      },
+      {
         "name": "Olivia Dean",
         "genres": [
           "pop soul"
         ],
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
-      },
-      {
-        "name": "Harry Styles",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       },
       {
         "name": "Charli xcx",
