@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-04",
+  "generated": "2026-07-05",
   "lyric": {
-    "artist": "Sabrina Carpenter",
-    "track": "Never Getting Laid",
-    "album": "Man’s Best Friend",
-    "chunk": "'Til the thought of it hit\nThat any given night, you could be using your lips\nOn a girl with big tits\nBoy, I know where you live\nBaby, I'm not angry"
+    "artist": "Maisie Peters",
+    "track": "Vampire Time",
+    "album": "Florescence",
+    "chunk": "And the rest of your life\n'Cause I love you, I promise\nAnd I will 'til I die\nSo what you doing tomorrow\nAnd the rest of your life?"
   },
   "tracks": {
     "short_term": [
@@ -49,9 +49,9 @@
         "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
-        "track": "Old Fashioned",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+        "track": "drop dead",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
         "track": "Questions",
@@ -167,14 +167,14 @@
   "artists": {
     "short_term": [
       {
-        "name": "Maisie Peters",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
-      },
-      {
         "name": "Taylor Swift",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
+      },
+      {
+        "name": "Maisie Peters",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
         "name": "Sabrina Carpenter",
@@ -216,12 +216,9 @@
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       },
       {
-        "name": "Charli xcx",
-        "genres": [
-          "hyperpop",
-          "art pop"
-        ],
-        "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
+        "name": "Audrey Hobert",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab676161000051744fc78e354b19324810f1e933"
       }
     ],
     "medium_term": [
