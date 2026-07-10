@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-09",
+  "generated": "2026-07-10",
   "lyric": {
-    "artist": "Sabrina Carpenter",
-    "track": "Goodbye",
-    "album": "Man’s Best Friend",
-    "chunk": "Can't call it love, then call it quits\nCan't shoot me down, then shoot the shit\nDid you forget that it was you who said goodbye?\nSo you don't get to be the one who cries\nCan't have your cake and eat it too"
+    "artist": "beabadoobee",
+    "track": "Sun Has Set",
+    "album": "Sun Has Set",
+    "chunk": "Fuck that, you can never run back to me now\nThe sun has set\nThere's so much we left unsaid\nAnd so much that you don't get\nFuck that, not worth thinkin' about to me now"
   },
   "tracks": {
     "short_term": [
@@ -34,11 +34,6 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "Never Getting Laid",
-        "artist": "Sabrina Carpenter",
-        "image": "https://i.scdn.co/image/ab67616d00001e02b1863bf95557ea7f357c4947"
-      },
-      {
         "track": "Kingmaker (with Julia Michaels)",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
@@ -57,6 +52,11 @@
         "track": "Winter Woman.",
         "artist": "RAYE",
         "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
+      },
+      {
+        "track": "drop dead",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       }
     ],
     "medium_term": [
@@ -177,13 +177,6 @@
         "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
-        "name": "Sabrina Carpenter",
-        "genres": [
-          "pop"
-        ],
-        "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
-      },
-      {
         "name": "Olivia Rodrigo",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
@@ -199,6 +192,13 @@
         "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
       },
       {
+        "name": "Sabrina Carpenter",
+        "genres": [
+          "pop"
+        ],
+        "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
+      },
+      {
         "name": "Harry Styles",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
@@ -211,17 +211,17 @@
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       },
       {
-        "name": "Noah Kahan",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
-      },
-      {
         "name": "Charli xcx",
         "genres": [
           "hyperpop",
           "art pop"
         ],
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
+      },
+      {
+        "name": "Noah Kahan",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       }
     ],
     "medium_term": [
