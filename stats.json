@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-11",
+  "generated": "2026-07-12",
   "lyric": {
-    "artist": "Maisie Peters",
-    "track": "Questions",
-    "album": "Questions",
-    "chunk": "Your answers, ignorable\nThese questions, don't bother, babe\nHe holds me like you didn't\nHe loves me like you couldn't\nAnd he spins me 'round in the kitchen"
+    "artist": "Taylor Swift",
+    "track": "Is It Over Now? (Taylor's Version) (From The Vault)",
+    "album": "1989 (Taylor's Version)",
+    "chunk": "Only rumors 'bout my hips and thighs, and my whispered sighs, oh Lord\nI think about jumping\nOff of very tall somethings\nJust to see you come running\nAnd say the one thing I've been wanting, but no"
   },
   "tracks": {
     "short_term": [
@@ -19,11 +19,6 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
       },
       {
-        "track": "expectations",
-        "artist": "Olivia Rodrigo",
-        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
-      },
-      {
         "track": "Girl’s Just Flying",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
@@ -34,7 +29,7 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "purple",
+        "track": "expectations",
         "artist": "Olivia Rodrigo",
         "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
@@ -42,6 +37,11 @@
         "track": "Kingmaker (with Julia Michaels)",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "purple",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
         "track": "Intro: Girl Under The Grey Cloud.",
@@ -182,11 +182,6 @@
         "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
       },
       {
-        "name": "Olivia Rodrigo",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
-      },
-      {
         "name": "Gracie Abrams",
         "genres": [],
         "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
@@ -197,6 +192,11 @@
           "pop"
         ],
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
+      },
+      {
+        "name": "Olivia Rodrigo",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
         "name": "Noah Kahan",
