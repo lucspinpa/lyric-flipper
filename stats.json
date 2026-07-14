@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-13",
+  "generated": "2026-07-14",
   "lyric": {
-    "artist": "Alanis Morissette",
-    "track": "All I Really Want - 2015 Remaster",
-    "album": "Jagged Little Pill (2015 Remaster)",
-    "chunk": "Why are you so petrified of silence\nHere, can you handle this?\nDid you think about your bills, your ex, your deadlines\nOr when you think you're gonna die?\nOr did you long for the next distraction?"
+    "artist": "Taylor Swift",
+    "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
+    "album": "I Knew It, I Knew You (From \"Toy Story 5\")",
+    "chunk": "I knew\nI knew\nI knew\nOh, the rivers I cried when we said goodbye\nWondering if I'd made it up in my mind"
   },
   "tracks": {
     "short_term": [
@@ -14,14 +14,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e022a6c9aa7070279c1c3193338"
       },
       {
+        "track": "expectations",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
+      },
+      {
         "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
         "artist": "Taylor Swift",
         "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
-      },
-      {
-        "track": "Girl’s Just Flying",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
         "track": "Vampire Time",
@@ -29,9 +29,9 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "expectations",
-        "artist": "Olivia Rodrigo",
-        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
+        "track": "Girl’s Just Flying",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
         "track": "Kingmaker (with Julia Michaels)",
@@ -54,9 +54,9 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       },
       {
-        "track": "Houses",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+        "track": "I Know You're Hurting.",
+        "artist": "RAYE",
+        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       }
     ],
     "medium_term": [
@@ -216,12 +216,9 @@
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       },
       {
-        "name": "Charli xcx",
-        "genres": [
-          "hyperpop",
-          "art pop"
-        ],
-        "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
+        "name": "Del Water Gap",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174756c9f2be6294d04107ae215"
       }
     ],
     "medium_term": [
