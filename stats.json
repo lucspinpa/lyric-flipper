@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-17",
+  "generated": "2026-07-18",
   "lyric": {
-    "artist": "Maisie Peters",
-    "track": "Old Fashioned",
-    "album": "Florescence",
-    "chunk": "Oh, right now, in a dive bar, with a girl so pink\nTell her you never really do this\nAnd you only drink old fashioneds, and it's so attractive\nAnd she's eating it up until the very last call\nShe thinks you're so magic, it's fucking barbaric"
+    "artist": "The Cranberries",
+    "track": "Just My Imagination",
+    "album": "Bury The Hatchet",
+    "chunk": "Not my, not my, not my\nNot my, not my, not my\nNot my, not my, not my\nMy imagination\nMy imagination"
   },
   "tracks": {
     "short_term": [
@@ -44,6 +44,11 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
+        "track": "Hit the Wall",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
+      },
+      {
         "track": "A Groovy Kind of Love",
         "artist": "Phil Collins",
         "image": "https://i.scdn.co/image/ab67616d00001e02bdbb936aeda188debe62e187"
@@ -52,11 +57,6 @@
         "track": "All I Really Want - 2015 Remaster",
         "artist": "Alanis Morissette",
         "image": "https://i.scdn.co/image/ab67616d00001e02242e643ea07118ecf677a6ef"
-      },
-      {
-        "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
-        "artist": "Taylor Swift",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
       }
     ],
     "medium_term": [
@@ -177,11 +177,6 @@
         "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
       },
       {
-        "name": "Taylor Swift",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
-      },
-      {
         "name": "RAYE",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
@@ -192,6 +187,11 @@
           "pop"
         ],
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
+      },
+      {
+        "name": "Taylor Swift",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
         "name": "Noah Kahan",
@@ -293,16 +293,16 @@
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
       },
       {
+        "name": "Gracie Abrams",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
+      },
+      {
         "name": "Ariana Grande",
         "genres": [
           "pop"
         ],
         "image": "https://i.scdn.co/image/ab67616100005174766397ec42a573a53eb5fb87"
-      },
-      {
-        "name": "Gracie Abrams",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
       },
       {
         "name": "Maisie Peters",
