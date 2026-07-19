@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-18",
+  "generated": "2026-07-19",
   "lyric": {
-    "artist": "The Cranberries",
-    "track": "Just My Imagination",
-    "album": "Bury The Hatchet",
-    "chunk": "Not my, not my, not my\nNot my, not my, not my\nNot my, not my, not my\nMy imagination\nMy imagination"
+    "artist": "RAYE",
+    "track": "Winter Woman.",
+    "album": "THIS MUSIC MAY CONTAIN HOPE.",
+    "chunk": "Regret is a bitch, I have a feeling\nYou'll be meeting her soon\nPicture me, I am a silhouette\nI am a sob story, standing in the rain in a summer dress\nI know I won't be sad forever"
   },
   "tracks": {
     "short_term": [
@@ -24,11 +24,6 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       },
       {
-        "track": "Vampire Time",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
         "track": "Winter Woman.",
         "artist": "RAYE",
         "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
@@ -37,11 +32,6 @@
         "track": "expectations",
         "artist": "Olivia Rodrigo",
         "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
-      },
-      {
-        "track": "Girl’s Just Flying",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
         "track": "Hit the Wall",
@@ -54,9 +44,19 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02bdbb936aeda188debe62e187"
       },
       {
+        "track": "Vampire Time",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
         "track": "All I Really Want - 2015 Remaster",
         "artist": "Alanis Morissette",
         "image": "https://i.scdn.co/image/ab67616d00001e02242e643ea07118ecf677a6ef"
+      },
+      {
+        "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
+        "artist": "Taylor Swift",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
       }
     ],
     "medium_term": [
