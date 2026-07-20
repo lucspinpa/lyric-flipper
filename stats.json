@@ -1,42 +1,22 @@
 {
-  "generated": "2026-07-19",
+  "generated": "2026-07-20",
   "lyric": {
-    "artist": "RAYE",
-    "track": "Winter Woman.",
-    "album": "THIS MUSIC MAY CONTAIN HOPE.",
-    "chunk": "Regret is a bitch, I have a feeling\nYou'll be meeting her soon\nPicture me, I am a silhouette\nI am a sob story, standing in the rain in a summer dress\nI know I won't be sad forever"
+    "artist": "Olivia Dean",
+    "track": "Nice To Each Other",
+    "album": "Nice To Each Other",
+    "chunk": "I don't know where the switches are\nOr where you keep the cutlery\nAnd I'll probably crash your stupid car\nAnd make your life a misery\nOr we could be nice to each other, nice to each other"
   },
   "tracks": {
     "short_term": [
       {
         "track": "Look at My Life",
         "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e022a6c9aa7070279c1c3193338"
-      },
-      {
-        "track": "Kingmaker (with Julia Michaels)",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "Intro: Girl Under The Grey Cloud.",
-        "artist": "RAYE",
-        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
-      },
-      {
-        "track": "Winter Woman.",
-        "artist": "RAYE",
-        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
-      },
-      {
-        "track": "expectations",
-        "artist": "Olivia Rodrigo",
-        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
+        "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
       },
       {
         "track": "Hit the Wall",
         "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
+        "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
       },
       {
         "track": "A Groovy Kind of Love",
@@ -44,19 +24,39 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02bdbb936aeda188debe62e187"
       },
       {
-        "track": "Vampire Time",
+        "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
+        "artist": "Taylor Swift",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
+      },
+      {
+        "track": "expectations",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
+      },
+      {
+        "track": "Kingmaker (with Julia Michaels)",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
-        "track": "All I Really Want - 2015 Remaster",
-        "artist": "Alanis Morissette",
-        "image": "https://i.scdn.co/image/ab67616d00001e02242e643ea07118ecf677a6ef"
+        "track": "Taste Back",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
       },
       {
-        "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
-        "artist": "Taylor Swift",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
+        "track": "There She Goes",
+        "artist": "The La's",
+        "image": "https://i.scdn.co/image/ab67616d00001e0256e9c8e4f38808bceb60f1f6"
+      },
+      {
+        "track": "Give A Little Bit",
+        "artist": "Supertramp",
+        "image": "https://i.scdn.co/image/ab67616d00001e02be91795435584ccd90c2a76a"
+      },
+      {
+        "track": "Pain Is Cold Water - Live From Fenway Park",
+        "artist": "Noah Kahan",
+        "image": "https://i.scdn.co/image/ab67616d00001e026fa7a7aba4957476e32f9d10"
       }
     ],
     "medium_term": [
@@ -167,19 +167,14 @@
   "artists": {
     "short_term": [
       {
-        "name": "Maisie Peters",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
-      },
-      {
         "name": "Gracie Abrams",
         "genres": [],
         "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
       },
       {
-        "name": "RAYE",
+        "name": "Maisie Peters",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
+        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
         "name": "Sabrina Carpenter",
@@ -192,6 +187,11 @@
         "name": "Taylor Swift",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
+      },
+      {
+        "name": "RAYE",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
       },
       {
         "name": "Noah Kahan",
@@ -216,9 +216,9 @@
         "image": "https://i.scdn.co/image/ab67616100005174d8c27cf88071ec8df272ac50"
       },
       {
-        "name": "The Cranberries",
+        "name": "Harry Styles",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab676161000051749d7ed10720669900a0649c98"
+        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       }
     ],
     "medium_term": [
