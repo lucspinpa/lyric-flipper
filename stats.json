@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-20",
+  "generated": "2026-07-21",
   "lyric": {
-    "artist": "Olivia Dean",
-    "track": "Nice To Each Other",
-    "album": "Nice To Each Other",
-    "chunk": "I don't know where the switches are\nOr where you keep the cutlery\nAnd I'll probably crash your stupid car\nAnd make your life a misery\nOr we could be nice to each other, nice to each other"
+    "artist": "George Michael",
+    "track": "Freedom! '90 - Remastered",
+    "album": "Listen Without Prejudice Vol. 1 (Remastered)",
+    "chunk": "What a kick just a buddy and me\nWe had every big-shot Goodtime Band on the run, boy\nWe were living in a fantasy\nWe won the race, got out of the place\nWent back home, got a brand-new face for the boys on MTV"
   },
   "tracks": {
     "short_term": [
@@ -14,9 +14,9 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
       },
       {
-        "track": "Hit the Wall",
-        "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
+        "track": "expectations",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
         "track": "A Groovy Kind of Love",
@@ -24,24 +24,29 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02bdbb936aeda188debe62e187"
       },
       {
+        "track": "Hit the Wall",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
+      },
+      {
         "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
         "artist": "Taylor Swift",
         "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
       },
       {
-        "track": "expectations",
-        "artist": "Olivia Rodrigo",
-        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
+        "track": "Taste Back",
+        "artist": "Harry Styles",
+        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "Never Getting Laid",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02b1863bf95557ea7f357c4947"
       },
       {
         "track": "Kingmaker (with Julia Michaels)",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "Taste Back",
-        "artist": "Harry Styles",
-        "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
       },
       {
         "track": "There She Goes",
@@ -52,11 +57,6 @@
         "track": "Give A Little Bit",
         "artist": "Supertramp",
         "image": "https://i.scdn.co/image/ab67616d00001e02be91795435584ccd90c2a76a"
-      },
-      {
-        "track": "Pain Is Cold Water - Live From Fenway Park",
-        "artist": "Noah Kahan",
-        "image": "https://i.scdn.co/image/ab67616d00001e026fa7a7aba4957476e32f9d10"
       }
     ],
     "medium_term": [
@@ -91,14 +91,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
       },
       {
-        "track": "Hit the Wall",
-        "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
-      },
-      {
         "track": "American Girls",
         "artist": "Harry Styles",
         "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "Hit the Wall",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
       },
       {
         "track": "Season 2 Weight Loss",
@@ -123,14 +123,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02fd8d7a8d96871e791cb1f626"
       },
       {
-        "track": "Manchild",
-        "artist": "Sabrina Carpenter",
-        "image": "https://i.scdn.co/image/ab67616d00001e02062c6573009fdebd43de443b"
-      },
-      {
         "track": "Taste Back",
         "artist": "Harry Styles",
         "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
+      },
+      {
+        "track": "Manchild",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02062c6573009fdebd43de443b"
       },
       {
         "track": "decode",
@@ -194,9 +194,9 @@
         "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
       },
       {
-        "name": "Noah Kahan",
+        "name": "Olivia Rodrigo",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
+        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
         "name": "Olivia Dean",
@@ -206,9 +206,9 @@
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       },
       {
-        "name": "Olivia Rodrigo",
+        "name": "Noah Kahan",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
+        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
         "name": "Amaia",
