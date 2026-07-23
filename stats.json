@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-22",
+  "generated": "2026-07-23",
   "lyric": {
-    "artist": "Taylor Swift",
-    "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
-    "album": "I Knew It, I Knew You (From \"Toy Story 5\")",
-    "chunk": "I knew you\nThrough the daze of the blades of the grass in summer\nParachutes\nFor the free fall of being younger\nI memorized"
+    "artist": "Amaia",
+    "track": "Auxiliar",
+    "album": "Si Abro Los Ojos No Es Real",
+    "chunk": "Se me clava directo al corazón\nY yo puedo verlo, sé que estás creciendo\nNo quiero dolerte, yo solo te estoy queriendo\nCuando el mundo pese y el dolor moleste\nAquí espero para cuidarte, mi amor"
   },
   "tracks": {
     "short_term": [
@@ -29,24 +29,19 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
       },
       {
-        "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
-        "artist": "Taylor Swift",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
-      },
-      {
         "track": "Taste Back",
         "artist": "Harry Styles",
         "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
       },
       {
+        "track": "I Knew It, I Knew You - From \"Toy Story 5\"",
+        "artist": "Taylor Swift",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a35a1d4983e2b4fd0094f910"
+      },
+      {
         "track": "Never Getting Laid",
         "artist": "Sabrina Carpenter",
         "image": "https://i.scdn.co/image/ab67616d00001e02b1863bf95557ea7f357c4947"
-      },
-      {
-        "track": "Kingmaker (with Julia Michaels)",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
         "track": "There She Goes",
@@ -57,6 +52,11 @@
         "track": "Give A Little Bit",
         "artist": "Supertramp",
         "image": "https://i.scdn.co/image/ab67616d00001e02be91795435584ccd90c2a76a"
+      },
+      {
+        "track": "Pain Is Cold Water - Live From Fenway Park",
+        "artist": "Noah Kahan",
+        "image": "https://i.scdn.co/image/ab67616d00001e026fa7a7aba4957476e32f9d10"
       }
     ],
     "medium_term": [
@@ -172,16 +172,16 @@
         "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
       },
       {
-        "name": "Maisie Peters",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
-      },
-      {
         "name": "Sabrina Carpenter",
         "genres": [
           "pop"
         ],
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
+      },
+      {
+        "name": "Maisie Peters",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
         "name": "Taylor Swift",
@@ -194,11 +194,6 @@
         "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
       },
       {
-        "name": "Olivia Rodrigo",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
-      },
-      {
         "name": "Olivia Dean",
         "genres": [
           "pop soul"
@@ -209,6 +204,11 @@
         "name": "Noah Kahan",
         "genres": [],
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
+      },
+      {
+        "name": "Olivia Rodrigo",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
         "name": "Amaia",
@@ -330,7 +330,7 @@
       {
         "name": "Lizzy McAlpine",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174912df0c93a5dc290d3c8816e"
+        "image": "https://i.scdn.co/image/ab676161000051749d1c48931c01c23bd3567f50"
       },
       {
         "name": "Olivia Dean",
