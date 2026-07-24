@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-23",
+  "generated": "2026-07-24",
   "lyric": {
-    "artist": "Amaia",
-    "track": "Auxiliar",
-    "album": "Si Abro Los Ojos No Es Real",
-    "chunk": "Se me clava directo al corazón\nY yo puedo verlo, sé que estás creciendo\nNo quiero dolerte, yo solo te estoy queriendo\nCuando el mundo pese y el dolor moleste\nAquí espero para cuidarte, mi amor"
+    "artist": "Nelly Furtado",
+    "track": "I'm Like A Bird",
+    "album": "Whoa, Nelly! (Expanded Edition)",
+    "chunk": "I'm like a bird, I'll only fly away\nI don't know where my soul is\nI don't know where my home is\nAnd baby, all I need for you to know is\nI'm like a bird, I'll only fly away"
   },
   "tracks": {
     "short_term": [
@@ -44,6 +44,11 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02b1863bf95557ea7f357c4947"
       },
       {
+        "track": "Girl’s Just Flying",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
         "track": "There She Goes",
         "artist": "The La's",
         "image": "https://i.scdn.co/image/ab67616d00001e0256e9c8e4f38808bceb60f1f6"
@@ -52,11 +57,6 @@
         "track": "Give A Little Bit",
         "artist": "Supertramp",
         "image": "https://i.scdn.co/image/ab67616d00001e02be91795435584ccd90c2a76a"
-      },
-      {
-        "track": "Pain Is Cold Water - Live From Fenway Park",
-        "artist": "Noah Kahan",
-        "image": "https://i.scdn.co/image/ab67616d00001e026fa7a7aba4957476e32f9d10"
       }
     ],
     "medium_term": [
@@ -91,14 +91,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
       },
       {
+        "track": "Hit the Wall",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
+      },
+      {
         "track": "American Girls",
         "artist": "Harry Styles",
         "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
-      },
-      {
-        "track": "Hit the Wall",
-        "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e021f4ba58b0e4dcef24a8df0cf"
       },
       {
         "track": "Season 2 Weight Loss",
@@ -201,24 +201,24 @@
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       },
       {
-        "name": "Noah Kahan",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
-      },
-      {
         "name": "Olivia Rodrigo",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
-        "name": "Amaia",
+        "name": "Noah Kahan",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174d8c27cf88071ec8df272ac50"
+        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
         "name": "Harry Styles",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
+      },
+      {
+        "name": "Amaia",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174d8c27cf88071ec8df272ac50"
       }
     ],
     "medium_term": [
@@ -228,14 +228,14 @@
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
-        "name": "Harry Styles",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
-      },
-      {
         "name": "Maisie Peters",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
+      },
+      {
+        "name": "Harry Styles",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       },
       {
         "name": "Sabrina Carpenter",
@@ -274,9 +274,12 @@
         "image": "https://i.scdn.co/image/ab67616100005174766397ec42a573a53eb5fb87"
       },
       {
-        "name": "Amaia",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174d8c27cf88071ec8df272ac50"
+        "name": "Charli xcx",
+        "genres": [
+          "hyperpop",
+          "art pop"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       }
     ],
     "long_term": [
@@ -330,7 +333,7 @@
       {
         "name": "Lizzy McAlpine",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab676161000051749d1c48931c01c23bd3567f50"
+        "image": "https://i.scdn.co/image/ab6761610000517460243697a6f60f522bcf7fd3"
       },
       {
         "name": "Olivia Dean",
