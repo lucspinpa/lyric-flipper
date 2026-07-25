@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-24",
+  "generated": "2026-07-25",
   "lyric": {
-    "artist": "Nelly Furtado",
-    "track": "I'm Like A Bird",
-    "album": "Whoa, Nelly! (Expanded Edition)",
-    "chunk": "I'm like a bird, I'll only fly away\nI don't know where my soul is\nI don't know where my home is\nAnd baby, all I need for you to know is\nI'm like a bird, I'll only fly away"
+    "artist": "Alanis Morissette",
+    "track": "Ironic - 2015 Remaster",
+    "album": "Jagged Little Pill (2015 Remaster)",
+    "chunk": "An old man turned 98\nHe won the lottery and died the next day\nIt's a black fly in your Chardonnay\nIt's a death row pardon two minutes too late\nAnd isn't it ironic?"
   },
   "tracks": {
     "short_term": [
@@ -49,14 +49,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
       },
       {
+        "track": "Vampire Time",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
         "track": "There She Goes",
         "artist": "The La's",
         "image": "https://i.scdn.co/image/ab67616d00001e0256e9c8e4f38808bceb60f1f6"
-      },
-      {
-        "track": "Give A Little Bit",
-        "artist": "Supertramp",
-        "image": "https://i.scdn.co/image/ab67616d00001e02be91795435584ccd90c2a76a"
       }
     ],
     "medium_term": [
@@ -179,14 +179,14 @@
         "image": "https://i.scdn.co/image/ab6761610000517478e45cfa4697ce3c437cb455"
       },
       {
-        "name": "Maisie Peters",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
-      },
-      {
         "name": "Taylor Swift",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
+      },
+      {
+        "name": "Maisie Peters",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
         "name": "RAYE",
@@ -206,9 +206,12 @@
         "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
-        "name": "Noah Kahan",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
+        "name": "Charli xcx",
+        "genres": [
+          "hyperpop",
+          "art pop"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       },
       {
         "name": "Harry Styles",
@@ -260,6 +263,14 @@
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
+        "name": "Charli xcx",
+        "genres": [
+          "hyperpop",
+          "art pop"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
+      },
+      {
         "name": "Olivia Dean",
         "genres": [
           "pop soul"
@@ -272,14 +283,6 @@
           "pop"
         ],
         "image": "https://i.scdn.co/image/ab67616100005174766397ec42a573a53eb5fb87"
-      },
-      {
-        "name": "Charli xcx",
-        "genres": [
-          "hyperpop",
-          "art pop"
-        ],
-        "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       }
     ],
     "long_term": [
@@ -333,7 +336,7 @@
       {
         "name": "Lizzy McAlpine",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab6761610000517460243697a6f60f522bcf7fd3"
+        "image": "https://i.scdn.co/image/ab67616100005174b4a33c95a236ef73a3c03b47"
       },
       {
         "name": "Olivia Dean",
