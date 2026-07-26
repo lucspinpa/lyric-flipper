@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-25",
+  "generated": "2026-07-26",
   "lyric": {
-    "artist": "Alanis Morissette",
-    "track": "Ironic - 2015 Remaster",
-    "album": "Jagged Little Pill (2015 Remaster)",
-    "chunk": "An old man turned 98\nHe won the lottery and died the next day\nIt's a black fly in your Chardonnay\nIt's a death row pardon two minutes too late\nAnd isn't it ironic?"
+    "artist": "Gracie Abrams",
+    "track": "Hit the Wall",
+    "album": "Daughter from Hell",
+    "chunk": "I live in a pattern of breakdowns\nYou'll bend to my silence, it's so loud\nAnd then you'll lose me to the crowd\nHit the wall, I just hit the wall\nI'm not a problem you can solve"
   },
   "tracks": {
     "short_term": [
@@ -12,11 +12,6 @@
         "track": "Look at My Life",
         "artist": "Gracie Abrams",
         "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
-      },
-      {
-        "track": "expectations",
-        "artist": "Olivia Rodrigo",
-        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
         "track": "A Groovy Kind of Love",
@@ -27,6 +22,21 @@
         "track": "Hit the Wall",
         "artist": "Gracie Abrams",
         "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
+      },
+      {
+        "track": "Auxiliar",
+        "artist": "Amaia",
+        "image": "https://i.scdn.co/image/ab67616d00001e0216741627edccbb6323aa000b"
+      },
+      {
+        "track": "Girl’s Just Flying",
+        "artist": "Maisie Peters",
+        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+      },
+      {
+        "track": "expectations",
+        "artist": "Olivia Rodrigo",
+        "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
         "track": "Taste Back",
@@ -44,19 +54,9 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02b1863bf95557ea7f357c4947"
       },
       {
-        "track": "Girl’s Just Flying",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
         "track": "Vampire Time",
         "artist": "Maisie Peters",
         "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
-      },
-      {
-        "track": "There She Goes",
-        "artist": "The La's",
-        "image": "https://i.scdn.co/image/ab67616d00001e0256e9c8e4f38808bceb60f1f6"
       }
     ],
     "medium_term": [
@@ -201,11 +201,6 @@
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       },
       {
-        "name": "Olivia Rodrigo",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
-      },
-      {
         "name": "Charli xcx",
         "genres": [
           "hyperpop",
@@ -214,14 +209,19 @@
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       },
       {
+        "name": "Olivia Rodrigo",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
+      },
+      {
         "name": "Harry Styles",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
       },
       {
-        "name": "Amaia",
+        "name": "Lorde",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174d8c27cf88071ec8df272ac50"
+        "image": "https://i.scdn.co/image/ab67616100005174678a3a4bc2d8a84074f22c71"
       }
     ],
     "medium_term": [
@@ -321,17 +321,17 @@
         "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
-        "name": "Noah Kahan",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
-      },
-      {
         "name": "Charli xcx",
         "genres": [
           "hyperpop",
           "art pop"
         ],
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
+      },
+      {
+        "name": "Noah Kahan",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
         "name": "Lizzy McAlpine",
