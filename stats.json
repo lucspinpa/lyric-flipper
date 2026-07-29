@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-28",
+  "generated": "2026-07-29",
   "lyric": {
-    "artist": "Charli xcx",
-    "track": "Wink Wink",
-    "album": "Music, Fashion, Film",
-    "chunk": "I'm not a bad girl anymore, I promise\nHere's the truth, and I gotta be honest\nI'm not a bad girl anymore\nWink wink, wink wink\nHere's the truth, and I gotta be honest"
+    "artist": "Maisie Peters",
+    "track": "Girl’s Just Flying",
+    "album": "Florescence",
+    "chunk": "So keep your reasons, it turns out I don't need 'em\nYou lost sleep please, I lost seasons\nBut it don't matter, love don't ever fall out even\nI'm not bitter, I'm not dying\nI forget about you when I'm not even trying"
   },
   "tracks": {
     "short_term": [
@@ -44,11 +44,6 @@
         "image": "https://i.scdn.co/image/ab67616d00001e025cf234eeb7a2edf44bf64a46"
       },
       {
-        "track": "Never Getting Laid",
-        "artist": "Sabrina Carpenter",
-        "image": "https://i.scdn.co/image/ab67616d00001e02b1863bf95557ea7f357c4947"
-      },
-      {
         "track": "Silver Jubilee",
         "artist": "Audrey Hobert",
         "image": "https://i.scdn.co/image/ab67616d00001e02d754a73edca1a9d88ebd7658"
@@ -57,6 +52,11 @@
         "track": "A Groovy Kind of Love",
         "artist": "Phil Collins",
         "image": "https://i.scdn.co/image/ab67616d00001e02bdbb936aeda188debe62e187"
+      },
+      {
+        "track": "Free Now",
+        "artist": "Gracie Abrams",
+        "image": "https://i.scdn.co/image/ab67616d00001e024ba1c73e08db2c003a78e148"
       }
     ],
     "medium_term": [
@@ -184,9 +184,21 @@
         "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
+        "name": "RAYE",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
+      },
+      {
         "name": "Maisie Peters",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
+      },
+      {
+        "name": "Olivia Dean",
+        "genres": [
+          "pop soul"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       },
       {
         "name": "Charli xcx",
@@ -197,26 +209,14 @@
         "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
       },
       {
-        "name": "RAYE",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
-      },
-      {
-        "name": "Olivia Dean",
-        "genres": [
-          "pop soul"
-        ],
-        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
-      },
-      {
         "name": "Olivia Rodrigo",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174b14eb4dcfd2f3858bed06e44"
       },
       {
-        "name": "Harry Styles",
+        "name": "Audrey Hobert",
         "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
+        "image": "https://i.scdn.co/image/ab676161000051744fc78e354b19324810f1e933"
       },
       {
         "name": "Amaia",
