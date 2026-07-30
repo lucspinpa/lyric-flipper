@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-29",
+  "generated": "2026-07-30",
   "lyric": {
-    "artist": "Maisie Peters",
-    "track": "Girl’s Just Flying",
-    "album": "Florescence",
-    "chunk": "So keep your reasons, it turns out I don't need 'em\nYou lost sleep please, I lost seasons\nBut it don't matter, love don't ever fall out even\nI'm not bitter, I'm not dying\nI forget about you when I'm not even trying"
+    "artist": "Olivia Rodrigo",
+    "track": "my way",
+    "album": "you seem pretty sad for a girl so in love",
+    "chunk": "It goes my way now\nAh-ah, ah-ah, ah-ah-ah-ah\nSo where'd you get that confidence from?\nLast time that I checked, I won\nLet me be direct: Just stop"
   },
   "tracks": {
     "short_term": [
@@ -143,6 +143,11 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02fd8d7a8d96871e791cb1f626"
       },
       {
+        "track": "Taste",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02fd8d7a8d96871e791cb1f626"
+      },
+      {
         "track": "Dancing Through Life",
         "artist": "Jonathan Bailey",
         "image": "https://i.scdn.co/image/ab67616d00001e0241ded89391c5350f6b8f991c"
@@ -151,11 +156,6 @@
         "track": "Aperture",
         "artist": "Harry Styles",
         "image": "https://i.scdn.co/image/ab67616d00001e0274959140f550b11049c18a38"
-      },
-      {
-        "track": "Taste",
-        "artist": "Sabrina Carpenter",
-        "image": "https://i.scdn.co/image/ab67616d00001e02fd8d7a8d96871e791cb1f626"
       },
       {
         "track": "Free Now - Live From Vevo",
