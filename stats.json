@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-31",
+  "generated": "2026-08-01",
   "lyric": {
-    "artist": "Maisie Peters",
-    "track": "Vampire Time",
-    "album": "Florescence",
-    "chunk": "'Cause I had to know what you're doing tonight\nAnd what you're doing tomorrow\nAnd the rest of your life\n'Cause I love you, I promise\nAnd I will 'til I die"
+    "artist": "Gracie Abrams",
+    "track": "Death Wish",
+    "album": "Daughter from Hell",
+    "chunk": "Could leave you with an empty house\nBut how will it end? How long will you give me\n'Til you twist the knife with a smile while you kill me?\nThen you ask me to dance if there's someone around\nYou don't look the same when I look at you now"
   },
   "tracks": {
     "short_term": [
@@ -12,6 +12,11 @@
         "track": "Look at My Life",
         "artist": "Gracie Abrams",
         "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
+      },
+      {
+        "track": "Camera",
+        "artist": "Charli xcx",
+        "image": "https://i.scdn.co/image/ab67616d00001e02238e2ff91714a8db91b8a64d"
       },
       {
         "track": "Taste Back",
@@ -24,19 +29,9 @@
         "image": "https://i.scdn.co/image/ab67616d00001e025cf234eeb7a2edf44bf64a46"
       },
       {
-        "track": "Camera",
-        "artist": "Charli xcx",
-        "image": "https://i.scdn.co/image/ab67616d00001e02238e2ff91714a8db91b8a64d"
-      },
-      {
         "track": "Hit the Wall",
         "artist": "Gracie Abrams",
         "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
-      },
-      {
-        "track": "Auxiliar",
-        "artist": "Amaia",
-        "image": "https://i.scdn.co/image/ab67616d00001e0216741627edccbb6323aa000b"
       },
       {
         "track": "expectations",
@@ -47,6 +42,11 @@
         "track": "A Groovy Kind of Love",
         "artist": "Phil Collins",
         "image": "https://i.scdn.co/image/ab67616d00001e02bdbb936aeda188debe62e187"
+      },
+      {
+        "track": "Beware.. The South London Lover Boy.",
+        "artist": "RAYE",
+        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
       },
       {
         "track": "Free Now",
@@ -133,14 +133,14 @@
         "image": "https://i.scdn.co/image/ab67616d00001e02062c6573009fdebd43de443b"
       },
       {
-        "track": "decode",
-        "artist": "Sabrina Carpenter",
-        "image": "https://i.scdn.co/image/ab67616d00001e02700f7bf79c9f063ad0362bdf"
-      },
-      {
         "track": "Coincidence",
         "artist": "Sabrina Carpenter",
         "image": "https://i.scdn.co/image/ab67616d00001e02fd8d7a8d96871e791cb1f626"
+      },
+      {
+        "track": "decode",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02700f7bf79c9f063ad0362bdf"
       },
       {
         "track": "Taste",
@@ -172,11 +172,6 @@
         "image": "https://i.scdn.co/image/ab6761610000517418e3675ebfda9c29cfb2b57e"
       },
       {
-        "name": "Taylor Swift",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
-      },
-      {
         "name": "Sabrina Carpenter",
         "genres": [
           "pop"
@@ -189,9 +184,29 @@
         "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
+        "name": "Taylor Swift",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
+      },
+      {
+        "name": "Charli xcx",
+        "genres": [
+          "hyperpop",
+          "art pop"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
+      },
+      {
         "name": "RAYE",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
+      },
+      {
+        "name": "Ariana Grande",
+        "genres": [
+          "pop"
+        ],
+        "image": "https://i.scdn.co/image/ab67616100005174766397ec42a573a53eb5fb87"
       },
       {
         "name": "Olivia Rodrigo",
@@ -206,22 +221,9 @@
         "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       },
       {
-        "name": "Charli xcx",
-        "genres": [
-          "hyperpop",
-          "art pop"
-        ],
-        "image": "https://i.scdn.co/image/ab676161000051746fa76436a2bba83b9f1d6fd1"
-      },
-      {
         "name": "Harry Styles",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174e309f8c3056a59f20d0968ca"
-      },
-      {
-        "name": "Lorde",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174678a3a4bc2d8a84074f22c71"
       }
     ],
     "medium_term": [
@@ -271,18 +273,18 @@
         "image": "https://i.scdn.co/image/ab676161000051745b141d30d14fb78458dac5ce"
       },
       {
-        "name": "Olivia Dean",
-        "genres": [
-          "pop soul"
-        ],
-        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
-      },
-      {
         "name": "Ariana Grande",
         "genres": [
           "pop"
         ],
         "image": "https://i.scdn.co/image/ab67616100005174766397ec42a573a53eb5fb87"
+      },
+      {
+        "name": "Olivia Dean",
+        "genres": [
+          "pop soul"
+        ],
+        "image": "https://i.scdn.co/image/ab676161000051745c7577ad44daeb7ce4b941a1"
       }
     ],
     "long_term": [
