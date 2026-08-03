@@ -1,10 +1,10 @@
 {
-  "generated": "2026-08-02",
+  "generated": "2026-08-03",
   "lyric": {
     "artist": "Sabrina Carpenter",
-    "track": "Never Getting Laid",
+    "track": "When Did You Get Hot?",
     "album": "Man’s Best Friend",
-    "chunk": "Baby, I'm not angry\nLove you just the same\nI just hope you get agoraphobia some day\nAnd all your days are sunny\nFrom your windowpane"
+    "chunk": "Back on the horse to the rodeo\nNow I'm at the prospect convention\nMy friends walk in your friends direction\nSaid \"Sabrina, don't you know Devin?\"\nAnd I was like"
   },
   "tracks": {
     "short_term": [
@@ -34,29 +34,29 @@
         "image": "https://i.scdn.co/image/ab67616d00001e0299bc33b47a0a67fd50783055"
       },
       {
+        "track": "House Tour",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02b1863bf95557ea7f357c4947"
+      },
+      {
+        "track": "Nobody’s Son",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02b1863bf95557ea7f357c4947"
+      },
+      {
         "track": "expectations",
         "artist": "Olivia Rodrigo",
         "image": "https://i.scdn.co/image/ab67616d00001e026949b83f85d782b21ce70583"
       },
       {
-        "track": "A Groovy Kind of Love",
-        "artist": "Phil Collins",
-        "image": "https://i.scdn.co/image/ab67616d00001e02bdbb936aeda188debe62e187"
+        "track": "When Did You Get Hot?",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02b1863bf95557ea7f357c4947"
       },
       {
-        "track": "Beware.. The South London Lover Boy.",
-        "artist": "RAYE",
-        "image": "https://i.scdn.co/image/ab67616d00001e0297c0928704e5a2bd8d4c5b90"
-      },
-      {
-        "track": "Free Now",
-        "artist": "Gracie Abrams",
-        "image": "https://i.scdn.co/image/ab67616d00001e024ba1c73e08db2c003a78e148"
-      },
-      {
-        "track": "Girl’s Just Flying",
-        "artist": "Maisie Peters",
-        "image": "https://i.scdn.co/image/ab67616d00001e02a89e013166461305e0365218"
+        "track": "Never Getting Laid",
+        "artist": "Sabrina Carpenter",
+        "image": "https://i.scdn.co/image/ab67616d00001e02b1863bf95557ea7f357c4947"
       }
     ],
     "medium_term": [
@@ -184,11 +184,6 @@
         "image": "https://i.scdn.co/image/ab67616100005174165be07847d7744f9ee9a3bc"
       },
       {
-        "name": "Taylor Swift",
-        "genres": [],
-        "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
-      },
-      {
         "name": "Charli xcx",
         "genres": [
           "hyperpop",
@@ -200,6 +195,11 @@
         "name": "RAYE",
         "genres": [],
         "image": "https://i.scdn.co/image/ab67616100005174d9b6eb671700503c0e6205a9"
+      },
+      {
+        "name": "Taylor Swift",
+        "genres": [],
+        "image": "https://i.scdn.co/image/ab67616100005174e2e8e7ff002a4afda1c7147e"
       },
       {
         "name": "Ariana Grande",
