@@ -25,89 +25,56 @@
   <a href="index.html" class="nav-tab active">lyric del día</a>
   <a href="tracks.html" class="nav-tab">top tracks</a>
   <a href="artists.html" class="nav-tab">top artists</a>
-  <!--<a href="tarot.html" class="nav-tab">tarot arcana</a> -->
+  <a href="tarot.html" class="nav-tab">tarot arcana</a>
   <!--<a href="pinterest.html" class="nav-tab">pinterest boards</a>-->
 </nav>
 
-<div id="view-lyric" class="view active">
-  <main>
+<script src="spiderweb-cursor.js"></script>
+<script src="page-swing.js"></script>
+<div id="page-wrapper">
+  <div id="view-lyric" class="view active">
+    <main>
 
-    <!-- LYRIC + MASCOTA -->
-    <div class="lyric-pet-container">
+      <!-- LYRIC + MASCOTA -->
+      <div class="lyric-pet-container">
 
-      <div class="lyric-side">
-        <div class="song-meta">
-          <div class="s-artist" id="lyric-artist">
-            <span class="skel" style="width:120px;height:10px;display:inline-block"></span>
+        <div class="lyric-side">
+          <div class="song-meta">
+            <div class="s-artist" id="lyric-artist">
+              <span class="skel" style="width:120px;height:10px;display:inline-block"></span>
+            </div>
+            <div class="s-title" id="lyric-track">
+              <span class="skel" style="width:280px;height:32px;display:inline-block"></span>
+            </div>
           </div>
-          <div class="s-title" id="lyric-track">
-            <span class="skel" style="width:280px;height:32px;display:inline-block"></span>
+          <blockquote id="lyric-chunk">
+            <span class="skel" style="width:100%;height:16px;display:block;margin-bottom:10px"></span>
+            <span class="skel" style="width:85%;height:16px;display:block;margin-bottom:10px"></span>
+            <span class="skel" style="width:90%;height:16px;display:block;margin-bottom:10px"></span>
+            <span class="skel" style="width:75%;height:16px;display:block;margin-bottom:10px"></span>
+            <span class="skel" style="width:80%;height:16px;display:block"></span>
+          </blockquote>
+        </div>
+
+
+        <div id="space-sector">
+          <div id="web-pet" class="pet-idle">
+            <div id="pet-speech" class="pet-bubble"></div>
+            <img src="images/chateau.png" alt="Mascotita" style="width: 80px; height: 80px; object-fit: contain;">
           </div>
         </div>
-        <blockquote id="lyric-chunk">
-          <span class="skel" style="width:100%;height:16px;display:block;margin-bottom:10px"></span>
-          <span class="skel" style="width:85%;height:16px;display:block;margin-bottom:10px"></span>
-          <span class="skel" style="width:90%;height:16px;display:block;margin-bottom:10px"></span>
-          <span class="skel" style="width:75%;height:16px;display:block;margin-bottom:10px"></span>
-          <span class="skel" style="width:80%;height:16px;display:block"></span>
-        </blockquote>
+
       </div>
+      <br>
+      <section class="dashboard-block">
+        <div class="lunar-calendar-title">web radar — mood semanal</div>
+        <div id="web-radar"></div>
+      </section>
+      <script src="radar-chart.js"></script>
+      <div class="sent-badge">enviado sh0p1t & iphone</div>
 
-
-      <div id="space-sector">
-        <div id="web-pet" class="pet-idle">
-          <div id="pet-speech" class="pet-bubble"></div>
-          <img src="images/chateau.png" alt="Mascotita" style="width: 80px; height: 80px; object-fit: contain;">
-        </div>
-      </div>
-
-    </div>
-
-    <div class="sent-badge">enviado sh0p1t & iphone</div>
-
-  </main>
-</div>
-<!-- NOW PLAYING WIDGET (CYBERPUNK REDESIGN) -->
-<div class="now-playing-terminal">
-  <div class="terminal-scanline"></div>
-  
-  <!-- Album Art (Left) -->
-  <div class="np-album-container">
-    <img id="np-artwork" src="" alt="Album art" class="np-album-art" />
-    <div id="np-status" class="np-status-tag">synced</div>
+    </main>
   </div>
-
-  <!-- Metadata (Center) -->
-  <div class="np-metadata">
-    <div class="np-label">NOW_PLAYING</div>
-    <h3 id="np-track" class="np-track-title">—</h3>
-    <div class="np-artist-row">
-      <span id="np-artist" class="np-artist-name">—</span>
-      <span class="np-pulse-dot"></span>
-    </div>
-    <div class="np-progress-container">
-      <div class="np-progress-bar">
-        <div id="np-progress-fill" class="np-progress-fill"></div>
-      </div>
-      <span id="np-time" class="np-time-display">0:00 / 0:00</span>
-    </div>
-  </div>
-
-  <!-- Controls (Right) -->
-  <div class="np-controls-group">
-    <button id="np-prev" class="np-control-btn np-skip-btn" title="Previous">
-      <span class="control-icon">⏮</span>
-    </button>
-    <button id="np-play" class="np-control-btn np-play-main" title="Play/Pause">
-      <span class="control-icon">▶</span>
-    </button>
-    <button id="np-next" class="np-control-btn np-skip-btn" title="Next">
-      <span class="control-icon">⏭</span>
-    </button>
-  </div>
-
-  <!-- Corner Ornament (Cyberpunk Detail) -->
-  <div class="np-corner-accent"></div>
 </div>
 <!-- MODAL LUNAR -->
 <div id="lunar-modal">

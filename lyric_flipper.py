@@ -63,7 +63,7 @@ CONFIG = {
     "SPOTIFY_CLIENT_ID":     os.getenv("SPOTIFY_CLIENT_ID",     ""),
     "SPOTIFY_CLIENT_SECRET": os.getenv("SPOTIFY_CLIENT_SECRET", ""),
     "SPOTIFY_REDIRECT_URI":  os.getenv("SPOTIFY_REDIRECT_URI",  "http://127.0.0.1:8888/callback"),
-    
+
     # Rango temporal: short_term | medium_term | long_term
     "SPOTIFY_TIME_RANGE":    os.getenv("SPOTIFY_TIME_RANGE",    "short_term"),
     # Cuántas pistas top traer (1-50)
@@ -88,8 +88,44 @@ CONFIG = {
     # ── Ntfy (notificaciones iPhone) ────────────────────────────
     # Cambia esto por tu topic personal (invéntate uno difícil de adivinar)
     "NTFY_TOPIC":            os.getenv("NTFY_TOPIC", "lucspiLyricFlipper"),
+
+    # ── Web Radar (mood diario) ──────────────────────────────────
+    # Cuántos días de historial guarda el radar semanal
+    "MOOD_HISTORY_DAYS":     int(os.getenv("MOOD_HISTORY_DAYS", "7")),
 }
+
+# Todos los scopes que necesita cualquier llamada a Spotify en este script.
+# IMPORTANTE: van juntos en un único string para que compartan el mismo
+# token cacheado — si cada función pidiera su propio scope por separado,
+# spotipy invalidaría el cache cada vez que cambias de función.
+SPOTIFY_SCOPES = "user-top-read user-read-recently-played"
 # ══════════════════════════════════════════════════════════════
+
+_sp_client = None  # cliente Spotify cacheado a nivel de módulo
+
+
+def get_spotify_client():
+    """
+    Devuelve un único cliente `spotipy.Spotify` compartido por todas las
+    funciones del script, autenticado con SPOTIFY_SCOPES. Evita reautenticar
+    o invalidar el cache de token entre llamadas.
+    """
+    global _sp_client
+    if _sp_client is not None:
+        return _sp_client
+
+    if spotipy is None:
+        raise SystemExit("❌  Instala 'spotipy':  pip install spotipy")
+
+    _sp_client = spotipy.Spotify(auth_manager=SpotifyOAuth(
+        client_id=CONFIG["SPOTIFY_CLIENT_ID"],
+        client_secret=CONFIG["SPOTIFY_CLIENT_SECRET"],
+        redirect_uri=CONFIG["SPOTIFY_REDIRECT_URI"],
+        scope=SPOTIFY_SCOPES,
+        cache_path=".spotify_token_cache",
+        open_browser=True,
+    ))
+    return _sp_client
 
 
 # ─────────────────────────────────────────────────────────────
@@ -101,17 +137,7 @@ def get_top_tracks(time_range: str = "short_term") -> list[dict]:
     Devuelve lista de dicts con {track, artist, duration_s} usando
     Authorization Code Flow (scope: user-top-read).
     """
-    if spotipy is None:
-        raise SystemExit("❌  Instala 'spotipy':  pip install spotipy")
-
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-        client_id=CONFIG["SPOTIFY_CLIENT_ID"],
-        client_secret=CONFIG["SPOTIFY_CLIENT_SECRET"],
-        redirect_uri=CONFIG["SPOTIFY_REDIRECT_URI"],
-        scope="user-top-read",
-        cache_path=".spotify_token_cache",
-        open_browser=True,
-    ))
+    sp = get_spotify_client()
 
     log.info("🎵  Solicitando top %d pistas (%s)…",
              CONFIG["SPOTIFY_TOP_LIMIT"], CONFIG["SPOTIFY_TIME_RANGE"])
@@ -134,18 +160,9 @@ def get_top_tracks(time_range: str = "short_term") -> list[dict]:
     log.info("✅  %d pistas obtenidas.", len(tracks))
     return tracks
 
-def get_top_artists(time_range: str = "short_term") -> list[dict]:
-    if spotipy is None:
-        raise SystemExit("❌  Instala 'spotipy':  pip install spotipy")
 
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-        client_id=CONFIG["SPOTIFY_CLIENT_ID"],
-        client_secret=CONFIG["SPOTIFY_CLIENT_SECRET"],
-        redirect_uri=CONFIG["SPOTIFY_REDIRECT_URI"],
-        scope="user-top-read",
-        cache_path=".spotify_token_cache",
-        open_browser=True,
-    ))
+def get_top_artists(time_range: str = "short_term") -> list[dict]:
+    sp = get_spotify_client()
 
     log.info("🎤  Solicitando top artistas (%s)…", time_range)
 
@@ -162,6 +179,7 @@ def get_top_artists(time_range: str = "short_term") -> list[dict]:
         }
         for item in result["items"]
     ]
+
 
 # ─────────────────────────────────────────────────────────────
 #  MÓDULO 2 — Proveedor A: LRCLIB (open source, sin token)
@@ -418,15 +436,105 @@ def send_ntfy(title: str, body: str) -> bool:
         log.warning("⚠️   Error enviando a ntfy: %s", e)
     return False
 
+
+# ─────────────────────────────────────────────────────────────
+#  MÓDULO 6 — Web Radar: mood diario (valence / energy)
+# ─────────────────────────────────────────────────────────────
+
+def get_daily_mood() -> Optional[dict]:
+    """
+    Calcula el 'mood' del día a partir de las canciones escuchadas
+    recientemente (recently-played) usando audio features de Spotify
+    (valence = positividad, energy = intensidad, danceability).
+
+    Devuelve: {"date", "valence", "energy", "danceability", "track_count"}
+    o None si no se pudo calcular.
+    """
+    sp = get_spotify_client()
+
+    log.info("🎧  Calculando mood del día (recently played + audio features)…")
+    try:
+        recent = sp.current_user_recently_played(limit=50)
+    except Exception as e:
+        log.warning("⚠️   No se pudo obtener recently played: %s", e)
+        return None
+
+    track_ids = []
+    seen = set()
+    for item in recent.get("items", []):
+        tid = item.get("track", {}).get("id")
+        if tid and tid not in seen:
+            seen.add(tid)
+            track_ids.append(tid)
+
+    if not track_ids:
+        log.warning("⚠️   No hay pistas recientes para calcular el mood.")
+        return None
+
+    try:
+        features = sp.audio_features(track_ids[:100])
+    except Exception as e:
+        log.warning("⚠️   Error obteniendo audio-features: %s", e)
+        return None
+
+    valid = [f for f in features if f]
+    if not valid:
+        log.warning("⚠️   Spotify no devolvió audio-features válidas.")
+        return None
+
+    valence      = sum(f["valence"] for f in valid) / len(valid)
+    energy       = sum(f["energy"] for f in valid) / len(valid)
+    danceability = sum(f["danceability"] for f in valid) / len(valid)
+
+    mood = {
+        "date":         date.today().isoformat(),
+        "valence":      round(valence, 3),
+        "energy":       round(energy, 3),
+        "danceability": round(danceability, 3),
+        "track_count":  len(valid),
+    }
+    log.info("✅  Mood del día → valence=%.2f  energy=%.2f  (%d pistas)",
+             valence, energy, len(valid))
+    return mood
+
+
+def update_mood_log(mood: dict, max_days: int = 7) -> list[dict]:
+    """
+    Añade el mood de hoy a mood_log.json, manteniendo solo los últimos
+    `max_days`. Si ya existe una entrada de hoy (reruns del pipeline el
+    mismo día), la sobreescribe en vez de duplicarla.
+    """
+    log_file = Path("mood_log.json")
+    entries = []
+    if log_file.exists():
+        try:
+            entries = json.loads(log_file.read_text())
+        except Exception:
+            entries = []
+
+    entries = [e for e in entries if e.get("date") != mood["date"]]
+    entries.append(mood)
+    entries = sorted(entries, key=lambda e: e["date"])[-max_days:]
+
+    log_file.write_text(
+        json.dumps(entries, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    log.info("📈  mood_log.json actualizado (%d días).", len(entries))
+    return entries
+
+
 # ─────────────────────────────────────────────────────────────
 #  MÓDULO 7 — Generar stats.json + index.html para GitHub Pages
 # ─────────────────────────────────────────────────────────────
- 
+
 def generate_stats(chunk: str, chosen_track: dict,
                    tracks_short: list[dict], tracks_medium: list[dict], tracks_long: list[dict],
-                   artists_short: list[dict], artists_medium: list[dict], artists_long: list[dict]) -> None:
+                   artists_short: list[dict], artists_medium: list[dict], artists_long: list[dict],
+                   mood_history: list[dict]) -> None:
     """
-    Escribe stats.json con el lyric del día y el top de canciones.
+    Escribe stats.json con el lyric del día, el top de canciones y el
+    historial de mood semanal (Web Radar).
     La web (index.html) lee este archivo estático — sin auth ni backend.
     """
 
@@ -454,6 +562,7 @@ def generate_stats(chunk: str, chosen_track: dict,
             "medium_term": fmt_artists(artists_medium),
             "long_term":   fmt_artists(artists_long),
         },
+        "mood_history": mood_history,
     }
 
     Path("stats.json").write_text(
@@ -461,6 +570,8 @@ def generate_stats(chunk: str, chosen_track: dict,
         encoding="utf-8",
     )
     log.info("📊  stats.json generado.")
+
+
 # ─────────────────────────────────────────────────────────────
 #  PIPELINE PRINCIPAL
 # ─────────────────────────────────────────────────────────────
@@ -483,6 +594,10 @@ def run_pipeline():
     except Exception as e:
         log.error("❌  No se pudo obtener top tracks: %s", e)
         return  # copia ordenada para la web
+
+    # ── PASO 1b: Web Radar — mood del día ───────────────────────
+    mood_today = get_daily_mood()
+    mood_history = update_mood_log(mood_today, CONFIG["MOOD_HISTORY_DAYS"]) if mood_today else []
 
     # ── PASO 2: Obtener letra (con cascada de proveedores) ──────
     lyrics_raw = None
@@ -572,8 +687,9 @@ def run_pipeline():
 
     generate_stats(chunk, chosen_track,
                    tracks_short, tracks_medium, tracks_long,
-                   artists_short, artists_medium, artists_long)
-    
+                   artists_short, artists_medium, artists_long,
+                   mood_history)
+
     log.info("✨  Pipeline completado.")
 
 
