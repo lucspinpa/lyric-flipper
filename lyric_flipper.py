@@ -438,63 +438,118 @@ def send_ntfy(title: str, body: str) -> bool:
 
 
 # ─────────────────────────────────────────────────────────────
-#  MÓDULO 6 — Web Radar: mood diario (valence / energy)
+#  MÓDULO 6 — Web Radar: mood diario (léxico de letra + géneros)
+# ─────────────────────────────────────────────────────────────
+#  NOTA: Spotify deprecó /audio-features y /audio-analysis el 27-nov-2024
+#  para cualquier app sin acceso extendido previo — devuelven 403 siempre,
+#  sin excepción para proyectos personales. Por eso el mood se calcula de
+#  forma local combinando dos señales que SÍ siguen disponibles:
+#    · Sentimiento léxico del lyric del día (ya lo tenemos, cero llamadas extra)
+#    · Géneros de tus artistas más escuchados (top-artists sigue vivo)
 # ─────────────────────────────────────────────────────────────
 
-def get_daily_mood() -> Optional[dict]:
+# Palabras usadas para puntuar el sentimiento de la letra elegida.
+# Listas deliberadamente pequeñas y editables — amplíalas si ves que el
+# radar se queda "neutral" demasiado a menudo.
+_POSITIVE_WORDS = {
+    "love", "happy", "joy", "dance", "shine", "free", "light", "sun",
+    "smile", "alive", "beautiful", "dream", "hope", "together", "forever",
+    "perfect", "sweet", "laugh", "fun", "bright", "good", "best", "yes",
+}
+_NEGATIVE_WORDS = {
+    "cry", "sad", "pain", "hurt", "broke", "alone", "dark", "tears",
+    "lonely", "goodbye", "lost", "empty", "hate", "fear", "scared", "dead",
+    "death", "hell", "sorry", "gone", "cold", "wrong", "never", "afraid",
+}
+
+# Palabras clave de género usadas para estimar energy / valence.
+_HIGH_ENERGY_GENRES = {
+    "pop", "dance", "edm", "house", "techno", "trap", "hyperpop", "punk",
+    "metal", "rock", "hip hop", "rap", "drill", "electro", "dubstep",
+    "reggaeton", "party",
+}
+_LOW_ENERGY_GENRES = {
+    "ambient", "acoustic", "lo-fi", "lofi", "chill", "ballad",
+    "singer-songwriter", "folk", "classical", "bedroom pop", "slowcore",
+    "dream pop", "soft", "sad",
+}
+_POSITIVE_GENRES = {"pop", "dance", "party", "funk", "disco", "reggaeton", "tropical"}
+_NEGATIVE_GENRES = {"sad", "emo", "slowcore", "doom", "dark", "gothic", "melancholic", "depress"}
+
+
+def _score_from_counts(pos_count: int, neg_count: int, baseline: float = 0.5) -> float:
     """
-    Calcula el 'mood' del día a partir de las canciones escuchadas
-    recientemente (recently-played) usando audio features de Spotify
-    (valence = positividad, energy = intensidad, danceability).
-
-    Devuelve: {"date", "valence", "energy", "danceability", "track_count"}
-    o None si no se pudo calcular.
+    Convierte un recuento de señales positivas/negativas en un score 0-1.
+    Si no hay señal ninguna, devuelve el baseline (neutral).
     """
-    sp = get_spotify_client()
+    total = pos_count + neg_count
+    if total == 0:
+        return baseline
+    raw = (pos_count - neg_count) / total  # rango -1..1
+    score = baseline + raw * 0.5           # remapea a 0..1
+    return max(0.0, min(1.0, score))
 
-    log.info("🎧  Calculando mood del día (recently played + audio features)…")
-    try:
-        recent = sp.current_user_recently_played(limit=50)
-    except Exception as e:
-        log.warning("⚠️   No se pudo obtener recently played: %s", e)
-        return None
 
-    track_ids = []
-    seen = set()
-    for item in recent.get("items", []):
-        tid = item.get("track", {}).get("id")
-        if tid and tid not in seen:
-            seen.add(tid)
-            track_ids.append(tid)
+def _lyric_valence(text: str) -> float:
+    """Sentimiento léxico simple del fragmento de letra del día."""
+    words = re.findall(r"[a-zA-Z']+", text.lower())
+    pos = sum(1 for w in words if w in _POSITIVE_WORDS)
+    neg = sum(1 for w in words if w in _NEGATIVE_WORDS)
+    return _score_from_counts(pos, neg)
 
-    if not track_ids:
-        log.warning("⚠️   No hay pistas recientes para calcular el mood.")
-        return None
 
-    try:
-        features = sp.audio_features(track_ids[:100])
-    except Exception as e:
-        log.warning("⚠️   Error obteniendo audio-features: %s", e)
-        return None
+def _genre_mood(artists: list[dict]) -> tuple[float, float]:
+    """Deriva (valence, energy) a partir de los géneros de tus top artistas."""
+    all_genres = []
+    for a in artists:
+        all_genres.extend(g.lower() for g in a.get("genres", []))
 
-    valid = [f for f in features if f]
-    if not valid:
-        log.warning("⚠️   Spotify no devolvió audio-features válidas.")
-        return None
+    if not all_genres:
+        return 0.5, 0.5
 
-    valence      = sum(f["valence"] for f in valid) / len(valid)
-    energy       = sum(f["energy"] for f in valid) / len(valid)
-    danceability = sum(f["danceability"] for f in valid) / len(valid)
+    high_e = sum(1 for g in all_genres if any(k in g for k in _HIGH_ENERGY_GENRES))
+    low_e  = sum(1 for g in all_genres if any(k in g for k in _LOW_ENERGY_GENRES))
+    pos_v  = sum(1 for g in all_genres if any(k in g for k in _POSITIVE_GENRES))
+    neg_v  = sum(1 for g in all_genres if any(k in g for k in _NEGATIVE_GENRES))
+
+    energy  = _score_from_counts(high_e, low_e)
+    valence = _score_from_counts(pos_v, neg_v)
+    return valence, energy
+
+
+def _mood_label(valence: float, energy: float) -> str:
+    if valence >= 0.6 and energy >= 0.6:
+        return "hype ⚡"
+    if valence >= 0.6 and energy < 0.6:
+        return "chill happy ☀️"
+    if valence < 0.4 and energy >= 0.6:
+        return "intenso 🔥"
+    if valence < 0.4 and energy < 0.4:
+        return "sad boy hours 🌙"
+    return "neutral 🌤️"
+
+
+def compute_daily_mood(chunk: str, artists_short: list[dict]) -> dict:
+    """
+    Calcula el mood del día combinando sentimiento de la letra (60%) y
+    géneros de tus top artistas (40% valence, 100% energy).
+    """
+    log.info("🎧  Calculando mood del día (letra + géneros, sin llamadas a Spotify extra)…")
+
+    lyric_v = _lyric_valence(chunk)
+    genre_v, genre_e = _genre_mood(artists_short)
+
+    valence = round(0.6 * lyric_v + 0.4 * genre_v, 3)
+    energy  = round(genre_e, 3)
 
     mood = {
-        "date":         date.today().isoformat(),
-        "valence":      round(valence, 3),
-        "energy":       round(energy, 3),
-        "danceability": round(danceability, 3),
-        "track_count":  len(valid),
+        "date":    date.today().isoformat(),
+        "valence": valence,
+        "energy":  energy,
+        "label":   _mood_label(valence, energy),
     }
-    log.info("✅  Mood del día → valence=%.2f  energy=%.2f  (%d pistas)",
-             valence, energy, len(valid))
+    log.info("✅  Mood del día → valence=%.2f  energy=%.2f  (%s)",
+             valence, energy, mood["label"])
     return mood
 
 
@@ -595,10 +650,6 @@ def run_pipeline():
         log.error("❌  No se pudo obtener top tracks: %s", e)
         return  # copia ordenada para la web
 
-    # ── PASO 1b: Web Radar — mood del día ───────────────────────
-    mood_today = get_daily_mood()
-    mood_history = update_mood_log(mood_today, CONFIG["MOOD_HISTORY_DAYS"]) if mood_today else []
-
     # ── PASO 2: Obtener letra (con cascada de proveedores) ──────
     lyrics_raw = None
     chosen_track = None
@@ -664,6 +715,10 @@ def run_pipeline():
         return
 
     chunk = pick_lyric_chunk(lines, CONFIG["LYRIC_CHUNK_SIZE"])
+
+    # ── PASO 3b: Web Radar — mood del día (letra + géneros) ─────
+    mood_today = compute_daily_mood(chunk, artists_short)
+    mood_history = update_mood_log(mood_today, CONFIG["MOOD_HISTORY_DAYS"])
 
     # Cabecera del mensaje
     header = f"♪ {chosen_track['artist']} — {chosen_track['track']}\n{'─'*30}\n"
