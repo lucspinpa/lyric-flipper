@@ -47,6 +47,14 @@ try:
 except ImportError:
     SERIAL_AVAILABLE = False
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    logging.getLogger("lyric_flipper").warning(
+        "⚠️   python-dotenv no instalado — el .env no se cargará. "
+        "Instala con: pip install python-dotenv"
+    )
 # ─── LOGGING ──────────────────────────────────────────────────
 logging.basicConfig(
     level=logging.INFO,
@@ -105,11 +113,6 @@ _sp_client = None  # cliente Spotify cacheado a nivel de módulo
 
 
 def get_spotify_client():
-    """
-    Devuelve un único cliente `spotipy.Spotify` compartido por todas las
-    funciones del script, autenticado con SPOTIFY_SCOPES. Evita reautenticar
-    o invalidar el cache de token entre llamadas.
-    """
     global _sp_client
     if _sp_client is not None:
         return _sp_client
@@ -117,16 +120,30 @@ def get_spotify_client():
     if spotipy is None:
         raise SystemExit("❌  Instala 'spotipy':  pip install spotipy")
 
+    cache_path = ".spotify_token_cache"
+
+    # En CI no hay cache local pero sí un refresh_token guardado como Secret.
+    # Lo reconstruimos como cache "caducado" para forzar un refresh silencioso.
+    if not Path(cache_path).exists() and os.getenv("SPOTIFY_REFRESH_TOKEN"):
+        fake_cache = {
+            "access_token": "expired",
+            "token_type": "Bearer",
+            "expires_in": -1,
+            "scope": SPOTIFY_SCOPES,
+            "expires_at": 0,  # ya caducado → spotipy refresca al vuelo
+            "refresh_token": os.getenv("SPOTIFY_REFRESH_TOKEN"),
+        }
+        Path(cache_path).write_text(json.dumps(fake_cache))
+
     _sp_client = spotipy.Spotify(auth_manager=SpotifyOAuth(
         client_id=CONFIG["SPOTIFY_CLIENT_ID"],
         client_secret=CONFIG["SPOTIFY_CLIENT_SECRET"],
         redirect_uri=CONFIG["SPOTIFY_REDIRECT_URI"],
         scope=SPOTIFY_SCOPES,
-        cache_path=".spotify_token_cache",
-        open_browser=True,
+        cache_path=cache_path,
+        open_browser=(os.getenv("CI") != "true"),  # False en Actions, True en local
     ))
     return _sp_client
-
 
 # ─────────────────────────────────────────────────────────────
 #  MÓDULO 1 — Spotify: obtener top tracks
